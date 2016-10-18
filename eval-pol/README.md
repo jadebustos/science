@@ -27,7 +27,7 @@ Points where the above polynomial are going to be evaluated are equally distribu
 
 ```
 x_0 = 1
-x_i = x_{i-1} + h * i where i in [0,n]
+x_i = x_{i-1} + h * i where i in [0,n - 1]
 x_n =10
 ```
 
