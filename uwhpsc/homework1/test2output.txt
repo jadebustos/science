@@ -1,0 +1,24 @@
+
+Code run by Jose Angel de Bustos Perez
+Environment variable UWHPSC is /Users/jadebustos/Src/HPSComputation/uwhpsc
+Environment variable MYHPSC is /Users/jadebustos/Src/HPSComputation/bitbucket.org
+
+which ipython returns...
+/Users/jadebustos/anaconda/bin/ipython
+
+which gfortran returns...
+/usr/local/bin/gfortran
+
+gfortran --version returns...
+GNU Fortran (GCC) 4.6.2 20111019 (prerelease)
+Copyright (C) 2011 Free Software Foundation, Inc.
+
+GNU Fortran viene SIN GARANTÍA, a la extensión permitida por ley.
+Puede distribuir copias de GNU Fortran
+bajo los términos de la Licencia Pública General GPL.
+Para más información sobre estos asuntos, vea el fichero llamado COPYING
+
+
+Compiling and running a Fortran code...
+ Code run by  Jose Angel de Bustos Perez**
+ Successfully ran Fortran 90 program

@@ -1,0 +1,6 @@
+Code run by Jose Angel de Bustos Perez**
+Environment variable UWHPSC is /Users/jadebustos/Src/HPSComputation/uwhpsc
+Environment variable MYHPSC is /Users/jadebustos/Src/HPSComputation/bitbucket.org
+Imported numpy ok
+Imported matplotlib ok
+Imported pylab ok
