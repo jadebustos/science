@@ -9,21 +9,13 @@ right algorithm can speed up a process.
 These can also be useful to show how error can be reduced by reducing the number of
 floating point operations.
 
-eval-pol.c  
-==========
-
-This example shows the traditional way to evaluate a polynomial.
-
-eval-pol-opt.c  
-==============
-
-This example shows how to use distributive property to evaluate a polynomial:
+The polynomial used in these examples is:
 
 ```
 p(x)=1-2*x+3*x^2+4*x^3+5*x^4-3*x^5+2*x^6
 ```
 
-Points where the above polynomial are going to be evaluated are equally distributed point on [1,10] where:
+Points where the above polynomial are going to be evaluated are equally distributed points across [1,10] where:
 
 ```
 x_0 = 1
@@ -35,6 +27,21 @@ n is the total amount of point you want evaluate de polynomial and it is supplie
 
 ```
 h = (10 - 1)/(n - 1)
+```
+
+eval-pol.c  
+==========
+
+This example shows the traditional way to evaluate a polynomial.
+
+eval-pol-opt.c  
+==============
+
+This example shows how to use distributive property to evaluate a polynomial:
+
+```
+p(x) = 1-2*x+3*x^2+4*x^3+5*x^4-3*x^5+2*x^6 = 1+(-2+3*x+4*x^2+5*x^3-3*x^4+2*x^5)*x = ..
+     = 1+(-2+(3+4*x+5*x^2-3*x^3+2*x^4)*x)*x = ... 
 ```
 
 eval-pol-opt-rec.c
