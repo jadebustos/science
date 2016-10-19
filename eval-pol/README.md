@@ -23,7 +23,7 @@ x_i = x_{i-1} + h * i where i in [0,n - 1]
 x_n =10
 ```
 
-n is the total amount of point you want evaluate de polynomial and it is supplied as an argument. So:
+n is the total amount of points you want evaluate the polynomial and it is supplied as an argument. So:
 
 ```
 h = (10 - 1)/(n - 1)
