@@ -4,6 +4,6 @@ B.I.A.G.R.A stands for BIbliotecA de proGRamacion científicA which means Scient
 
 This library was developed by me to perform my duties at University when I needed to program them instead of using Mathematica/Matlab/Octave ...
 
-All the code and documentation (biagra.pdf) was written in spanish.
+All the code and documentation (biagra.pdf) was originally written in spanish. Now I am translating into English and adapting code.
 
 The documentation was not finished.
