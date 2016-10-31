@@ -1,0 +1,144 @@
+%
+% MATRIZ.H
+%
+
+\chapter{matriz.h}
+
+\section{Introducci\'on}
+En este fichero de cabezera estan los prototipos de funciones para el
+tratamiento de \emph{matrices}.
+
+\section{Almacenamiento de matrices}
+Las matrices se almacenar\'an en la estructura de datos \textbf{Matriz}%
+\footnote{Apartado (\ref{sec:strMatriz}) en la p\'agina
+\pageref{sec:strMatriz}.}, y almacenaremos los coeficientes de la matriz en el
+miembro \emph{dblCoefi}, para ello este miembro ha de estar correctamente
+dimensionado\footnote{Ve\'ase el apartado (\ref{sec:asigmemmat}) en la
+p\'agina \pageref{sec:asigmemmat}}.
+
+\subsection{MatrizIdentidad}
+Funci\'on que almacena la matriz identidad.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{void \textbf{MatrizIdentidad}(Matriz *ptstrMatriz)};
+\end{center}
+
+\begin{description}
+\item[ptstrMatriz] puntero a una variable del tipo \textbf{Matriz}.
+\end{description}
+
+Por ejemplo:
+
+\begin{center}
+\emph{\textbf{MatrizIdentidad}(\&Mat);}
+\end{center}
+
+Almacenar\'{\i}a la matriz identidad de orden \emph{Mat.intFilas} en 
+\emph{Mat}, donde \emph{Mat} es una variable del tipo \textbf{Matriz}%
+\footnote{Apartado (\ref{sec:strMatriz}) en la p\'agina 
+\pageref{sec:strMatriz}.}.
+
+\newpage
+
+\subsection{MatrizHomotecia}
+Funci\'on que almacena la matriz de la homotecia de raz\'on \emph{dblRazon}.\\
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{void \textbf{MatrizHomotecia}(Matriz *ptstrMatriz, double dblRazon)}
+\end{center}
+
+\begin{description}
+\item[ptstrMatriz] puntero a una variable del tipo \textbf{Matriz}.
+\item[dblRazon] raz\'on de la homotecia.
+\end{description}
+
+Por ejemplo:
+
+\begin{center}
+\emph{\textbf{MatrizHomotecia}(\&Mat, dblRazon);}
+\end{center}
+
+Almacenar\'{\i}a la matriz de la homotecia de orden \emph{Mat.intFilas} y de 
+raz\'on \emph{dblRazon} $= \lambda$, en \emph{Mat}, es decir:
+
+\begin{center}
+\emph{dblMatriz}
+$
+= \left( \begin{array}{ccccc}
+\lambda & 0 & \cdots & \cdots & 0 \\
+0 & \lambda & 0 & & \vdots \\
+\vdots & 0 & \ddots & \ddots & \vdots \\
+\vdots & & \ddots & \lambda & 0 \\
+0 & \cdots & \cdots & 0 & \lambda \\
+\end{array} \right)
+$
+\end{center}
+
+donde \emph{Mat} es una variable del tipo \textbf{Matriz}\footnote{Apartado
+(\ref{sec:strMatriz}) en la p\'agina \pageref{sec:strMatriz}.}.
+
+\subsection{MatrizNula}
+Funci\'on que almacena la matriz nula.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{void \textbf{MatrizNula}(Matriz *ptstrMatriz)}
+\end{center}
+
+\begin{description}
+\item[ptstrMatriz] puntero a una variable del tipo \textbf{Matriz}.
+\end{description}
+
+Por ejemplo:
+
+\begin{center}
+\emph{\textbf{MatrizNula}(\&Mat);}
+\end{center}
+
+Almacenar\'{\i}a la matriz nula, de \emph{Mat.intFilas} y 
+\emph{Mat.intColumnas}, en \emph{Mat}, donde \emph{Mat} es una variable del
+tipo \textbf{Matriz}\footnote{Apartado (\ref{sec:strMatriz}) en la p\'agina
+\pageref{sec:strMatriz}.}.
+
+\newpage
+
+\subsection{MatrizTraspuesta}
+Funci\'on que almacena la matriz traspuesta de una dada.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{void \textbf{MatrizTraspuesta}(Matriz *ptstrMatriz, Matriz *ptstrTras)} 
+\end{center}
+
+\begin{description}
+\item[ptstrMatriz] puntero a una variable del tipo \textbf{Matriz}.
+\item[ptstrTras] puntero a una variable del tipo \textbf{Matriz}.
+\end{description}
+
+Por ejemplo:
+
+\begin{center}
+\emph{\textbf{MatrizTraspuesta}(\&Mat, \&Tras);}
+\end{center}
+
+Almacenar\'{\i}a la matriz traspuesta de \emph{Mat}\footnote{Matriz con
+\emph{Mat.intFilas} filas y \emph{Mat.intColumnas} columnas.} en \emph{Tras}%
+\footnote{Matriz con \emph{Tras.intFilas} filas y \emph{Tras.intColumnas} 
+columnas.}, donde ambas son variables del tipo \textbf{Matriz}\footnote{%
+Apartado (\ref{sec:strMatriz}) en la p\'agina \pageref{sec:strMatriz}.}.\newline
+
+Observaciones:
+
+\begin{itemize}
+\item El miembro \emph{dblCoefi} de la variable \emph{Tras} ha de estar 
+correctamente dimensionado.
+\item Los miembros \emph{intFilas} e \emph{intColumnas} de la variable 
+\emph{Tras} han de estar correctamente inicializados. No es obligatorio, pero
+si recomendable.
+\end{itemize}

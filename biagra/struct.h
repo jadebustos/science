@@ -12,7 +12,7 @@
 
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
-/* struct.h     Jose Angel de Bustos Perez                              */
+/* struct.h                                                             */
 /*                                                                      */
 /* Estructuras utilizadas por la biblioteca.                            */
 /*                                                                      */
@@ -144,28 +144,29 @@ typedef struct
 /* Esta estructura la utilizaremos para manejar todos los datos         */
 /* referentes a un polinomio.                                           */
 /*                                                                      */
-/* intGrado   -> Grado del polinomio.                                   */
-/* intNumReal -> Numero de raices reales del polinomio.                 */
-/* intNumComp -> Numero de raices complejas del polinomio.              */
+/* intDegree    -> Polynomial degree                                    */
+/* intRealRoots -> Number of real roots                                 */
+/* intCompRoots -> Number of complex roots                              */
 /*                                                                      */
-/* dblCoefi   -> Coeficientes del polinomio.                            */
-/*               dblCoefi[i] coeficiente de grado i-esimo.              */
-/*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/ 
+/* p(x) = a0 + a1*x^1 + a2*x^2 + .... + an*x^n                          */                                                                            
 /*                                                                      */
+/* #include <stdlib.h>                                                  */
+/* double *mypol = (double *)calloc(n + 1, size(double))                */
+/*                                                                      */
+/* *(mypol) = mypol[0] = a0                                             */
+/* *(mypol + i) = mypol[i] = ai where i in [1,n]                        */
+/*                                                                      */
+/* dblCoefs   -> Polynomial coefs                                       */
+/*               dblCoefs[i] = ai                                       */
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
-typedef struct
+typedef struct {
+  int   intDegree    = 0
+        intRealRoots = 0,
+        intCompRoots = 0;
 
-   	{
-        int	intGrado,
-           	intNumReal,
-                intNumComp;
-                
-        double	*dblCoefi;        
-        } Polinomio;
+  double *dblCoefs;        
+  } biaPol;
         
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */

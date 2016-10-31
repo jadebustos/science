@@ -1,0 +1,432 @@
+%
+% COMPLEJO.H
+%
+
+\chapter{complejo.h}
+
+\section{Introducci\'on}
+En este fichero de cabezera estan los prototipos de funciones para el manejo
+de n\'umeros complejos as\'{\i} como los prototipos de funciones para el
+c\'alculo con n\'umeros complejos.\newline
+
+Ser\'{\i}a buena idea consultar el apartado (\ref{sec:complejos}) en la
+p\'agina \pageref{sec:complejos} para comprender las estructuras de datos
+que utilizan estas funciones.
+
+\begin{center}
+\begin{tabular}{|c|}
+\hline
+\textbf{Se entender\'a como argumento de un n\'umero complejo,} \\
+\textbf{al \'angulo formado con el eje REAL POSITIVO y en} \\
+\textbf{sentido contrario al de las agujas del reloj.} \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
+
+\section{Operaciones entre n\'umeros complejos}
+
+\subsection{strSumaComplejos}
+Esta funci\'on suma n\'umeros complejos.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{Complejo \textbf{strSumaComplejos}(Complejo strComp1, Complejo strComp2)}
+\end{center}
+
+\begin{description}
+\item[strComp1] variable del tipo \emph{Complejo} que contiene un n\'umero 
+complejo.
+\item[strComp2] variable del tipo \emph{Complejo} que contiene un n\'umero
+complejo.
+\end{description}
+
+La funci\'on devuelve una variable del tipo \emph{Complejo}, la cual contiene
+la suma de los argumentos que se le han pasado a la funci\'on.
+
+Por ejemplo:
+
+\begin{center}
+\emph{strResultado = \textbf{strSumaComplejos}(strComp1, strComp2);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{strResultado}, variable del tipo \emph{Complejo}, el
+resultado de sumar los n\'umeros complejos \emph{strComp1} y \emph{strComp2}.\\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on trabaja en coordenadas cartesianas.
+\end{itemize}
+
+\subsection{strRestaComplejos}
+Esta funci\'on resta n\'umeros complejos.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{Complejo \textbf{strRestaComplejos}(Complejo strComp1, Complejo strComp2)}
+\end{center}
+
+\begin{description}
+\item[strComp1] variable del tipo \emph{Complejo} que contiene un n\'umero 
+complejo.
+\item[strComp2] variable del tipo \emph{Complejo} que contiene un n\'umero
+complejo.
+\end{description}
+
+La funci\'on devuelve una variable del tipo \emph{Complejo}, la cual contiene
+la resta de los argumentos que se le han pasado a la funci\'on.\newpage
+
+Por ejemplo:
+
+\begin{center}
+\emph{strResultado = \textbf{strRestaComplejos}(strComp1, strComp2);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{strResultado}, variable del tipo \emph{Complejo}, el
+resultado de restar al n\'umero complejo \emph{strComp1} el n\'umero complejo
+\emph{strComp2}. \\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on trabaja en coordenadas cartesianas.
+\end{itemize}
+
+\subsection{strProdComplejos}
+Esta funci\'on multiplica n\'umeros complejos.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{Complejo \textbf{strProdComplejo}(Complejo strComp1, Complejo strComp2)}
+\end{center}
+
+\begin{description}
+\item[strComp1] variable del tipo \emph{Complejo} que contiene un n\'umero 
+complejo.
+\item[strComp2] variable del tipo \emph{Complejo} que contiene un n\'umero
+complejo.
+\end{description}
+
+La funci\'on devuelve una variable del tipo \emph{Complejo}, la cual contiene
+el producto de los argumentos que se le han pasado a la funci\'on.\newline
+
+Por ejemplo:
+
+\begin{center}
+\emph{strResultado = \textbf{strProdComplejos}(strComp1, strComp2);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{strResultado}, variable del tipo \emph{Complejo}, el
+resultado de multiplicar los n\'umeros complejos \emph{strComp1} y \emph{strComp2}.\\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on trabaja en coordenadas cartesianas.
+\end{itemize}
+
+\subsection{DivComplejos}
+Esta funci\'on divide n\'umeros complejos.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{int \textbf{DivComplejos}(Complejo strComp1, Complejo strComp2,\\
+Complejo *ptstrRes)}
+\end{center}
+
+\begin{description}
+\item[strComp1] variable del tipo \emph{Complejo} que contiene un n\'umero 
+complejo.
+\item[strComp2] variable del tipo \emph{Complejo} que contiene un n\'umero
+complejo.
+\item[ptstrRes] puntero a una variable del tipo \emph{Complejo} en la cual
+se almacenar\'a el resultado.
+\end{description}
+
+La funci\'on devuelve los siguientes c\'odigos:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{DIV\_CERO} & Divisi\'on por cero. \\
+\hline
+\textbf{TRUE} & Se efectu\'o con \'exito la divisi\'on. \\
+\hline
+\end{tabular}
+\end{center} 
+
+Por ejemplo:
+
+\begin{center}
+\emph{intResultado = \textbf{DivComplejos}(strComp1, strComp2, \&strRes);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{strRes}, variable del tipo \emph{Complejo}, el
+resultado de dividir el n\'umero complejo \emph{strComp1} por el n\'umero 
+complejo \emph{strComp2} y en \emph{intResultado} el valor $0$, siempre y cuando
+\emph{strComp2} no sea el n\'umero complejo $0+0*i$, en cuyo caso almacenar\'a
+en \emph{intResultado} el valor \textbf{DIV\_CERO}.\\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on trabaja en coordenadas cartesianas.
+\end{itemize}
+
+\newpage
+
+\section{Operaciones con n\'umeros complejos}
+
+\subsection{dblModulo}
+Esta funci\'on calcula el m\'odulo de un n\'umero complejo.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{double \textbf{dblModulo}(Complejo strComp)}
+\end{center}
+
+\begin{description}
+\item[strComp] variable del tipo \emph{Complejo} que contiene un n\'umero
+complejo.
+\end{description}
+
+La funci\'on devuelve el m\'odulo del n\'umero complejo que se le pasa como
+argumento.\newline
+
+Por ejemplo:
+
+\begin{center}
+\emph{dblResultado = \textbf{dblModulo}(strComp);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{dblResultado} el m\'odulo del n\'umero complejo
+\emph{strComp}.\\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on trabaja en coordenadas cartesianas.
+\end{itemize}
+
+\subsection{dblArgumento}
+Esta funci\'on calcula el argumento de un n\'umero complejo.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{double \textbf{dblArgumento}(Complejo strComp)}
+\end{center}
+
+\begin{description}
+\item[strComp] variable del tipo \emph{Complejo} que contiene un n\'umero
+complejo.
+\end{description}
+
+La funci\'on devuelve el argumento, en radianes, del n\'umero complejo que se
+le pasa como argumento.\newline
+
+Por ejemplo:
+
+\begin{center}
+\emph{dblResultado = \textbf{dblArgumento}(strComp);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{dblResultado} el argumento, en radianes, del
+n\'umero complejo \emph{strComp}.\\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on trabaja en coordenadas cartesianas.
+\end{itemize}
+
+\subsection{strOpuComplejo}
+Esta funci\'on calcula el opuesto, respecto de la suma, de un 
+n\'umero complejo.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{Complejo \textbf{strOpuComplejo}(Complejo strComp)}
+\end{center}
+
+\begin{description}
+\item[strComp] variable del tipo \emph{Complejo} que contiene un n\'umero 
+complejo.
+\end{description}
+
+La funci\'on devuelve una variable del tipo \emph{Complejo}, la cual contiene
+el opuesto del argumento que se le ha pasado a la funci\'on.\newline
+
+Por ejemplo:
+
+\begin{center}
+\emph{strResultado = \textbf{strOpuComplejo}(strComp);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{strResultado}, variable del tipo \emph{Complejo}, el
+opuesto, respecto de la suma, del n\'umero complejo \emph{strComp}.\\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on trabaja en coordenadas cartesianas.
+\end{itemize}
+
+\subsection{InvComplejo}
+Esta funci\'on calcula el inverso, respecto del producto, de un 
+n\'umero complejo.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{int \textbf{InvComplejo}(Complejo strComp, Complejo *ptstrRes)}
+\end{center}
+
+\begin{description}
+\item[strComp] variable del tipo \emph{Complejo} que contiene un n\'umero 
+complejo.
+\item[ptstrRes] puntero a una variable del tipo \emph{Complejo} en la cual se
+almacenar\'a el resultado.
+\end{description}
+
+La funci\'on devuelve los siguientes c\'odigos:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{DIV\_CERO} & Divisi\'on por cero. \\
+\hline
+\textbf{TRUE} & Se calcul\'o con \'exito el inverso. \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
+
+Por ejemplo:
+
+\begin{center}
+\emph{intResultado = \textbf{InvComplejo}(strComp, \&strRes);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{strRes}, variable del tipo \emph{Complejo}, el
+inverso, respecto de la multiplicaci\'on, del n\'umero complejo \emph{strComp} 
+y en \emph{intResultado} el valor $0$, siempre y cuando \emph{strComp} no sea
+el n\'umero complejo $0+0*i$, en cuyo caso almacenar\'a en \emph{intResultado} 
+el valor \textbf{DIV\_CERO}.\\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on trabaja en coordenadas cartesianas.
+\end{itemize}
+
+\subsection{strComplejoConj}
+Esta funci\'on calcula el complejo conjugado de un n\'umero complejo.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{Complejo \textbf{strComplejoConj}(Complejo strComp)}
+\end{center}
+
+\begin{description}
+\item[strComp] variable del tipo \emph{Complejo} que contiene un n\'umero 
+complejo.
+\end{description}
+
+La funci\'on devuelve una variable del tipo \emph{Complejo}, la cual contiene
+el complejo conjugado del argumento que se le ha pasado a la funci\'on.\newline
+
+Por ejemplo:
+
+\begin{center}
+\emph{strResultado = \textbf{strComplejoConj}(strComp);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{strResultado}, variable del tipo \emph{Complejo}, el
+complejo conjugado del n\'umero complejo \emph{strComp}.\\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on trabaja en coordenadas cartesianas.
+\end{itemize}
+
+\subsection{strCartePolar}
+Esta funci\'on calcula las coordenadas \emph{polares} de un n\'umero complejo,
+dado en coordenadas \emph{cartesianas}.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{Polar \textbf{strCartePolar}(Complejo strComp)}
+\end{center}
+
+\begin{description}
+\item[strComp] variable del tipo \emph{Complejo} que contiene un n\'umero 
+complejo.
+\end{description}
+
+La funci\'on devuelve una variable del tipo \emph{Polar}, la cual contiene
+las coordenadas polares del argumento que se le ha pasado a la funci\'on.\\
+
+Por ejemplo:
+
+\begin{center}
+\emph{strResultado = \textbf{strCartePolar}(strComp);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{strResultado}, variable del tipo \emph{Polar}, las
+coordenadas polares del n\'umero complejo \emph{strComp}\footnote{En coordenadas
+cartesianas.}.\\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on calcula el argumento en radianes.
+\end{itemize}
+
+\subsection{strPolarCarte}
+Esta funci\'on calcula las coordenadas \emph{cartesianas} de un n\'umero
+complejo, dado en coordenadas \emph{polares}.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{Complejo \textbf{strPolarCarte}(Polar strComp)}
+\end{center}
+
+\begin{description}
+\item[strComp] variable del tipo \emph{Complejo} que contiene un n\'umero 
+complejo.
+\end{description}
+
+La funci\'on devuelve una variable del tipo \emph{Complejo}, la cual contiene
+las coordenadas cartesianas del argumento que se le ha pasado a la funci\'on.
+
+\newpage
+
+Por ejemplo:
+
+\begin{center}
+\emph{strResultado = \textbf{strPolarCarte}(strComp);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{strResultado}, variable del tipo \emph{Complejo}, las
+coordenadas cartesianas del n\'umero complejo \emph{strComp}\footnote{En 
+coordenadas polares.}.\\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on supone el argumento en radianes.
+\end{itemize}
