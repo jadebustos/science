@@ -1,0 +1,43 @@
+%
+% basicdata.h
+%
+
+\chapter{basicdata.h}
+
+\section{Introduction}
+
+Common data structures are defined in this file.
+
+\section{Polynomial data structures}
+
+\subsection{Polynomials}
+
+\begin{equation}
+p(x) = a_0 + a_1 \cdot x + \cdots + a_n \cdot x^n = \sum_{i=0}^n a_i \cdot x^i
+\end{equation}
+
+\subsection{biaRealPol data structure} \label{sec:biaRealPol}
+
+This data structure is used to handle polinomials $p(x) \in \mathbb{R}[x]$. \textbf{biaPol} data structure is defined in figure \ref{fig:biaRealPol} where:
+
+\begin{description}
+\item[intDegree] polynomial degree.
+\item[intRealRoots] number of real roots (if any).
+\item[intCompRoots] number of complex roots (if any).
+\item[*dblCoef] pointer to store polynomial coeficients.
+\end{description}
+
+\begin{figure}[!h]
+\begin{verbatim}
+typedef struct {
+  int  intDegree    = 0,
+       intRealRoots = 0,
+       intCompRoots = 0;
+
+  double  *dblCoefs;
+  } biaRealPol;
+\end{verbatim}
+\caption{Polynomial data structure.} \label{fig:biaRealPol}
+\end{figure}
+
+\subsection{How to use it}

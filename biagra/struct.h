@@ -142,35 +142,6 @@ typedef struct
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Esta estructura la utilizaremos para manejar todos los datos         */
-/* referentes a un polinomio.                                           */
-/*                                                                      */
-/* intDegree    -> Polynomial degree                                    */
-/* intRealRoots -> Number of real roots                                 */
-/* intCompRoots -> Number of complex roots                              */
-/*                                                                      */
-/* p(x) = a0 + a1*x^1 + a2*x^2 + .... + an*x^n                          */                                                                            
-/*                                                                      */
-/* #include <stdlib.h>                                                  */
-/* double *mypol = (double *)calloc(n + 1, size(double))                */
-/*                                                                      */
-/* *(mypol) = mypol[0] = a0                                             */
-/* *(mypol + i) = mypol[i] = ai where i in [1,n]                        */
-/*                                                                      */
-/* dblCoefs   -> Polynomial coefs                                       */
-/*               dblCoefs[i] = ai                                       */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-typedef struct {
-  int   intDegree    = 0
-        intRealRoots = 0,
-        intCompRoots = 0;
-
-  double *dblCoefs;        
-  } biaPol;
-        
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* Esta estructura la utilizaremos para manejar todos los datos         */
 /* necesarios en la aproximacion de las raices de funciones.            */
 /*                                                                      */
 /* intNMI numero maximo de iteraciones.                                 */
