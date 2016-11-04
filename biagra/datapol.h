@@ -1,5 +1,5 @@
-#ifndef BASICDATA_H
-  #define BASICDATA_H
+#ifndef DATAPOL_H
+  #define DATAPOL_H
 
 /*									*/
 /*	B.I.A.G.R.A.	(c) 1998 Jose Angel de Bustos Perez		*/
@@ -31,4 +31,29 @@ typedef struct {
   double *dblCoefs;        
   } biaRealPol;
 
-#endif
+/*                                                                      */
+/* Data structure to store function roots                               */
+/*                                                                      */
+/* intNMI   -> maximum number of iterations to get the root with        */
+/*             dblTol error.                                            */
+/* intIte   -> iterations used to get the root.                         */
+/* dblx0    -> initial root approximation.                              */
+/* dblRoot  -> function root approximation               		*/
+/* dblTol   -> Maximun error tolerance.                                 */
+/* dblError -> error in root. Difference between two last root          */
+/*             approximations.                                          */
+/*									*/
+        
+typedef struct {
+    
+  int intNMI,
+      intIte;
+
+  double dblx0,
+	 dblRoot,
+	 dblTol,
+	 dblError;
+  } biaRealRoot;
+
+#endif-
+
