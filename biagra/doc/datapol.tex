@@ -42,6 +42,44 @@ typedef struct {
 
 \subsection{How to use it}
 
+Polynomial declaration:
+%
+\begin{verbatim}
+#include <datapol.h>
+...
+int main(void) {
+...
+biaRealPol myPol;
+...
+}
+\end{verbatim}
+%
+Polynomial degree is stored in \texttt{intDegree}:
+%
+\begin{verbatim}
+myPol.intDegree = 3;  
+\end{verbatim}
+%
+Memory needs to be allocated:
+%
+\begin{verbatim}
+myPol.dblCoefs = (double *)calloc(myPol.intDegree + 1, sizeof(double));  
+\end{verbatim}
+
+\note{Bare in mind that a $n$ degree polynomial has $n+1$ coeficients.}
+
+To store polynomial coeficients:
+%
+\begin{eqnarray*}
+myPol.dblCoefs[0] & = & a_0 \\
+myPol.dblCoefs[1] & = & a_1 \\
+myPol.dblCoefs[2] & = & a_2 \\
+... & ... & ... \\
+myPol.dblCoefs[n] & = & a_n \\
+\end{eqnarray*}
+
+\tip{In examples directory \texttt{datapol-biaRealPol.c} shows a simple way to use it.}
+
 \section{\textbf{biaRealRoot} data structure} \label{sec:biaRealRoot}
 
 This data structure is used to store data for root approximation. Data structure is defined in figure \ref{fig:biaRealRoot} where:
