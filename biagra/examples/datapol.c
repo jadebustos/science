@@ -3,15 +3,15 @@
 
 #include "datapol.h"
 
-/*|     |       |       |       |       |       |       |       |       */
-/*|     B.I.A.G.R.A.|   (c) 1998 Jose Angel de Bustos Perez|    |       */
-/*|     |       |        <jadebustos@gmail.com>         |       |       */
-/*|     |       |       |       |       |       |       |       |       */
+/*                                                                      */
+/*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */
 /*      This software is licensed under GPLv2:                          */
 /*        http://www.gnu.org/licenses/gpl-2.0.html                      */
-/*|     |       |       |       |       |       |       |       |       */
-/*|     BIbliotecA de proGRamacion cientificA.| |       |       |       */
-/*|     |       |       |       |       |       |       |       |       */
+/*                                                                      */
+/*      BIbliotecA de proGRamacion cientificA.                          */
+/*                                                                      */
 
 /* Simple example of biaRealPol usage */
 
