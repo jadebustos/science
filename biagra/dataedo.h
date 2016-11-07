@@ -1,33 +1,12 @@
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*									*/
-/*	B.I.A.G.R.A.	(c) 1998 Jose Angel de Bustos Perez		*/
-/*			 <jadebustos@gmail.com>         		*/
-/*									*/
+/*                                                                      */
+/*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */                                                                            
 /*      This software is licensed under GPLv2:                          */
 /*        http://www.gnu.org/licenses/gpl-2.0.html                      */
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
-/* struct.h                                                             */
+/*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
-/* Estructuras utilizadas por la biblioteca.                            */
-/*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* IMPORTANTE!!!                                                        */
-/*                                                                      */
-/*     1) El autor no se responsabiliza de los posibles bugs(si los     */
-/*        hubiera) ni del mal uso de esta biblioteca.                   */
-/*                                                                      */
-/*     2) Esta biblioteca ha sido desarrollada y testeada bajo LiNUX.   */
-/*                                                                      */ 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
