@@ -138,27 +138,3 @@ typedef struct
 
         ButcherArray strCoefi;
 	} DatosRK;
-
-        
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* Estructura para manejar matrices.                                    */
-/*                                                                      */
-/*	intFilas    -> Numero de filas de la matriz.			*/
-/*	intColumnas -> Numero de columnas de la matriz.			*/
-/*	dblCoefi    -> Coeficientes de la matriz.			*/
-/*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-typedef struct
-
-   	{
-        int	intFilas,
-           	intColumnas;
-                
-        double	**dblCoefi;
-        } Matriz;        

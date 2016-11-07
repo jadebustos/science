@@ -55,5 +55,4 @@ typedef struct {
 	 dblError;
   } biaRealRoot;
 
-#endif-
-
+#endif
