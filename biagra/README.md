@@ -14,3 +14,5 @@ At this very moment I am doing the following:
 * creating documentation, most of it was missing
 * cleaning the code
 * including examples of how BIAGRA can be used
+
+When I originally created this code the Spanish motto was "Algún día esta biblioteca será la ...."
