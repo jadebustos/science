@@ -24,9 +24,9 @@
 /*                                                                      */
 
 typedef struct {
-  int   intDegree    = 0
-        intRealRoots = 0,
-        intCompRoots = 0;
+  int   intDegree,
+        intRealRoots,
+        intCompRoots;
 
   double *dblCoefs;        
   } biaRealPol;
