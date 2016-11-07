@@ -11,7 +11,6 @@
 /*	BIbliotecA de proGRamacion cientificA.				*/
 /*									*/
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Estructura para manejar matrices.                                    */
 /*                                                                      */
@@ -23,7 +22,6 @@
 /*									*/
 /*	BIbliotecA de proGRamacion cientificA.				*/
 /*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
 typedef struct {
   int intRows,
