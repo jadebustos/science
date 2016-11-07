@@ -1,0 +1,132 @@
+%
+% TIPOMATRIZ.H
+%
+
+\chapter{tipomatriz.h}
+
+\section{Introducci\'on}
+En este fichero de cabezera se encuentran los prototipos de funciones que
+determinan los diferentes tipos de matrices.
+
+\section{Matrices sim\'etricas}
+
+\subsection{EsMatrizSimetrica}
+Determina si una matriz cuadrada es sim\'etrica.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{int \textbf{EsMatrizSimetrica}(Matriz *ptstrMatriz)}
+\end{center}
+
+\begin{description}
+\item[ptstrMatriz] puntero a una variable del tipo \textbf{Matriz}. 
+\end{description}
+
+La funci\'on devuelve los siguientes c\'odigos:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{FALSE} & La matriz no es sim\'etrica. \\
+\hline
+\textbf{TRUE} & La matriz es sim\'etrica. \\
+\hline
+\end{tabular}
+\end{center}
+
+Por ejemplo:
+
+\begin{center}
+\emph{intResultado = \textbf{EsMatrizSimetrica}(\&Mat);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{intResultado} el valor \textbf{TRUE} o el valor
+\textbf{FALSE} dependiendo de si la matriz \emph{Mat}, cuadrada de orden 
+\emph{Mat.intFilas}, es o no sim\'etrica, donde \emph{Mat} es una variable del
+tipo \textbf{Matriz}.
+
+\newpage
+
+\section{Matriz identidad}
+
+\subsection{EsMatrizIdentidad}
+Determina si una matriz cuadrada es o no la matriz identidad.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{int \textbf{EsMatrizIdentidad}(Matriz *ptstrMatriz)}
+\end{center}
+
+\begin{description}
+\item[ptstrMatriz] puntero a una variable del tipo \textbf{Matriz}.
+\end{description}
+
+La funci\'on devuelve los siguientes c\'odigos:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{FALSE} & La matriz no es la matriz identidad. \\
+\hline
+\textbf{TRUE} & La matriz es la matriz identidad. \\
+\hline
+\end{tabular}
+\end{center}
+
+Por ejemplo:
+
+\begin{center}
+\emph{intResultado = \textbf{EsMatrizIdentidad}(\&Mat);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{intResultado} el valor \textbf{TRUE} o el valor
+\textbf{FALSE} dependiendo de si la matriz \emph{Mat}, cuadrada de orden 
+\emph{Mat.intFilas}, es o no la matriz identidad, donde \emph{Mat} es una
+variable del tipo \textbf{Matriz}\footnote{Apartado (\ref{sec:strMatriz})
+en la p\'agina \pageref{sec:strMatriz}.}.
+
+\newpage
+
+\section{Matrices nulas}
+
+\subsection{EsMatrizNula}
+Determina si una matriz es o no nula, permitiendo definir lo que sus 
+coeficientes pueden distar de cero.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{int \textbf{EsMatrizNula}(Matriz *ptstrMatriz, double dblTol)}
+\end{center}
+
+\begin{description}
+\item[ptstrMatriz] puntero a una variable del tipo \textbf{Matriz}.
+\item[dblTol] distancia de los coeficientes a cero.
+\end{description}
+
+La funci\'on devuelve los siguientes c\'odigos:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{FALSE} & La matriz no es la matriz nula. \\
+\hline
+\textbf{TRUE} & La matriz es la matriz nula. \\
+\hline
+\end{tabular}
+\end{center}
+
+Por ejemplo:
+
+\begin{center}
+\emph{intResultado = \textbf{EsMatrizNula}(\&Mat, dblTol);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{intResultado} el valor \textbf{TRUE} si los
+coeficientes de \emph{Mat} son menores o iguales, en valor absoluto, que 
+\emph{dblTol} y en caso contrario \emph{intResultado} tendr\'{\i}a el valor
+\textbf{FALSE}, donde \emph{Mat} es una variable del tipo \textbf{Matriz}%
+\footnote{Apartado (\ref{sec:strMatriz}) en la p\'agina 
+\pageref{sec:strMatriz}.}.

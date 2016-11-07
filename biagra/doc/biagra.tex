@@ -1,0 +1,180 @@
+\documentclass[a4paper,12pt,twoside,openright]{report}
+
+%\addtolength{\voffset}{-4cm}
+\usepackage[english]{babel}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+\usepackage{amssymb}
+\usepackage{draftwatermark}
+\usepackage{placeins}
+\usepackage{balloons}
+
+\pagestyle{headings}
+
+\SetWatermarkText{Draft}
+\SetWatermarkScale{5}
+\SetWatermarkColor{blue}
+
+\author{Jos\'e Angel de Bustos P\'erez}
+
+\newcommand{\BI}
+	{\emph{B.I.A.G.R.A} }
+
+\newcommand{\yo}
+	{\emph{Jos\'e Angel de Bustos P\'erez}}
+
+\frenchspacing
+
+\hyphenation{si-guien-te apro-xi-ma-cio-nes FORTRAN double intGrado 
+dblDerivada dblResultado intNMI intOrden dblMatriz Newton intResultado
+cabezera coor-de-na-das de-pen-dien-do di-men-sio-na-do re-pre-sen-tan-do}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\textbf{
+\begin{center}
+\Huge{B.I.A.G.R.A.} \\[.75cm]
+%\end{center}
+\LARGE BI\Large bliotec\LARGE A \Large de pro\LARGE GR\Large amaci\'on 
+cient\'{\i}fic\LARGE A\\[5cm]
+\end{center}
+}
+
+\large 
+\begin{flushright}
+\yo \\
+$<$jadebustos@gmail.com$>$\\ \ \\ 
+Versi\'on $1.0$, \today .\\
+\textbf{\LaTeXe}
+\end{flushright}
+
+\normalsize
+
+\tableofcontents
+
+\listoftables
+
+\part{Introduction}
+
+%
+% INTRODUCTION
+%
+
+\include{intro}
+
+%
+% COMO UTILIZAR BIAGRA
+%
+
+\include{como}
+
+\part{Data structures}
+
+%
+% datapol.h
+%
+
+\include{datapol}
+
+%
+% datacomplex.h
+%
+
+\include{datacomplex}
+
+%
+% datamatrix.h
+%
+
+\include{datamatrix}
+
+%
+% COMPLEJO.H
+%
+
+\include{complejo}
+
+%
+% CONST.H
+%
+
+\include{const}
+
+%
+% EDO.H
+%
+
+\include{edo}
+
+%
+% ENTEROS.H
+%
+
+\include{enteros}
+
+%
+% MATRIZ.H
+%
+
+\include{matriz}
+
+%
+% POLINOMIOS.H
+%
+
+\include{polinomios}
+
+%
+% PRIMOS.H
+%
+
+\include{primos}
+
+%
+% RAIZFUNC.H
+%
+
+\include{raizfunc}
+
+%
+% RESMEN.H
+%
+
+\include{resmem}
+
+%
+% RNGKUTTA.H
+%
+
+\include{rngkutta}
+
+%
+% struct.h
+%
+
+\include{struct}
+
+%
+% TIPOMATRIZ.H
+%
+
+\include{tipomatriz}
+
+%%%%%%%%%%%%%
+% Apendices %
+%%%%%%%%%%%%%
+
+\appendix
+
+%
+% Apendice sobre metodos Runge - Kutta 
+%
+
+\include{aprk}
+
+\end{document}

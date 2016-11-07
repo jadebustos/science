@@ -12,49 +12,31 @@
 
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
-/* polinomios.h     Jose Angel de Bustos Perez                          */
+/* polynomial.h                                                         */
 /*                                                                      */
-/* Prototipos de funciones para el tratamiento de polinomios.           */
+/* Functions to work using polynomials.                                 */
 /*                                                                      */
-/* Los polinomios se almacenaran en un puntero double de la siguiente   */
-/* manera:                                                              */
+/* p(x) = a0 + a1*x^1 + a2*x^2 + .... + an*x^n                          */
 /*                                                                      */
-/* Dado un polinomio de grado n - 1 tendra n coeficientes, si lo        */
-/* almacenamos en un puntero double polinomio (double *polinomio)       */
-/* para el cual se habra reservado memoria para n elementos, entonces   */
-/* en el elemento i-esimo del puntero estara el coeficiente i(recordar  */
-/* que el coeficiente i es el que acompaña al monomio de grado i), de   */
-/* tal forma que:                                                       */
+/* #include <stdlib.h>                                                  */
+/* double *mypol = (double *)calloc(n + 1, size(double))                */
 /*                                                                      */
-/* *(polinomio) = polinomio[0] = termino independiente                  */
-/* *(polinomio + (n-1)) = polinomio[n-1] = coeficiente de x^(n-1)       */
+/* *(mypol) = mypol[0] = a0                                             */
+/* *(mypol + i) = mypol[i] = ai where i in [1,n]                        */
 /*                                                                      */
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
-
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
-/* IMPORTANTE!!!                                                        */
+/* Function to evaluate a polynomial in one value.                      */
 /*                                                                      */
-/*     1) El autor no se responsabiliza de los posibles bugs(si los     */
-/*        hubiera) ni del mal uso de esta biblioteca.                   */
-/*                                                                      */
-/*     2) Esta biblioteca ha sido desarrollada y testeada bajo LiNUX.   */
-/*                                                                      */ 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* Funcion que calcula el valor del polinomio ptstrPoli en el punto     */
-/* dblPunto, la funcion devuelve dicho valor.                           */
-/*                                                                      */
-/*      B.I.A.G.R.A.        Jose Angel de Bustos Perez                  */
-/*                                                                      */
-/*      BIbliotecA de proGRamacion cientificA.                          */
+/* Arguments:                                                           */
+/*    *ptstrPol                                                        */
+/*    dblX                                                              */
 /*                                                                      */
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
-double dblEvaluarPolinomio(Polinomio *ptstrPoli, double dblPunto);
+double dblEvaluatePol(biaPol *ptstrPol, double dblX);
 
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */

@@ -1,0 +1,144 @@
+%
+% RAIZFUNC.H
+%
+
+\chapter{raizfunc.h}
+
+\section{Introducci\'on}
+
+En este fichero de cabezera estan los prototipos de funciones que se
+utilizar\'an para aproximar raizes de funciones.\newline
+
+Los datos que utilizaremos para aproximar la raiz vendr\'an dados por la
+estructura de datos \textbf{DatosAprxFunc}\footnote{Apartado
+(\ref{sec:DatosAprxFunc}) en la p\'agina \pageref{sec:DatosAprxFunc}.}.
+
+\section{M\'etodo de Newton}
+
+\subsection{NewtonFunc}
+
+Esta funci\'on calcula una aproximaci\'on a una raiz de una funci\'on
+utilizando el m\'etodo de Newton.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{int \textbf{NewtonFunc}(DatosAprxFunc *ptstrDatos,\\
+	int (*Funcion)(double dblPunto, double *ptdblRes),\\
+	int (*Derivada)(double dblPunto, double *ptdblRes))};
+\end{center}
+
+\begin{description}
+\item[ptstrDatos] puntero a una variable del tipo \textbf{DatosAprxFunc}.
+\item[Funcion] puntero a una funci\'on que calcula el valor de la funci\'on,
+de la cual queremos aproximar una raiz, en \emph{dblPunto} y lo almacena en
+\emph{ptdblRes}.\newline
+
+La funci\'on devuelve los siguientes c\'odigos:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{DIV\_CERO} & Hubo divisi\'on por cero. \\
+\hline
+\textbf{TRUE} & No hubo divisi\'on por cero. \\
+\hline
+\end{tabular}
+\end{center}
+\item[Derivada] igual que la anterior pero con la derivada de la funci\'on de
+la que estamos aproximando una raiz. 
+\end{description}
+
+La funci\'on devuelve los siguientes c\'odigos:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{DIV\_CERO} & Hubo divisi\'on por cero. \\
+\hline
+\textbf{FALSE} & No se calcul\'o la soluci\'on en las condiciones 
+del problema \\
+& (intNMI y dblTol). \\
+\hline
+\textbf{TRUE} & Se calcul\'o la soluci\'on en las condiciones del problema.\\
+\hline
+\end{tabular}
+\end{center}
+
+Por ejemplo supongamos que queremos aproximar la raiz de $f(x)$:
+
+\begin{displaymath}
+f(x) = \cos{(x)} - \sqrt{x} + \frac{1}{e^{x}}
+\end{displaymath}
+
+y la derivada de $f(x)$ viene dada por:
+
+\begin{displaymath}
+f'(x) = -\{ \sin{(x)}+\frac{1}{2 \sqrt{x}}+\frac{1}{e^x} \}
+\end{displaymath}
+
+Podemos ver que $f'(x)$ no esta definida para $x=0$.
+
+\begin{center}
+\emph{intResultado = \textbf{NewtonFunc}(\&strDatos, Funcion, Derivada)};
+\end{center}
+
+Aproximar\'{\i}a una ra\'{\i}z de la funci\'on utilizando los datos de la
+variable \emph{strDatos}, la cual es una variable del tipo
+\textbf{DatosAprxFunc}\footnote{Apartado (\ref{sec:DatosAprxFunc}) en la
+p\'agina \pageref{sec:DatosAprxFunc}.}.\newline
+
+La funci\'on almacenar\'a en el miembro \emph{dblSolucion} la aproximaci\'on
+a la ra\'{\i}z y en el miembro \emph{dblError} el error cometido al aproximar
+dichar ra\'{\i}z, entendiendo como error la distancia, en valor absoluto, de dos
+aproximaciones sucesivas.\newline
+
+En \emph{intResultado} estar\'a el c\'odigo devuelto por la funci\'on, el cual
+indicar\'a como termin\'o la ejecuci\'on de la funci\'on.\newline
+
+Para el caso anterior la funci\'on de la que queremos aproximar una ra\'{\i}z:
+
+\begin{verbatim}
+int Funcion (double dblPunto, double *ptdblRes)
+
+{
+double dblRes = .0;
+
+dblRes = cos(dblPunto)-sqrt(dblPunto)+(1./exp(dblPunto));
+
+*ptdblRes = dblRes;
+
+return (TRUE);
+}
+\end{verbatim}
+
+y su derivada:
+
+\begin{verbatim}
+int Derivada (double dblPunto, double *ptdblRes)
+
+{
+double 	dblRes = .0,
+	dblTest = .0;
+
+dblTest = sqrt(dblPunto);
+
+if ( dblTest == .0 )            /* DIVISION POR CERO */
+        return (DIV_CERO);      /* FIN */
+
+dblRes = -sin(dblPunto)-(1./exp(dblPunto))-(1./(2.*dblTest));
+
+*ptdblRes = dblRes;
+
+return (TRUE);
+}
+\end{verbatim}
+
+Los ficheros que contengan a estas funciones deben tener los siguientes
+\emph{includes}:
+
+\begin{verbatim}
+#include <math.h>
+
+#include <biagra/const.h>
+\end{verbatim}

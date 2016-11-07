@@ -1,0 +1,225 @@
+%
+% CAPITULO 1 ¿Que es B.I.A.G.R.A?
+%
+
+\chapter{?`Que es \BI?}
+
+\begin{itemize}
+
+\item \BI es una BIbliotecA de proGRamaci\'on cient\'{\i}ficA programada 
+enteramente en \textbf{C} y pensada para ser utilizada en programas
+escritos en \textbf{C}.
+\item \BI ha sido desarrollada y testeada bajo \emph{LiNUX}, por lo cual sus
+caracter\'{\i}sticas se adaptan a las de este sistema operativo. 
+\item \BI es de libre distribuci\'on y su autor no se hace responsable de su
+mal uso y/o de sus posibles fallos.
+
+\end{itemize}
+
+\section{?`Lenguaje C? }
+Alguien se puede preguntar el motivo por el cual he elegido el Lenguaje 
+\textbf{C} y no \emph{FORTRAN}, lenguaje tradicional para la programaci\'on
+cient\'{\i}fica.\newline
+Los motivos son varios siendo el fundamental la potencia,
+la modularidad de \textbf{C} y el hecho de ser un lenguaje de proposito general.
+\newline
+
+Las razones que alegan la inmesa mayor\'{\i}a de programadores de 
+\emph{FORTRAN} sobre las ventajas que tiene \emph{FORTRAN}:
+
+\begin{enumerate}
+\item Es un lenguaje facil de usar.
+\item Casi todo el mundo utiliza \emph{FORTRAN}, en este tipo de
+      programaci\'on.
+\item Hay mucho c\'odigo escrito en \emph{FORTRAN}.
+\end{enumerate}
+
+Aplicando esta forma de pensar bien podr\'{\i}amos pensar que el 
+\emph{sol gira sobre la tierra}, ya que hace muchos a\~nos la mayor\'{\i}a de
+la gente estaba de acuerdo con esta idea.
+
+\newpage
+
+Las razones por las que fundamento la elecci\'on de \textbf{C} son:
+
+\begin{enumerate}
+\item Es un lenguaje potente y que genera un c\'odigo de muy r\'apida 
+      ejecuci\'on.
+\item Es un lenguaje flexible.
+\item Es un lenguaje estructurado.
+\item Es un lenguaje de proposito general.
+\item El c\'odigo escrito en \textbf{C} es portable y la depuraci\'on y 
+      mantenimiento de programas es ``sencilla''\footnote{Si el c\'odigo 
+      esta bien estructurado y se ajusta al \emph{ANSI C}.}.
+\item Tiene una gran potencia en el manejo del hardware, lo que implica
+      una gran potencia en el manejo de modos gr\'aficos\footnote{Deseable
+      para seg\'un que aplicaciones.}.
+\end{enumerate}
+
+\section{Algunas ideas generales sobre \BI}
+Lo primero que debemos destacar es que esta biblioteca esta pensada para
+programadores de \textbf{C} y ha sido desarrollada y testeada bajo 
+\textbf{LiNUX}, luego en el resto de este documento se supondra que el lector
+esta utilizando \textbf{LiNUX} o cualquier otro sistema tipo \textbf{UNIX}.\\
+
+Esta biblioteca esta pensada para resolver problemas generales, no para 
+resolver tipos particulares de problemas, es decir, esta pensada para
+realizar programas, que, interactuando con el usuario puedan resolver un
+problema sin tener que modificar el c\'odigo fuente cuando varien las
+condiciones del problema.\newline
+
+Por ejemplo, escribir un programa para invertir matrices, de
+cualquier orden, en vez de escribir un programa para invertir matrices de
+orden \emph{n} y cuando se quiera invertir una matriz de un orden $m \neq n$
+sea necesario cambiar el c\'odigo fuente y recompilar el programa.\newline
+
+Para lograr esto se han utilizado \emph{punteros}, es decir se ha evitado,
+en la medida de lo posible, el uso de \emph{arrays}.\newpage
+
+Cuando hablemos de \emph{vectores} nos estaremos refiriendo a un
+\emph{puntero}, normalmente a datos del tipo \emph{double}, para el cual se
+ha reservado memoria para contener \emph{n} datos. Del mismo modo cuando nos
+refiramos a \emph{matrices} estaremos hablando de matrices de \emph{punteros}, 
+tambi\'en a datos del tipo \emph{double}(normalmente), para las cuales se ha
+reservado memoria para contener $\mbox{\emph{n * m}}$ datos.\newline
+
+En aquellos problemas que se utiliza un conjunto de varios datos se ha
+optado por agruparlos dentro de una estructura\footnote{Declarada mediante
+typedef.} para mayor comodidad.\newline
+
+En aquellos problemas en los que se pueda cometer alg\'un error como por
+ejemplo:
+
+\begin{itemize}
+\item Fallo en asignaciones de memoria.
+\item Divisiones por cero.
+\item \ldots
+\end{itemize}
+
+la funci\'on que resuelve ese problema devolver\'a un entero indicando cual
+fue el estado en el que se termin\'o la ejecuci\'on de la funci\'on.\newline
+
+Cuando una funci\'on devuelva un dato, que no sea un c\'odigo que indique
+el estado en el que se termin\'o la ejecuci\'on de la funci\'on, se indicar\'a 
+anteponiendo un prefijo al nombre de la funci\'on, el cual indicar\'a que tipo
+de dato devuelve, por ejemplo:
+
+\begin{enumerate}
+\item \emph{double dblFuncion(\ldots)} funci\'on que devuelve un dato de
+      tipo \emph{double}.
+\item \emph{int intFuncion(\ldots)} funci\'on que devuelve un dato de tipo
+      \emph{int}.
+\item \emph{double *dblPtFuncion(\ldots)} funci\'on que devuelve un dato de
+      tipo puntero a \emph{double}.
+\item \emph{void Funcion(\ldots)} funci\'on que no devuelve ning\'un dato.
+\end{enumerate}
+
+\newpage
+
+\section{C\'odigos devueltos por las funciones}
+
+No es obligatorio que las funciones devuelvan un valor.\newline
+Cuando una funci\'on devuelva un valor ser\'a por dos razones:
+
+\begin{itemize}
+\item Para devolver el resultado de una operaci\'on.
+\item Para informar de como termin\'o una operaci\'on.
+\end{itemize} 
+
+Es este \'ultimo caso el que nos incumbe.\newline
+
+Cuando una funci\'on devuelva un dato indicando como termin\'o una
+determinada operaci\'on, este dato ser\'a, necesariamente, un entero y los
+c\'odigos devueltos los podemos ver en la p\'agina \pageref{sec:tiposdecodigos}.
+
+\section{Como instalar \BI en LiNUX}
+Para instalar \BI lo primero que hay que hacer es entrar en el sistema
+como \textbf{root} y situarse en el directorio donde esten los fuentes
+de la biblioteca.
+
+\subsection{Intalaci\'on de la biblioteca \BI est\'atica}
+Para instalar este tipo bibilioteca se puede hacer de dos formas:
+
+\begin{enumerate}
+\item \emph{./instalar estatica}
+\item \emph{make estatica}
+\end{enumerate}
+
+En realidad ambas hacen lo mismo, la opci\'on con \emph{make} en realidad 
+ejecuta \emph{./instalar estatica}.\newline
+
+Al realizar cualquiera de estas dos opciones se copiar\'an los ficheros
+cabezera a \emph{\textbf{/usr/include/biagra}} y a continuaci\'on se crear\'a la
+biblioteca\\ \emph{\textbf{/usr/lib/libbiagra.a}}.\newline
+
+Luego si se utiliza una funci\'on de esta biblioteca, cuyo prototipo est\'a en 
+el fichero de cabecera \emph{rngkutta.h} habr\'a que incluir en las directivas 
+al prepocesador \textbf{\#include $<$biagra/rngkutta.h$>$}.
+
+\newpage
+
+\subsection{Intalaci\'on de la biblioteca \BI din\'amica ELF}
+
+\subsection{Instalaci\'on de ambas bibliotecas}
+Para instalar la biblioteca \BI en su forma est\'atica y din\'amica ELF:
+
+\begin{center}
+\emph{make todo}
+\end{center}
+
+Esto lo que hace es ejecutar primero
+
+\begin{center}
+\emph{./instalar estatica}
+\end{center}
+
+lo cual instalar\'a la biblioteca est\'atica, y luego 
+
+\begin{center}
+\emph{./instalar elf}
+\end{center}
+
+lo cual instalar\'a la biblioteca din\'amica ELF.
+
+\section{Como utilizar \BI en LiNUX}
+\BI es una biblioteca para programaci\'on cient\'{\i}fica, 
+desarrollada para ser usada en programas escritos en \textbf{C}, se
+distribuye en varios formatos:
+
+\begin{description}
+\item[Biblioteca est\'atica]
+\item[Biblioteca din\'amica ELF]
+\end{description}
+
+\subsection{Biblioteca est\'atica}
+Para el uso de esta biblioteca hay que indicarle al \emph{montador} que
+biblioteca debe \emph{enlazar}.
+Por ejemplo, supongamos que hemos escrito un programa para resolver una
+ecuaci\'on diferencial por un m\'etodo \emph{Runge-Kutta} y hemos utilizado
+funciones cuyos prototipos estan en \textbf{edo.h} y \textbf{rngkutta.h}, si
+nuestro programa es \mbox{\emph{programa.c}}, para crear el ejecutable:
+
+\begin{center}
+\emph{gcc programa.c -o programa -l\textbf{biagra} -l\textbf{m}\footnote{\BI 
+utiliza la biblioteca estandar matem\'atica.}} 
+\end{center}
+
+\subsection{Biblioteca din\'amica ELF}
+
+\section{Novedades en la versi\'on $1.0$}
+Pues todo ya que es la primera versi\'on.
+
+\section{Condiciones de uso}
+
+\begin{enumerate}
+\item El autor no se responsabiliza de su mal uso, de su posibles fallos%
+\footnote{Si los hubiera o hubiese.}, ni de las modificaciones que sean
+realizadas a dicha biblioteca.
+\item Es una biblioteca de libre distribuci\'on.
+\item Se puede modificar y a\~nadir c\'odigo, pero nunca distribuirlo bajo
+el nombre de \BI, en caso de modificaci\'on de la biblioteca se deben indicar
+aquellas funciones que fueron modificadas o a\~nadidas.
+\end{enumerate}
+
+Si tienes alguna sugerencia, pregunta, o has encontrado alg\'un error en la 
+biblioteca ya sabes donde encontrarme.\newline

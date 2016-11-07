@@ -1,0 +1,57 @@
+%
+% CONST.H
+%
+
+\chapter{const.h}
+
+\section{Introducci\'on}
+En este fichero de cabezera estan las constantes utilizadas por \mbox{\BI}. 
+
+\section{Constantes simb\'olicas}
+
+\begin{description}
+\item[Constante] constante.
+\item[Etiqueta] etiqueta con la que es accedida en \BI.
+\item[Valor] valor que tiene asignado.
+\end{description}
+
+\begin{table}[!hbp]
+\begin{center}
+\begin{tabular}{c|c|r @{.} l}
+Constante & Etiqueta &
+\multicolumn{2}{c}{Valor} \\
+\hline
+$\pi$ & \textbf{PI} &$3$&$14159265358979323846264$ \\
+$e$ & \textbf{E} &$2$&$71828182845904523536029$ \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Constantes simb\'olicas.}
+\end{table}
+\newpage
+
+\section{C\'odigos} \label{sec:tiposdecodigos}
+
+Estos son los c\'odigos devueltos por las funciones de \BI.
+
+\begin{description}
+\item[Etiqueta] etiqueta con la que es accedida en \BI.
+\item[Valor] valor que tiene asignado.
+\item[Descripci\'on] descripci\'on del c\'odigo.
+\end{description}
+
+\begin{table}[!hbp]
+\begin{center}
+\begin{tabular}{|l|c|l|}
+\hline
+Etiqueta & Valor & Descripci\'on \\
+\hline
+\textbf{DIV\_CERO} & $2$ & Divisi\'on por cero. \\
+\textbf{ERR\_AMEM} & $1$ & Hubo un error en la asignaci\'on de memoria.\\
+\textbf{FALSE} & $-1$ & La condici\'on es falsa. \\
+\textbf{TRUE} & $0$ & La operaci\'on termin\'o con \'exito. \\
+\hline
+\end{tabular}
+\end{center}
+\caption{C\'odigos de retorno.}
+\end{table}

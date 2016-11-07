@@ -1,0 +1,269 @@
+%
+% struct.h
+%
+
+\chapter{struct.h}
+
+\section{Introducci\'on}
+
+En este fichero de cabezera se encuentran las estructuras de datos que utiliza
+\BI para la resoluci\'on de problemas.\newline
+
+\par Como ya se dijo anteriormente todas las estructuras ser\'an declaradas
+mediante la palabra reservada \emph{typedef}.
+
+\newpage
+
+\section{Estructuras de datos para E.D.O's} \label{sec:datosEDO}
+
+Estas estructuras de datos se utilizan para la resoluci\'on num\'erica de
+E.D.O's\footnote{Ecuaciones Diferenciales Ordinarias.}.
+
+\subsection{ButcherArray}
+
+Esta estructura se utiliza para almacenar la \emph{notaci\'on matricial}
+de los m\'etodos \emph{Runge-Kutta}\footnote{Ver ap\'endice sobre 
+Runge-Kutta en la p\'agina \pageref{sec:Runge}.}.\newline
+
+La declaraci\'on de esta estructura es la siguiente:
+
+\begin{verbatim}
+typedef struct
+        {
+        double  *dblC,
+                *dblB,
+                **dblMatriz;
+
+        int intEtapas;
+        } ButcherArray;
+\end{verbatim}
+
+El significado de cada uno de los miembros de esta estructura es el
+siguiente:
+
+\begin{description}
+\item[dblC] es un vector de dimensi\'on \emph{strVariable.intEtapas} el cual 
+contiene los
+elementos $c_i$ del \emph{Runge-Kutta}, donde $0 \leq i < 
+\emph{strVariable.intEtapas}$.
+\item[dblB] es un vector de dimensi\'on \emph{strVariable.intEtapas} el cual 
+contiene los
+elementos $b_i$ del \emph{Runge-Kutta}, donde $0 \leq i < 
+strVariable.intEtapas$.
+\item[dblMatriz] es una matriz la cual contiene la matriz de coeficientes del
+\emph{Runge-Kutta}.
+\item[intEtapas] es el n\'umero de etapas que tiene el m\'etodo.
+\end{description}
+
+Para declarar una variable de este tipo:
+\begin{center}
+\emph{\textbf{ButcherArray} strVariable;}
+\end{center}
+
+\emph{strVariable} ser\'{\i}a una variable del tipo 
+\emph{\textbf{ButcherArray}}.
+
+\newpage
+
+\subsection{DatosRK} \label{sec:datosRK}
+
+Esta estructura se utiliza para almacenar todos los datos necesarios
+en la ejecuci\'on del \emph{Runge-Kutta}, desde su notaci\'on matricial
+hasta su inicializaci\'on, pasando por el paso utilizado.\newline
+
+La declaraci\'on de esta \emph{estructura} es la siguiente:
+
+\begin{verbatim}
+typedef struct
+        {	
+        int     intNumAprox,
+                intImplicito;
+	        
+        double  *dblPuntos,
+                dblPaso,
+                dblInicio,
+                dblFinal;
+
+        ButcherArray strCoefi;
+        } DatosRK;
+\end{verbatim}
+
+El significado de cada uno de los miembros de esta estructura es el
+siguiente:
+
+\begin{description}
+\item[intNumAprox] n\'umero de aproximaciones que se realizar\'an con el
+m\'etodo, es decir contendr\'a la dimensi\'on de \emph{strVariable.dblPuntos}.
+\item[intImplicito] contendr\'a el valor \textbf{TRUE} si se trata de un 
+m\'etodo \emph{impl\'{\i}cito}, en caso contrario su valor ser\'a distinto de
+\textbf{TRUE}.
+\item[dblPuntos] vector de dimensi\'on \emph{strVariable.intNumAprox} el 
+cual contendr\'a, en \emph{strVariable.dblPuntos[i],} 
+las aproximaciones en los diferentes $x_i$, donde:
+
+\begin{description}
+\item[]$x_i = (\emph{strVariable.dblInicio}) + i * (\emph{strVariable.dblPaso})$
+\item[]$0 \leq i < \emph{strVariable.intNumAprox}$
+\end{description}
+
+\item[dblPaso] tama\~no del paso que utilizara el m\'etodo.\newpage
+\item[dblInicio] primer punto, en el que es conocido el valor de la funci\'on,
+en el cual nos apoyamos para calcular las dem\'as aproximaciones.
+\item[dblFinal] es el \'ultimo punto en el que calcularemos una aproximaci\'on
+de la ecuaci\'on diferencial.
+\item[strCoefi] es una variable del tipo \emph{\textbf{ButcherArray}}, la cual
+contendr\'a la notaci\'on matricial del m\'etodo.
+\end{description}
+
+Para declarar una variable de este tipo:
+
+\begin{center}
+\emph{\textbf{DatosRK} strVariable;}
+\end{center}
+
+\emph{strVariable} ser\'{\i}a una variable del tipo \emph{\textbf{DatosRK}}.
+
+\newpage
+
+\section{Estructuras de datos para la aproximaci\'on de funciones}
+
+\subsection{DatosAprxFunc} \label{sec:DatosAprxFunc}
+
+La declaraci\'on de esta estructura es la siguiente:
+
+\begin{verbatim}
+typedef struct
+
+        {
+        int     intNMI;
+
+        double  dblx0,
+                dblSolucion,
+                dblTol,
+                dblError; 
+        } DatosAprxFunc;
+\end{verbatim}
+
+El significado de cada uno de los miembros de esta estructura es el siguiente:
+
+\begin{description}
+\item[intNMI] n\'umero m\'aximo de iteraciones.
+\item[dblx0] aproximaci\'on inicial.
+\item[dblSolucion] aproximaci\'on final de la raiz.
+\item[dblTol] tolerancia con la que se va a aproximar la raiz.
+\item[dblError] error cometido al aproximar la raiz, valor absoluto de la 
+distancia entre las dos \'ultimas aproximaciones.
+\end{description}
+
+Para declarar una variable de este tipo:
+
+\begin{center}
+\emph{\textbf{DatosAprxFunc} strVariable;}
+\end{center}
+
+\emph{strVariable} ser\'{\i}a una variable del tipo \textbf{DatosAprxFunc}.
+
+\section{Estructuras de datos para matrices}
+
+Estas estructuras de datos se utilizan para el uso de matrices.
+
+\subsection{Matriz} \label{sec:strMatriz}
+
+Esta estructura se utiliza para almacenar matrices.\newline
+
+La declaraci\'on de esta estructura es la siguiente:
+
+\begin{verbatim}
+typedef struct
+
+        {
+        int     intFilas,
+                intColumnas;
+
+        double  **dblCoefi;
+        } Matriz;
+\end{verbatim}
+
+El significado de cada uno de los miembros de esta estructura es el siguiente:
+
+\begin{description}
+\item[intFilas] n\'umero de filas de la matriz.
+\item[intColumnas] n\'umero de columnas de la matriz.
+\item[dblCoefi] matriz que contiene los coeficientes de la matriz que estamos
+representando mediante esta estructura de datos.
+\end{description}
+
+Para declarar una variable de este tipo:
+
+\begin{center}
+\emph{\textbf{Matriz} strVariable;}
+\end{center}
+
+\emph{strVariable} ser\'{\i}a una variable del tipo \textbf{Matriz}.
+
+\section{Estructuras de datos para n\'umeros complejos} \label{sec:complejos}
+
+Estas estructuras de datos se utilizan para el uso de n\'umeros complejos.
+
+\subsection{Complejo}
+Esta estructura se utiliza para almacenar las coordenadas de un n\'umero
+complejo, en coordenadas cartesianas.\newline
+
+La declaraci\'on de esta \emph{estructura} es la siguiente:
+
+\begin{verbatim}
+typedef struct
+
+        {
+        double  dblReal,
+                dblImag;
+        } Complejo;
+\end{verbatim}
+
+El significado de cada uno de los miembros de esta estructura es el siguiente:
+
+\begin{description}
+\item[dblReal] parte real del n\'umero complejo.
+\item[dblImag] parte imaginaria del n\'umero complejo.
+\end{description}
+
+Para declarar una variable de este tipo:
+
+\begin{center}
+\emph{\textbf{Complejo} strVariable;}
+\end{center}
+
+\emph{strVariable} ser\'{\i}a una variable del tipo \textbf{Complejo}.
+
+\newpage
+
+\subsection{Polar}
+Esta estructura se utiliza para almacenar un n\'umero complejo en 
+coordenadas polares.\newline
+
+La declaraci\'on de esta \emph{estructura} es la siguiente:
+
+\begin{verbatim}
+typedef struct
+
+        {
+        double  dblMod,
+                dblArg;	
+        } Polar;
+\end{verbatim}
+
+El significado de cada uno de los miembros de esta estructura es el siguiente:
+
+\begin{description}
+\item[dblMod] m\'odulo del n\'umero complejo.
+\item[dblArg] argumento del n\'umero complejo.
+\end{description}
+
+Para declarar una variable de este tipo:
+
+\begin{center}
+\emph{\textbf{Polar} strVariable;}
+\end{center}
+
+\emph{strVariable} ser\'{\i}a una variable del tipo \textbf{Polar}.
+
