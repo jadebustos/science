@@ -23,13 +23,13 @@
 /*                   dblCoefs[i] = ai                                   */
 /*                                                                      */
 
-typedef struct {
-  int   intDegree,
-        intRealRoots,
-        intCompRoots;
+  typedef struct {
+    int   intDegree,
+          intRealRoots,
+          intCompRoots;
 
-  double *dblCoefs;        
-  } biaRealPol;
+    double *dblCoefs;        
+    } biaRealPol;
 
 /*                                                                      */
 /* Data structure to store function roots                               */
@@ -44,15 +44,15 @@ typedef struct {
 /*             approximations.                                          */
 /*                                                                      */
         
-typedef struct {
+  typedef struct {
     
-  int intNMI,
-      intIte;
+    int intNMI,
+        intIte;
 
-  double dblx0,
-	 dblRoot,
-	 dblTol,
-	 dblError;
-  } biaRealRoot;
+    double dblx0,
+	   dblRoot,
+	   dblTol,
+	   dblError;
+    } biaRealRoot;
 
 #endif

@@ -19,11 +19,11 @@
 /*      dblCoefs -> Matrix coeficients                                  */
 /*                                                                      */
 
-typedef struct {
-  int intRows,
-      intCols;
+  typedef struct {
+    int intRows,
+        intCols;
 
-  double **dblCoefs;
-  } biaMatrix;        
+    double **dblCoefs;
+    } biaMatrix;        
 
 #endif

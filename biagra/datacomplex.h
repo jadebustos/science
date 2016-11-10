@@ -20,10 +20,10 @@
 /* dblImag -> Imaginary part                                            */ 
 /*                                                                      */
 
-typedef struct {
-  double dblReal,
-         dblImag;
-  } biaComplex;
+  typedef struct {
+    double dblReal,
+           dblImag;
+    } biaComplex;
 
 /*                                                                      */
 /* Data structure to store complex numbers as polar coordinates         */
@@ -34,7 +34,7 @@ typedef struct {
 /* dblArg -> Argument                                                   */
 /*                                                                      */
 
-typedef struct {
-  double dblMod,
-         dblArg;
-  } biaPolar;
+  typedef struct {
+    double dblMod,
+           dblArg;
+    } biaPolar;
