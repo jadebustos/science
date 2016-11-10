@@ -18,7 +18,7 @@
 
 int main (void) {
 
-  /* Polynomial degree */
+  /* Matrix data */
   int  rows = 8,
        cols = 8;
 
