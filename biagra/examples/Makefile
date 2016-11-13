@@ -20,4 +20,4 @@ all:
 	make resmem
 
 clean:
-	rm -f *.o
+	rm -f *.o *~
