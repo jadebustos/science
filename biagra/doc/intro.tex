@@ -1,103 +1,53 @@
 %
-% CAPITULO 1 ¿Que es B.I.A.G.R.A?
+% What is B.I.A.G.R.A?
 %
 
-\chapter{?`Que es \BI?}
+\chapter{What is \BI?}
 
 \begin{itemize}
 
-\item \BI es una BIbliotecA de proGRamaci\'on cient\'{\i}ficA programada 
-enteramente en \textbf{C} y pensada para ser utilizada en programas
-escritos en \textbf{C}.
-\item \BI ha sido desarrollada y testeada bajo \emph{LiNUX}, por lo cual sus
-caracter\'{\i}sticas se adaptan a las de este sistema operativo. 
-\item \BI es de libre distribuci\'on y su autor no se hace responsable de su
-mal uso y/o de sus posibles fallos.
+\item \BI stands for \textbf{BI}\emph{bliotec}\textbf{A} \emph{de pro}\textbf{GR}\emph{amaci\'on cient\'{\i}fic}\textbf{A} which means Scientific Programming Library.
+\item \BI is enterely coded using \textbf{C} language.
+\item \BI has been developed and tested under \emph{LiNUX}.
+\item \BI is distribuded as open source and its author does not take any responibility.
+\item I wrote \BI in the 90s to help me with some subjects in my degree.
 
 \end{itemize}
 
-\section{?`Lenguaje C? }
-Alguien se puede preguntar el motivo por el cual he elegido el Lenguaje 
-\textbf{C} y no \emph{FORTRAN}, lenguaje tradicional para la programaci\'on
-cient\'{\i}fica.\newline
-Los motivos son varios siendo el fundamental la potencia,
-la modularidad de \textbf{C} y el hecho de ser un lenguaje de proposito general.
-\newline
+\section{C language?}
 
-Las razones que alegan la inmesa mayor\'{\i}a de programadores de 
-\emph{FORTRAN} sobre las ventajas que tiene \emph{FORTRAN}:
+\textbf{C} language instead of \textbf{FORTRAN}?
+%
+\begin{itemize}
+\item \textbf{C} is modular and structured.
+\item \textbf{C} is a general purpose language programming.
+\item \textbf{C} is a very powerful language and its code is very fast.
+\item \textbf{C} allows dynamic memory allocation.
+\item \textbf{C} code is portable.
+\item \textbf{C} is able to handle graphic modes. 
+\end{itemize}
 
-\begin{enumerate}
-\item Es un lenguaje facil de usar.
-\item Casi todo el mundo utiliza \emph{FORTRAN}, en este tipo de
-      programaci\'on.
-\item Hay mucho c\'odigo escrito en \emph{FORTRAN}.
-\end{enumerate}
+\section{Some general ideas about \BI}
 
-Aplicando esta forma de pensar bien podr\'{\i}amos pensar que el 
-\emph{sol gira sobre la tierra}, ya que hace muchos a\~nos la mayor\'{\i}a de
-la gente estaba de acuerdo con esta idea.
+\BI\ has been developed under \textbf{Linux} and some \textbf{Linux} knowledge is needed.\\
 
-\newpage
+\BI\ was developed to solve general problems instead of particular ones. For instance, instead of writing a program to get the inverse of a 4x4 matrix and having to change the source code to get the inverse of a 5x5 matrix \BI\ was developed to allow to write programs to get the inverse of any matrix without having to change de sorce code.\\
 
-Las razones por las que fundamento la elecci\'on de \textbf{C} son:
+To be able to do that \emph{pointers} were used instead of using \emph{arrays}.\\
 
-\begin{enumerate}
-\item Es un lenguaje potente y que genera un c\'odigo de muy r\'apida 
-      ejecuci\'on.
-\item Es un lenguaje flexible.
-\item Es un lenguaje estructurado.
-\item Es un lenguaje de proposito general.
-\item El c\'odigo escrito en \textbf{C} es portable y la depuraci\'on y 
-      mantenimiento de programas es ``sencilla''\footnote{Si el c\'odigo 
-      esta bien estructurado y se ajusta al \emph{ANSI C}.}.
-\item Tiene una gran potencia en el manejo del hardware, lo que implica
-      una gran potencia en el manejo de modos gr\'aficos\footnote{Deseable
-      para seg\'un que aplicaciones.}.
-\end{enumerate}
+When we talk about \emph{vectors} we will be talking about a \emph{pointer} using dynamic memory allocation. When we talk about matrices we will be talking about \emph{pointer} to a \emph{pointer} using dynamic memory allocation.\\
 
-\section{Algunas ideas generales sobre \BI}
-Lo primero que debemos destacar es que esta biblioteca esta pensada para
-programadores de \textbf{C} y ha sido desarrollada y testeada bajo 
-\textbf{LiNUX}, luego en el resto de este documento se supondra que el lector
-esta utilizando \textbf{LiNUX} o cualquier otro sistema tipo \textbf{UNIX}.\\
+\BI\ uses some data structures to store data.\\
 
-Esta biblioteca esta pensada para resolver problemas generales, no para 
-resolver tipos particulares de problemas, es decir, esta pensada para
-realizar programas, que, interactuando con el usuario puedan resolver un
-problema sin tener que modificar el c\'odigo fuente cuando varien las
-condiciones del problema.\newline
-
-Por ejemplo, escribir un programa para invertir matrices, de
-cualquier orden, en vez de escribir un programa para invertir matrices de
-orden \emph{n} y cuando se quiera invertir una matriz de un orden $m \neq n$
-sea necesario cambiar el c\'odigo fuente y recompilar el programa.\newline
-
-Para lograr esto se han utilizado \emph{punteros}, es decir se ha evitado,
-en la medida de lo posible, el uso de \emph{arrays}.\newpage
-
-Cuando hablemos de \emph{vectores} nos estaremos refiriendo a un
-\emph{puntero}, normalmente a datos del tipo \emph{double}, para el cual se
-ha reservado memoria para contener \emph{n} datos. Del mismo modo cuando nos
-refiramos a \emph{matrices} estaremos hablando de matrices de \emph{punteros}, 
-tambi\'en a datos del tipo \emph{double}(normalmente), para las cuales se ha
-reservado memoria para contener $\mbox{\emph{n * m}}$ datos.\newline
-
-En aquellos problemas que se utiliza un conjunto de varios datos se ha
-optado por agruparlos dentro de una estructura\footnote{Declarada mediante
-typedef.} para mayor comodidad.\newline
-
-En aquellos problemas en los que se pueda cometer alg\'un error como por
-ejemplo:
+For common errors as:
 
 \begin{itemize}
-\item Fallo en asignaciones de memoria.
-\item Divisiones por cero.
+\item Errors in dynamic memory allocation.
+\item Division by zero.
 \item \ldots
 \end{itemize}
 
-la funci\'on que resuelve ese problema devolver\'a un entero indicando cual
-fue el estado en el que se termin\'o la ejecuci\'on de la funci\'on.\newline
+\BI\ uses its own constants to notify these errors (Chapter \ref{ch:mathematicalConsts}).\\
 
 Cuando una funci\'on devuelva un dato, que no sea un c\'odigo que indique
 el estado en el que se termin\'o la ejecuci\'on de la funci\'on, se indicar\'a 
@@ -205,21 +155,3 @@ utiliza la biblioteca estandar matem\'atica.}}
 \end{center}
 
 \subsection{Biblioteca din\'amica ELF}
-
-\section{Novedades en la versi\'on $1.0$}
-Pues todo ya que es la primera versi\'on.
-
-\section{Condiciones de uso}
-
-\begin{enumerate}
-\item El autor no se responsabiliza de su mal uso, de su posibles fallos%
-\footnote{Si los hubiera o hubiese.}, ni de las modificaciones que sean
-realizadas a dicha biblioteca.
-\item Es una biblioteca de libre distribuci\'on.
-\item Se puede modificar y a\~nadir c\'odigo, pero nunca distribuirlo bajo
-el nombre de \BI, en caso de modificaci\'on de la biblioteca se deben indicar
-aquellas funciones que fueron modificadas o a\~nadidas.
-\end{enumerate}
-
-Si tienes alguna sugerencia, pregunta, o has encontrado alg\'un error en la 
-biblioteca ya sabes donde encontrarme.\newline

@@ -118,7 +118,7 @@ double **dblPtMemAllocUpperTrMat(int intOrder) {
 /*                                                                      */
 
 double **dblPtMemAllocLowerMat(int intOrder) {
-  int ;
+  int i;
 
   double **dblPt;
 
@@ -129,7 +129,7 @@ double **dblPtMemAllocLowerMat(int intOrder) {
   if ( dblPt == NULL )
     return (dblPt);
   else {
-    for(i=0;i<intOrder;i++) 
+    for(i=0;i<intOrder;i++) {
       dblPt[i] = (double *)calloc(i+1, sizeof(double) );
       if ( dblPt[i] == NULL ) {
         /* if error, free memory and exit */
@@ -138,10 +138,10 @@ double **dblPtMemAllocLowerMat(int intOrder) {
         free(dblPt);
         dblPt = NULL;
         break;
-         }
+        }
      }
   }
-  return (dblPt);
+  return dblPt;
 }
 
 /*                                                                      */
