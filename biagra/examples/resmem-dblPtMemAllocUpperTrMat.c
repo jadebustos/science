@@ -35,25 +35,20 @@ int main (void) {
   /* Random coefs between 0 and 100 (not cryptographically secure) */
   srand(time(NULL));
   for(int i=0;i<intOrder;i++) {
-    for(int j=0;j<intOrder;j++) {
-      if ( i > j )
-        continue;
+    for(int j=0;j<intOrder - i;j++) {
       dblMatrix[i][j] = (double) (rand() % 100);
-      printf("%g ", dblMatrix[i][j]);
       }
-    printf("\n");
     }
 
+  printf("Triangular matrix:\n\n");
+  
   /* Print Matrix to stdout */
   for(int i=0;i<intOrder;i++) {
-    for(int j=0;j<intOrder;j++) {
-      if ( i > j )
-        printf("0 ");
-      else
+    for(int j=0;j<intOrder - i;j++) {
         printf("%g ", dblMatrix[i][j]);
       }
     printf("\n");
     }
- 
+
   return 0;
 }

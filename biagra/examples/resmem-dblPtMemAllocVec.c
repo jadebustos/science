@@ -37,9 +37,13 @@ int main (void) {
   for(int i=0;i<intElements;i++)
       dblVector[i] = (double) (rand() % 100);
 
+  printf("Random vector:\n\n");
+  
   /* Print Vector to stdout */
   for(int i=0;i<intElements;i++)
       printf("%g ", dblVector[i]);
 
+  printf("\n");
+  
   return 0;
 }
