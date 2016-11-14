@@ -117,7 +117,7 @@ double **dblPtMemAllocUpperTrMat(int intOrder) {
 /* Pointer to the first element is returned.                            */
 /*                                                                      */
 
-double **dblPtMemAllocLowerMat(int intOrder) {
+double **dblPtMemAllocLowerTrMat(int intOrder) {
   int i;
 
   double **dblPt;
