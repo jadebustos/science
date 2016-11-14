@@ -1,5 +1,5 @@
-#ifndef DATAPOL_H
-  #define DATAPOL_H
+#ifndef _DATAPOL_H
+  #define _DATAPOL_H
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */

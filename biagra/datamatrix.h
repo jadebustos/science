@@ -1,5 +1,5 @@
-#ifndef DATAMATRIX_H
-  #define DATAMATRIX_H
+#ifndef _DATAMATRIX_H
+  #define _DATAMATRIX_H
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */

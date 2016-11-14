@@ -13,6 +13,7 @@ resmem: resmem.o
 	$(CC) resmem-dblPtMemAllocVec.c resmem.o -o resmem-dblPtMemAllocVec
 	$(CC) resmem-dblPtMemAllocMat.c resmem.o -o resmem-dblPtMemAllocMat
 	$(CC) resmem-dblPtMemAllocUpperTrMat.c resmem.o -o resmem-dblPtMemAllocUpperTrMat
+	$(CC) resmem-dblPtMemAllocLowerTrMat.c resmem.o -o resmem-dblPtMemAllocLowerTrMat
 
 all:
 	make datapol

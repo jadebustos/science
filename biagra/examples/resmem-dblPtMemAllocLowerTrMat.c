@@ -15,7 +15,7 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/* Simple example of dblPtMemAllocUpperTrMat usage */
+/* Simple example of dblPtMemAllocLowerTrMat usage */
 
 int main (void) {
 
@@ -26,7 +26,7 @@ int main (void) {
   double **dblMatrix;
 
   /* Memory reservation por vector */
-  dblMatrix = dblPtMemAllocUpperTrMat(intOrder);
+  dblMatrix = dblPtMemAllocLowerTrMat(intOrder);
 
   if ( dblMatrix == NULL ) {
     printf("Error in memory assignation.\n");
@@ -36,20 +36,20 @@ int main (void) {
   /* Random coefs between 0 and 100 (not cryptographically secure) */
   srand(time(NULL));
   for(int i=0;i<intOrder;i++) {
-    for(int j=0;j<intOrder - i;j++) {
+    for(int j=0;j<=i;j++) {
       dblMatrix[i][j] = (double) (rand() % 100);
       }
     }
 
-  printf("Upper triangular matrix:\n\n");
+  printf("Lower triangular matrix:\n\n");
   
   /* Print Matrix to stdout */
   for(int i=0;i<intOrder;i++) {
     for(int j=0;j<intOrder;j++) {
-	if ( i > j)
+	if ( i < j)
 	    printf("0 ");
 	else
-	    printf("%g ", dblMatrix[i][j-i]);
+	    printf("%g ", dblMatrix[i][j]);
       }
     printf("\n");
     }

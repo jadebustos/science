@@ -1,5 +1,5 @@
-#ifndef DATACOMPLEX_H
-  #define DATACOMPLEX_H
+#ifndef _DATACOMPLEX_H
+  #define _DATACOMPLEX_H
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
@@ -38,3 +38,5 @@
     double dblMod,
            dblArg;
     } biaPolar;
+
+#endif

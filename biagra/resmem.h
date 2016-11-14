@@ -54,11 +54,11 @@
 /* Pointer to the first element is returned.                            */
 /*                                                                      */
 
-  double **dblPtMemAllocLowerMat(int intOrder);
+  double **dblPtMemAllocLowerTrMat(int intOrder);
 
 /*                                                                      */
 /* Function to free memory from a double pointer matrix.                */
 /*                                                                      */
 
-  void FreeMemDblMat(double **dblMatrix, int intRows);
+  void freeMemDblMat(double **dblMatrix, int intRows);
 #endif
