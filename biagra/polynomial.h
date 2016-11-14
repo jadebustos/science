@@ -1,44 +1,28 @@
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*									*/
-/*	B.I.A.G.R.A.	(c) 1998 Jose Angel de Bustos Perez		*/
-/*			 <jadebustos@gmail.com>         		*/
-/*									*/
+#ifndef _POLYNOMIAL_H
+  #define _POLYNOMIAL_H
+
+/*                                                                      */
+/*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
+/*                           <jadebustos@gmail.com>                     */
+/*                                                                      */
 /*      This software is licensed under GPLv2:                          */
 /*        http://www.gnu.org/licenses/gpl-2.0.html                      */
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/*                                                                      */
+/*      BIbliotecA de proGRamacion cientificA.                          */
+/*                                                                      */
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* polynomial.h                                                         */
-/*                                                                      */
-/* Functions to work using polynomials.                                 */
-/*                                                                      */
-/* p(x) = a0 + a1*x^1 + a2*x^2 + .... + an*x^n                          */
-/*                                                                      */
-/* #include <stdlib.h>                                                  */
-/* double *mypol = (double *)calloc(n + 1, size(double))                */
-/*                                                                      */
-/* *(mypol) = mypol[0] = a0                                             */
-/* *(mypol + i) = mypol[i] = ai where i in [1,n]                        */
-/*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Function to evaluate a polynomial in one value.                      */
 /*                                                                      */
 /* Arguments:                                                           */
-/*    *ptstrPol                                                        */
-/*    dblX                                                              */
+/*    *ptstrPol -> Polynomial                                           */
+/*    dblX -> Value to evaluate                                         */
 /*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/* Returned value:                                                      */
+/*    Polynomial value at dblX                                          */
 
-double dblEvaluatePol(biaPol *ptstrPol, double dblX);
+  double dblEvaluatePol(biaPol *ptPol, double dblX);
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Funcion que calcula la derivada N-esima de un ptstrPolinomio y la    */
 /* almacena en ptstrDerivada.                                           */
@@ -48,15 +32,9 @@ double dblEvaluatePol(biaPol *ptstrPol, double dblX);
 /*      ERR_AMEM -> Hubo un error en la asignacion de memoria.          */
 /*      TRUE     -> Se calculo con exito la derivada.                   */
 /*                                                                      */
-/*      B.I.A.G.R.A.        Jose Angel de Bustos Perez                  */
-/*                                                                      */
-/*      BIbliotecA de proGRamacion cientificA.                          */
-/*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
-int DerivadaPolinomio(Polinomio *ptstrPoli, Polinomio *ptstrDerivada, int intN);
+  int derivatePol(biaPol *ptPoli, biaPol *ptDerivada, int intN);
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Funcion que suma el polinomio ptstrPoli1 con el polinomio            */
 /* ptstrPoli2 y lo almacena en ptstrRes. 				*/
@@ -66,16 +44,10 @@ int DerivadaPolinomio(Polinomio *ptstrPoli, Polinomio *ptstrDerivada, int intN);
 /*	ERR_AMEM -> Hubo un error en la asignacion de memoria.		*/
 /*	TRUE     -> Se multiplico con exito los dos polinomios.		*/
 /*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
 int SumarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2, 
 		Polinomio *ptstrRes);
                 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Funcion que resta el polinomio ptstrPoli1 con el polinomio           */
 /* ptstrPoli2 y lo almacena en ptstrRes. 				*/
@@ -85,16 +57,10 @@ int SumarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2,
 /*	ERR_AMEM -> Hubo un error en la asignacion de memoria.		*/
 /*	TRUE     -> Se multiplico con exito los dos polinomios.		*/
 /*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
 int RestarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2, 
 		Polinomio *ptstrRes);                
                 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Funcion que multiplica el polinomio ptstrPoli1 por el polinomio      */
 /* ptstrPoli2 y lo almacena en ptstrRes. 				*/
@@ -104,16 +70,10 @@ int RestarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2,
 /*	ERR_AMEM -> Hubo un error en la asignacion de memoria.		*/
 /*	TRUE     -> Se multiplico con exito los dos polinomios.		*/
 /*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/ 
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
 int MultiplicarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2, 
 		Polinomio *ptstrRes);
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Funcion que calcula por el metodo de Newton una raiz de un           */
 /* polinomio.                                                           */
@@ -128,10 +88,7 @@ int MultiplicarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2,
 /*         ERR_AMEM Hubo un error en la asignacion de memoria, para     */
 /*             		almacenar la derivada del polinomio.                */
 /*																		*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez						*/
-/*																		*/
-/*      BIbliotecA de proGRamacion cientificA.                          */
-/*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
 int NewtonPoli(Polinomio *ptstrPoli, DatosAprxFunc *ptstrDatos);
+
+#endif
