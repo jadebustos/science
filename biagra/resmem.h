@@ -60,5 +60,5 @@
 /* Function to free memory from a double pointer matrix.                */
 /*                                                                      */
 
-  void FreeMemDblMat(double **dblMatrix, int intRows);
+  void freeMemDblMat(double **dblMatrix, int intRows);
 #endif

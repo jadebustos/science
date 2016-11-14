@@ -40,40 +40,6 @@ typedef struct {
 
 \FloatBarrier
 
-\subsection{How to use it}
-
-%
-\begin{verbatim}
-#include <stdlib.h>
-#include <datapol.h>
-
-int main(void) {
-
-  /* var declaration */
-  biaRealPol myPol;
-  ...
-  /* polynomial degree */
-  myPol.intDegree = 3;  
-  ...
-  /* memory allocation */
-  myPol.dblCoefs = (double *)calloc(myPol.intDegree + 1, sizeof(double));  
-  ...
-  /* store coeficients */
-  myPol.dblCoefs[0] = a0;
-  myPol.dblCoefs[1] = a1;
-  myPol.dblCoefs[2] = a2;
-  ...
-  myPol.dblCoefs[n] = an;
-  /* your stuff here */
-  ...
-  return 0;
-}
-\end{verbatim}
-
-\note{Bare in mind that a $n$ degree polynomial has $n+1$ coeficients.}
-
-\tip{In examples directory \texttt{datapol-biaRealPol.c} shows a simple way to use it.}
-
 \section{\textbf{biaRealRoot} data structure} \label{sec:biaRealRoot}
 
 This data structure is used to store data for root approximation. Data structure is defined in figure \ref{fig:biaRealRoot} where:
@@ -103,5 +69,3 @@ typedef struct {
 \end{figure}
 
 \FloatBarrier
-
-\subsection{How to use it}
