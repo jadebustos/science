@@ -17,14 +17,14 @@ p(x) = a_0 + a_1 \cdot x + \cdots + a_n \cdot x^n = \sum_{i=0}^n a_i \cdot x^i \
 \section{\textbf{biaRealPol} data structure} \label{sec:biaRealPol}
 
 This data structure is used to handle polinomials $p(x) \in \mathbb{R}[x]$. \textbf{biaPol} data structure is defined in figure \ref{fig:biaRealPol} where:
-
+%
 \begin{description}
 \item[intDegree] polynomial degree.
 \item[intRealRoots] number of real roots (if any).
 \item[intCompRoots] number of complex roots (if any).
 \item[*dblCoef] pointer to store polynomial coeficients.
 \end{description}
-
+%
 \begin{figure}[!h]
 \begin{verbatim}
 typedef struct {
@@ -37,8 +37,17 @@ typedef struct {
 \end{verbatim}
 \caption{biaRealPol data structure.} \label{fig:biaRealPol}
 \end{figure}
-
+%
 \FloatBarrier
+%
+Polynomial coeficients are stored in \texttt{dblCoefs} pointer which has to be previously initialized:
+%
+\begin{eqnarray*}
+  \mathrm{dblCoefs[0]} & = & a_0 \\
+  \mathrm{dblCoefs[1]} & = & a_1 \\
+  \dots & \dots & \dots \\
+  \mathrm{dblCoefs[n]} & = & a_n \\
+\end{eqnarray*}
 
 \section{\textbf{biaRealRoot} data structure} \label{sec:biaRealRoot}
 
