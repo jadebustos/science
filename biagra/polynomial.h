@@ -33,7 +33,7 @@
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-  int derivatePol(biaPol *ptPol, biaPol *ptDer, int intN);
+  int derivativePol(biaPol *ptPol, biaPol *ptDer, int intN);
 
 /*                                                                      */
 /* Function to add polynomials:                                         */

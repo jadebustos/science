@@ -1,171 +1,71 @@
 %
-% POLINOMIOS.H
+% polynomial.h
 %
 
-\chapter{polinomios.h} \label{sec:polinomios}
+\chapter{Polynomial (polynomials.h)} \label{sec:polynomial}
 
-\section{Introducci\'on}
-En este fichero de cabezera estan los prototipos de funciones para el
-tratamiento de polinomios.\newline
+\section{Introduction}
 
-\par Los polinomios los guardaremos en una estructura llamada
-\textbf{Polinomio}\footnote{Apartado (\ref{sec:strPolinomio}) en la p\'agina
-\pageref{sec:strPolinomio}.}. Para declarar una variable de este tipo:
+Functions to manage polynomials are defined in \texttt{polynomial.h} file.\\
 
-\begin{center}
-\textbf{Polinomio} \emph{Poli};
-\end{center}
+Polynomials are stored using a \BI\ data structure named \texttt{biaRealPol}\footnote{Section \ref{sec:biaRealPol} in page \pageref{sec:biaRealPol}.}.
 
-El grado del polinomio lo almacenaremos en el miembro \emph{intGrado}.\\
+\section{Polynomial evaluation}
 
-Los coeficientes del polinomio los guardaremos en el miembro \emph{dblCoefi}.\\
+\subsection{\texttt{dblEvaluatePol} function}
 
-Supongamos que tenemos el siguiente polinomio:
+This function evaluate a polynomial in a given point.\\
 
-\begin{center}
-$
-P(x) = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots + a_n x^n
-$
-\end{center}
-
-y queremos almacenar sus coeficientes en \emph{Poli}, el cual es una variable
-del tipo \textbf{Polinomio}. Como el polinomio tiene $n+1$ coeficientes
-deberemos dimensionar\footnote{Vease el apartado (\ref{sec:AsigMemVec}) de la
-p\'agina \pageref{sec:AsigMemVec}.} \emph{dblCoefi} como un vector $n+1$
-dimensional, es decir:
-
-\begin{center}
-\emph{Poli.dblCoefi} = \textbf{dblPtAsigMemVec} (\emph{(Poli.intGrado)$+1$});
-\end{center}
-
-Una vez dimensionado \emph{dblCoefi}, correctamente, almacenaremos los
-coeficientes del polinomio de la siguiente manera:
-
-\begin{center}
-$Poli.dblCoefi[i] = a_i$ para $0 \leq i < n$
-\end{center}
-
-Observaciones:
-
-\begin{itemize}
-\item Las funciones de esta biblioteca que utilizan la estructura de datos
-\textbf{Polinomio} utilizar\'an los datos que necesiten de dicha estructura,
-por lo que si alg\'un dato es incorrecto, el resultado tambi\'en lo ser\'a.
-\item Algunas funciones calculan polinomios, estas funciones 
-comprueban si fue dimensionado el miembro \emph{dblCoefi}, sino fue dimensionado
-lo dimensionan ellas y si fue dimensionado liberan la memoria que tenga asignada
-y asignan la memoria que necesiten. Razon por la cual cuando no se haya
-dimensionado dicho miembro debe se inicializado a $0$:
-
-\begin{center}
-\emph{Poli.dblCoefi = 0};
-\end{center}
-\end{itemize}
-
-\section{Evaluaci\'on de polinomios}
-
-\subsection{dblEvaluarPolinomio}
-
-Esta funci\'on devuelve el valor de un polinomio en un punto.\newline
-
-El prototipo de esta funci\'on es el siguiente:
-
-\begin{center}
-\emph{double \textbf{dblEvaluarPolinomio}(Polinomio *ptstrPoli,\\
-double dblPunto)}
-\end{center}
-
+The definition of this function:
+%
+\begin{verbatim}
+double dblEvaluatePol(biaRealPol *ptPol, double dblX);  
+\end{verbatim}
+%
+where:
 \begin{description} 
-\item[ptstrPoli] puntero a una variable del tipo \textbf{Polinomio}. 
-\item[dblPunto] punto en el que se quiere evaluar el polinomio.
+\item[*ptPol] pointer to a \texttt{biaRealPol} struct.
+\item[dblX] point in which the polynomial has to be evaluated.
 \end{description}
+%
+The \texttt{biaRealPol} has to be initialized with the polynomial degree and polynomial coeficients.
 
-Por ejemplo:
+\note{See section \ref{sec:biaRealPol} to understand how \texttt{biaRealPol} is used.}
 
-\begin{center}
-\emph{dblResultado = \textbf{dblEvaluarPolinomio}(\&Poli, dblPunto);}
-\end{center}
+\section{Polynomial derivatives}
 
-Almacenar\'{\i}a en \emph{dblResultado} el valor del polinomio que esta
-almacenado en \emph{Poli} en el punto \emph{dblPunto}, donde \emph{Poli} es
-una variable del tipo \textbf{Polinomio}\footnote{Apartado
-(\ref{sec:strPolinomio}) en la p\'agina \pageref{sec:strPolinomio}.}.
+\subsection{\texttt{derivativePol} function}
 
-\newpage
+This function gets the $n$-th derivative of a polynomial.
 
-\section{C\'alculo de derivadas}
-
-\subsection{DerivadaPolinomio}
-
-Esta funci\'on calcula la derivada \emph{intN$-$\'esima} de un polinomio.\\
-
-El prototipo de esta funci\'on es el siguiente:
-
-\begin{center}
-\emph{int \textbf{DerivadaPolinomio}(Polinomio *ptstrPoli,
-Polinomio *ptstrDerivada,\\ int intN)}
-\end{center}
-
-\begin{description}
-\item[ptstrPoli] puntero a una variable del tipo \textbf{Polinomio}.
-\item[ptstrDerivada] puntero a una variable del tipo \textbf{Polinomio}.
-\item[intN] orden de la derivada que se va a calcular. La funci\'on lo 
-considerar\'a siempre como un n\'umero positivo, aunque sea negativo.
+The definition of this function:
+%
+\begin{verbatim}
+int derivativePol(biaPol *ptPol, biaPol *ptDer, int intN);
+\end{verbatim}
+%
+where:
+\begin{description} 
+\item[*ptPol] pointer to a \texttt{biaRealPol} struct with the polynomial to get its derivative is stored.
+\item[*ptDer] pointer to a \texttt{biaRealPol} struct where the derivative will be stored.
+\item[intN] order of the derivative to get.
 \end{description}
-
-La funci\'on devuelve los siguientes c\'odigos:
-
+%
+The following codes are returned:
+%
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
-\textbf{ERR\_AMEM} & Hubo un error en la asignaci\'on de memoria. \\
+\textbf{BIA\_MEM\_ALLOC} & Memory allocation error \\
 \hline
-\textbf{TRUE} & Se calcul\'o con \'exito la derivada. \\
+\textbf{BIA\_TRUE} & Success \\
 \hline
 \end{tabular}
 \end{center}
-
-Por ejemplo:
-
-\begin{center}
-\emph{intResultado = \textbf{DerivadaPolinomio}(\&Poli, \&Derivada, intN);}
-\end{center}
-
-Calcular\'{\i}a la derivada \emph{intN$-$\'esima} de \emph{Poli}, 
-la almacenar\'{\i}a en \emph{Derivada}, donde ambos son datos del
-tipo \textbf{Polinomio}\footnote{Apartado (\ref{sec:strPolinomio}) en la
-p\'agina \pageref{sec:strPolinomio}.} y tambi\'en almacena en el miembro
-\emph{intGrado} de la variable \emph{Derivada} el grado de la derivada que
-se ha calculado.\\
-
-En \emph{intResultado} estar\'a el c\'odigo devuelto por la funci\'on, el cual
-indica el estado en el que termin\'o la ejecuci\'on de la funci\'on.\newline
-
-Observaciones:
-
-\begin{itemize}
-\item La funci\'on comprueba si se le ha asignado memoria al miembro 
-\emph{dblCoefi} de \emph{ptstrDerivada}. En caso afirmativo libera esa
-memoria y asigna la memoria necesaria, en caso contrario simplemente asigna
-la memoria necesaria a este miembro para contener los coeficientes de la
-derivada.\\
-
-\textbf{Esta comprobaci\'on la realiza comparando con el puntero nulo, 
-\emph{NULL} = $0$, si no se ha dimensionado este miembro es necesario almacenar
-en \'el el valor \emph{NULL}, ya que de lo contrario tendr\'{\i}amos un error
-en tiempo de ejecuci\'on del tipo \emph{Segment Fault}.}.\\
-
-Luego antes de utilizar esta funci\'on, si previamente no se ha dimensionado
-el miembro \emph{dblCoefi} de la variable \emph{Derivada}, se ha de inicializar
-a cero, es decir:
-
-\begin{center}
-Derivada.dblCoefi = 0;
-\end{center}
-\item En el caso en el que la funci\'on devuelva el valor \textbf{ERR\_AMEM} el
-miembro \emph{dblCoefi} de \emph{ptstrDerivada} no estar\'a dimensionado, con lo
-cual si se quiere volver a utilizar habr\'a que dimensionarlo de nuevo.
-\end{itemize}
+%
+\note{\texttt{ptDer} will be released and memory allocation will be carried out to store the derivative.}
+%
+\warning{\texttt{ptDer} member \texttt{dblCoefs} has to be initialized to a \texttt{NULL} pointer to avoid a \textbf{Segment Fault} error if it was not previously initialized.}
 
 \section{Operaciones entre polinomios}
 

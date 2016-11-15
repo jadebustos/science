@@ -65,7 +65,7 @@ double dblEvaluatePol(biaRealPol *ptPol, double dblX) {
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-int derivatePol(biaPol *ptPol, biaPol *ptDer, int intN) {
+int derivativePol(biaPol *ptPol, biaPol *ptDer, int intN) {
 
   int intAbsN = abs(intN),
       i,
@@ -226,7 +226,7 @@ int NewtonPol(biaPol *ptPol, biaRealRoot *ptRoot) {
   biaPol biaPolDer;
 
   biaPolDer.intDegree = intDegreeAbs;
-  biaPolDer.dblCoefs = 0;
+  biaPolDer.dblCoefs = NULL;
 
   /* get derivative */
   i = derivatePol(ptPol, &biaPolDer, 1);
