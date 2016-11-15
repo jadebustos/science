@@ -34,7 +34,7 @@
 /*                                                                      */
 /* Data structure to store function roots                               */
 /*                                                                      */
-/* intNMI   -> maximum number of iterations to get the root with        */
+/* intMNI   -> maximum number of iterations to get the root with        */
 /*             dblTol error.                                            */
 /* intIte   -> iterations used to get the root.                         */
 /* dblx0    -> initial root approximation.                              */
@@ -46,7 +46,7 @@
         
   typedef struct {
     
-    int intNMI,
+    int intMNI,
         intIte;
 
     double dblx0,

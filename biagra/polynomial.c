@@ -1,416 +1,260 @@
 #include <math.h>
 #include <stdlib.h>
 
-#include <biagra/struct.h>
-#include <biagra/polinomios.h>
+#include <biagra/datapol.h>
+#include <biagra/polynomial.h>
 #include <biagra/const.h>
 #include <biagra/resmem.h>
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*									*/
-/*	B.I.A.G.R.A.	(c) 1998 Jose Angel de Bustos Perez		*/
-/*			 <jadebustos@gmail.com>         		*/
-/*									*/
+/*                                                                      */
+/*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */       
 /*      This software is licensed under GPLv2:                          */
 /*        http://www.gnu.org/licenses/gpl-2.0.html                      */
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* polinomios.c     Jose Angel de Bustos Perez                          */
-/*                                                                      */
-/* Funciones para el tratamiento de polinomios.                         */
-/*                                                                      */
-/* Los polinomios se almacenaran en un puntero double de la siguiente   */
-/* manera:                                                              */
-/*                                                                      */
-/* Dado un polinomio de grado n - 1 tendra n coeficientes, si lo        */
-/* almacenamos en un puntero double polinomio (double *polinomio)       */
-/* para el cual se habra reservado memoria para n elementos, entonces   */
-/* en el elemento i-esimo del puntero estara el coeficiente i(recordar  */
-/* que el coeficiente i es el que acompaña al monomio de grado i), de   */
-/* tal forma que:                                                       */
-/*                                                                      */
-/* *(polinomio) = polinomio[0] = termino independiente                  */
-/* *(polinomio + (n-1)) = polinomio[n-1] = coeficiente de x^(n-1)       */
-/*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* IMPORTANTE!!!                                                        */
-/*                                                                      */
-/*     1) El autor no se responsabiliza de los posibles bugs(si los     */
-/*        hubiera) ni del mal uso de esta biblioteca.                   */
-/*                                                                      */
-/*     2) Esta biblioteca ha sido desarrollada y testeada bajo LiNUX.   */
-/*                                                                      */ 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* Funcion que calcula el valor del polinomio ptstrPoli en el punto     */
-/* dblPunto, la funcion devuelve dicho valor.                           */
-/*                                                                      */
-/*      B.I.A.G.R.A.        Jose Angel de Bustos Perez                  */
 /*                                                                      */
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
-double dblEvaluarPolinomio(Polinomio *ptstrPoli, double dblPunto)
+/*                                                                      */
+/* Function to evaluate a polynomial in one value.                      */
+/*                                                                      */
+/* Arguments:                                                           */
+/*    *ptstrPol -> Polynomial                                           */
+/*    dblX      -> Value to evaluate                                    */                                                                            
+/*                                                                      */
+/* Returned value:                                                      */
+/*                                                                      */
+/*    Polynomial value at dblX                                          */
 
-{
-double 	dblRes = .0;
+double dblEvaluatePol(biaRealPol *ptPol, double dblX) {
 
-int		i = 0,
-		intGradoAbs = abs(ptstrPoli->intGrado);
+  double dblRes = .0;
 
-if ( dblPunto == .0 )
-	return (ptstrPoli->dblCoefi[0]);
+  int  i = 0,
+       intDegreeAbs = abs(ptPol->intDegree);
 
-switch (intGradoAbs)
+  if ( dblX == .0 )
+    return (ptPol->dblCoefs[0]);
 
-{	/* INICIO switch */
+  switch (intDegreeAbs) {
+    case 0: {
+      break;
+    }
+  default: {
+    dblRes = dblX*(ptPol->dblCoefs[intDegreeAbs]);
+      for(i=intDegreeAbs-1;i>=1;i--) {
+        dblRes += (ptPol->dblCoefs[i]);
+        dblRes *= dblX;
+        }
+      break;
+    }
+  }
 
-case 0:		/* POLINOMIOS DE GRADO CERO */
+  dblRes += ptPol->dblCoefs[0];
 
-	{	/* INICIO case 0: */
-	
-	break;
-	}	/* FINAL case 0: */
-
-default:	/* POLINOMIOS DE GRADO MAYOR O IGUAL QUE UNO */
-
-	{ 	/* INICO default */
-
-	dblRes = dblPunto*(ptstrPoli->dblCoefi[intGradoAbs]);
-	
-	for(i=intGradoAbs-1;i>=1;i--)
-
-		{	/* INICIO for */
-
-		dblRes += (ptstrPoli->dblCoefi[i]);
-		dblRes *= dblPunto;
-		
-		}	/* FINAL for */
-		
-	break;
-	}	/* FINAL default */
-	
-}	/* FINAL switch */
-
-dblRes += ptstrPoli->dblCoefi[0];
-
-return (dblRes);
+  return (dblRes);
 }
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
-/* Funcion que calcula la derivada N-esima de ptstrPolinomio y la       */
-/* almacena en ptstrDerivada.                                           */
+/* Function to get the n-th derivative                                  */
+/*                                                                      */ 
+/* The following values are returned:                                   */
 /*                                                                      */
-/* La funcion devuelve los siguientes codigos:							*/
-/*																		*/
-/*	ERR_AMEM -> Hubo un error en la asignacion de memoria.				*/
-/*	TRUE     -> Se calculo con exito la derivada.						*/
-/*																		*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez						*/
-/*																		*/
-/*	BIbliotecA de proGRamacion cientificA.								*/
-/* 																		*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/*      BIA_MEM_ALLOC -> Memory allocation error                        */
+/*      BIA_TRUE      -> Success                                        */
+/*                                                                      */
 
-int DerivadaPolinomio(Polinomio *ptstrPoli, Polinomio *ptstrDerivada, int intN)
+int derivatePol(biaPol *ptPol, biaPol *ptDer, int intN) {
 
-{
+  int intAbsN = abs(intN),
+      i,
+      j;
 
-int	intAbsN = abs(intN),
-	i,
-	j;
+  if ( intAbsN >= (ptPol->intDegree) )
+    (ptDer->intDegree) = 0;
+  else
+    (ptDer->intDegree) = ((ptPol->intDegree)-intAbsN);
 
-/* DETERMINAMOS EL GRADO DE LA DERIVADA */
+  if ( (ptDer->dblCoefs) != NULL )
+    free(ptDer->dblCoefs);
 
-if ( intAbsN >= (ptstrPoli->intGrado) )
-	(ptstrDerivada->intGrado) = 0;
+  (ptDer->dblCoefs) = (double *)dblPtMemAllocVec((ptDer->intDegree)+1);
 
-else
-	(ptstrDerivada->intGrado) = ((ptstrPoli->intGrado)-intAbsN);
+  if ( (ptDer->dblCoefs) == NULL )
+    return BIA_MEM_ALLOC;
 
-/* COMPROBAMOS SI EL MIEMBRO dblCoefi DE ptstrDerivada HA SIDO DIMENSIONADO,
-   SI LO HA SIDO LIBERAMOS LA MEMORIA ASIGNADA Y POSTERIORMEMTE ASIGNAMOS LA
-   MEMORIA NECESARIA PARA CONTENER LOS COEFICIENTES DE LA DERIVADA */
-
-if ( (ptstrDerivada->dblCoefi) != NULL )
-	free(ptstrDerivada->dblCoefi);
-
-(ptstrDerivada->dblCoefi) = (double *)dblPtAsigMemVec((ptstrDerivada->intGrado)+1);
-
-if ( (ptstrDerivada->dblCoefi) == NULL )
-	return (ERR_AMEM);	/* FIN */
-
-/* CACULAMOS LA DERIVADA */
-
-for(i=0;i<=(ptstrDerivada->intGrado);i++)
-
-	{	/* INICIO PRIMER for */
-
-	(ptstrDerivada->dblCoefi[i]) = (ptstrPoli->dblCoefi[i+intAbsN]);
-	
-	for(j=i+intAbsN;j>i;j--)
-		(ptstrDerivada->dblCoefi[i]) *= j;
-
-	}	/* FINAL PRIMER for */
+  for(i=0;i<=(ptDer->intDegree);i++) {
+    (ptDer->dblCoefs[i]) = (ptPol->dblCoefs[i+intAbsN]);
+    for(j=i+intAbsN;j>i;j--)
+      (ptDer->dblCoefs[i]) *= j;
+  }
 
 return (TRUE);
 }
 
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
-/* Funcion que suma el polinomio ptstrPoli1 con el polinomio            */
-/* ptstrPoli2 y lo almacena en ptstrRes. 								*/
+/* Function to add polynomials:                                         */
+/*     ptRes = ptPlo1 + ptPol2                                          */
 /*                                                                      */
-/* La funcion devuelve los siguientes codigos:							*/
-/*																		*/
-/*	ERR_AMEM -> Hubo un error en la asignacion de memoria.				*/
-/*	TRUE     -> Se multiplico con exito los dos polinomios.				*/
-/*																		*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez						*/
-/*																		*/
-/*	BIbliotecA de proGRamacion cientificA.								*/
-/*																		*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BIA_MEM_ALLOC -> Memory allocation error                        */
+/*      BIA_TRUE      -> Success                                        */
+/*                                                                      */
 
-int SumarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2, 
-		Polinomio *ptstrRes)
+int addPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes) {
 
-{
-int	i;
+  int i;
 
-/* CALCULO DEL ORDEN DE LA SUMA */
+  /* degree of the polynomial addition */
+  (ptRes->intDegree) = ((ptPol1->intDegree) >= (ptPol2->intDegree)) ? 
+			(ptPol1->intDegree) : (ptPol2->intDegree);
 
-(ptstrRes->intGrado) = ((ptstrPoli1->intGrado) >= (ptstrPoli2->intGrado)) ? 
-			(ptstrPoli1->intGrado) : (ptstrPoli2->intGrado);
+  if ( (ptRes->dblCoefs) != NULL )
+    free (ptRes->dblCoefs);
 
-/* SI ESTA DIMENSIONADO EL MIEMBRO dblCoefi DE ptstrRes LIBERAMOS LA MEMORIA
-   Y ASIGNAMOS LA MEMORIA NECESARIA */
+  (ptRes->dblCoefs) = (double *)dblPtMemAllocVec((ptRes->intDegree)+1);
 
-if ( (ptstrRes->dblCoefi) != NULL )
-	free (ptstrRes->dblCoefi);
+  if ( (ptRes->dblCoefs) == NULL )
+    return BIA_MEM_ALLOC;
 
-(ptstrRes->dblCoefi) = (double *)dblPtAsigMemVec((ptstrRes->intGrado)+1);
+  for(i=0;i<=(ptPol1->intDegree);i++)
+    (ptRes->dblCoefs[i]) += (ptPol1->dblCoefs[i]);
 
-if ( (ptstrRes->dblCoefi) == NULL )
-	return (ERR_AMEM);	/* FIN */
+  for(i=0;i<=(ptPol2->intDegree);i++)
+    (ptRes->dblCoefs[i]) += (ptPol2->dblCoefs[i]);
 
-/* CALCULAMOS LA SUMA */
-
-for(i=0;i<=(ptstrPoli1->intGrado);i++)
-	(ptstrRes->dblCoefi[i]) += (ptstrPoli1->dblCoefi[i]);
-
-for(i=0;i<=(ptstrPoli2->intGrado);i++)
-	(ptstrRes->dblCoefi[i]) += (ptstrPoli2->dblCoefi[i]);
-
-return (TRUE);
+  return BIA_TRUE; 
 }
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
-/* Funcion que resta el polinomio ptstrPoli1 con el polinomio           */
-/* ptstrPoli2 y lo almacena en ptstrRes. 								*/
+/* Function to subtract polynomials:                                    */
+/*     ptRes = ptPol1 - ptPol2                                          */
 /*                                                                      */
-/* La funcion devuelve los siguientes codigos:							*/
-/*																		*/
-/*	ERR_AMEM -> Hubo un error en la asignacion de memoria.				*/
-/*	TRUE     -> Se multiplico con exito los dos polinomios.				*/
-/*																		*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez						*/
-/*																		*/
-/*	BIbliotecA de proGRamacion cientificA.								*/
-/*																		*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BIA_MEM_ALLOC -> Memory allocation error                        */
+/*      BIA_TRUE      -> Success                                        */
+/*                                                                      */
 
-int RestarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2, 
-		Polinomio *ptstrRes)
-                
-{
-int	i;
+int subtractPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes) {
+	
+  int i;
 
-/* CALCULO DEL ORDEN DE LA SUMA */
+  /* degree of the polynomial addition */
+  (ptRes->intDegree) = ((ptPol1->intDegree) >= (ptPol2->intDegree)) ? 
+			(ptPol1->intDegree) : (ptPol2->intDegree);
 
-(ptstrRes->intGrado) = ((ptstrPoli1->intGrado) >= (ptstrPoli2->intGrado)) ? 
-			(ptstrPoli1->intGrado) : (ptstrPoli2->intGrado);
+  if ( (ptRes->dblCoefs) != NULL )
+    free (ptRes->dblCoefs);
 
-/* SI ESTA DIMENSIONADO EL MIEMBRO dblCoefi DE ptstrRes LIBERAMOS LA MEMORIA
-   Y ASIGNAMOS LA MEMORIA NECESARIA */
+  (ptRes->dblCoefs) = (double *)dblPtMemAllocVec((ptRes->intDegree)+1);
 
-if ( (ptstrRes->dblCoefi) != NULL )
-	free (ptstrRes->dblCoefi);
+  if ( (ptRes->dblCoefs) == NULL )
+    return BIA_MEM_ALLOC; 
 
-(ptstrRes->dblCoefi) = (double *)dblPtAsigMemVec((ptstrRes->intGrado)+1);
+  for(i=0;i<=(ptPol1->intDegree);i++)
+    (ptRes->dblCoefs[i]) += (ptPol1->dblCoefs[i]);
 
-if ( (ptstrRes->dblCoefi) == NULL )
-	return (ERR_AMEM);	/* FIN */
+  for(i=0;i<=(ptPol2->intDegree);i++)
+    (ptRes->dblCoefs[i]) -= (ptPol2->dblCoefs[i]);
 
-for(i=0;i<=(ptstrPoli1->intGrado);i++)
-	(ptstrRes->dblCoefi[i]) += (ptstrPoli1->dblCoefi[i]);
-
-/* RESTAMOS strPoli2 A strPoli1 */
-
-for(i=0;i<=(ptstrPoli2->intGrado);i++)
-	(ptstrRes->dblCoefi[i]) -= (ptstrPoli2->dblCoefi[i]);
-
-return (TRUE);
+  return BIA_TRUE;
 }          
-                
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+
 /*                                                                      */
-/* Funcion que multiplica el polinomio ptstrPoli1 por el polinomio      */
-/* ptstrPoli2) y lo almacena ptstrRes.                                  */
-/* 																		*/
-/* La funcion devuelve los siguientes codigos:							*/
-/*																		*/
-/*	ERR_AMEM -> Hubo un error en la asignacio de memoria.				*/
-/*	TRUE     -> Se multiplico con exito los dos polinomios.         	*/
-/*																		*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez						*/
-/*																		*/
-/*	BIbliotecA de proGRamacion cientificA.								*/
+/* Function to multiply polynomials:                                    */
+/*     ptRes = ptPol1 * ptPol2                                          */
 /*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BIA_MEM_ALLOC -> Memory allocation error                        */
+/*      BIA_TRUE      -> Success                                        */
+/*                                                                      */
 
-int MultiplicarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2,
-		Polinomio *ptstrRes)
+int multiplyPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes) {
 
-{
-int	i,
-	j;
+  int i,
+      j;
 
-/* GRADO DEL PRODUCTO DE AMBOS POLINOMIOS */
+  /* degree of the polynomial addition */
+  (ptRes->intDegree) = (ptPol1->intDegree) + (ptPol2->intDegree);
 
-(ptstrRes->intGrado) = (ptstrPoli1->intGrado) + (ptstrPoli2->intGrado);
+  if ( (ptRes->dblCoefs) != NULL )
+    free((ptRes->dblCoefs));
 
-/* COMPROBAMOS SI SE HA RESERVADO MEMORIA PARA EL MIEMBRO dblCoefi DE ptstrRes,
-   EN CASO AFIRMATIVO LIBERAMOS Y REASIGNAMOS LA MEMORIA NECESARIA */
+  (ptRes->dblCoefs) = (double *)dblPtMemAllocVec((ptRes->intDegree)+1);
 
-if ( (ptstrRes->dblCoefi) != NULL )
-	free((ptstrRes->dblCoefi));
+  if ( (ptRes->dblCoefs) == NULL )
+    return BIA_MEM_ALLOC;
 
-(ptstrRes->dblCoefi) = (double *)dblPtAsigMemVec((ptstrRes->intGrado)+1);
-
-if ( (ptstrRes->dblCoefi) == NULL )
-	return (ERR_AMEM);	/* FIN */
-
-/* MULTIPLICAMOS AMBOS POLINOMIOS */
-
-for(i=0;i<=(ptstrPoli1->intGrado);i++)
-
-	{	/* INICIO PRIMER for */
-
-	for(j=0;j<=(ptstrPoli2->intGrado);j++)
-
-		{	/* INICIO SEGUNDO for */
-
-		(ptstrRes->dblCoefi[i+j]) += (ptstrPoli1->dblCoefi[i]) * 
-					     (ptstrPoli2->dblCoefi[j]);
-
-		}	/* FINAL SEGUNDO for */
-
-	}	/* FINAL PRIMER for */
-
-return (TRUE);
+  for(i=0;i<=(ptPol1->intDegree);i++) {
+    for(j=0;j<=(ptPol2->intDegree);j++) {
+      (ptRes->dblCoefs[i+j]) += (ptPol1->dblCoefs[i]) * 
+        (ptPol2->dblCoefs[j]);
+      }
+    }
+  return BIA_TRUE;
 }
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* Funcion que calcula por el metodo de Newton una raiz de un           */
-/* polinomio.                                                           */
-/*                                                                      */
-/* La funcion devuelve:                                                 */
-/*                                                                      */
-/*         FALSE    No se calculo la raiz del polinomio en las          */
-/*                  condiciones dadas(NMI y Tolerancia).                */
-/*         DIV_CERO Division por Cero.                                  */
-/*         TRUE     Se calculo la raiz del polinomio en las             */
-/* 				    condiciones dadas. 							  		*/
-/*         ERR_AMEM Hubo un error en la asignacion de memoria, para     */
-/*             		almacenar la derivada del polinomio.                */
-/*																		*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez						*/
-/*																		*/
-/*	BIbliotecA de proGRamacion cientificA.								*/
-/*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
 int NewtonPoli(Polinomio *ptstrPoli, DatosAprxFunc *ptstrDatos)
 
-{
-int		i,
-		intGradoAbs = abs(ptstrPoli->intGrado),
-		intNMIAbs   = abs(ptstrDatos->intNMI);
+/*                                                                      */
+/* Function to find a polynomial root using Newton's method             */
+/*                                                                      */
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BIA_ZERO_DIV  -> Division by zero                               */
+/*      BIA_MEM_ALLOC -> Memory allocation error                        */
+/*      BIA_TRUE      -> Success                                        */
+/*      BIA_FALSE     -> Fail                                           */
+/*                                                                      */
 
-double 	dblAprxNew   = .0,
-	dblAprxOld   = (ptstrDatos->dblx0),
-	dblValorPoli = .0,
-	dblValorDeri = .0,
-	dblTolAbs    = fabs(ptstrDatos->dblTol);
+int NewtonPol(biaPol *ptPol, biaRealRoot *ptRoot) {
 
-Polinomio	Derivada;
+  int i,
+      intDegreeAbs = abs(ptPol->intDegree),
+      intMNIAbs    = abs(ptRoot->intMNI);
 
-/* INICIALIZAMOS LOS DATOS DE Derivada */
+  double dblApprxNew = .0,
+	 dblApprxOld = (ptRoot->dblx0),
+	 dblPolValue = .0,
+	 dblDerValue = .0,
+	 dblTolAbs   = fabs(ptRoot->dblTol);
 
-Derivada.intGrado = intGradoAbs;
-Derivada.dblCoefi = 0;
+  biaPol biaPolDer;
 
-/* CALCULAMOS LA DERIVADA DEL POLINOMIO */
+  biaPolDer.intDegree = intDegreeAbs;
+  biaPolDer.dblCoefs = 0;
 
-i = DerivadaPolinomio(ptstrPoli, &Derivada, 1);
+  /* get derivative */
+  i = derivatePol(ptPol, &biaPolDer, 1);
 
-if ( i != TRUE ) /* HUBO UN ERROR EN LA ASIGNACION DE MEMORIA */
+  if ( i != BIA_TRUE ) {
+    return BIA_MEM_ALLOC;
+    }
 
-	{
-	return (ERR_AMEM);	/* FIN */
-	}
+  for(i=1;i<=intMNIAbs;i++) {
+    dblPolValue = dblEvaluatePol(ptPol, dblApprxOld);
+    dblDerValue = dblEvaluatePol(&biaPolDer, dblApprxOld);
 
-for(i=1;i<=intNMIAbs;i++)
+    if ( dblDerValue == .0 ) {
+      free(Derivada.dblCoefi);
+      return BIA_ZERO_DIV;
+      }
 
-	{	/* INICIO for */
+    /* new approximation */
+    dblApprxNew = dblApprxOld - (dblPolValue/dblDerValue);
 
-	dblValorPoli = dblEvaluarPolinomio(ptstrPoli, dblAprxOld);
-	dblValorDeri = dblEvaluarPolinomio(&Derivada, dblAprxOld);
-
-	if ( dblValorDeri == .0 )	/* DIVISION POR CERO */
-		{
-		free(Derivada.dblCoefi);
-
-		return (DIV_CERO);	/* FIN */ 
-		}
-
-	/* NUEVA APROXIMACION */
-
-	dblAprxNew = dblAprxOld - (dblValorPoli/dblValorDeri);
-
-	/* CALCULO DEL ERROR */
-
-	ptstrDatos->dblError = fabs(dblAprxOld-dblAprxNew);
-
-	if ( (ptstrDatos->dblError) < dblTolAbs )
-		{
-		free(Derivada.dblCoefi);
-
-		ptstrDatos->dblSolucion = dblAprxNew;
-
-		return (TRUE);	/* FIN */
-		}
-
-	dblAprxOld = dblAprxNew;
-					
-	}	/* FINAL for */
-	 	
-return (FALSE); 	/* FIN */
+    /* error */
+    ptRoot->dblError = fabs(dblApprxOld-dblApprxNew);
+    if ( (ptRoot->dblError) < dblTolAbs ) {
+      free(biaPolDer.dblCoefs);
+      ptRoot->dblRoot = dblAprxNew;
+      return BIA_TRUE;
+      }
+    dblApprxOld = dblApprxNew;
+    }
+  return BIA_FALSE;
 }

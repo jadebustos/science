@@ -16,7 +16,7 @@
 /*                                                                      */
 /* Arguments:                                                           */
 /*    *ptstrPol -> Polynomial                                           */
-/*    dblX -> Value to evaluate                                         */
+/*    dblX      -> Value to evaluate                                    */
 /*                                                                      */
 /* Returned value:                                                      */
 /*                                                                      */
@@ -25,8 +25,7 @@
   double dblEvaluatePol(biaPol *ptPol, double dblX);
 
 /*                                                                      */
-/* Funcion que calcula la derivada N-esima de un ptstrPolinomio y la    */
-/* almacena en ptstrDerivada.                                           */
+/* Function to get the n-th derivative                                  */
 /*                                                                      */ 
 /* The following values are returned:                                   */
 /*                                                                      */
@@ -34,7 +33,7 @@
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-  int derivatePol(biaPol *ptPoli, biaPol *ptDerivada, int intN);
+  int derivatePol(biaPol *ptPol, biaPol *ptDer, int intN);
 
 /*                                                                      */
 /* Function to add polynomials:                                         */
@@ -47,7 +46,7 @@
 /*                                                                      */
 
   int addPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes);
-                
+
 /*                                                                      */
 /* Function to subtract polynomials:                                    */
 /*     ptRes = ptPol1 - ptPol2                                          */
@@ -73,8 +72,7 @@
   int multiplyPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes);
 
 /*                                                                      */
-/* Funcion que calcula por el metodo de Newton una raiz de un           */
-/* polinomio.                                                           */
+/* Function to find a polynomial root using Newton's method             */
 /*                                                                      */
 /* The following values are returned:                                   */
 /*                                                                      */
@@ -84,6 +82,6 @@
 /*      BIA_FALSE     -> Fail                                           */
 /*                                                                      */
 
-  int NewtonPol(biaPol *ptPol, DatosAprxFunc *ptstrDatos);
+  int NewtonPol(biaPol *ptPol, biaRealRoot *ptRoot);
 
 #endif
