@@ -19,6 +19,7 @@
 /*    dblX -> Value to evaluate                                         */
 /*                                                                      */
 /* Returned value:                                                      */
+/*                                                                      */
 /*    Polynomial value at dblX                                          */
 
   double dblEvaluatePol(biaPol *ptPol, double dblX);
@@ -27,68 +28,62 @@
 /* Funcion que calcula la derivada N-esima de un ptstrPolinomio y la    */
 /* almacena en ptstrDerivada.                                           */
 /*                                                                      */ 
-/* La funcion devuelve los siguientes codigos:                          */
+/* The following values are returned:                                   */
 /*                                                                      */
-/*      ERR_AMEM -> Hubo un error en la asignacion de memoria.          */
-/*      TRUE     -> Se calculo con exito la derivada.                   */
+/*      BIA_MEM_ALLOC -> Memory allocation error                        */
+/*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
   int derivatePol(biaPol *ptPoli, biaPol *ptDerivada, int intN);
 
 /*                                                                      */
-/* Funcion que suma el polinomio ptstrPoli1 con el polinomio            */
-/* ptstrPoli2 y lo almacena en ptstrRes. 				*/
+/* Function to add polynomials:                                         */
+/*     ptRes = ptPlo1 + ptPol2                                          */
 /*                                                                      */
-/* La funcion devuelve los siguientes codigos:				*/
-/*									*/
-/*	ERR_AMEM -> Hubo un error en la asignacion de memoria.		*/
-/*	TRUE     -> Se multiplico con exito los dos polinomios.		*/
-/*									*/
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BIA_MEM_ALLOC -> Memory allocation error                        */
+/*      BIA_TRUE      -> Success                                        */
+/*                                                                      */
 
-int SumarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2, 
-		Polinomio *ptstrRes);
+  int addPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes);
                 
 /*                                                                      */
-/* Funcion que resta el polinomio ptstrPoli1 con el polinomio           */
-/* ptstrPoli2 y lo almacena en ptstrRes. 				*/
+/* Function to subtract polynomials:                                    */
+/*     ptRes = ptPol1 - ptPol2                                          */
 /*                                                                      */
-/* La funcion devuelve los siguientes codigos:				*/
-/*									*/
-/*	ERR_AMEM -> Hubo un error en la asignacion de memoria.		*/
-/*	TRUE     -> Se multiplico con exito los dos polinomios.		*/
-/*									*/
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BIA_MEM_ALLOC -> Memory allocation error                        */
+/*      BIA_TRUE      -> Success                                        */
+/*                                                                      */
 
-int RestarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2, 
-		Polinomio *ptstrRes);                
-                
-/*                                                                      */
-/* Funcion que multiplica el polinomio ptstrPoli1 por el polinomio      */
-/* ptstrPoli2 y lo almacena en ptstrRes. 				*/
-/*                                                                      */
-/* La funcion devuelve los siguientes codigos:				*/
-/*									*/
-/*	ERR_AMEM -> Hubo un error en la asignacion de memoria.		*/
-/*	TRUE     -> Se multiplico con exito los dos polinomios.		*/
-/*									*/
+  int subtractPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes);
 
-int MultiplicarPolinomios(Polinomio *ptstrPoli1, Polinomio *ptstrPoli2, 
-		Polinomio *ptstrRes);
+/*                                                                      */
+/* Function to multiply polynomials:                                    */
+/*     ptRes = ptPol1 * ptPol2                                          */
+/*                                                                      */
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BIA_MEM_ALLOC -> Memory allocation error                        */
+/*      BIA_TRUE      -> Success                                        */
+/*                                                                      */
+
+  int multiplyPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes);
 
 /*                                                                      */
 /* Funcion que calcula por el metodo de Newton una raiz de un           */
 /* polinomio.                                                           */
 /*                                                                      */
-/* La funcion devuelve:                                                 */
+/* The following values are returned:                                   */
 /*                                                                      */
-/*         FALSE    No se calculo la raiz del polinomio en las          */
-/*                  condiciones dadas(NMI y Tolerancia).                */
-/*         DIV_CERO Division por Cero.                                  */
-/*         TRUE     Se calculo la raiz del polinomio en las             */
-/* 				    condiciones dadas. 							  		*/
-/*         ERR_AMEM Hubo un error en la asignacion de memoria, para     */
-/*             		almacenar la derivada del polinomio.                */
-/*																		*/
+/*      BIA_ZERO_DIV  -> Division by zero                               */
+/*      BIA_MEM_ALLOC -> Memory allocation error                        */
+/*      BIA_TRUE      -> Success                                        */
+/*      BIA_FALSE     -> Fail                                           */
+/*                                                                      */
 
-int NewtonPoli(Polinomio *ptstrPoli, DatosAprxFunc *ptstrDatos);
+  int NewtonPol(biaPol *ptPol, DatosAprxFunc *ptstrDatos);
 
 #endif
