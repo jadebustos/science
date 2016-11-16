@@ -1,10 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
+#ifndef _POLSUPPORT_H
+  #define _POLSUPPORT_H
 
 #include <biagra/datapol.h>
-#include <biagra/const.h>
-
-#include "polsupport.h"
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
@@ -16,31 +13,9 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/* Simple example of biaRealPol usage */
+  /* generate random polynomial */
+  int randomPol(biaRealPol *ptPol);
 
-int main (void) {
-
-  /* Polynomial degree */
-  int polDegree = 3,
-      i;
-
-  /* Polynomial declaration */
-  biaRealPol myPol;
-
-  /* Polynomial degree */
-  myPol.intDegree = polDegree;
-
-  /* polynomial initialization */
-  i = randomPol(&myPol);
-
-  if ( i == BIA_MEM_ALLOC ) {
-    printf("Error in memory assignation.\n");
-    return 1;
-  }
-
-  /* Printing polynomial to stdout */
-  printf("p(x) = ");
-  pol2Stdout(&myPol);
-
-  return 0;
-}
+  /* print polynomial to stdout */
+  void pol2Stdout(biaRealPol *ptPol);
+#endif

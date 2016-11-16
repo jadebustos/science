@@ -41,12 +41,12 @@ double dblEvaluatePol(biaRealPol *ptPol, double dblX) {
     case 0: {
       break;
     }
-  default: {
-    dblRes = dblX*(ptPol->dblCoefs[intDegreeAbs]);
+    default: {
+      dblRes = dblX*(ptPol->dblCoefs[intDegreeAbs]);
       for(i=intDegreeAbs-1;i>=1;i--) {
         dblRes += (ptPol->dblCoefs[i]);
         dblRes *= dblX;
-        }
+      }
       break;
     }
   }
