@@ -44,6 +44,7 @@ int main (void) {
   px0 = dblEvaluatePol(&myPol, x0);
 
   /* Printing polynomial to stdout */
+  printf("p(x) = ");
   pol2Stdout(&myPol);
   printf("x0 = %g\n", x0);
   printf("p(x0) = %g\n", px0);

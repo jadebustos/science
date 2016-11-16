@@ -27,10 +27,10 @@ int randomPol(biaRealPol *ptPol) {
     return BIA_MEM_ALLOC;
   }
 
-  /* Random coefs between 0 and 100 (not cryptographically secure) */
+  /* Random coefs between 0 and 10 (not cryptographically secure) */
   srand(time(NULL));
   for(int i=0;i<=ptPol->intDegree;i++) {
-      ptPol->dblCoefs[i] = (double) (rand() % 100);
+      ptPol->dblCoefs[i] = (double) (rand() % 10);
       if ( (rand() % 2 ) == 0 )
         ptPol->dblCoefs[i] *= -1; 
   }
@@ -44,7 +44,7 @@ void pol2Stdout(biaRealPol *ptPol) {
   int i;
 
   /* Printing polynomial to stdout */
-  printf("p(x) = %g", ptPol->dblCoefs[0]);
+  printf("%g", ptPol->dblCoefs[0]);
 
   for(i=1;i<=ptPol->intDegree;i++)
     printf(" + (%g) * x ^%d", ptPol->dblCoefs[i], i);
