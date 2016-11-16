@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
 
+#include <biagra/polynomial.h>
 #include <biagra/datapol.h>
+#include <biagra/resmem.h>
 #include <biagra/const.h>
 
 #include "polsupport.h"
@@ -16,21 +17,22 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/* Simple example of biaRealPol usage */
+/* Simple example of dblPtMemAllocVec usage */
 
 int main (void) {
 
-  /* Polynomial degree */
-  int polDegree = 3,
-      i;
-
-  /* Polynomial declaration */
+  /* Vector declaration */
   biaRealPol myPol;
 
-  /* Polynomial degree */
-  myPol.intDegree = polDegree;
+  /* Polynomial order */
+  myPol.intDegree = 5;
 
-  /* polynomial initialization */
+  int i;
+
+  double x0 = BIA_PI,
+	 px0 = .0;
+
+  /* polynomial generation */
   i = randomPol(&myPol);
 
   if ( i == BIA_MEM_ALLOC ) {
@@ -38,8 +40,13 @@ int main (void) {
     return 1;
   }
 
+  /* evaluate polynomial */
+  px0 = dblEvaluatePol(&myPol, x0);
+
   /* Printing polynomial to stdout */
   pol2Stdout(&myPol);
+  printf("x0 = %g\n", x0);
+  printf("p(x0) = %g\n", px0);
 
   return 0;
 }

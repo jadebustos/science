@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include <biagra/datapol.h>
+#include <biagra/resmem.h>
 #include <biagra/const.h>
-
-#include "polsupport.h"
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
@@ -16,30 +16,40 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/* Simple example of biaRealPol usage */
+/* generate random polynomial */
 
-int main (void) {
+int randomPol(biaRealPol *ptPol) {
 
-  /* Polynomial degree */
-  int polDegree = 3,
-      i;
+  /* Memory reservation */
+  ptPol->dblCoefs = (double *)dblPtMemAllocVec((ptPol->intDegree)+ 1);
 
-  /* Polynomial declaration */
-  biaRealPol myPol;
-
-  /* Polynomial degree */
-  myPol.intDegree = polDegree;
-
-  /* polynomial initialization */
-  i = randomPol(&myPol);
-
-  if ( i == BIA_MEM_ALLOC ) {
-    printf("Error in memory assignation.\n");
-    return 1;
+  if ( ptPol->dblCoefs == NULL ) {
+    return BIA_MEM_ALLOC;
   }
 
-  /* Printing polynomial to stdout */
-  pol2Stdout(&myPol);
+  /* Random coefs between 0 and 100 (not cryptographically secure) */
+  srand(time(NULL));
+  for(int i=0;i<=ptPol->intDegree;i++) {
+      ptPol->dblCoefs[i] = (double) (rand() % 100);
+      if ( (rand() % 2 ) == 0 )
+        ptPol->dblCoefs[i] *= -1; 
+  }
 
-  return 0;
+  return BIA_TRUE;
+}
+
+/* print polynomial to stdout */
+void pol2Stdout(biaRealPol *ptPol) {
+  
+  int i;
+
+  /* Printing polynomial to stdout */
+  printf("p(x) = %g", ptPol->dblCoefs[0]);
+
+  for(i=1;i<=ptPol->intDegree;i++)
+    printf(" + (%g) * x ^%d", ptPol->dblCoefs[i], i);
+
+  printf("\n");
+
+  return;
 }
