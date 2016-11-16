@@ -211,7 +211,7 @@ int NewtonPoli(Polinomio *ptstrPoli, DatosAprxFunc *ptstrDatos)
 /*      BIA_FALSE     -> Fail                                           */
 /*                                                                      */
 
-int NewtonPol(biaPol *ptPol, biaRealRoot *ptRoot) {
+int newtonPol(biaPol *ptPol, biaRealRoot *ptRoot) {
 
   int i,
       intDegreeAbs = abs(ptPol->intDegree),

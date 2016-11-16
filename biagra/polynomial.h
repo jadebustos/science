@@ -82,6 +82,6 @@
 /*      BIA_FALSE     -> Fail                                           */
 /*                                                                      */
 
-  int NewtonPol(biaPol *ptPol, biaRealRoot *ptRoot);
+  int newtonPol(biaPol *ptPol, biaRealRoot *ptRoot);
 
 #endif
