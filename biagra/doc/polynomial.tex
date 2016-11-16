@@ -14,7 +14,7 @@ Polynomials are stored using a \BI\ data structure named \texttt{biaRealPol}\foo
 
 \subsection{\texttt{dblEvaluatePol} function}
 
-This function evaluate a polynomial in a given point.\\
+This function evaluate a polynomial in a given point and returns it.\\
 
 The definition of this function:
 %
@@ -36,7 +36,7 @@ The \texttt{biaRealPol} has to be initialized with the polynomial degree and pol
 
 \subsection{\texttt{derivativePol} function}
 
-This function gets the $n$-th derivative of a polynomial.
+This function gets the $n$-th derivative of a polynomial.\\
 
 The definition of this function:
 %
@@ -67,279 +67,154 @@ The following codes are returned:
 %
 \warning{\texttt{ptDer} member \texttt{dblCoefs} has to be initialized to a \texttt{NULL} pointer to avoid a \textbf{Segment Fault} error if it was not previously initialized.}
 
-\section{Operaciones entre polinomios}
+\section{Arithmetic with polynomials}
 
-\subsection{SumarPolinomios}
+\subsection{\texttt{addPol} function}
 
-Esta funci\'on suma dos polinomios.\newline
+This function adds two polynomials.\\
 
-El prototipo de esta funci\'on es el siguiente:
-
-\begin{center}
-\emph{int \textbf{SumarPolinomios}(Polinomio *ptstrPoli$1$,
-Polinomio *ptstrPoli$2$, \\Polinomio *ptstrRes);}
-\end{center}
-
+The definition of this function:
+%
+\begin{verbatim}
+int addPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes);  
+\end{verbatim}
+%
+where:
+%
 \begin{description}
-\item[ptstrPoli$1$] puntero a una variable del tipo \textbf{Polinomio}. 
-\item[ptstrPoli$2$] puntero a una variable del tipo \textbf{Polinomio}. 
-\item[ptstrRes] puntero a una variable del tipo \textbf{Polinomio}.
+\item[*ptPol1] pointer to a \texttt{biaPol} struct with the first polynomial to be added.
+\item[*ptPol2] pointer to a \texttt{biaPol} struct with the second polynomial to be added.
+\item[*ptRes] pointer to a \texttt{biaPol} struct where the add operation will be stored.
 \end{description}
-
-La funci\'on devuelve los siguientes c\'odigos:
-
+%
+The following codes are returned:
+%
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
-\textbf{ERR\_AMEM} & Hubo un error en la asignaci\'on de memoria. \\
+\textbf{BIA\_MEM\_ALLOC} & Memory allocation error \\
 \hline
-\textbf{TRUE} & Se calcul\'o con \'exito la suma. \\
+\textbf{BIA\_TRUE} & Success \\
+\hline
+\end{tabular}
+\end{center}
+%
+\note{\texttt{ptRes} will be released and memory allocation will be carried out to store the derivative.}
+%
+\warning{\texttt{ptRes} member \texttt{dblCoefs} has to be initialized to a \texttt{NULL} pointer to avoid a \textbf{Segment Fault} error if it was not previously initialized.}
+
+\subsection{\texttt{subtractPol} function}
+
+This function subtracts two polynomials.\\
+
+The definition of this function:
+%
+\begin{verbatim}
+int subtractPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes);
+\end{verbatim}
+%
+where:
+%
+\begin{description}
+\item[*ptPol1] pointer to a \texttt{biaPol} struct with the first polynomial.
+\item[*ptPol2] pointer to a \texttt{biaPol} struct with the polynomial to be subtracted from the above.
+\item[*ptRes] pointer to a \texttt{biaPol} struct where the subtract operation will be stored.
+\end{description}
+%
+The following codes are returned:
+%
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{BIA\_MEM\_ALLOC} & Memory allocation error \\
+\hline
+\textbf{BIA\_TRUE} & Success \\
+\hline
+\end{tabular}
+\end{center}
+%
+\note{\texttt{ptRes} will be released and memory allocation will be carried out to store the derivative.}
+%
+\warning{\texttt{ptRes} member \texttt{dblCoefs} has to be initialized to a \texttt{NULL} pointer to avoid a \textbf{Segment Fault} error if it was not previously initialized.}
+
+\subsection{\texttt{multiplyPol} function}
+
+This functions multiplies two polynomials.\\
+
+The definition of this function:
+%
+\begin{verbatim}
+int subtractPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes);
+\end{verbatim}
+%
+where:
+%
+\begin{description}
+\item[*ptPol1] pointer to a \texttt{biaPol} struct with the first polynomial.
+\item[*ptPol2] pointer to a \texttt{biaPol} struct with the second polynomial.
+\item[*ptRes] pointer to a \texttt{biaPol} struct where the multiplication operation will be stored.
+\end{description}
+%
+The following codes are returned:
+%
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{BIA\_MEM\_ALLOC} & Memory allocation error \\
+\hline
+\textbf{BIA\_TRUE} & Success \\
+\hline
+\end{tabular}
+\end{center}
+%
+\note{\texttt{ptRes} will be released and memory allocation will be carried out to store the derivative.}
+%
+\warning{\texttt{ptRes} member \texttt{dblCoefs} has to be initialized to a \texttt{NULL} pointer to avoid a \textbf{Segment Fault} error if it was not previously initialized.}
+
+\section{Polynomial roots approximations}
+
+\subsection{\texttt{newtonPol} function}
+
+This function approaches a polynomial root using the \textbf{Newton} method.\\
+
+The definition of this function:
+%
+\begin{verbatim}
+int newtonPol(biaPol *ptPol, biaRealRoot *ptRoot);  
+\end{verbatim}
+%
+The following codes are returned:
+%
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{BIA\_MEM\_ALLOC} & Memory allocation error \\
+\hline
+\textbf{BIA\_ZERO\_DIV} & Division by zero \\
+\hline
+\textbf{BIA\_TRUE} & Success \\
+\hline
+\textbf{BIA\_FALSE} & Root approximation could not be calculated \\
+                    & satisfying the requirements (\texttt{intMNI} and \texttt{dblTol}). \\
 \hline
 \end{tabular}
 \end{center}
 
-Por ejemplo:
-
-\begin{center}
-\emph{intResultado = \textbf{SumarPolinomios}(\&Poli1, \&Poli2, \&Res);}
-\end{center}
-
-Sumar\'{\i}a el polinomio almacenado en \emph{Poli$1$} con el almacenado
-en \emph{Poli$2$} y guardar\'{\i}a el resultado en \emph{Res}, donde todas las
-variables son del tipo \textbf{Polinomio}\footnote{Apartado 
-(\ref{sec:strPolinomio}) en la p\'agina \pageref{sec:strPolinomio}.}.\\
-
-En \emph{intResultado} estar\'a el c\'odigo devuelto por la funci\'on, el cual
-indica el estado en el que termin\'o la ejecuci\'on de la funci\'on.\newline
-
-Observaciones:
-
-\begin{itemize}
-\item La funci\'on comprueba si se le ha asignado memoria al miembro 
-\emph{dblCoefi} de \emph{ptstrRes}. En caso afirmativo libera esa
-memoria y asigna la memoria necesaria, en caso contrario simplemente asigna
-la memoria necesaria a este miembro para contener los coeficientes del
-producto de ambos polinomios.\\
-
-\textbf{Esta comprobaci\'on la realiza comparando con el puntero nulo, 
-\emph{NULL} = $0$, si no se ha dimensionado este miembro es necesario almacenar
-en \'el el valor \emph{NULL}, ya que de lo contrario tendr\'{\i}amos un error
-en tiempo de ejecuci\'on del tipo \emph{Segment Fault}.}.\\
-
-Luego antes de utilizar esta funci\'on, si previamente no se ha dimensionado
-el miembro \emph{dblCoefi} de la variable \emph{Res}, se ha de inicializar
-a cero, es decir:
-
-\begin{center}
-Res.dblCoefi = 0;
-\end{center}
-\item El miembro \emph{intGrado} de la variable \emph{Res} tendr\'a como
-valor el mayor de los grados de \emph{Poli1} y \emph{Poli2}, aunque la suma
-sea de menor grado.
-\item En el caso en el que la funci\'on devuelva el valor \textbf{ERR\_AMEM} el
-miembro \emph{dblCoefi} de \emph{ptstrRes} no estar\'a dimensionado, con lo
-cual si se quiere volver a utilizar habr\'a que dimensionarlo de nuevo.
-\end{itemize}
-
-\subsection{RestarPolinomios}
-
-Esta funci\'on resta dos polinomios.\newline
-
-El prototipo de esta funci\'on es el siguiente:
-
-\begin{center}
-\emph{int \textbf{RestarPolinomios}(Polinomio *ptstrPoli$1$,
-Polinomio *ptstrPoli$2$, \\Polinomio *ptstrRes);}
-\end{center}
-
+\texttt{biaRealRoot *ptRoot} has to be initialized:
+%
 \begin{description}
-\item[ptstrPoli$1$] puntero a una variable del tipo \textbf{Polinomio}. 
-\item[ptstrPoli$2$] puntero a una variable del tipo \textbf{Polinomio}. 
-\item[ptstrRes] puntero a una variable del tipo \textbf{Polinomio}.
+\item[intMNI] maximun number of iterations.
+\item[dblx0] initial approximation.
+\item[dblTol] tolerance to approximate the root.
 \end{description}
+%
+\note{When two consecutive approximations are close enough, \texttt{dblTol}, last approximation will be considered as good and will be stored in \texttt{*biaRealRoot *ptRoot} in \texttt{dblRoot}.}
+%
+\ \\ \\ \\
+%
+\note{In \texttt{intIte} will be stored the number of iterations used to get the root and in \texttt{dblError} will be stored the error between the two last approximations.}
 
-La funci\'on devuelve los siguientes c\'odigos:
 
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-\textbf{ERR\_AMEM} & Hubo un error en la asignaci\'on de memoria. \\
-\hline
-\textbf{TRUE} & Se calcul\'o con \'exito la multiplicaci\'on. \\
-\hline
-\end{tabular}
-\end{center}
 
-Por ejemplo:
-
-\begin{center}
-\emph{intResultado = \textbf{RestarPolinomios}(\&Poli1, \&Poli2, \&Res);}
-\end{center}
-
-Restar\'{\i}a el polinomio almacenado en \emph{Poli$1$} con el almacenado
-en \emph{Poli$2$} y guardar\'{\i}a el resultado en \emph{Res}, donde todas las
-variables son del tipo \textbf{Polinomio}\footnote{Apartado 
-(\ref{sec:strPolinomio}) en la p\'agina \pageref{sec:strPolinomio}.}.\\
-
-En \emph{intResultado} estar\'a el c\'odigo devuelto por la funci\'on, el cual
-indica el estado en el que termin\'o la ejecuci\'on de la funci\'on.\newline
-
-Observaciones:
-
-\begin{itemize}
-\item La funci\'on comprueba si se le ha asignado memoria al miembro 
-\emph{dblCoefi} de \emph{ptstrRes}. En caso afirmativo libera esa
-memoria y asigna la memoria necesaria, en caso contrario simplemente asigna
-la memoria necesaria a este miembro para contener los coeficientes del
-producto de ambos polinomios.\\
-
-\textbf{Esta comprobaci\'on la realiza comparando con el puntero nulo, 
-\emph{NULL} = $0$, si no se ha dimensionado este miembro es necesario almacenar
-en \'el el valor \emph{NULL}, ya que de lo contrario tendr\'{\i}amos un error
-en tiempo de ejecuci\'on del tipo \emph{Segment Fault}.}.\\
-
-Luego antes de utilizar esta funci\'on, si previamente no se ha dimensionado
-el miembro \emph{dblCoefi} de la variable \emph{Res}, se ha de inicializar
-a cero, es decir:
-
-\begin{center}
-Res.dblCoefi = 0;
-\end{center}
-\item El miembro \emph{intGrado} de la variable \emph{Res} tendr\'a como
-valor el mayor de los grados de \emph{Poli1} y \emph{Poli2}, aunque la resta
-sea de menor grado.
-\item En el caso en el que la funci\'on devuelva el valor \textbf{ERR\_AMEM} el
-miembro \emph{dblCoefi} de \emph{ptstrRes} no estar\'a dimensionado, con lo
-cual si se quiere volver a utilizar habr\'a que dimensionarlo de nuevo.
-\end{itemize}
-
-\subsection{MultiplicarPolinomios}
-
-Esta funci\'on multiplica dos polinomios.\newline
-
-El prototipo de esta funci\'on es el siguiente:
-
-\begin{center}
-\emph{int \textbf{MultiplicarPolinomios}(Polinomio *ptstrPoli$1$,\\
-Polinomio *ptstrPoli$2$, Polinomio *ptstrRes);}
-\end{center}
-
-\begin{description}
-\item[ptstrPoli$1$] puntero a una variable del tipo \textbf{Polinomio}. 
-\item[ptstrPoli$2$] puntero a una variable del tipo \textbf{Polinomio}. 
-\item[ptstrRes] puntero a una variable del tipo \textbf{Polinomio}.
-\end{description}
-
-La funci\'on devuelve los siguientes c\'odigos:
-
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-\textbf{ERR\_AMEM} & Hubo un error en la asignaci\'on de memoria. \\
-\hline
-\textbf{TRUE} & Se calcul\'o con \'exito la multiplicaci\'on. \\
-\hline
-\end{tabular}
-\end{center}
-
-Por ejemplo:
-
-\begin{center}
-\emph{intResultado = \textbf{MultiplicarPolinomios}(\&Poli1, \&Poli2, \&Res);}
-\end{center}
-
-Multiplicar\'{\i}a el polinomio almacenado en \emph{Poli$1$} por el almacenado
-en \emph{Poli$2$} y guardar\'{\i}a el resultado en \emph{Res}, donde todas las
-variables son del tipo \textbf{Polinomio}\footnote{Apartado 
-(\ref{sec:strPolinomio}) en la p\'agina \pageref{sec:strPolinomio}.}.\\
-
-En \emph{intResultado} estar\'a el c\'odigo devuelto por la funci\'on, el cual
-indica el estado en el que termin\'o la ejecuci\'on de la funci\'on.\newline
-
-Observaciones:
-
-\begin{itemize}
-\item La funci\'on comprueba si se le ha asignado memoria al miembro 
-\emph{dblCoefi} de \emph{ptstrRes}. En caso afirmativo libera esa
-memoria y asigna la memoria necesaria, en caso contrario simplemente asigna
-la memoria necesaria a este miembro para contener los coeficientes del
-producto de ambos polinomios.\\
-
-\textbf{Esta comprobaci\'on la realiza comparando con el puntero nulo, 
-\emph{NULL} = $0$, si no se ha dimensionado este miembro es necesario almacenar
-en \'el el valor \emph{NULL}, ya que de lo contrario tendr\'{\i}amos un error
-en tiempo de ejecuci\'on del tipo \emph{Segment Fault}.}.\\
-
-Luego antes de utilizar esta funci\'on, si previamente no se ha dimensionado
-el miembro \emph{dblCoefi} de la variable \emph{Res}, se ha de inicializar
-a cero, es decir:
-
-\begin{center}
-Res.dblCoefi = 0;
-\end{center}
-\item En el caso en el que la funci\'on devuelva el valor \textbf{ERR\_AMEM} el
-miembro \emph{dblCoefi} de \emph{ptstrRes} no estar\'a dimensionado, con lo
-cual si se quiere volver a utilizar habr\'a que dimensionarlo de nuevo.
-\end{itemize}
-
-\section{Raices de polinomios}
-
-Estas funciones aproximan las raices de polinomios.
-
-\subsection{NewtonPoli}
-
-Esta funci\'on aproxima una raiz de un polinomio mediante el m\'etodo
-de \emph{Newton}.\newline
-
-El prototipo de esta funci\'on es el siguiente:
-
-\begin{center}
-\emph{int \textbf{NewtonPoli}(Polinomio *ptstrPoli, DatosAprxFunc *ptstrDatos)}
-\end{center}
-
-\begin{description}
-\item[ptstrPoli] puntero a una variable del tipo \textbf{Polinomio}.
-\item[ptstrDatos] puntero a una variable del tipo \emph{DatosAprxFunc}.
-\end{description}
-
-La funci\'on devuelve los siguientes c\'odigos:
-
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-\textbf{DIV\_CERO}& Divisi\'on por cero. \\
-\hline
-\textbf{ERR\_AMEM} & Hubo error en la asignaci\'on de memoria. \\
-\hline
-\textbf{FALSE} & No se calcul\'o la soluci\'on en las condiciones del problema\\
-
-        & (\emph{intNMI y \emph{dblTol}}). \\ 
-\hline
-\textbf{TRUE} & Se calcul\'o la soluci\'on en las condiciones del problema. \\
-\hline
-\end{tabular}
-\end{center}
-
-Por ejemplo:
-
-\begin{center}
-\emph{intResultado = \textbf{NewtonPoli}(\&strPoli, \&strDatos)};
-\end{center}
-
-Aproximar\'{\i}a una raiz del polinomio almacenado en \emph{strPoli} utilizando
-los datos almacenados en la variable \emph{strDatos}, donde \emph{strPoli} es
-una variable del tipo \textbf{Polinomio}\footnote{Apartado
-(\ref{sec:strPolinomio}) en la p\'agina \pageref{sec:strPolinomio}.} y
-\emph{strDatos} es una variable del tipo \textbf{DatosAprxFunc}%
-\footnote{Apartado (\ref{sec:DatosAprxFunc}) en la p\'agina
-\pageref{sec:DatosAprxFunc}.}.\newline
-
-La funci\'on almacenar\'a en el miembro \emph{dblSolucion} la aproximaci\'on a
-la raiz y en el miembro \emph{dblError} el error cometido al aproximar dicha
-ra\'{\i}z, entendiendo como error la distancia, en valor absoluto, de dos
-aproximaciones sucesivas.\newline
-
-En \emph{intResultado} estar\'a el c\'odigo devuelto por la funci\'on, el cual
-indicar\'a como termin\'o la ejecuci\'on de la funci\'on.
 
 
