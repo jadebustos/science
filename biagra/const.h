@@ -30,10 +30,10 @@
 /*                                                                      */
 
   #ifdef BIA_ZERO_DIV
-    #undef  BIA_CERO_DIV
-    #define BIA_CERO_DIV 2
+    #undef  BIA_ZERO_DIV
+    #define BIA_ZERO_DIV 2
   #else
-    #define BIA_CERO_DIV 2
+    #define BIA_ZERO_DIV 2
   #endif
 
 /*                                                                      */

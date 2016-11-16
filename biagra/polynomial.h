@@ -22,7 +22,7 @@
 /*                                                                      */
 /*    Polynomial value at dblX                                          */
 
-  double dblEvaluatePol(biaPol *ptPol, double dblX);
+  double dblEvaluatePol(biaRealPol *ptPol, double dblX);
 
 /*                                                                      */
 /* Function to get the n-th derivative                                  */
@@ -33,7 +33,7 @@
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-  int derivativePol(biaPol *ptPol, biaPol *ptDer, int intN);
+  int derivativePol(biaRealPol *ptPol, biaRealPol *ptDer, int intN);
 
 /*                                                                      */
 /* Function to add polynomials:                                         */
@@ -45,7 +45,7 @@
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-  int addPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes);
+  int addPol(biaRealPol *ptPol1, biaRealPol *ptPol2, biaRealPol *ptRes);
 
 /*                                                                      */
 /* Function to subtract polynomials:                                    */
@@ -57,7 +57,7 @@
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-  int subtractPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes);
+  int subtractPol(biaRealPol *ptPol1, biaRealPol *ptPol2, biaRealPol *ptRes);
 
 /*                                                                      */
 /* Function to multiply polynomials:                                    */
@@ -69,7 +69,7 @@
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-  int multiplyPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes);
+  int multiplyPol(biaRealPol *ptPol1, biaRealPol *ptPol2, biaRealPol *ptRes);
 
 /*                                                                      */
 /* Function to find a polynomial root using Newton's method             */
@@ -82,6 +82,6 @@
 /*      BIA_FALSE     -> Fail                                           */
 /*                                                                      */
 
-  int newtonPol(biaPol *ptPol, biaRealRoot *ptRoot);
+  int newtonPol(biaRealPol *ptPol, biaRealRoot *ptRoot);
 
 #endif

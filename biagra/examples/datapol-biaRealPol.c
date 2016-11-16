@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "datapol.h"
+#include <biagra/datapol.h>
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
@@ -45,6 +45,8 @@ int main (void) {
   
   for(int i=1;i<=myPol.intDegree;i++)
     printf(" + (%g) * x ^%d", myPol.dblCoefs[i], i);
+
+  printf("\n");
 
   return 0;
 }

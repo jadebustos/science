@@ -65,7 +65,7 @@ double dblEvaluatePol(biaRealPol *ptPol, double dblX) {
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-int derivativePol(biaPol *ptPol, biaPol *ptDer, int intN) {
+int derivativePol(biaRealPol *ptPol, biaRealPol *ptDer, int intN) {
 
   int intAbsN = abs(intN),
       i,
@@ -90,7 +90,7 @@ int derivativePol(biaPol *ptPol, biaPol *ptDer, int intN) {
       (ptDer->dblCoefs[i]) *= j;
   }
 
-return (TRUE);
+return (BIA_TRUE);
 }
 
 /*                                                                      */
@@ -103,7 +103,7 @@ return (TRUE);
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-int addPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes) {
+int addPol(biaRealPol *ptPol1, biaRealPol *ptPol2, biaRealPol *ptRes) {
 
   int i;
 
@@ -138,7 +138,7 @@ int addPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes) {
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-int subtractPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes) {
+int subtractPol(biaRealPol *ptPol1, biaRealPol *ptPol2, biaRealPol *ptRes) {
 	
   int i;
 
@@ -173,7 +173,7 @@ int subtractPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes) {
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-int multiplyPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes) {
+int multiplyPol(biaRealPol *ptPol1, biaRealPol *ptPol2, biaRealPol *ptRes) {
 
   int i,
       j;
@@ -198,8 +198,6 @@ int multiplyPol(biaPol *ptPol1, biaPol *ptPol2, biaPol *ptRes) {
   return BIA_TRUE;
 }
 
-int NewtonPoli(Polinomio *ptstrPoli, DatosAprxFunc *ptstrDatos)
-
 /*                                                                      */
 /* Function to find a polynomial root using Newton's method             */
 /*                                                                      */
@@ -211,7 +209,7 @@ int NewtonPoli(Polinomio *ptstrPoli, DatosAprxFunc *ptstrDatos)
 /*      BIA_FALSE     -> Fail                                           */
 /*                                                                      */
 
-int newtonPol(biaPol *ptPol, biaRealRoot *ptRoot) {
+int newtonPol(biaRealPol *ptPol, biaRealRoot *ptRoot) {
 
   int i,
       intDegreeAbs = abs(ptPol->intDegree),
@@ -223,13 +221,13 @@ int newtonPol(biaPol *ptPol, biaRealRoot *ptRoot) {
 	 dblDerValue = .0,
 	 dblTolAbs   = fabs(ptRoot->dblTol);
 
-  biaPol biaPolDer;
+  biaRealPol biaPolDer;
 
   biaPolDer.intDegree = intDegreeAbs;
   biaPolDer.dblCoefs = NULL;
 
   /* get derivative */
-  i = derivatePol(ptPol, &biaPolDer, 1);
+  i = derivativePol(ptPol, &biaPolDer, 1);
 
   if ( i != BIA_TRUE ) {
     return BIA_MEM_ALLOC;
@@ -240,7 +238,7 @@ int newtonPol(biaPol *ptPol, biaRealRoot *ptRoot) {
     dblDerValue = dblEvaluatePol(&biaPolDer, dblApprxOld);
 
     if ( dblDerValue == .0 ) {
-      free(Derivada.dblCoefi);
+      free(biaPolDer.dblCoefs);
       return BIA_ZERO_DIV;
       }
 
@@ -251,7 +249,7 @@ int newtonPol(biaPol *ptPol, biaRealRoot *ptRoot) {
     ptRoot->dblError = fabs(dblApprxOld-dblApprxNew);
     if ( (ptRoot->dblError) < dblTolAbs ) {
       free(biaPolDer.dblCoefs);
-      ptRoot->dblRoot = dblAprxNew;
+      ptRoot->dblRoot = dblApprxNew;
       return BIA_TRUE;
       }
     dblApprxOld = dblApprxNew;

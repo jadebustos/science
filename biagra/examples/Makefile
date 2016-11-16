@@ -6,14 +6,11 @@ datapol:
 datamatrix:
 	$(CC) datamatrix-biaMatrix.c -o datamatrix-biaMatrix
 
-resmem.o:
-	$(CC) -c resmem.c -o resmem.o
-
-resmem: resmem.o 
-	$(CC) resmem-dblPtMemAllocVec.c resmem.o -o resmem-dblPtMemAllocVec
-	$(CC) resmem-dblPtMemAllocMat.c resmem.o -o resmem-dblPtMemAllocMat
-	$(CC) resmem-dblPtMemAllocUpperTrMat.c resmem.o -o resmem-dblPtMemAllocUpperTrMat
-	$(CC) resmem-dblPtMemAllocLowerTrMat.c resmem.o -o resmem-dblPtMemAllocLowerTrMat
+resmem:
+	$(CC) resmem-dblPtMemAllocVec.c -o resmem-dblPtMemAllocVec -lbiagra
+	$(CC) resmem-dblPtMemAllocMat.c -o resmem-dblPtMemAllocMat -lbiagra
+	$(CC) resmem-dblPtMemAllocUpperTrMat.c -o resmem-dblPtMemAllocUpperTrMat -lbiagra
+	$(CC) resmem-dblPtMemAllocLowerTrMat.c -o resmem-dblPtMemAllocLowerTrMat -lbiagra
 
 all:
 	make datapol
