@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "datamatrix.h"
+#include <biagra/datamatrix.h>
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
