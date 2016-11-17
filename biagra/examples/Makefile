@@ -26,6 +26,7 @@ all:
 	make datapol
 	make datamatrix
 	make resmem
+	make polynomial
 
 clean:
 	rm -f *.o *~
