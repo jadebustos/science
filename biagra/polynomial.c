@@ -239,6 +239,7 @@ int newtonPol(biaRealPol *ptPol, biaRealRoot *ptRoot) {
 
     if ( dblDerValue == .0 ) {
       free(biaPolDer.dblCoefs);
+      ptRoot->intIte = i;
       return BIA_ZERO_DIV;
       }
 
@@ -250,9 +251,11 @@ int newtonPol(biaRealPol *ptPol, biaRealRoot *ptRoot) {
     if ( (ptRoot->dblError) < dblTolAbs ) {
       free(biaPolDer.dblCoefs);
       ptRoot->dblRoot = dblApprxNew;
+      ptRoot->intIte = i;
       return BIA_TRUE;
       }
     dblApprxOld = dblApprxNew;
     }
+  ptRoot->intIte = i;
   return BIA_FALSE;
 }
