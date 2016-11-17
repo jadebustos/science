@@ -20,7 +20,7 @@
 void addComplex(biaComplex *ptCmplx1, biaComplex *ptCmplx2, biaComplex *ptRes) {
 
   ptRes->dblReal = ptCmplx1->dblReal + ptCmplx2->dblReal;
-  ptRes->dblImg = ptCmplx1->dblImag + ptCmplx2->dblImag;
+  ptRes->dblImag = ptCmplx1->dblImag + ptCmplx2->dblImag;
 
   return;
 }
@@ -29,25 +29,23 @@ void addComplex(biaComplex *ptCmplx1, biaComplex *ptCmplx2, biaComplex *ptRes) {
 /* Function to subtract two complex numbers                             */
 /*                                                                      */
 
-void subtractComplex(biaComplex *ptCmplx1, biaComples *ptCmplx2, biaComplex *ptRes) {
+void subtractComplex(biaComplex *ptCmplx1, biaComplex *ptCmplx2, biaComplex *ptRes) {
 
   ptRes->dblReal = ptCmplx1->dblReal - ptCmplx2->dblReal;
-  ptRes->dblImg = ptCmplx1->dblImag - ptCmplx2->dblImag;
+  ptRes->dblImag = ptCmplx1->dblImag - ptCmplx2->dblImag;
 
   return;
 }
-
-Complejo strProdComplejos(Complejo strComp1, Complejo strComp2)
 
 /*                                                                      */
 /* Function to multiply two complex numbers                             */
 /*                                                                      */
 
-void multiplyComplex(biaComplex *ptCmplx1, biaComples *ptCmplx2, biaComplex *ptRes) {
+void multiplyComplex(biaComplex *ptCmplx1, biaComplex *ptCmplx2, biaComplex *ptRes) {
 
   ptRes->dblReal = ((ptCmplx1->dblReal)*(ptCmplx2->dblReal)) - 
                    ((ptCmplx1->dblImag)*(ptCmplx2->dblImag));
-  ptRes->dblImg = ((ptCmplx1->dblImag)*(ptCmplx2->dblReal)) + 
+  ptRes->dblImag = ((ptCmplx1->dblImag)*(ptCmplx2->dblReal)) + 
                   ((ptCmplx1->dblReal)*(ptCmplx2->dblImag));
 
   return;
@@ -64,7 +62,7 @@ void multiplyComplex(biaComplex *ptCmplx1, biaComples *ptCmplx2, biaComplex *ptR
 /*      BIA_TRUE     -> Success                                         */
 /*                                                                      */
 
-int divideComplex(biaComplex *ptCmplx1, biaComples *ptCmplx2, biaComplex *ptRes) {
+int divideComplex(biaComplex *ptCmplx1, biaComplex *ptCmplx2, biaComplex *ptRes) {
 
   double dblDenominator;
 
@@ -99,8 +97,6 @@ double dblComplexModule(biaComplex *ptCmplx) {
   return (sqrt(dbltmp1 + dbltmp2));
 }
 
-double dblArgumento(Complejo strComp)
-
 /*                                                                      */
 /* Function to get a complex number argument                            */
 /*                                                                      */
@@ -134,7 +130,7 @@ double dblComplexArg(biaComplex *ptCmplx) {
   /* fourth quadrant */
 
   else
-    dblRes = ((2.)*BIA_PI) - atan((-1.)*(ptCmplx->.dblImag)/(ptCmplx->dblReal));
+    dblRes = ((2.)*BIA_PI) - atan((-1.)*(ptCmplx->dblImag)/(ptCmplx->dblReal));
 
   return (dblRes);
 }
@@ -212,26 +208,25 @@ void complex2Polar(biaComplex *ptCmplx, biaPolar *ptRes) {
   /* first quadrant */
 
   else if ( (ptCmplx->dblReal) > 0. && (ptCmplx->dblImag) >= 0. )
-    ptCmplxdblArg = atan((ptCmplx->dblImag)/(ptCmplx->dblReal));
+    ptRes->dblArg = atan((ptCmplx->dblImag)/(ptCmplx->dblReal));
 
   /* second quadrant */
 
   else if ( (ptCmplx->dblReal) < 0. && (ptCmplx->dblImag) >= 0. )
-    ptCmplx->dblArg = BIA_PI + atan((ptCmplx->dblImag)/(ptCmplx->dblReal));
+    ptRes->dblArg = BIA_PI + atan((ptCmplx->dblImag)/(ptCmplx->dblReal));
 
   /* third quadrant */
 
   else if ( (ptCmplx->dblReal) < 0. && (ptCmplx->dblImag) < 0. )
-    ptCmplx->dblArg = BIA_PI + atan((ptCmplx->dblImag)/(ptCmplx->dblReal));
+    ptRes->dblArg = BIA_PI + atan((ptCmplx->dblImag)/(ptCmplx->dblReal));
 
   /* fourth quadrant */
 
   else
-    ptCmplx->dblArg = ((2.)*BIA_PI) + atan((ptCmplx->dblImag)/(ptCmplx->dblReal));
+    ptRes->dblArg = ((2.)*BIA_PI) + atan((ptCmplx->dblImag)/(ptCmplx->dblReal));
 
   return;
 }
-
 
 /*                                                                      */
 /* Function to get the cartesian coordinates of a complex number        */

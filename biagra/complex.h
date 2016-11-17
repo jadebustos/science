@@ -24,14 +24,14 @@
 /* Function to subtract two complex numbers                             */
 /*                                                                      */
 
-  void subtractComplex(biaComplex *ptCmplx1, biaComples *ptCmplx2, biaComplex *ptRes);
+  void subtractComplex(biaComplex *ptCmplx1, biaComplex *ptCmplx2, biaComplex *ptRes);
 
 
 /*                                                                      */
 /* Function to multiply two complex numbers                             */
 /*                                                                      */
 
-  void multiplyComplex(biaComplex *ptCmplx1, biaComples *ptCmplx2, biaComplex *ptRes);
+  void multiplyComplex(biaComplex *ptCmplx1, biaComplex *ptCmplx2, biaComplex *ptRes);
 
 /*                                                                      */
 /* Function to complex division                                         */
@@ -44,7 +44,7 @@
 /*      BIA_TRUE     -> Success                                         */
 /*                                                                      */
 
-  int divideComplex(biaComplex *ptCmplx1, biaComples *ptCmplx2, biaComplex *ptRes);
+  int divideComplex(biaComplex *ptCmplx1, biaComplex *ptCmplx2, biaComplex *ptRes);
 
 
 /*                                                                      */
