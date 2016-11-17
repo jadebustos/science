@@ -86,7 +86,7 @@ int divideComplex(biaComplex *ptCmplx1, biaComplex *ptCmplx2, biaComplex *ptRes)
 /* Function to get a complex number module                              */
 /*                                                                      */
 
-double dblComplexModule(biaComplex *ptCmplx) {
+double dblComplexModulus(biaComplex *ptCmplx) {
 
   double  dbltmp1,
           dbltmp2;

@@ -51,7 +51,7 @@
 /* Function to get a complex number module                              */
 /*                                                                      */
 
-  double dblComplexModule(biaComplex *ptCmplx);
+  double dblComplexModulus(biaComplex *ptCmplx);
 
 /*                                                                      */
 /* Function to get a complex number argument                            */

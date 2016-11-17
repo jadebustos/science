@@ -50,9 +50,6 @@ case $1 in
   ranlib $LIBRARY
   mv $LIBRARY /usr/lib/$LIBRARY;;
 
-  elf-install)
-  echo "Coming soon";;
-
   *)
   echo "Argument required: static-install|elf-install";;
 
