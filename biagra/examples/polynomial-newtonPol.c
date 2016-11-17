@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include <biagra/polynomial.h>
 #include <biagra/datapol.h>
@@ -17,20 +19,33 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/* Simple example of dblPtMemAllocVec usage */
+/* Simple example of newtonPol usage */
 
 int main (void) {
 
   /* Polynomial declaration */
   biaRealPol myPol;
 
-  /* Polynomial order */
-  myPol.intDegree = 5;
+  /* Root declaration */
+  biaRealRoot myRoot;
 
   int i;
 
-  double x0 = BIA_PI,
-	 px0 = .0;
+  double px0;
+
+  /* Polynomial order */
+  myPol.intDegree = 5;
+
+  /* Root initialization */
+  myRoot.intMNI = 256;
+  myRoot.dblTol = 0.0001;
+
+  /* random x0 */
+  srand(time(NULL));
+  myRoot.dblx0 = (double)(rand()/(double)RAND_MAX);
+  myRoot.dblx0 += (double) ((rand() % 10) + 1.);
+  if ( (rand() % 2) == 0 )
+    myRoot.dblx0 *= -1.;
 
   /* polynomial generation */
   i = randomPol(&myPol);
@@ -40,14 +55,35 @@ int main (void) {
     return 1;
   }
 
-  /* evaluate polynomial */
-  px0 = dblEvaluatePol(&myPol, x0);
+  /* Root approximation */
+  i = newtonPol(&myPol, &myRoot);
+
+  switch(i) {
+    case BIA_MEM_ALLOC:
+      printf("Error in memory assignation (newtonPol).\n");
+      exit(i);
+    case BIA_ZERO_DIV:
+      printf("Division by zero (newtonPol).\n");
+      exit(i);
+    case BIA_FALSE:
+      printf("Root could not be approximated.\n");
+      break;
+    case BIA_TRUE:
+      printf("Root successfully approximated.\n");
+      break;
+  }
 
   /* Printing polynomial to stdout */
   printf("p(x) = ");
   pol2Stdout(&myPol);
-  printf("x0 = %g\n", x0);
-  printf("p(x0) = %g\n", px0);
+  printf("MNI: %d\n", myRoot.intMNI);
+  printf("Tolerance: %g\n", myRoot.dblTol);
+  printf("x0 = %g\n", myRoot.dblx0);
+  printf("Root: %g\n", myRoot.dblRoot);
+  px0 = dblEvaluatePol(&myPol, myRoot.dblRoot);
+  printf("p(%g) = %g\n", myRoot.dblRoot, px0);
+  printf("Error: %g\n", myRoot.dblError);
+  printf("Iterations used: %d\n", myRoot.intIte);
 
   return 0;
 }

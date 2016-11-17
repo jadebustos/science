@@ -15,6 +15,9 @@ resmem:
 polynomial: polsupport.o
 	$(CC) polynomial-dblEvaluatePol.c polsupport.o -o polynomial-dblEvaluatePol -lbiagra
 	$(CC) polynomial-derivativePol.c polsupport.o -o polynomial-derivativePol -lbiagra
+	$(CC) polynomial-addPol.c polsupport.o -o polynomial-addPol -lbiagra
+	$(CC) polynomial-subtractPol.c polsupport.o -o polynomial-subtractPol -lbiagra
+	$(CC) polynomial-newtonPol.c polsupport.o -o polynomial-newtonPol -lbiagra
 
 polsupport.o:
 	$(CC) -c polsupport.c -o polsupport.o
