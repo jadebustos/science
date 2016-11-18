@@ -1,11 +1,8 @@
 #include <stdio.h>
 
-#include <biagra/polynomial.h>
-#include <biagra/datapol.h>
-#include <biagra/resmem.h>
+#include <biagra/datacomplex.h>
+#include <biagra/complex.h>
 #include <biagra/const.h>
-
-#include "polsupport.h"
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
@@ -17,37 +14,36 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/* Simple example of dblPtMemAllocVec usage */
+/* Simple example of divideComplex usage */
 
 int main (void) {
 
-  /* Polynomial declaration */
-  biaRealPol myPol;
+  int i = 0;
 
-  /* Polynomial order */
-  myPol.intDegree = 5;
+  /* complex numbers */
+  biaComplex myCmplx1,
+             myCmplx2,
+             myRes;
 
-  int i;
+  /* initialization */
+  myCmplx1.dblReal = 1.;
+  myCmplx1.dblImag = 3.5;
+  myCmplx2.dblReal = -4.09;
+  myCmplx2.dblImag = 0.00876;
 
-  double x0 = BIA_PI,
-	 px0 = .0;
+  /* division */
+  i = divideComplex(&myCmplx1, &myCmplx2, &myRes);
 
-  /* polynomial generation */
-  i = randomPol(&myPol);
-
-  if ( i == BIA_MEM_ALLOC ) {
-    printf("Error in memory assignation.\n");
-    return 1;
+  if ( i == BIA_ZERO_DIV ) {
+    printf("Division by zero.\n");
+    return BIA_ZERO_DIV;
   }
 
-  /* evaluate polynomial */
-  px0 = dblEvaluatePol(&myPol, x0);
-
-  /* Printing polynomial to stdout */
-  printf("p(x) = ");
-  pol2Stdout(&myPol);
-  printf("x0 = %g\n", x0);
-  printf("p(x0) = %g\n", px0);
-
+  /* print to stdout */
+  printf("z1 = %g + %g * i\n", myCmplx1.dblReal, myCmplx1.dblImag);
+  printf("z2 = %g + %g * i\n", myCmplx2.dblReal, myCmplx2.dblImag);
+  printf("z1 / z2 = %g + %g * i\n", myRes.dblReal, myRes.dblImag);
+  
   return BIA_TRUE;
+	
 }

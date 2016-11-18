@@ -42,5 +42,5 @@ int main (void) {
   printf("p(x) = ");
   pol2Stdout(&myPol);
 
-  return 0;
+  return BIA_TRUE;
 }
