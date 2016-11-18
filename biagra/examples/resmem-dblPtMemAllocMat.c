@@ -3,6 +3,7 @@
 #include <time.h>
 
 #include <biagra/resmem.h>
+#include <biagra/const.h>
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
@@ -50,5 +51,5 @@ int main (void) {
     printf("\n");
     }
 
-  return 0;
+  return BIA_TRUE;
 }

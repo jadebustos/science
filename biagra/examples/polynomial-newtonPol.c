@@ -85,5 +85,5 @@ int main (void) {
   printf("Error: %g\n", myRoot.dblError);
   printf("Iterations used: %d\n", myRoot.intIte);
 
-  return 0;
+  return BIA_TRUE;
 }

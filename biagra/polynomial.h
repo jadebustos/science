@@ -1,7 +1,7 @@
 #ifndef _POLYNOMIAL_H
   #define _POLYNOMIAL_H
 
-  #include <biagra/datapol.h>
+#include <biagra/datapol.h>
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */

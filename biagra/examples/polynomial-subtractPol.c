@@ -61,5 +61,5 @@ int main (void) {
   printf("p(x) - q(x) = ");
   pol2Stdout(&myRes);
 
-  return 0;
+  return BIA_TRUE;
 }
