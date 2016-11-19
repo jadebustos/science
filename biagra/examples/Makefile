@@ -17,6 +17,9 @@ datapol: polsupport.o
 datamatrix:
 	$(CC) datamatrix-biaMatrix.c -o datamatrix-biaMatrix -lbiagra
 
+integers:
+	$(CC) integers-uintSumFirstNIntegers.c -o integers-uintSumFirstNIntegers -lbiagra
+
 polsupport.o:
 	$(CC) -c polsupport.c -o polsupport.o
 
