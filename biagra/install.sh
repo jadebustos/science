@@ -51,7 +51,7 @@ case $1 in
   mv $LIBRARY /usr/lib/$LIBRARY;;
 
   *)
-  echo "Argument required: static-install|elf-install";;
+  echo "Argument required: static-install";;
 
 esac
 
