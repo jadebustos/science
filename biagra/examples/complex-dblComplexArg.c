@@ -27,11 +27,11 @@ int main (void) {
   biaComplex myCmplx;
 
   /* random initializaiton */
-    srand((unsigned)time(NULL));
+  srand((unsigned)time(NULL));
 
   /* initialization */
-  myCmplx.dblReal = udblRandom(10);
-  myCmplx.dblImag = udblRandom(10);
+  myCmplx.dblReal = dblRandom(10);
+  myCmplx.dblImag = dblRandom(10);
 
   /* division */
   modulus = dblComplexArg(&myCmplx);

@@ -26,6 +26,9 @@ int main (void) {
   /* polar coordinates */
   biaPolar myPolar;
 
+  /* random initializaiton */
+  srand((unsigned)time(NULL));
+
   /* initialization */
   myPolar.dblMod = dblRandom(10);
   myPolar.dblArg = dblRandom(3);

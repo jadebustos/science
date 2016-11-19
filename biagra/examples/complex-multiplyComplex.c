@@ -26,13 +26,13 @@ int main (void) {
              myRes;
 
   /* random initializaiton */
-    srand((unsigned)time(NULL));
+  srand((unsigned)time(NULL));
 
   /* initialization */
-  myCmplx1.dblReal = udblRandom(50);
-  myCmplx1.dblImag = udblRandom(50);
-  myCmplx2.dblReal = udblRandom(50);
-  myCmplx2.dblImag = udblRandom(50);
+  myCmplx1.dblReal = dblRandom(10);
+  myCmplx1.dblImag = dblRandom(10);
+  myCmplx2.dblReal = dblRandom(10);
+  myCmplx2.dblImag = dblRandom(10);
 
   /* multiplication */
   multiplyComplex(&myCmplx1, &myCmplx2, &myRes);

@@ -12,11 +12,11 @@
 /*                                                                      */
 
 /*                                                                      */
-/* Function to get a unsigned random integer from 0 to                  */
-/* limit -1 (absolute value)                                            */
+/* Function to get a unsigned random integer from -(limit -1) to        */
+/* limit -1                                                             */
 /*                                                                      */
 
-int uintRandom(int limit) {
+int intRandom(int limit) {
 
   int tmp;
 
@@ -29,10 +29,10 @@ int uintRandom(int limit) {
 }
 
 /*                                                                      */
-/* Function to get a random integer from 0 to limit -1 (absolute value) */
+/* Function to get a random integer from 0 to limit -1                  */
 /*                                                                      */
 
-int intRandom(int limit) {
+int uintRandom(int limit) {
 
   int tmp;
 
@@ -43,10 +43,10 @@ int intRandom(int limit) {
 
 /*                                                                      */
 /* Function to get an unsigned random double from 0 to                  */
-/* limit -1 (absolute value)                                            */
+/* limit -1                                                             */
 /*                                                                      */
 
- double dblRandom(int limit) {
+ double udblRandom(int limit) {
 
   double tmp;
 
@@ -56,10 +56,11 @@ int intRandom(int limit) {
 }
 
 /*                                                                      */
-/* Function to get a random double from 0 to limit - 1 (absolute value) */
+/* Function to get a random double from -(limit - 1) to                 */
+/* limit - 1                                                            */
 /*                                                                      */
 
- double udblRandom(int limit) {
+ double dblRandom(int limit) {
 
   double tmp;
 

@@ -54,7 +54,7 @@ int main (void) {
   srand(time(NULL));
   for(int i=0;i<myMatrix.intRows;i++)
     for(int j=0;j<myMatrix.intCols;j++)
-      myMatrix.dblCoefs[i][j] = udblRandom(10);
+      myMatrix.dblCoefs[i][j] = dblRandom(10);
 
   printf("Random matrix:\n\n");
 

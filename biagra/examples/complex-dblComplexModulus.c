@@ -30,8 +30,8 @@ int main (void) {
   srand((unsigned)time(NULL));
 
   /* initialization */
-  myCmplx.dblReal = udblRandom(10);
-  myCmplx.dblImag = udblRandom(10);
+  myCmplx.dblReal = dblRandom(10);
+  myCmplx.dblImag = dblRandom(10);
 
   /* division */
   modulus = dblComplexModulus(&myCmplx);

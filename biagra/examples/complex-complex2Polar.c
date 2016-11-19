@@ -27,11 +27,11 @@ int main (void) {
   biaPolar myPolar;
 
   /* random initializaiton */
-    srand((unsigned)time(NULL));
+  srand((unsigned)time(NULL));
 
   /* initialization */
-  myCmplx.dblReal = udblRandom(10);
-  myCmplx.dblImag = udblRandom(10);
+  myCmplx.dblReal = dblRandom(10);
+  myCmplx.dblImag = dblRandom(10);
 
   /* get polar coordinates */
   complex2Polar(&myCmplx, &myPolar);

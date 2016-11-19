@@ -25,11 +25,11 @@ int main (void) {
              myRes;
 
   /* random initializaiton */
-    srand((unsigned)time(NULL));
+  srand((unsigned)time(NULL));
 
   /* initialization */
-  myCmplx.dblReal = udblRandom(10);
-  myCmplx.dblImag = udblRandom(10);
+  myCmplx.dblReal = dblRandom(10);
+  myCmplx.dblImag = dblRandom(10);
 
   /* conjugate */
   conjugateComplex(&myCmplx, &myRes);

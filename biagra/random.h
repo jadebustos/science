@@ -16,27 +16,27 @@
 
 /*                                                                      */
 /* Function to get a random unsigned integer from 0 to                  */
-/* limit -1 (absolute value)                                            */
+/* limit -1                                                             */
 /*                                                                      */
 
 int uintRandom(int limit);
 
-
 /*                                                                      */
-/* Function to get a random integer from 0 to limit -1 (absolute value) */
+/* Function to get a unsigned random integer from -(limit -1) to        */                                                                            
+/* limit -1                                                             */
 /*                                                                      */
 
  int intRandom(int limit);
 
 /*                                                                      */
-/* Function to get an unsigned random double from 0 to                  */
-/* limit -1 (absolute value)                                            */
+/* Function to get a random double from -(limit - 1) to                 */
+/* limit - 1                                                            */
 /*                                                                      */
 
  double dblRandom(int limit);
 
 /*                                                                      */
-/* Function to get a random double from 0 to limit - 1 (absolute value) */
+/* Function to get a random double from 0 to limit - 1                  */
 /*                                                                      */
 
  double udblRandom(int limit);
