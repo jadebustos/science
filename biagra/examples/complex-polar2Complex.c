@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <biagra/datacomplex.h>
 #include <biagra/complex.h>
+#include <biagra/random.h>
 #include <biagra/const.h>
 
 /*                                                                      */
@@ -25,8 +27,8 @@ int main (void) {
   biaPolar myPolar;
 
   /* initialization */
-  myPolar.dblMod = 3.64005; 
-  myPolar.dblArg = 1.2925;
+  myPolar.dblMod = dblRandom(10);
+  myPolar.dblArg = dblRandom(3);
 
   /* get polar coordinates */
   polar2Complex(&myPolar, &myCmplx);

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <biagra/datacomplex.h>
 #include <biagra/complex.h>
@@ -23,6 +24,9 @@ int main (void) {
   biaComplex myCmplx1,
              myCmplx2,
              myRes;
+
+  /* random initializaiton */
+    srand((unsigned)time(NULL));
 
   /* initialization */
   myCmplx1.dblReal = udblRandom(50);

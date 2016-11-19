@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <biagra/datacomplex.h>
 #include <biagra/complex.h>
+#include <biagra/random.h>
 #include <biagra/const.h>
 
 /*                                                                      */
@@ -26,10 +28,10 @@ int main (void) {
              myRes;
 
   /* initialization */
-  myCmplx1.dblReal = 1.;
-  myCmplx1.dblImag = 3.5;
-  myCmplx2.dblReal = -4.09;
-  myCmplx2.dblImag = 0.00876;
+  myCmplx1.dblReal = udblRandom(10);
+  myCmplx1.dblImag = udblRandom(10);
+  myCmplx2.dblReal = udblRandom(10);
+  myCmplx2.dblImag = udblRandom(10);
 
   /* division */
   i = divideComplex(&myCmplx1, &myCmplx2, &myRes);
