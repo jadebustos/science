@@ -15,17 +15,17 @@ datapol: polsupport.o
 	$(CC) datapol-biaRealPol.c polsupport.o -o datapol-biaRealPol -lbiagra
 
 datamatrix:
-	$(CC) datamatrix-biaMatrix.c -o datamatrix-biaMatrix
+	$(CC) datamatrix-biaMatrix.c -o datamatrix-biaMatrix -lbiagra
 
 polsupport.o:
 	$(CC) -c polsupport.c -o polsupport.o
 
 polynomial: polsupport.o
-	|       $(CC) polynomial-dblEvaluatePol.c polsupport.o -o polynomial-dblEvaluatePol -lbiagra
-	|       $(CC) polynomial-derivativePol.c polsupport.o -o polynomial-derivativePol -lbiagra
-	|       $(CC) polynomial-addPol.c polsupport.o -o polynomial-addPol -lbiagra
-	|       $(CC) polynomial-subtractPol.c polsupport.o -o polynomial-subtractPol -lbiagra
-	|       $(CC) polynomial-newtonPol.c polsupport.o -o polynomial-newtonPol -lbiagra
+	$(CC) polynomial-dblEvaluatePol.c polsupport.o -o polynomial-dblEvaluatePol -lbiagra
+	$(CC) polynomial-derivativePol.c polsupport.o -o polynomial-derivativePol -lbiagra
+	$(CC) polynomial-addPol.c polsupport.o -o polynomial-addPol -lbiagra
+	$(CC) polynomial-subtractPol.c polsupport.o -o polynomial-subtractPol -lbiagra
+	$(CC) polynomial-newtonPol.c polsupport.o -o polynomial-newtonPol -lbiagra
 
 resmem:
 	$(CC) resmem-dblPtMemAllocVec.c -o resmem-dblPtMemAllocVec -lbiagra
