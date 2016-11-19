@@ -38,7 +38,7 @@ int main (void) {
 
   if ( i == BIA_MEM_ALLOC ) {
     printf("Error in memory assignation.\n");
-    return 1;
+    return BIA_MEM_ALLOC;
   }
 
   sleep(1);
@@ -47,7 +47,7 @@ int main (void) {
 
   if ( i == BIA_MEM_ALLOC  ) {
     printf("Error in memory assignation.\n");
-    return 1;
+    return BIA_MEM_ALLOC;
   }
 
   /* evaluate polynomial */

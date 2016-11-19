@@ -3,6 +3,7 @@
 #include <time.h>
 
 #include <biagra/datamatrix.h>
+#include <biagra/random.h>
 #include <biagra/const.h>
 
 /*                                                                      */
@@ -26,6 +27,9 @@ int main (void) {
   /* Matrix declaration */
   biaMatrix myMatrix;
 
+  /* random initializaiton */
+  srand((unsigned)time(NULL));
+
   /* Matrix data */
   myMatrix.intCols = cols;
   myMatrix.intRows = rows;
@@ -35,14 +39,14 @@ int main (void) {
 
   if ( myMatrix.dblCoefs == NULL ) {
     printf("Error in memory assignation.\n");
-    return 1;
+    return BIA_MEM_ALLOC;
   }
 
   for(int i=0;i<=myMatrix.intRows;i++) {
     myMatrix.dblCoefs[i] = (double *)calloc(myMatrix.intCols, sizeof(double));
     if ( myMatrix.dblCoefs[i] == NULL ) {
       printf("Error in memory assignation.\n");
-      return 1;
+      return BIA_MEM_ALLOC;
     }
   }
 
@@ -50,7 +54,7 @@ int main (void) {
   srand(time(NULL));
   for(int i=0;i<myMatrix.intRows;i++)
     for(int j=0;j<myMatrix.intCols;j++)
-      myMatrix.dblCoefs[i][j] = (double) (rand() % 100);
+      myMatrix.dblCoefs[i][j] = dblRandom(10);
 
   printf("Random matrix:\n\n");
 

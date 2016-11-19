@@ -30,7 +30,7 @@ int main (void) {
 
   if ( dblMatrix == NULL ) {
     printf("Error in memory assignation.\n");
-    return 1;
+    return BIA_MEM_ALLOC;
   }
 
   /* Random coefs between 0 and 100 (not cryptographically secure) */

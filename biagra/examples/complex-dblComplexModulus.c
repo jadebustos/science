@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <biagra/datacomplex.h>
 #include <biagra/complex.h>
+#include <biagra/random.h>
 #include <biagra/const.h>
 
 /*                                                                      */
@@ -24,9 +26,12 @@ int main (void) {
   /* complex numbers */
   biaComplex myCmplx;
 
+  /* random initializaiton */
+  srand((unsigned)time(NULL));
+
   /* initialization */
-  myCmplx.dblReal = 1.;
-  myCmplx.dblImag = 3.5;
+  myCmplx.dblReal = dblRandom(10);
+  myCmplx.dblImag = dblRandom(10);
 
   /* division */
   modulus = dblComplexModulus(&myCmplx);

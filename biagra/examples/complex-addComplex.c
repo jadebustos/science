@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <biagra/datacomplex.h>
 #include <biagra/complex.h>
+#include <biagra/random.h>
 #include <biagra/const.h>
 
 /*                                                                      */
@@ -23,11 +25,14 @@ int main (void) {
              myCmplx2,
              myRes;
 
+  /* random initializaiton */
+  srand((unsigned)time(NULL));
+
   /* initialization */
-  myCmplx1.dblReal = 1.;
-  myCmplx1.dblImag = 3.5;
-  myCmplx2.dblReal = -4.09;
-  myCmplx2.dblImag = 0.00876;
+  myCmplx1.dblReal = dblRandom(10);
+  myCmplx1.dblImag = dblRandom(10);
+  myCmplx2.dblReal = dblRandom(10);
+  myCmplx2.dblImag = dblRandom(10);
 
   /* addition */
   addComplex(&myCmplx1, &myCmplx2, &myRes);
