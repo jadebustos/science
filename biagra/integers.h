@@ -14,6 +14,6 @@
 /* Function to sum the first n integers                                 */
 /*                                                                      */ 
 
-unsigned uintSumFirstNIntegers(int n);
+  unsigned uintSumFirstNIntegers(int n);
 
 #endif
