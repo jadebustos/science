@@ -35,7 +35,7 @@ int main (void) {
 
   if ( i == BIA_MEM_ALLOC ) {
     printf("Error in memory assignation (myPol).\n");
-    return 1;
+    return BIA_MEM_ALLOC;
   }
 
   /* first order derivative */
@@ -43,7 +43,7 @@ int main (void) {
 
   if ( i == BIA_MEM_ALLOC  ) {
     printf("Error in memory assignation (polDer).\n");
-    return 1;
+    return BIA_MEM_ALLOC;
   }
 
   /* Printing polynomial to stdout */
