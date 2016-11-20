@@ -50,23 +50,6 @@ int EsMatrizSimetrica(Matriz *ptstrMatriz);
 
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
-/* Funcion que comprueba si una matriz es la matriz identidad.          */
-/*                                                                      */
-/* La funcion devuelve los siguientes valores:                          */
-/*                                                                      */
-/*	FALSE -> Si la matriz no es la identidad.                       */
-/*	TRUE  -> Si la matriz es la matriz identidad.                   */
-/*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-int EsMatrizIdentidad(Matriz *ptstrMatriz);
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
 /* Funcion que comprueba si una matriz es la matriz nula, donde dblTol  */
 /* es la tolerancia con la que los coeficientes de la matriz se pueden  */
 /* aproximar a cero.                                                    */

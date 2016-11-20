@@ -1,4 +1,5 @@
 #include <biagra/datamatrix.h>
+#include <biagra/const.h>
 
 /*                                                                      */
 /* Function to store identity matrix.                                   */
@@ -86,5 +87,89 @@ void transposeMatrix(biaMatrix *ptMatrix, biaMatrix  *ptRes) {
   }
 
 return;
+}
+
+/*                                                                      */
+/* Function to check if a given matrix is the identity matrix           */
+/*                                                                      */
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BIA_FALSE -> Not identity matrix                                */
+/*      BIA_TRUE  -> Identity matrix                                    */                                                                           
+/*                                                                      */
+
+int isIdentityMatrix(biaMatrix *ptMatrix) {
+
+  int i,
+      j,
+      intRes = BIA_TRUE;
+
+  for(i=0;i<(ptMatrix->intRows);i++) {
+    for(j=0;j<(ptMatrix->intRows);j++) {
+      if ( i != j ) {
+        if ( (ptMatrix->dblCoefS[i][j]) != .0 ) {
+          intRes = BIA_FALSE;
+          break;
+        }
+      }
+      else {
+        if ( (ptMatrix->dblCoefs[i][i]) != 1. ) {
+          intRes = BIA_FALSE;
+          break;
+        }
+      }
+    }
+    if ( intRes == BIA_FALSE )
+      break;
+  }
+  return intRes; 
+}
+
+/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/*                                                                      */
+/* Funcion que comprueba si una matriz es la matriz nula, donde dblTol  */
+/* es la tolerancia con la que los coeficientes de la matriz se pueden  */
+/* aproximar a cero.                                                    */
+/*                                                                      */
+/* La funcion devuelve los siguientes valores:                          */
+/*                                                                      */
+/*	FALSE -> Si la matriz no es la matriz nula.                     */
+/*	TRUE  -> Si la matriz es la matriz nula.                        */
+/*									*/
+/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
+/*									*/
+/*	BIbliotecA de proGRamacion cientificA.				*/
+/*                                                                      */
+/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+
+int EsMatrizNula(Matriz *ptstrMatriz, double dblTol)
+
+{
+int	i,	/* CONTADOR */
+	j,	/* CONTADOR */
+	intRes = TRUE;
+
+double	dblTolPos = fabs(dblTol);
+
+for(i=0;i<(ptstrMatriz->intFilas);i++)
+
+	{	/* INICIO PRIMER for */
+
+	for(j=0;j<(ptstrMatriz->intColumnas);j++)
+
+		{	/* INICIO SEGUNDO for */
+	
+		if ( fabs((ptstrMatriz->dblCoefi[i][j])) > dblTolPos )
+			
+			{	/* NO ES LA MATRIZ NULA */
+			intRes = FALSE;
+			return (intRes);
+			}
+
+		}	/* FINAL SEGUNDO for */
+
+	}	/* FINAL PRIMER for */
+
+return (intRes);
 }
 

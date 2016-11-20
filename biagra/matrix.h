@@ -36,4 +36,16 @@
 /*                                                                      */
 
   void transposeMatrix(biaMatrix *ptMatrix, biaMatrix  *ptRes);
+
+ /*                                                                      */
+ /* Function to check if a given matrix is the identity matrix           */
+ /*                                                                      */
+ /* The following values are returned:                                   */
+ /*                                                                      */
+ /*      BIA_FALSE -> Not identity matrix                                */
+ /*      BIA_TRUE  -> Identity matrix                                    */
+ /*                                                                      */
+
+  int isIdentityMatrix(biaMatrix *ptMatrix);
+
 #endif
