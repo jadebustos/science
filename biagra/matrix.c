@@ -1,139 +1,89 @@
+#include <biagra/datamatrix.h>
 
 /*                                                                      */
-/* Funcion que almacena la matriz identidad.                            */
+/* Function to store identity matrix.                                   */
 /*                                                                      */
-/* El orden de la matriz viene dado por el miembro intFilas de la       */
-/* variable a la que apunta ptstrMatriz.				*/
+/* Matrix order it taken from intRows member of biaMatrix var           */
 /*                                                                      */
 
-void MatrizIdentidad(Matriz *ptstrMatriz)
+void identityMatrix(biaMatrix *ptMatrix) {
 
-{
-int	i,	/* CONTADOR */
-	j;	/* CONTADOR */
+  int i,
+      j;
 
-for(i=0;i<(ptstrMatriz->intFilas);i++)
-
-	{	/* INICIO PRIMER for */
-
-	for(j=0;j<(ptstrMatriz->intFilas);j++)
-
-		{	/* INICIO SEGUNDO for */
-
-		if ( i == j )
-
-			{	/* INICIO if */
-			
-			(ptstrMatriz->dblCoefi[i][i]) = 1.;
-
-			}	/* FINAL if */
-
-		else
-
-			{	/* INICIO else */
-
-			(ptstrMatriz->dblCoefi[i][j]) = .0;
-
-			}	/* FINAL else */
-
-		}	/* FINAL SEGUNDO for */
-
-	}	/* FINAL PRIMER for */
-
-return;
+  for(i=0;i<(ptMatrix->intRows);i++) {
+    for(j=0;j<(ptMatrix->intRows);j++) {
+      if ( i == j ) {
+        (ptMatrix->dblCoefs[i][i]) = 1.;
+      }
+      else {
+        (ptMatrix->dblCoefs[i][j]) = .0;
+      }
+    }
+  }
+  return;
 }
 
 /*                                                                      */
-/* Funcion que almacena la matriz de la homotecia de razon dblRazon.    */
+/* Function to store scaling matrix with factor dblFactor.              */
 /*                                                                      */
-/* El orden de la matriz viene dado por el miembro intFilas de la       */
-/* variable a la que apunta ptstrMatriz.				*/
+/* Matrix order it taken from intRows member of biaMatrix var           */
 /*                                                                      */
 
-void MatrizHomotecia(Matriz *ptstrMatriz, double dblRazon)
+void scalingMatrix(biaMatrix *ptMatrix, double dblFactor) {
 
-{
-int	i,	/* CONTADOR */
-	j;	/* CONTADOR */
+  int i,
+      j;
 
-for(i=0;i<(ptstrMatriz->intFilas);i++)
+  for(i=0;i<(ptMatrix->intRows);i++) {
+    for(j=0;j<(ptMatrix->intRows);j++) {
+      if ( i == j )
+        (ptMatrix->dblCoefs[i][i]) = dblFactor;
+      else
+        (ptMatrix->dblCoefs[i][j]) = .0;
+    }
+  }
 
-	{	/* INICIO PRIMER for */
+  return;
+}
 
-	for(j=0;j<(ptstrMatriz->intFilas);j++)
+/*                                                                      */                                                                            
+/* Function to store the null matrix.                                   */
+/*                                                                      */
+/* Rows and columns are takem from intRows and intCols members of       */
+/* biaMatrix var.                                                       */
+/*                                                                      */
 
-		{	/* INICIO SEGUNDO for */
+void nullMatrix(biaMatrix *ptMatrix) {
 
-		if ( i == j )
-			(ptstrMatriz->dblCoefi[i][i]) = dblRazon;
+  int i,
+      j;
 
-		else
-			(ptstrMatriz->dblCoefi[i][j]) = .0;
-
-		}	/* FINAL SEGUNDO for */
-
-	}	/* FINAL PRIMER for */
-
-return;
+  for(i=0;i<(ptMatrix->intRows);i++) {
+    for(j=0;j<(ptMatrix->intCols);j++) {
+      (ptMatrix->dblCoefs[i][j]) = .0;
+    }
+  }
+  return;
 }
 
 /*                                                                      */
-/* Funcion que almacena la matriz nula en dblMatriz.                    */
+/* Function to get the transpose matrix of the given matrix.            */
 /*                                                                      */
-/* Las filas y columnas de la matriz vienen dadas por los miembros	*/
-/* intFilas e intColumnas de la variable a la que apunta ptstrMatriz.   */
-/*                                                                      */
-
-void MatrizNula(Matriz *ptstrMatriz)
-
-{
-int	i,	/* CONTADOR */
-	j;	/* CONTADOR */
-
-for(i=0;i<(ptstrMatriz->intFilas);i++)
-
-	{	/* INICIO PRIMER for */
-
-	for(j=0;j<(ptstrMatriz->intColumnas);j++)
-
-		{	/* INICIO SEGUNDO for */
-
-		(ptstrMatriz->dblCoefi[i][j]) = .0;
-
-		}	/* FINAL SEGUNDO for */
-
-	}	/* FINAL PRIMER for */
-
-return;
-}
-
-/*                                                                      */
-/* Funcion que almacena la matriz traspuesta de ptstrMatriz en          */
-/* ptstrTras.   							*/
-/*                                                                      */
-/* Las filas y columnas de la matriz vienen dadas por los miembros	*/
-/* intFilas e intColumnas de la variable a la que apunta ptstrMatriz.   */
+/* Rows and columns are takem from intRows and intCols members of       */
+/* biaMatrix var.                                                       */
 /*                                                                      */
 
-void MatrizTraspuesta(Matriz *ptstrMatriz, Matriz *ptstrTras)
+void transposeMatrix(biaMatrix *ptMatrix, biaMatrix  *ptRes) {
 
-{
-int	i,	/* CONTADOR */
-   	j;	/* CONTADOR */
+  int i,
+      j;
 
-for(i=0;i<(ptstrMatriz->intColumnas);i++)
-
-	{	/* INICIO PRIMER for */
-   
-	for(j=0;j<(ptstrMatriz->intFilas);j++)
-   
-		{	/* INICIO SEGUNDO for */
-      
-		(ptstrTras->dblCoefi[i][j]) = (ptstrMatriz->dblCoefi[j][i]);
-      
-		}	/* FINAL SEGUNDO for */
-   
-	}	/* FINAL PRIMER for*/
+  for(i=0;i<(ptMatrix->intCols);i++) {
+    for(j=0;j<(ptMatrix->intRows);j++) {
+      (ptRes->dblCoefs[i][j]) = (ptMatrix->dblCoefs[j][i]);
+    }
+  }
 
 return;
 }

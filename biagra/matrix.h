@@ -1,40 +1,39 @@
 #ifndef _MATRIX_H
   #define _MATRIX_H
 
-/*                                                                      */
-/* Funcion que almacena la matriz identidad.                            */
-/*                                                                      */
-/* El orden de la matriz viene dado por el miembro intFilas de la       */
-/* variable a la que apunta ptstrMatriz.				*/
-/*                                                                      */
-
-void MatrizIdentidad(Matriz *ptstrMatriz);
+#include <biagra.h/datamatrix.h>
 
 /*                                                                      */
-/* Funcion que almacena la matriz de la homotecia de razon dblRazon.    */
+/* Function to store identity matrix.                                   */
 /*                                                                      */
-/* El orden de la matriz viene dado por el miembro intFilas de la       */
-/* variable a la que apunta ptstrMatriz.				*/
-/*                                                                      */
-
-void MatrizHomotecia(Matriz *ptstrMatriz, double dblRazon);
-
-/*                                                                      */
-/* Funcion que almacena la matriz nula en dblMatriz.                    */
-/*                                                                      */
-/* Las filas y columnas de la matriz vienen dadas por los miembros	*/
-/* intFilas e intColumnas de la variable a la que apunta ptstrMatriz.   */
+/* Matrix order it taken from intRows member of biaMatrix var           */
 /*                                                                      */
 
-void MatrizNula(Matriz *ptstrMatriz);
+  void identityMatrix(biaMatrix *ptMatrix);
 
 /*                                                                      */
-/* Funcion que almacena la matriz traspuesta de ptstrMatriz en          */
-/* ptstrTras.   							*/
+/* Function to store scaling matrix with factor dblFactor.              */
 /*                                                                      */
-/* Las filas y columnas de la matriz vienen dadas por los miembros	*/
-/* intFilas e intColumnas de la variable a la que apunta ptstrMatriz.   */
+/* Matrix order it taken from intRows member of biaMatrix var           */
 /*                                                                      */
 
-void MatrizTraspuesta(Matriz *ptstrMatriz, Matriz *ptstrTras);
+  void scalingMatrix(biaMatrix *ptMatrix, double dblFactor);
+
+/*                                                                      */
+/* Function to store the null matrix.                                   */
+/*                                                                      */
+/* Rows and columns are takem from intRows and intCols members of       */
+/* biaMatrix var.                                                       */
+/*                                                                      */
+
+  void nullMatrix(biaMatrix *ptMatrix);
+
+/*                                                                      */
+/* Function to get the transpose matrix of the given matrix.            */
+/*                                                                      */
+/* Rows and columns are takem from intRows and intCols members of       */
+/* biaMatrix var.                                                       */
+/*                                                                      */
+
+  void transposeMatrix(biaMatrix *ptMatrix, biaMatrix  *ptRes);
 #endif
