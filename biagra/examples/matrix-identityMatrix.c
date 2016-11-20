@@ -1,8 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-#include <biagra/complex.h>
-#include <biagra/random.h>
+#include <biagra/resmem.h>
+#include <biagra/matrix.h>
 #include <biagra/const.h>
 
 /*                                                                      */
@@ -15,32 +14,40 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/* Simple example of multiplyComplex usage */
+/* Simple example of identityMatrix usage */
 
 int main (void) {
 
-  /* complex numbers */
-  biaComplex myCmplx1,
-             myCmplx2,
-             myRes;
+  /* Data */
+  int intRows = 5;
 
-  /* random initializaiton */
-  srand((unsigned)time(NULL));
+  /* Matrix declaration */
+  biaMatrix myMatrix;
 
   /* initialization */
-  myCmplx1.dblReal = dblRandom(10);
-  myCmplx1.dblImag = dblRandom(10);
-  myCmplx2.dblReal = dblRandom(10);
-  myCmplx2.dblImag = dblRandom(10);
+  myMatrix.intRows = intRows;
+  myMatrix.intCols = intRows;
 
-  /* multiplication */
-  multiplyComplex(&myCmplx1, &myCmplx2, &myRes);
+  /* Memory reservation por matrix */
+  myMatrix.dblCoefs = dblPtMemAllocMat(myMatrix.intRows, myMatrix.intRows);
 
-  /* print to stdout */
-  printf("z1 = %g + %g * i\n", myCmplx1.dblReal, myCmplx1.dblImag);
-  printf("z2 = %g + %g * i\n", myCmplx2.dblReal, myCmplx2.dblImag);
-  printf("z1 * z2 = %g + %g * i\n", myRes.dblReal, myRes.dblImag);
+  if ( myMatrix.dblCoefs == NULL ) {
+    printf("Error in memory assignation.\n");
+    return BIA_MEM_ALLOC;
+  }
+
+  /* identiy matrix */
+  identityMatrix(&myMatrix);
+
+  printf("Identity matrix of order %d:\n\n", myMatrix.intRows);
   
+  /* Print Matrix to stdout */
+  for(int i=0;i<intRows;i++) {
+    for(int j=0;j<intRows;j++) {
+      printf("%g ", myMatrix.dblCoefs[i][j]);
+      }
+    printf("\n");
+    }
+
   return BIA_TRUE;
-	
 }

@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include <biagra/datamatrix.h>
+#include <biagra/resmem.h>
+#include <biagra/matrix.h>
 #include <biagra/random.h>
 #include <biagra/const.h>
 
@@ -16,13 +17,13 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/* Simple example of biaMatrix usage */
+/* Simple example of nullMatrix usage */
 
 int main (void) {
 
-  /* Matrix data */
-  int  rows = 8,
-       cols = 8;
+  /* Data */
+  int intRows = 5,
+      intCols = 4;
 
   /* Matrix declaration */
   biaMatrix myMatrix;
@@ -30,41 +31,35 @@ int main (void) {
   /* random initializaiton */
   srand((unsigned)time(NULL));
 
-  /* Matrix data */
-  myMatrix.intCols = cols;
-  myMatrix.intRows = rows;
+  /* initialization */
+  myMatrix.intRows = intRows;
+  myMatrix.intCols = intCols;
 
-  /* Memory reservation por Matrix coefs */
-  myMatrix.dblCoefs = (double **)calloc(myMatrix.intRows, sizeof(double *));
+  /* Memory reservation por matrix */
+  myMatrix.dblCoefs = dblPtMemAllocMat(myMatrix.intRows, myMatrix.intRows);
 
   if ( myMatrix.dblCoefs == NULL ) {
     printf("Error in memory assignation.\n");
     return BIA_MEM_ALLOC;
   }
 
-  for(int i=0;i<=myMatrix.intRows;i++) {
-    myMatrix.dblCoefs[i] = (double *)calloc(myMatrix.intCols, sizeof(double));
-    if ( myMatrix.dblCoefs[i] == NULL ) {
-      printf("Error in memory assignation.\n");
-      return BIA_MEM_ALLOC;
-    }
-  }
+  /* store elements in matrix */
+  for(int i=0;i<intRows;i++)
+    for(int j=0;j<intCols;j++)
+      myMatrix.dblCoefs[i][j] = dblRandom(50);
 
-  /* Random coefs between 0 and 100 (not cryptographically secure) */
-  srand(time(NULL));
-  for(int i=0;i<myMatrix.intRows;i++)
-    for(int j=0;j<myMatrix.intCols;j++)
-      myMatrix.dblCoefs[i][j] = dblRandom(10);
+  /* identiy matrix */
+  nullMatrix(&myMatrix);
 
-  printf("Random matrix:\n\n");
-
+  printf("Null matrix:\n\n");
+  
   /* Print Matrix to stdout */
-  for(int i=0;i<myMatrix.intRows;i++) {
-    for(int j=0;j<myMatrix.intCols;j++) {
+  for(int i=0;i<intRows;i++) {
+    for(int j=0;j<intCols;j++) {
       printf("%g ", myMatrix.dblCoefs[i][j]);
-    }
+      }
     printf("\n");
-  }
+    }
 
   return BIA_TRUE;
 }

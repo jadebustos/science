@@ -1,5 +1,5 @@
 static:
-	./install.sh static-install
+	./install.sh static
 
 all:
-	./install.sh static-install
+	./install.sh static

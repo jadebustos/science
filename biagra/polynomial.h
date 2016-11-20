@@ -1,8 +1,6 @@
 #ifndef _POLYNOMIAL_H
   #define _POLYNOMIAL_H
 
-#include <biagra/datapol.h>
-
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
 /*                           <jadebustos@gmail.com>                     */
@@ -12,6 +10,52 @@
 /*                                                                      */
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
+
+/*                                                                      */
+/* Data structure to handle polynomials                                 */
+/*                                                                      */
+/* p(x) = a0 + a1*x^1 + a2*x^2 + .... + an*x^n                          */                                                                            
+/*                                                                      */
+/* intDegree    -> Polynomial degree                                    */
+/* intRealRoots -> Number of real roots                                 */
+/* intCompRoots -> Number of complex roots                              */
+/* dblCoefs     -> Polynomial coefs                                     */
+/*                   dblCoefs[i] = ai                                   */
+/*                                                                      */
+
+typedef struct {
+
+  int intDegree,
+      intRealRoots,
+      intCompRoots;
+
+  double *dblCoefs;        
+} biaRealPol;
+
+/*                                                                      */
+/* Data structure to store function roots                               */
+/*                                                                      */
+/* intMNI   -> maximum number of iterations to get the root with        */
+/*             dblTol error.                                            */
+/* intIte   -> iterations used to get the root.                         */
+/* dblx0    -> initial root approximation.                              */
+/* dblRoot  -> function root approximation                              */
+/* dblTol   -> Maximun error tolerance.                                 */
+/* dblError -> error in root. Difference between two last root          */
+/*             approximations.                                          */
+/*                                                                      */
+        
+typedef struct {
+	    
+  int intMNI,
+      intIte;
+
+  double dblx0,
+         dblRoot,
+         dblTol,
+         dblError;
+
+} biaRealRoot;
 
 /*                                                                      */
 /* Function to evaluate a polynomial in one value.                      */

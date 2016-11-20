@@ -1,7 +1,7 @@
 #ifndef _POLSUPPORT_H
   #define _POLSUPPORT_H
 
-#include <biagra/datapol.h>
+#include <biagra/polynomial.h>
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */

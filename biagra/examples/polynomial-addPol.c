@@ -2,7 +2,6 @@
 #include <unistd.h>
 
 #include <biagra/polynomial.h>
-#include <biagra/datapol.h>
 #include <biagra/resmem.h>
 #include <biagra/const.h>
 

@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-#include <biagra/complex.h>
+#include <biagra/resmem.h>
+#include <biagra/matrix.h>
 #include <biagra/random.h>
 #include <biagra/const.h>
 
@@ -15,39 +17,45 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/* Simple example of divideComplex usage */
+/* Simple example of scalingMatrix usage */
 
 int main (void) {
 
-  int i = 0;
+  /* Data */
+  int intRows = 5;
+  double dblFactor;
 
-  /* complex numbers */
-  biaComplex myCmplx1,
-             myCmplx2,
-             myRes;
+  /* Matrix declaration */
+  biaMatrix myMatrix;
 
   /* random initializaiton */
   srand((unsigned)time(NULL));
 
   /* initialization */
-  myCmplx1.dblReal = dblRandom(10);
-  myCmplx1.dblImag = dblRandom(10);
-  myCmplx2.dblReal = dblRandom(10);
-  myCmplx2.dblImag = dblRandom(10);
+  myMatrix.intRows = intRows;
+  myMatrix.intCols = intRows;
+  dblFactor = (double)uintRandom(50);
 
-  /* division */
-  i = divideComplex(&myCmplx1, &myCmplx2, &myRes);
+  /* Memory reservation por matrix */
+  myMatrix.dblCoefs = dblPtMemAllocMat(myMatrix.intRows, myMatrix.intRows);
 
-  if ( i == BIA_ZERO_DIV ) {
-    printf("Division by zero.\n");
-    return BIA_ZERO_DIV;
+  if ( myMatrix.dblCoefs == NULL ) {
+    printf("Error in memory assignation.\n");
+    return BIA_MEM_ALLOC;
   }
 
-  /* print to stdout */
-  printf("z1 = %g + %g * i\n", myCmplx1.dblReal, myCmplx1.dblImag);
-  printf("z2 = %g + %g * i\n", myCmplx2.dblReal, myCmplx2.dblImag);
-  printf("z1 / z2 = %g + %g * i\n", myRes.dblReal, myRes.dblImag);
+  /* identiy matrix */
+  scalingMatrix(&myMatrix, dblFactor);
+
+  printf("Scaling matrix of order %d:\n\n", myMatrix.intRows);
   
+  /* Print Matrix to stdout */
+  for(int i=0;i<intRows;i++) {
+    for(int j=0;j<intRows;j++) {
+      printf("%g ", myMatrix.dblCoefs[i][j]);
+      }
+    printf("\n");
+    }
+
   return BIA_TRUE;
-	
 }

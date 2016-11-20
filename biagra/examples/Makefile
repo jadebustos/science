@@ -11,19 +11,23 @@ complex:
 	$(CC) complex-complex2Polar.c -o complex-complex2Polar -lbiagra -lm
 	$(CC) complex-polar2Complex.c -o complex-polar2Complex -lbiagra -lm
 
-datapol: polsupport.o
-	$(CC) datapol-biaRealPol.c polsupport.o -o datapol-biaRealPol -lbiagra
-
-datamatrix:
-	$(CC) datamatrix-biaMatrix.c -o datamatrix-biaMatrix -lbiagra
-
 integers:
 	$(CC) integers-uintSumFirstNIntegers.c -o integers-uintSumFirstNIntegers -lbiagra
+
+matrix:
+	$(CC) matrix-identityMatrix.c -o matrix-identityMatrix -lbiagra
+	$(CC) matrix-scalingMatrix.c -o matrix-scalingMatrix -lbiagra
+	$(CC) matrix-nullMatrix.c -o matrix-nullMatrix -lbiagra
+	$(CC) matrix-transposeMatrix.c -o matrix-transposeMatrix -lbiagra
+	$(CC) matrix-isIdentityMatrix.c -o matrix-isIdentityMatrix -lbiagra
+	$(CC) matrix-isNullMatrix.c -o matrix-isNullMatrix -lbiagra
+	$(CC) matrix-isSymmetricMatrix.c -o matrix-isSymmetricMatrix -lbiagra
 
 polsupport.o:
 	$(CC) -c polsupport.c -o polsupport.o
 
 polynomial: polsupport.o
+	$(CC) polynomial-biaRealPol.c polsupport.o -o polynomial-biaRealPol -lbiagra
 	$(CC) polynomial-dblEvaluatePol.c polsupport.o -o polynomial-dblEvaluatePol -lbiagra
 	$(CC) polynomial-derivativePol.c polsupport.o -o polynomial-derivativePol -lbiagra
 	$(CC) polynomial-addPol.c polsupport.o -o polynomial-addPol -lbiagra
@@ -37,11 +41,12 @@ resmem:
 	$(CC) resmem-dblPtMemAllocLowerTrMat.c -o resmem-dblPtMemAllocLowerTrMat -lbiagra
 
 all:
-	make datapol
-	make datamatrix
 	make resmem
-	make polynomial
 	make complex
+	make integers
+	make matrix
+	make polynomial
+	make resmem
 
 clean:
 	rm -f *.o *~
