@@ -1,6 +1,6 @@
 #include <math.h>
 
-#include <biagra/datacomplex.h>
+#include <biagra/complex.h>
 #include <biagra/const.h>
 
 /*                                                                      */

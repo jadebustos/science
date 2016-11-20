@@ -1,4 +1,6 @@
-#include <biagra/datamatrix.h>
+#include <math.h>
+
+#include <biagra/matrix.h>
 #include <biagra/const.h>
 
 /*                                                                      */
@@ -107,7 +109,7 @@ int isIdentityMatrix(biaMatrix *ptMatrix) {
   for(i=0;i<(ptMatrix->intRows);i++) {
     for(j=0;j<(ptMatrix->intRows);j++) {
       if ( i != j ) {
-        if ( (ptMatrix->dblCoefS[i][j]) != .0 ) {
+        if ( (ptMatrix->dblCoefs[i][j]) != .0 ) {
           intRes = BIA_FALSE;
           break;
         }
@@ -125,51 +127,67 @@ int isIdentityMatrix(biaMatrix *ptMatrix) {
   return intRes; 
 }
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
-/* Funcion que comprueba si una matriz es la matriz nula, donde dblTol  */
-/* es la tolerancia con la que los coeficientes de la matriz se pueden  */
-/* aproximar a cero.                                                    */
+/* Function to check if a matrix is a null matrix.                      */
+/* dblTol is the tolerance used to check if an elemement is null.       */
 /*                                                                      */
-/* La funcion devuelve los siguientes valores:                          */
+/* The following values are returned:                                   */
 /*                                                                      */
-/*	FALSE -> Si la matriz no es la matriz nula.                     */
-/*	TRUE  -> Si la matriz es la matriz nula.                        */
-/*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
+/*      BIA_FALSE -> Not null matrix                                    */
+/*      BIA_TRUE  -> Null matrix                                        */
 /*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
-int EsMatrizNula(Matriz *ptstrMatriz, double dblTol)
+int isNullMatrix(biaMatrix *ptMatrix, double dblTol) {
 
-{
-int	i,	/* CONTADOR */
-	j,	/* CONTADOR */
-	intRes = TRUE;
+  int i,
+      j,
+      intRes = BIA_TRUE;
 
-double	dblTolPos = fabs(dblTol);
+  double dblTolPos = fabs(dblTol);
 
-for(i=0;i<(ptstrMatriz->intFilas);i++)
-
-	{	/* INICIO PRIMER for */
-
-	for(j=0;j<(ptstrMatriz->intColumnas);j++)
-
-		{	/* INICIO SEGUNDO for */
-	
-		if ( fabs((ptstrMatriz->dblCoefi[i][j])) > dblTolPos )
-			
-			{	/* NO ES LA MATRIZ NULA */
-			intRes = FALSE;
-			return (intRes);
-			}
-
-		}	/* FINAL SEGUNDO for */
-
-	}	/* FINAL PRIMER for */
-
-return (intRes);
+  for(i=0;i<(ptMatrix->intRows);i++) {
+    for(j=0;j<(ptMatrix->intCols);j++) {
+      if ( fabs((ptMatrix->dblCoefs[i][j])) > dblTolPos ) {
+        intRes = BIA_FALSE;
+        return intRes;
+      }
+    }
+  }
+  return intRes;
 }
 
+/*                                                                      */
+/* Function to check if a matrix is symmetric.                          */
+/*                                                                      */
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BIA_FALSE -> Not symmetric                                      */
+/*      BIA_TRUE  -> Symmetric                                          */
+/*                                                                      */
+
+int isSymmetricMatrix(biaMatrix *ptMatrix) {
+
+  int i,
+      j,
+      intRes = BIA_TRUE;
+
+  for(i=0;i<(ptMatrix->intRows);i++) {
+    for(j=0;j<(ptMatrix->intRows);j++) {
+      if ( i != j  ) {
+        if ( (ptMatrix->dblCoefs[i][j]) != .0 ) {
+          intRes = BIA_FALSE;
+          break; 
+        }
+      }
+      else {
+        if ( (ptMatrix->dblCoefs[i][i]) != 1. ) {
+          intRes = BIA_FALSE;
+          break; 
+        }
+      }
+    }
+    if ( intRes == BIA_FALSE  )
+      break; 
+  }
+  return intRes; 
+}  

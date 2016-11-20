@@ -1,7 +1,6 @@
 #ifndef _COMPLEX_H
   #define _COMPLEX_H
 
-#include <biagra/datacomplex.h>
 #include <biagra/const.h>                                                                                                                             
 
 /*                                                                      */
@@ -13,6 +12,38 @@
 /*                                                                      */
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
+
+/*                                                                      */
+/* Data structure to store complex numbers                              */
+/*                                                                      */
+/* a + b * i                                                            */
+/*                                                                      */
+/* dblReal -> Real part                                                 */
+/* dblImag -> Imaginary part                                            */ 
+/*                                                                      */
+
+  typedef struct {
+
+    double dblReal,
+           dblImag;
+
+  } biaComplex;
+
+/*                                                                      */
+/* Data structure to store complex numbers as polar coordinates         */
+/*                                                                      */
+/* a + b * i = (r, theta)                                               */
+/*                                                                      */
+/* dblMod -> Modulus                                                    */
+/* dblArg -> Argument                                                   */
+/*                                                                      */
+
+  typedef struct {
+  
+    double dblMod,
+           dblArg;
+        
+  } biaPolar;
 
 /*                                                                      */
 /* Function to add two complex numbers                                  */

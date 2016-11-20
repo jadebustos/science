@@ -1,7 +1,6 @@
 #include <math.h>
 #include <stdlib.h>
 
-#include <biagra/datapol.h>
 #include <biagra/polynomial.h>
 #include <biagra/const.h>
 #include <biagra/resmem.h>

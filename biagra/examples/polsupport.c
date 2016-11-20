@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include <biagra/datapol.h>
+#include <biagra/polynomial.h>
 #include <biagra/resmem.h>
 #include <biagra/const.h>
 

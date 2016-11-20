@@ -1,7 +1,20 @@
 #ifndef _MATRIX_H
   #define _MATRIX_H
 
-#include <biagra.h/datamatrix.h>
+/*                                                                      */
+/* Data structure to store matrices                                     */
+/*                                                                      */
+/*      intRows  -> Number of rows                                      */
+/*      intCols  -> Number of columns                                   */
+/*      dblCoefs -> Matrix coeficients                                  */
+/*                                                                      */
+
+typedef struct {
+  int intRows,
+       intCols;
+
+  double **dblCoefs;
+} biaMatrix;        
 
 /*                                                                      */
 /* Function to store identity matrix.                                   */
@@ -48,4 +61,26 @@
 
   int isIdentityMatrix(biaMatrix *ptMatrix);
 
+/*                                                                      */
+/* Function to check if a matrix is a null matrix.                      */
+/* dblTol is the tolerance used to check if an elemement is null.       */
+/*                                                                      */
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BIA_FALSE -> Not null matrix                                    */
+/*      BIA_TRUE  -> Null matrix                                        */
+/*                                                                      */
+
+  int isNullMatrix(biaMatrix *ptMatrix, double dblTol);
+
+/*                                                                      */
+/* Function to check if a matrix is symmetric.                          */
+/*                                                                      */
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BIA_FALSE -> Not symmetric                                      */
+/*      BIA_TRUE  -> Symmetric                                          */
+/*                                                                      */
+
+  int isSymmetricMatrix(biaMatrix *ptMatrix); 
 #endif

@@ -1,11 +1,8 @@
 #include <stdio.h>
-#include <unistd.h>
 
-#include <biagra/polynomial.h>
 #include <biagra/resmem.h>
+#include <biagra/matrix.h>
 #include <biagra/const.h>
-
-#include "polsupport.h"
 
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
@@ -17,48 +14,48 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/* Simple example of subtractPol usage */
+/* Simple example of identityMatrix usage */
 
 int main (void) {
 
-  /* polynomial declaration */
-  biaRealPol myPol1,
-	     myPol2,
-	     myRes;
+  /* Data */
+  int intRows = 5,
+      res;
 
-  /* Polynomial order */
-  myPol1.intDegree = 3;
-  myPol2.intDegree = 5;
+  /* Matrix declaration */
+  biaMatrix myMatrix;
 
-  int i;
+  /* initialization */
+  myMatrix.intRows = intRows;
+  myMatrix.intCols = intRows;
 
-  /* polynomial generation */
-  i = randomPol(&myPol1);
+  /* Memory reservation por matrix */
+  myMatrix.dblCoefs = dblPtMemAllocMat(myMatrix.intRows, myMatrix.intRows);
 
-  if ( i == BIA_MEM_ALLOC ) {
+  if ( myMatrix.dblCoefs == NULL ) {
     printf("Error in memory assignation.\n");
     return BIA_MEM_ALLOC;
   }
 
-  sleep(1);
+  /* identity matrix */
+  identityMatrix(&myMatrix);
 
-  i = randomPol(&myPol2);
+  res = (int)isIdentityMatrix(&myMatrix);
 
-  if ( i == BIA_MEM_ALLOC  ) {
-    printf("Error in memory assignation.\n");
-    return BIA_MEM_ALLOC;
+  if ( res == BIA_TRUE ) {
+    printf("Matrix is an identity matrix.\n");
+  }
+  else {
+    printf("Matrix is not an identity matrix.\n");
   }
 
-  /* evaluate polynomial */
-  i = subtractPol(&myPol1, &myPol2, &myRes);
-
-  /* Printing polynomial to stdout */
-  printf("p(x) = ");
-  pol2Stdout(&myPol1);
-  printf("q(x) = ");
-  pol2Stdout(&myPol2);
-  printf("p(x) - q(x) = ");
-  pol2Stdout(&myRes);
+  /* Print Matrix to stdout */
+  for(int i=0;i<intRows;i++) {
+    for(int j=0;j<intRows;j++) {
+      printf("%g ", myMatrix.dblCoefs[i][j]);
+      }
+    printf("\n");
+    }
 
   return BIA_TRUE;
 }

@@ -21,7 +21,7 @@ INCLUDESDIR=/usr/include/biagra
 
 case $1 in
 	
-  static-install) # Static library installation
+  static) # Static library installation
 
   echo "B.I.A.G.R.A static library installation"
   mkdir -p $INCLUDESDIR
@@ -49,6 +49,9 @@ case $1 in
   echo "Creating library index"
   ranlib $LIBRARY
   mv $LIBRARY /usr/lib/$LIBRARY;;
+
+  uninstall)
+    rm -Rf $INCLUDESDIR;;
 
   *)
   echo "Argument required: static-install";;

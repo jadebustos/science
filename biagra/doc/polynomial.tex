@@ -8,14 +8,87 @@
 
 Functions to manage polynomials are defined in \texttt{polynomial.h} file.\\
 
-Polynomials are stored using a \BI\ data structure named \texttt{biaRealPol}\footnote{Section \ref{sec:biaRealPol} in page \pageref{sec:biaRealPol}.}.
+A polynomial used to be represented as shown in equation \ref{equ:pol}.
+
+\begin{equation} \label{equ:pol}
+p(x) = a_0 + a_1 \cdot x + \cdots + a_n \cdot x^n = \sum_{i=0}^n a_i \cdot x^i \qquad \textrm{where } a_i \in \mathbb{R}
+\end{equation}
+
+\section{Data structures}
+
+Some data structures are defined in \BI to manage polynomials.
+
+\subsection{\texttt{biaRealPol} data structure} \label{sec:biaRealPol}
+
+This data structure is used to handle polinomials $p(x) \in \mathbb{R}[x]$. \textbf{biaPol} data structure is defined in figure \ref{fig:biaRealPol} where:
+%
+\begin{description}
+\item[intDegree] polynomial degree.
+\item[intRealRoots] number of real roots (if any).
+\item[intCompRoots] number of complex roots (if any).
+\item[*dblCoef] pointer to store polynomial coeficients.
+\end{description}
+%
+\begin{figure}[!h]
+\begin{verbatim}
+typedef struct {
+  int  intDegree    = 0,
+       intRealRoots = 0,
+       intCompRoots = 0;
+
+  double  *dblCoefs;
+  } biaRealPol;
+\end{verbatim}
+\caption{biaRealPol data structure.} \label{fig:biaRealPol}
+\end{figure}
+%
+\FloatBarrier
+%
+Polynomial coeficients are stored in \texttt{dblCoefs} pointer which has to be previously initialized:
+%
+\begin{eqnarray*}
+  \mathrm{dblCoefs[0]} & = & a_0 \\
+  \mathrm{dblCoefs[1]} & = & a_1 \\
+  \dots & \dots & \dots \\
+  \mathrm{dblCoefs[n]} & = & a_n \\
+\end{eqnarray*}
+
+\subsection{\texttt{biaRealRoot} data structure} \label{sec:biaRealRoot}
+
+This data structure is used to store data for root approximation. Data structure is defined in figure \ref{fig:biaRealRoot} where:
+
+\begin{description}
+\item[intNMI] maximum number of iterations to get the root with a maximum error of \emph{dblTol}.
+\item[intIte] iterations used to get the root.
+\item[dblx0] initial approximation to get the root.
+\item[dblRoot] root approximation.
+\item[dblTol] maximum tolerance when calculating the root.
+\item[dblError] error in root approximation. Difference between the las two root approximations.
+\end{description}
+
+\begin{figure}[!h]
+\begin{verbatim}
+typedef struct {
+  int intNMI,
+      intIte;
+
+  double dblx0,
+         dblRoot,
+         dblTol,
+         dblError;
+  } biaRealRoot;
+\end{verbatim}
+\caption{biaRealRoot data structure.} \label{fig:biaRealRoot}
+\end{figure}
+
+\FloatBarrier
 
 \section{Polynomial evaluation}
 
 \subsection{\texttt{dblEvaluatePol} function}
 
-This function evaluate a polynomial in a given point and returns it.\\
-
+This function evaluate a polynomial in a given point and returns it.\\ \\
+%
 The definition of this function:
 %
 \begin{verbatim}
@@ -28,16 +101,19 @@ where:
 \item[dblX] point in which the polynomial has to be evaluated.
 \end{description}
 %
-The \texttt{biaRealPol} has to be initialized with the polynomial degree and polynomial coeficients.
-
+\ \\
+\note{The \texttt{biaRealPol} has to be initialized with the polynomial degree and polynomial coeficients.}
+%
+\ \\
+%
 \note{See section \ref{sec:biaRealPol} to understand how \texttt{biaRealPol} is used.}
 
 \section{Polynomial derivatives}
 
 \subsection{\texttt{derivativePol} function}
 
-This function gets the $n$-th derivative of a polynomial.\\
-
+This function gets the $n$-th derivative of a polynomial.\\ \\
+%
 The definition of this function:
 %
 \begin{verbatim}
@@ -71,8 +147,8 @@ The following codes are returned:
 
 \subsection{\texttt{addPol} function}
 
-This function adds two polynomials.\\
-
+This function adds two polynomials.\\ \\
+%
 The definition of this function:
 %
 \begin{verbatim}
@@ -105,8 +181,8 @@ The following codes are returned:
 
 \subsection{\texttt{subtractPol} function}
 
-This function subtracts two polynomials.\\
-
+This function subtracts two polynomials.\\ \\
+%
 The definition of this function:
 %
 \begin{verbatim}
@@ -139,8 +215,8 @@ The following codes are returned:
 
 \subsection{\texttt{multiplyPol} function}
 
-This functions multiplies two polynomials.\\
-
+This functions multiplies two polynomials.\\ \\
+%
 The definition of this function:
 %
 \begin{verbatim}
@@ -175,8 +251,8 @@ The following codes are returned:
 
 \subsection{\texttt{newtonPol} function}
 
-This function approaches a polynomial root using the \textbf{Newton} method.\\
-
+This function approaches a polynomial root using the \textbf{Newton} method.\\ \\
+%
 The definition of this function:
 %
 \begin{verbatim}
