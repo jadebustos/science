@@ -11,6 +11,15 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
+
+/*                                                                      */
+/* Function to memory allocation for an array of int    elements.       */
+/*                                                                      */
+/* Pointer to the first element is returned.                            */
+/*                                                                      */
+
+  int *intPtMemAllocVec(int intElements);
+
 /*                                                                      */
 /* Function to memory allocation for an array of double elements.       */
 /*                                                                      */

@@ -16,4 +16,23 @@
 
   unsigned uintSumFirstNIntegers(int n);
 
+/*                                                                      */
+/* Function to get if a interger is a prime number of not.              */
+/*                                                                      */
+/* The following values are returned:                                   */
+/*                                                                      */
+/*      BAI_TRUE  -> Prime number                                       */
+/*      BIA_FALSE -> Not a prime number                                 */
+/*                                                                      */
+
+  int isPrime(int intN);
+
+/*                                                                      */
+/* Function to get the first intNumber prime numbers                    */
+/*                                                                      */
+/* Prime numbers are stored in ptPrimes and in ptCalc the total amount  */
+/* of primer numbers that was computed.                                 */
+/*                                                                      */
+
+  void getFirstNPrimes(unsigned int *ptPrimes, int intNumber, int *ptCalc);                                                                                                                                     
 #endif

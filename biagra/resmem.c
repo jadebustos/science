@@ -11,6 +11,24 @@
 /*                                                                      */
 
 /*                                                                      */
+/* Function to memory allocation for an array of int    elements.       */
+/*                                                                      */
+/* Pointer to the first element is returned.                            */
+/*                                                                      */
+
+int *intPtMemAllocVec(int intElements) {
+
+  int *intPt;
+
+  /* memory allocation */
+
+  intPt = (int *)calloc(intElements, sizeof(int));
+
+  return intPt;
+
+}
+
+/*                                                                      */
 /* Function to memory allocation for an array of double elements.       */
 /*                                                                      */
 /* Pointer to the first element is returned.                            */
@@ -24,7 +42,7 @@ double *dblPtMemAllocVec(int intElements) {
 
   dblPt = (double *)calloc(intElements, sizeof(double));
 
-  return (dblPt);
+  return dblPt;
 }
 
 /*                                                                      */
@@ -46,7 +64,7 @@ double **dblPtMemAllocMat(int intRows, int intCols) {
   /* end if error */
 
   if ( dblPt == NULL )
-    return (dblPt);
+    return dblPt;
   else {
     for(i=0;i<intRows;i++) {
       dblPt[i] = (double *)calloc(intCols, sizeof(double));
@@ -60,7 +78,7 @@ double **dblPtMemAllocMat(int intRows, int intCols) {
       }
     }
   }
-  return (dblPt);
+  return dblPt;
 }
 
 /*                                                                      */
@@ -87,7 +105,7 @@ double **dblPtMemAllocUpperTrMat(int intOrder) {
   /* end if error */
 
   if ( dblPt == NULL )
-    return (dblPt);
+    return dblPt;
   else {
     for(i=0;i<intOrder;i++) {
       dblPt[i] = (double *)calloc(intAux--, sizeof(double) );
@@ -101,7 +119,7 @@ double **dblPtMemAllocUpperTrMat(int intOrder) {
         }
       }
    }
-  return (dblPt);
+  return dblPt;
 }
 
 
@@ -127,7 +145,7 @@ double **dblPtMemAllocLowerTrMat(int intOrder) {
   /* end if error */
 
   if ( dblPt == NULL )
-    return (dblPt);
+    return dblPt;
   else {
     for(i=0;i<intOrder;i++) {
       dblPt[i] = (double *)calloc(i+1, sizeof(double) );
