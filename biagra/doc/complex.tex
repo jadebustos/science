@@ -6,13 +6,13 @@
 
 \section{Introduction}
 
-Functions to operate complex numbers are defined in \texttt{complex.h} file.\\
+Functions to manage complex numbers are defined in \texttt{complex.h} file.
 
 \section{Data structures}
 
 Some data structures are defined in \BI \ to manage complex numbers.
 
-\subsection{\textbf{biaComplex} data structure} \label{sec:biaComplex}
+\subsection{\texttt{biaComplex} data structure} \label{sec:biaComplex}
 
 This data structure is used to handle polinomials $p(x) \in \mathbb{R}[x]$. \textbf{biaComplex} data structure is defined in figure \ref{fig:biaRealPol} where:
 
@@ -33,7 +33,7 @@ typedef struct {
 \caption{biaComplex data structure.} \label{fig:biaComplex}
 \end{figure}
 
-\subsection{\textbf{biaPolar} data structure} \label{sec:biaPolar}
+\subsection{\texttt{biaPolar} data structure} \label{sec:biaPolar}
 
 This data structure is used to store data for root approximation. Data structure is defined in figure \ref{fig:biaRealRoot} where:
 
@@ -67,7 +67,8 @@ This function adds two complex numbers.\\
 The definition of this function:
 %
 \begin{verbatim}
-void addComplex(biaComplex *ptCmplx1, biaComplex *ptCmplx2, biaComplex *ptRes);
+void addComplex(biaComplex *ptCmplx1, biaComplex *ptCmplx2, 
+                biaComplex *ptRes);
 \end{verbatim}
 %
 where:

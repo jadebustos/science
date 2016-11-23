@@ -64,10 +64,11 @@ int isPrime(int intN) {
   int i,
       intRes  = BIA_TRUE,
       intAbsN = abs(intN),
+      intBoundary = (int)floor(sqrt(intAbsN)),
       intRemainder;
 
-  for(i=2;i<intAbsN;i++) {
-    intRes = intAbsN % i;
+  for(i=2;i<intBoundary;i++) {
+    intRemainder = intAbsN % i;
     if ( intRemainder == 0  ) {
       intRes = BIA_FALSE;
       break;
@@ -83,7 +84,7 @@ int isPrime(int intN) {
 /* of primer numbers that was computed.                                 */
 /*                                                                      */
 
-void getFirstPrimes(unsigned int *ptPrimes, int intNumber, int *ptCalc) {
+void getFirstNPrimes(unsigned int *ptPrimes, int intNumber, int *ptCalc) {
 
   unsigned int i,
                uintRemainder;

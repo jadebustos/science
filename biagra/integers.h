@@ -34,5 +34,5 @@
 /* of primer numbers that was computed.                                 */
 /*                                                                      */
 
-  void getFirstPrimes(unsigned int *ptPrimes, int intNumber, int *ptCalc);                                                                                                                                     
+  void getFirstNPrimes(unsigned int *ptPrimes, int intNumber, int *ptCalc);                                                                                                                                     
 #endif
