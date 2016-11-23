@@ -67,7 +67,7 @@ int isPrime(int intN) {
       intRemainder;
 
   for(i=2;i<intAbsN;i++) {
-    intResto = intAbsN % i;
+    intRes = intAbsN % i;
     if ( intRemainder == 0  ) {
       intRes = BIA_FALSE;
       break;
@@ -93,7 +93,7 @@ void getFirstPrimes(unsigned int *ptPrimes, int intNumber, int *ptCalc) {
        j;
 
   if ( intNumAbs != 0  )
-    ptPrimes[intptCalc++] = 2;
+    ptPrimes[intCalc++] = 2;
 
   for(i=3;(i<UINT_MAX-1) && (intCalc<intNumAbs);i+=2) {
     for(j=1;j<intCalc;j++) {
