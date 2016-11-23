@@ -12,7 +12,9 @@ complex:
 	$(CC) complex-polar2Complex.c -o complex-polar2Complex -lbiagra -lm
 
 integers:
-	$(CC) integers-uintSumFirstNIntegers.c -o integers-uintSumFirstNIntegers -lbiagra
+	$(CC) integers-uintSumFirstNIntegers.c -o integers-uintSumFirstNIntegers -lbiagra -lm
+	$(CC) integers-isPrime.c -o integers-isPrime -lbiagra -lm
+	$(CC) integers-getFirstNPrimes.c -o integers-getFirstNPrimes -lbiagra -lm
 
 matrix:
 	$(CC) matrix-identityMatrix.c -o matrix-identityMatrix -lbiagra

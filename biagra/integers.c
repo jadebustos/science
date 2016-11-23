@@ -64,12 +64,10 @@ int isPrime(int intN) {
   int i,
       intRes  = BIA_TRUE,
       intAbsN = abs(intN),
-      intBoundary = (int)floor(sqrt(intAbsN)),
-      intRemainder;
+      intBoundary = (int)floor(sqrt(intAbsN));
 
-  for(i=2;i<intBoundary;i++) {
-    intRemainder = intAbsN % i;
-    if ( intRemainder == 0  ) {
+  for(i=2;i<=intBoundary;i++) {
+    if ( (intAbsN % i) == 0  ) {
       intRes = BIA_FALSE;
       break;
     }
