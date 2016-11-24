@@ -42,6 +42,9 @@ resmem:
 	$(CC) resmem-dblPtMemAllocUpperTrMat.c -o resmem-dblPtMemAllocUpperTrMat -lbiagra
 	$(CC) resmem-dblPtMemAllocLowerTrMat.c -o resmem-dblPtMemAllocLowerTrMat -lbiagra
 
+roots:
+
+	$(CC) roots-newtonMethod.c -o roots-newton-Method -lbiagra
 all:
 	make resmem
 	make complex

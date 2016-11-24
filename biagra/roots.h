@@ -69,7 +69,7 @@ typedef struct {
 /*         BIA_TRUE     -> Success                                      */
 /*                                                                      */
 
-int NewtonFunc(biaRealRoot *ptRoot, 
+int newtonMethod(biaRealRoot *ptRoot, 
 	int (*func)(double dblx0, double *ptRes),
 	int (*der)(double dblx0, double *ptRes));
 

@@ -1,119 +1,79 @@
 #include <math.h>
+#include <stdlib.h>
 
-#include <biagra/struct.h>
+#include <biagra/roots.h>
 #include <biagra/const.h>
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*									*/
-/*	B.I.A.G.R.A.	(c) 1998 Jose Angel de Bustos Perez		*/
-/*			 <jadebustos@gmail.com>         		*/
-/*									*/
-/*      This software is licensed under GPLv2:                          */
-/*        http://www.gnu.org/licenses/gpl-2.0.html                      */
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
-/* raizfunc.c     Jose Angel de Bustos Perez                            */
+/* Function to get a root approximation using the Newton method.        */
 /*                                                                      */
-/* Funciones para calcular raices de funciones.                         */
+/* The following values are returned:                                   */
 /*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* IMPORTANTE!!!                                                        */
-/*                                                                      */
-/*     1) El autor no se responsabiliza de los posibles bugs(si los     */
-/*        hubiera) ni del mal uso de esta biblioteca.                   */
-/*                                                                      */
-/*     2) Esta biblioteca ha sido desarrollada y testeada bajo LiNUX.   */
-/*                                                                      */ 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* Funcion que calcula por el metodo de Newton una raiz de una          */
-/* funcion.                                                             */
-/*                                                                      */
-/* La funcion devuelve:                                                 */
-/*                                                                      */
-/*         FALSE    No se calculo la raiz de la funcion en las          */
+/*         BIA_FALSE    -> root could not be computed                   */
 /*                  condiciones dadas(NMI y Tolerancia).                */
-/*         DIV_CERO Division por Cero.                                  */
-/*         TRUE     Se calculo la raiz de la funcion en las             */
-/*                  condiciones dadas.                                  */
+/*         BIA_ZERO_DIV -> division by zero                             */
+/*         BIA_TRUE  ->   root could be computed                        */
 /*                                                                      */
-/* Funcion es una funcion que almacena en ptdblRes el valor de la       */
-/* funcion que se quiere calcular una raiz en el punto dblPunto, esta   */
-/* funcion devuelve los siguientes codigos:                             */
+/* Two additional functions are needed:                                 */
 /*                                                                      */
-/*         DIV_CERO Hubo division por cero.                             */
-/*         TRUE     No hubo division por cero.                          */
+/*    func, function to get the root                                    */
+/*    der, above's function derivative                                  */  
 /*                                                                      */
-/* Derivada es la una funcion que funciona igual que la anterior pero   */
-/* con la derivada de la funcion anterior.                              */
+/* C prototype of both functions are the same:                          */
 /*                                                                      */
-/*      B.I.A.G.R.A.        Jose Angel de Bustos Perez                  */
+/*    int function_name(double dblx0, double *ptRes)                    */
 /*                                                                      */
-/*	BIbliotecA de proGRamacion cientificA.                          */
+/* where:                                                               */
 /*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/*    dblx0 point in which function is going to be evaluated            */
+/*    *ptRes pointer to the variable where the function's value         */
+/*           at dblx0 is going to be stored                             */
+/*                                                                      */
+/* The following values are returned:                                   */
+/*         BIA_ZERO_DIV -> Division by zero                             */
+/*         BIA_TRUE     -> Success                                      */
+/*                                                                      */
 
-int NewtonFunc(DatosAprxFunc *ptstrDatos, 
-	int (*Funcion)(double dblPunto, double *ptdblRes),
-	int (*Derivada)(double dblPunto, double *ptdblRes))
+int newtonMethod(biaRealRoot *ptRoot, 
+       int (*func)(double dblx0, double *ptRes),
+       int (*der)(double dblx0, double *ptRes)) {
 
-{
-int		i,
-		intRes = TRUE,
-		intNMIAbs = abs(ptstrDatos->intNMI);
+  int  i,
+       intRes = BIA_TRUE,
+       intMNIAbs = abs(ptRoot->intMNI);
 
-double 	dblAprxNew   = .0,
-	dblAprxOld   = (ptstrDatos->dblx0),
-	dblValorFunc = .0,
-	dblValorDeri = .0,
-	dblTolAbs    = fabs(ptstrDatos->dblTol);
+  double dblApprxNew   = .0,
+	 dblApprxOld   = (ptRoot->dblx0),
+	 dblFuncVal    = .0,
+	 dblDerVal     = .0,
+	 dblTolAbs     = fabs(ptRoot->dblTol);
 
-for(i=1;i<=intNMIAbs;i++)
+  for(i=1;i<=intMNIAbs;i++) {
+    intRes = (*func)(dblApprxOld, &dblFuncVal);
 
-	{	/* INICIO for */
+    if ( intRes == BIA_ZERO_DIV )
+      return BIA_ZERO_DIV;
 
-	intRes = (*Funcion)(dblAprxOld, &dblValorFunc);
+    intRes = (*der)(dblApprxOld, &dblDerVal);
 
-	if ( intRes == DIV_CERO )	/* DIVISION POR CERO */
-		return (DIV_CERO);	/* FIN */
 
-	intRes = (*Derivada)(dblAprxOld, &dblValorDeri);
+    if ( intRes == BIA_ZERO_DIV )
+      return BIA_ZERO_DIV;
 
-	if (intRes == DIV_CERO )	/* DIVISION POR CERO */
-		return (DIV_CERO);	/* FIN */
+    if ( dblDerVal == .0 )
+      return BIA_ZERO_DIV;
 
-	if ( dblValorDeri == .0 )	/* DIVISION POR CERO */
-		return (DIV_CERO);	/* FIN */ 
+    /* new root approximation */
+    dblApprxNew = dblApprxOld - (dblFuncVal/dblDerVal);
 
-	/* NUEVA APROXIMACION */
+    /* error */
+    ptRoot->dblError = fabs(dblApprxOld-dblApprxNew);
 
-	dblAprxNew = dblAprxOld - (dblValorFunc/dblValorDeri);
-
-	/* CALCULO DEL ERROR */
-
-	ptstrDatos->dblError = fabs(dblAprxOld-dblAprxNew);
-
-	if ( (ptstrDatos->dblError) < dblTolAbs )
-		{
-		ptstrDatos->dblSolucion = dblAprxNew;
-
-		return (TRUE);	/* FIN */
-		}
-
-	dblAprxOld = dblAprxNew;
-					
-	}	/* FINAL for */
-	 	
-return (FALSE); 	/* FIN */
+    if ( (ptRoot->dblError) < dblTolAbs ) {
+      ptRoot->dblRoot = dblApprxNew;
+      return BIA_TRUE;
+    }
+    dblApprxOld = dblApprxNew;
+  }
+  return BIA_FALSE;
 }
