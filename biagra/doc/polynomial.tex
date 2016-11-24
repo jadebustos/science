@@ -83,31 +83,6 @@ typedef struct {
 
 \FloatBarrier
 
-\section{Polynomial evaluation}
-
-\subsection{\texttt{dblEvaluatePol} function}
-
-This function evaluate a polynomial in a given point and returns it.\\ \\
-%
-The definition of this function:
-%
-\begin{verbatim}
-double dblEvaluatePol(biaRealPol *ptPol, double dblX);  
-\end{verbatim}
-%
-where:
-\begin{description} 
-\item[*ptPol] pointer to a \texttt{biaRealPol} struct.
-\item[dblX] point in which the polynomial has to be evaluated.
-\end{description}
-%
-\ \\
-\note{The \texttt{biaRealPol} has to be initialized with the polynomial degree and polynomial coeficients.}
-%
-\ \\
-%
-\note{See section \ref{sec:biaRealPol} to understand how \texttt{biaRealPol} is used.}
-
 \section{Polynomial derivatives}
 
 \subsection{\texttt{derivativePol} function}

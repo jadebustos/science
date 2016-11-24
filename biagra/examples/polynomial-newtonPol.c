@@ -4,6 +4,7 @@
 
 #include <biagra/polynomial.h>
 #include <biagra/resmem.h>
+#include <biagra/roots.h>
 #include <biagra/const.h>
 
 #include "polsupport.h"

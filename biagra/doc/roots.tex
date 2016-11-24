@@ -1,0 +1,47 @@
+%
+% roots.h
+%
+
+\chapter{Roots approximation (roots.h)} \label{sec:roots}
+
+\section{Introduction}
+
+Functions to compute function's roots approximation are defined in \texttt{roots.h} file.\\
+
+\section{Data structures}
+
+Some data structures are defined in \BI to manage roots.
+
+\subsection{\texttt{biaRealRoot} data structure} \label{sec:biaRealRoot}
+
+This data structure is used to store data for root approximation. Data structure is defined in figure \ref{fig:biaRealRoot} where:
+
+\begin{description}
+\item[intNMI] maximum number of iterations to get the root with a maximum error of \emph{dblTol}.
+\item[intIte] iterations used to get the root.
+\item[dblx0] initial approximation to get the root.
+\item[dblRoot] root approximation.
+\item[dblTol] maximum tolerance when calculating the root.
+\item[dblError] error in root approximation. Difference between the las two root approximations.
+\end{description}
+
+\begin{figure}[!h]
+\begin{verbatim}
+typedef struct {
+  int intNMI,
+      intIte;
+
+  double dblx0,
+         dblRoot,
+         dblTol,
+         dblError;
+  } biaRealRoot;
+\end{verbatim}
+\caption{biaRealRoot data structure.} \label{fig:biaRealRoot}
+\end{figure}
+
+\FloatBarrier
+
+
+
+
