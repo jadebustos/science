@@ -43,7 +43,7 @@ resmem:
 
 roots: polsupport.o
 	$(CC) roots-newtonPol.c polsupport.o -o roots-newtonPol -lbiagra -lm
-	$(CC) roots-newtonMethod.c -o roots-newton-Method -lbiagra -lm
+	$(CC) roots-newtonMethod.c -o roots-newtonMethod -lbiagra -lm
 all:
 	make resmem
 	make complex

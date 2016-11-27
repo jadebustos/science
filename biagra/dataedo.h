@@ -8,7 +8,6 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Esta estructura se utilizara en los metodos Runge-Kutta(E.D.O).      */
 /*                                                                      */
@@ -47,12 +46,7 @@
 /*                                                                      */
 /* **dblMatriz = Array bidimensional que contiene los a_ij, es decir    */
 /*               dblMatriz[i][j] = a_(i+1)(j+1)  0 <= i,j <= s .        */
-/*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
 /*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
 
 typedef struct
@@ -64,7 +58,6 @@ typedef struct
 	int	intEtapas;
 	} ButcherArray;
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Esta estructura la utilizaremos para manejar todos los datos         */
 /* necesarios en la implementacion de un metodo R-K(E.D.O.).            */
@@ -97,12 +90,7 @@ typedef struct
 /* dblPuntos[i] = Y_(i)	                                                */
 /*									*/
 /* dblPuntos[0] = valor de Y en dblInicio. 				*/
-/*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/*                                                                      */
 
 typedef struct
 	
