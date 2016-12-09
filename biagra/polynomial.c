@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <biagra/polynomial.h>
+#include <biagra/roots.h>
 #include <biagra/const.h>
 #include <biagra/resmem.h>
 

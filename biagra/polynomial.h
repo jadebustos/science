@@ -1,6 +1,8 @@
 #ifndef _POLYNOMIAL_H
   #define _POLYNOMIAL_H
 
+#include <biagra/roots.h>
+
 /*                                                                      */
 /*      B.I.A.G.R.A.    (c) 1998 Jose Angel de Bustos Perez             */
 /*                           <jadebustos@gmail.com>                     */
@@ -31,31 +33,6 @@ typedef struct {
 
   double *dblCoefs;        
 } biaRealPol;
-
-/*                                                                      */
-/* Data structure to store function roots                               */
-/*                                                                      */
-/* intMNI   -> maximum number of iterations to get the root with        */
-/*             dblTol error.                                            */
-/* intIte   -> iterations used to get the root.                         */
-/* dblx0    -> initial root approximation.                              */
-/* dblRoot  -> function root approximation                              */
-/* dblTol   -> Maximun error tolerance.                                 */
-/* dblError -> error in root. Difference between two last root          */
-/*             approximations.                                          */
-/*                                                                      */
-        
-typedef struct {
-	    
-  int intMNI,
-      intIte;
-
-  double dblx0,
-         dblRoot,
-         dblTol,
-         dblError;
-
-} biaRealRoot;
 
 /*                                                                      */
 /* Function to evaluate a polynomial in one value.                      */

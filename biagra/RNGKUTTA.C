@@ -17,26 +17,6 @@
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
 /*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* rngkutta.c     Jose Angel de Bustos Perez                            */
-/*                                                                      */
-/* Funciones para inicializar variables para la utilizacion de RK.      */
-/*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-/*                                                                      */
-/* IMPORTANTE!!!                                                        */
-/*                                                                      */
-/*     1) El autor no se responsabiliza de los posibles bugs(si los     */
-/*        hubiera) ni del mal uso de esta biblioteca.                   */
-/*                                                                      */
-/*     2) Esta biblioteca ha sido desarrollada y testeada bajo LiNUX.   */
-/*                                                                      */ 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
-
-
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*									*/
 /* 	      METODOS EXPLICITOS PARA PROBLEMAS ESCALARES		*/
 /*									*/
@@ -135,7 +115,6 @@ ptstrDatos->strCoefi.dblMatriz[3][3] = .0;
 return (TRUE);
 }
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Funcion que inicializa los coeficientes del metodo de HEUN,          */
 /* metodo RUNGE-KUTTA de tres etapas, la funcion asigna memoria a los   */
@@ -147,12 +126,7 @@ return (TRUE);
 /*									*/
 /*	TRUE     -> Se inicializaron con exito los coeficientes.	*/
 /*      ERR_AMEM -> Hubo un error en la asignacion de memoria.		*/
-/*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/*                                                                      */
 
 int MetodoHeun(DatosRK *ptstrDatos)
 
@@ -235,12 +209,7 @@ return (TRUE);
 /*									*/
 /*	TRUE     ->  Se inicializaron con exito los coeficientes.	*/
 /*      ERR_AMEM ->  Hubo un error en la asignacion de memoria.		*/
-/*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/*                                                                      */
 
 int MetodoKutta(DatosRK *ptstrDatos)
 
@@ -324,12 +293,7 @@ return (TRUE);
 /*									*/
 /*	TRUE     ->  Se inicializaron con exito los coeficientes.	*/
 /*      ERR_AMEM ->  Hubo un error en la asignacion de memoria.		*/
-/*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/*                                                                      */
 
 int EulerModificado(DatosRK *ptstrDatos)
 
@@ -408,12 +372,7 @@ return (TRUE);
 /*									*/
 /*	TRUE     -> Se inicializaron con exito los coeficientes.	*/
 /*      ERR_AMEM -> Hubo un error en la asignacion de memoria.		*/
-/*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*									*/
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
+/*                                                                      */
 
 int EulerMejorado(DatosRK *ptstrDatos)
 

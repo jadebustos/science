@@ -11,8 +11,17 @@
 \usepackage{draftwatermark}
 \usepackage{placeins}
 \usepackage{balloons}
+\usepackage{fancyhdr}
 
-\pagestyle{headings}
+%\pagestyle{headings}
+
+\fancyhf{}
+\pagestyle{fancy}
+\fancyhead [L] {Scientific programming library} %Encabezado
+\fancyhead [R]{Version \ver}
+\fancyfoot[R]{\thepage} %Pie de página
+\fancyfoot[L]{\BI}
+
 
 \SetWatermarkText{Draft}
 \SetWatermarkScale{5}
@@ -20,17 +29,16 @@
 
 \author{Jos\'e Angel de Bustos P\'erez}
 
-\newcommand{\BI}
-	{\emph{B.I.A.G.R.A} }
-
-\newcommand{\yo}
+\newcommand{\BI}{\emph{B.I.A.G.R.A} }
+\newcommand{\ver}{1.0}
+\newcommand{\me}
 	{\emph{Jos\'e Angel de Bustos P\'erez}}
 
 \frenchspacing
 
 \hyphenation{si-guien-te apro-xi-ma-cio-nes FORTRAN double intGrado 
 dblDerivada dblResultado intNMI intOrden dblMatriz Newton intResultado
-cabezera coor-de-na-das de-pen-dien-do di-men-sio-na-do re-pre-sen-tan-do par-ti-cu-lar a-ppro-xi-ma-tion me-mo-ry}
+cabezera coor-de-na-das de-pen-dien-do di-men-sio-na-do re-pre-sen-tan-do par-ti-cu-lar a-ppro-xi-ma-tion me-mo-ry po-ly-no-mials e-ve-ry}
 
 \begin{document}
 
@@ -47,9 +55,9 @@ cient\'{\i}fic\LARGE A\\[5cm]
 
 \large 
 \begin{flushright}
-\yo \\
+\me \\
 $<$jadebustos@gmail.com$>$\\ \ \\ 
-Versi\'on $1.0$, \today .\\
+Version \ver, \today .\\
 \textbf{\LaTeXe}
 \end{flushright}
 
@@ -130,16 +138,16 @@ Versi\'on $1.0$, \today .\\
 \include{matrix}
 
 %
+% roots.h
+%
+
+\include{roots}
+
+%
 % EDO.H
 %
 
 \include{edo}
-
-%
-% RAIZFUNC.H
-%
-
-\include{raizfunc}
 
 %
 % RNGKUTTA.H

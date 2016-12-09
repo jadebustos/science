@@ -34,7 +34,6 @@ polynomial: polsupport.o
 	$(CC) polynomial-derivativePol.c polsupport.o -o polynomial-derivativePol -lbiagra
 	$(CC) polynomial-addPol.c polsupport.o -o polynomial-addPol -lbiagra
 	$(CC) polynomial-subtractPol.c polsupport.o -o polynomial-subtractPol -lbiagra
-	$(CC) polynomial-newtonPol.c polsupport.o -o polynomial-newtonPol -lbiagra
 
 resmem:
 	$(CC) resmem-dblPtMemAllocVec.c -o resmem-dblPtMemAllocVec -lbiagra
@@ -42,6 +41,9 @@ resmem:
 	$(CC) resmem-dblPtMemAllocUpperTrMat.c -o resmem-dblPtMemAllocUpperTrMat -lbiagra
 	$(CC) resmem-dblPtMemAllocLowerTrMat.c -o resmem-dblPtMemAllocLowerTrMat -lbiagra
 
+roots: polsupport.o
+	$(CC) roots-newtonPol.c polsupport.o -o roots-newtonPol -lbiagra -lm
+	$(CC) roots-newtonMethod.c -o roots-newtonMethod -lbiagra -lm
 all:
 	make resmem
 	make complex
@@ -49,6 +51,7 @@ all:
 	make matrix
 	make polynomial
 	make resmem
+	make roots
 
 clean:
 	rm -f *.o *~
