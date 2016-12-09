@@ -1,5 +1,6 @@
 #include <math.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include <biagra/roots.h>
 #include <biagra/const.h>
@@ -48,14 +49,13 @@ int newtonMethod(biaRealRoot *ptRoot,
 	 dblDerVal     = .0,
 	 dblTolAbs     = fabs(ptRoot->dblTol);
 
-  for(i=1;i<=intMNIAbs;i++) {
+  for(ptRoot->intIte=1;ptRoot->intIte<=intMNIAbs;(ptRoot->intIte)++) {
     intRes = (*func)(dblApprxOld, &dblFuncVal);
 
     if ( intRes == BIA_ZERO_DIV )
       return BIA_ZERO_DIV;
 
     intRes = (*der)(dblApprxOld, &dblDerVal);
-
 
     if ( intRes == BIA_ZERO_DIV )
       return BIA_ZERO_DIV;

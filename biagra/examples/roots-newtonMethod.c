@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 #include <biagra/polynomial.h>
 #include <biagra/resmem.h>
@@ -19,44 +20,42 @@
 /*      BIbliotecA de proGRamacion cientificA.                          */
 /*                                                                      */
 
-/* Simple example of newtonPol usage */
+/* Simple example of newton method usage to find roots in f(x) = sin(x) */
+
+int myfunc(double x0, double *fx0) {
+  *fx0 = sin(x0);
+  return BIA_TRUE;
+}
+
+int myfuncder(double x0, double *fx0) {
+  *fx0 = cos(x0);
+  return BIA_TRUE;
+}
 
 int main (void) {
 
-  /* Polynomial declaration */
-  biaRealPol myPol;
+  /* function to approximate the root */
+  int myfunc(double x0, double *fx0);
+
+  /* function's derivative */
+  int myfuncder(double x0, double *fx0);
 
   /* Root declaration */
   biaRealRoot myRoot;
 
   int i;
 
-  double px0;
-
-  /* Polynomial order */
-  myPol.intDegree = 5;
-
   /* Root initialization */
   myRoot.intMNI = 256;
-  myRoot.dblTol = 0.0001;
+  myRoot.dblTol = 0.000001;
 
   /* random x0 */
   srand(time(NULL));
   myRoot.dblx0 = (double)(rand()/(double)RAND_MAX);
-  myRoot.dblx0 += (double) ((rand() % 10) + 1.);
-  if ( (rand() % 2) == 0 )
-    myRoot.dblx0 *= -1.;
-
-  /* polynomial generation */
-  i = randomPol(&myPol);
-
-  if ( i == BIA_MEM_ALLOC ) {
-    printf("Error in memory assignation.\n");
-    return BIA_MEM_ALLOC;
-  }
+  myRoot.dblx0 += (double) ((rand() % 4) + 1.);
 
   /* Root approximation */
-  i = newtonPol(&myPol, &myRoot);
+  i = newtonMethod(&myRoot, &myfunc, &myfuncder);
 
   switch(i) {
     case BIA_MEM_ALLOC:
@@ -73,15 +72,11 @@ int main (void) {
       break;
   }
 
-  /* Printing polynomial to stdout */
-  printf("p(x) = ");
-  pol2Stdout(&myPol);
   printf("MNI: %d\n", myRoot.intMNI);
   printf("Tolerance: %g\n", myRoot.dblTol);
   printf("x0 = %g\n", myRoot.dblx0);
   printf("Root: %g\n", myRoot.dblRoot);
-  px0 = dblEvaluatePol(&myPol, myRoot.dblRoot);
-  printf("p(%g) = %g\n", myRoot.dblRoot, px0);
+  printf("Sin(%f) = %g\n", myRoot.dblRoot, sin(myRoot.dblRoot));
   printf("Error: %g\n", myRoot.dblError);
   printf("Iterations used: %d\n", myRoot.intIte);
 
