@@ -22,13 +22,15 @@
 
 /* Simple example of newton method usage to find roots in f(x) = sin(x) */
 
+/* f(x) = x^2 -2 */
 int myfunc(double x0, double *fx0) {
-  *fx0 = sin(x0);
+  *fx0 = (double)(x0 * x0 - 2.);
   return BIA_TRUE;
 }
 
+/* f'(x) = 2*x */
 int myfuncder(double x0, double *fx0) {
-  *fx0 = cos(x0);
+  *fx0 = 2.*x0;
   return BIA_TRUE;
 }
 
@@ -72,11 +74,12 @@ int main (void) {
       break;
   }
 
+  printf("f(x) = x^2 - 2\n");
   printf("MNI: %d\n", myRoot.intMNI);
   printf("Tolerance: %g\n", myRoot.dblTol);
   printf("x0 = %g\n", myRoot.dblx0);
   printf("Root: %g\n", myRoot.dblRoot);
-  printf("Sin(%f) = %g\n", myRoot.dblRoot, sin(myRoot.dblRoot));
+  printf("f(%g) = %g\n", myRoot.dblRoot, myRoot.dblRoot * myRoot.dblRoot - 2.);
   printf("Error: %g\n", myRoot.dblError);
   printf("Iterations used: %d\n", myRoot.intIte);
 
