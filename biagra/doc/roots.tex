@@ -105,6 +105,8 @@ int newtonMethod(biaRealRoot *ptRoot,
        int (*der)(double dblx0, double *ptRes));  
 \end{verbatim}
 %
+Function's pointers are used to avoid having to recode the C function every time a root function need to be approximated for different mathematical functions.\\ \\
+%
 The following codes are returned:
 %
 \begin{center}
@@ -146,3 +148,39 @@ The following data is stored:
 \end{description}
 %
 \note{When two consecutive approximations are close enough, \texttt{dblTol}, last approximation will be considered as good and will be stored in \texttt{*biaRealRoot *ptRoot} in \texttt{dblRoot}.}
+
+\subsection{Usage example}
+
+To approximate a root for the function $f(x) = \sqrt{2}$ to C functions need to be created. A C function for the mathematical function implementation:
+%
+\begin{verbatim}
+/* f(x) = x^2 - 2 */
+int myfunc(double x0, double *fx0) {
+  *fx0 = (double)(x0 * x0 - 2.);
+  return BIA_TRUE;
+}  
+\end{verbatim}
+%
+A C function for the mathematical derivative function implementation:
+%
+\begin{verbatim}
+/* f'(x) = 2*x */
+int myfuncder(double x0, double *fx0) {
+  *fx0 = 2.*x0;
+  return BIA_TRUE;
+}  
+\end{verbatim}
+%
+Both functions must meet the following requirements:
+%
+\begin{itemize}
+\item An integer value is returned, \textbf{BIA\_TRUE} when function is evaluated in $x0$ and \textbf{BIA\_ZERO\_DIV} if a division by zero takes place.
+\item $x0$ value to evaluate the function.
+\item $*fx0$ pointer to a double to store the function's value in $x0$.
+\end{itemize}
+%
+So to approximate function's root using Newton Method:
+%
+\begin{verbatim}
+i = newtonMethod(&myRoot, &myfunc, &myfuncder);  
+\end{verbatim}
