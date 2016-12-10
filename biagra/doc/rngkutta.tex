@@ -12,7 +12,7 @@ Butcher matricial notation is used in this implementation.\\
 
 \section{Data structures}
 
-\subsection{\texttt{biaButcherArray} data structure}
+\subsection{\texttt{biaButcherArray} data structure} \label{sec:biaButcherArray}
 
 This structure is used to store the Butcher matricial notation.\\
 
@@ -45,7 +45,7 @@ typedef struct {
 %
 \FloatBarrier
 
-\subsection{\texttt{DataRK} data structure}
+\subsection{\texttt{biaDataRK} data structure}
 
 This structure is used to store all the data needed to apply a Runge-Kutta method.\\
 
@@ -57,21 +57,31 @@ Data structure is defined in figure \ref{fig:biaDataRK} where:
 %
 \item[intImplicit] when the Runge-Kutta method is implicit or not. The following constants are defined in the header file:
 %
-  \begin{center}
-  \begin{tabular}{|c|c|}
-    \hline
-    \textbf{Name} & \textbf{Value} \\
-    \hline
-    \textbf{BIA\_IMPLICIT\_RK\_TRUE} & $0$ \\
-    \hline
-    \textbf{BIA\_IMPLICIT\_RK\_FALSE} & $1$ \\
-    \hline
-  \end{tabular}
-  \end{center}  
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Name} & \textbf{Value} \\
+\hline
+\textbf{BIA\_IMPLICIT\_RK\_TRUE} & $0$ \\
+\hline
+\textbf{BIA\_IMPLICIT\_RK\_FALSE} & $1$ \\
+\hline
+\end{tabular}
+\end{center}  
 %
-\item[*dblPoints]
+\item[*dblPoints] array with dimension \texttt{intNumApprox} and its elements will be the approximations in $x_i$ where:
 %
-\item[dblStepSize]
+\begin{displaymath}
+x_i = dblFirst + i \cdot dblStepSize \qquad \textrm{where} \qquad 0 \le i < intNumApprox     
+\end{displaymath}
+%
+\item[dblStepSize] method's step-size.
+%
+\item[dblFirst] first point used to compute all the approximations. The value of the function in this point is known (initial condition).
+%
+\item[dblLast] last point in which approximations will be computed.
+%
+\item[strCoefs] variable of type biaButcherArray (section \ref{sec:biaButcherArray}) storing Butcher matricial notation.
 %
 \end{description}
 
@@ -93,6 +103,44 @@ typedef struct {
 \end{figure}
 %
 \FloatBarrier
+
+\section{C\'alculo del n\'umero de nodos}
+
+\subsection{intNumNodos}
+Esta funci\'on calcula el n\'umero de nodos que podemos situar en un
+intervalo.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{int \textbf{intNumNodos}(double dblLong, double dblPaso)}
+\end{center}
+
+\begin{description}
+\item[dblLong] longitud del intervalo.
+\item[dblPaso] distancia entre los nodos.
+\end{description}
+
+La funci\'on devuelve el n\'umero de nodos que podemos situar en dicho
+intervalo.\newline
+
+Por ejemplo:
+
+\begin{center}
+\emph{intResultado = \textbf{intNumNodos}(dblLong, dblPaso);}
+\end{center}
+
+Almacenar\'{\i}a en \emph{intResultado} el n\'umero de nodos que podemos 
+situar en un intervalo de longitud \emph{dblLong} e igualmente espaciados
+por \emph{dblPaso}.\\
+
+Observaciones:
+
+\begin{itemize}
+\item La funci\'on supone que los argumentos que recibe son distintos de cero.
+\item La funci\'on considerar\'a siempre los argumentos que recibe como
+positivos, aunque sean negativos.
+\end{itemize}
 
 \section{Explicit Runge-Kutta methods}
 
@@ -117,6 +165,74 @@ where:
 \end{eqnarray*}
 
 \subsection{\texttt{ExplicitRungeKutta} function}
+
+Funci\'on que resuelve un \emph{P.V.I.}\footnote{Problema de valores 
+iniciales.} mediante un m\'etodo \emph{Runge-Kutta expl\'{\i}cito}.\newline
+
+El prototipo de esta funci\'on es el siguiente:
+
+\begin{center}
+\emph{int \textbf{ExplicitRungeKutta}(DatosRK *ptstrDatos,\\
+double (*PVI)(double dblX, double dblY))}
+\end{center} 
+
+\begin{description}
+\item[ptstrDatos] \emph{puntero} a una variable del tipo 
+\textbf{DatosRK}\footnote{Apartado (\ref{sec:datosRK}) en la p\'agina 
+\pageref{sec:datosRK}.}, la cual contiene los datos necesarios para
+la resoluci\'on del problema.
+\item[PVI] \emph{puntero} a una funci\'on que devuelve el valor de la
+ecuaci\'on diferencial en un punto.
+\begin{description}
+	\item[dblX] punto en el que queremos evaluar la ecuaci\'on diferencial.
+	\item[dblY] valor de la ecuaci\'on diferencial en \emph{dblX}.
+\end{description}
+\end{description}
+
+Por ejemplo, si tenemos el siguiente \emph{P.V.I.}:
+
+\begin{center}
+$
+\left \{ \begin{array}{l}
+y' = y(x) * \frac{x-y(x)}{x^2} \\
+y(1) = 2
+\end{array} \right.
+$
+\end{center}
+
+la funci\'on \emph{PVI} ser\'{\i}a:
+
+\begin{verbatim}
+double PVI(double dblX, double dblY)
+{
+double  dblResultado;
+
+dblResultado = dblY*((dblX-dblY)/(dblX*dblX));
+
+return(dblResultado);
+}
+\end{verbatim}
+
+La funci\'on, \emph{ExplicitRungeKutta}, devuelve los siguientes c\'odigos:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{ERR\_AMEM} & Hubo error en la asignaci\'on de memoria. \\
+\hline
+\textbf{BIA\_TRUE} & Success. \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\emph{intResultado = \textbf{ExplicitRungeKutta}(\&varstrDatRK, PVI);}
+\end{center}
+
+Resolver\'{\i}a el \emph{P.V.I.} representado por la funci\'on \emph{PVI} 
+utilizando los datos almacenados en la variable, del tipo \emph{DatosRK},
+\emph{varstrDatRK} y almacenar\'{\i}a en \emph{intResultado} el c\'odigo
+devuelto por la funci\'on.
 
 \subsection{\texttt{RungeKuttaClasico} function}
 
