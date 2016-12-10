@@ -39,8 +39,7 @@ int newtonMethod(biaRealRoot *ptRoot,
        int (*func)(double dblx0, double *ptRes),
        int (*der)(double dblx0, double *ptRes)) {
 
-  int  i,
-       intRes = BIA_TRUE,
+  int  intRes = BIA_TRUE,
        intMNIAbs = abs(ptRoot->intMNI);
 
   double dblApprxNew   = .0,
