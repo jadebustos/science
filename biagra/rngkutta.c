@@ -95,17 +95,15 @@ int ExplicitRungeKutta(DataRK *ptstrDatos, double (*IVP)(double dblX, double dbl
 }
 
 /*                                                                      */
-/* Funcion que devuelve el numero de nodos que hay en un intervalo de   */
-/* longitud dblLong e igualmente espaciados por dblPaso.                */
+/* Function to get the number of nodes in a dblLong size interval where */
+/* dblStepSize is the distance between two consecutive nodes.           */
 /*									*/
 
 
-int intNumNodos(double dblLong, double dblPaso)
+int intNodeNumber(double dblLong, double dblStepSize) {
+  int  intRes = 1;
 
-{
-int	intRes = 1;
+  intRes += (int)ceil(fabs(dblLong)/fabs(dblStepSize));
 
-intRes += (int)ceil(fabs(dblLong)/fabs(dblPaso));
-
-return (intRes);
+  return (intRes);
 }
