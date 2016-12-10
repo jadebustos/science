@@ -47,6 +47,8 @@ int main (void) {
 
   int i;
 
+  double fx0;
+
   /* Root initialization */
   myRoot.intMNI = 256;
   myRoot.dblTol = 0.000001;
@@ -79,7 +81,11 @@ int main (void) {
   printf("Tolerance: %g\n", myRoot.dblTol);
   printf("x0 = %g\n", myRoot.dblx0);
   printf("Root: %g\n", myRoot.dblRoot);
-  printf("f(%g) = %g\n", myRoot.dblRoot, myRoot.dblRoot * myRoot.dblRoot - 2.);
+  i = myfunc(myRoot.dblRoot, &fx0);
+  if ( i == BIA_TRUE )
+    printf("f(%g) = %g\n", myRoot.dblRoot, fx0);
+  else
+    printf("Division by zero.\n");
   printf("Error: %g\n", myRoot.dblError);
   printf("Iterations used: %d\n", myRoot.intIte);
 
