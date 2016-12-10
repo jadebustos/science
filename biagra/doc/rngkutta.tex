@@ -2,12 +2,31 @@
 % RNGKUTTA.H
 %
 
-\chapter{rngkutta.h}
+\chapter{Runge-Kutta methods (rngkutta.h)}
 
-\section{Introducci\'on}
-En este fichero de cabezera se encuentran los prototipos de funciones para
-la inicializacion de variables que contienen los coeficientes de m\'etodos
-\emph{\mbox{Runge-Kutta}}.\newline
+\section{Introduction}
+
+\textbf{Runge-Kutta} are a family of implicit and explicit iterative methods used to approximate solutions of ordinary differential equations or \textbf{ODE}.\\
+
+Butcher matricial notation is used in this implementation.\\
+
+Let's assume that the initial value problem or Cauchy problem we want to solve is:
+%
+\begin{eqnarray*}
+  y'(x) & = & f(x, y(x)) \\
+  y(x_0) & = & y_0
+\end{eqnarray*}
+%
+\begin{displaymath}
+  y_{n+1} = y_n  + h \cdot \sum_{i=1}^s b_i \cdot k_i
+\end{displaymath}
+%
+Where:
+%
+\begin{eqnarray*}
+  k_i & = & f(x_n + (h\cdot c_i), y_n + h\cdot \left(\sum_{j=1}^{i-1} a_{ij} \cdot k_j \right) )\\
+  c_i & = & \sum_{j=1}^s a_{ij}
+\end{eqnarray*}
 
 Todas estas funciones suponen que la variable de \emph{estructura}, del tipo
 \emph{DatosRK}\footnote{Apartado (\ref{sec:datosRK}) en la p\'agina 

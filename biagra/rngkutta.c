@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include <biagra/struct.h>
+#include <biagra/rngkutta.h>
 #include <biagra/const.h>
 
 /*                                                                      */
@@ -15,107 +15,89 @@
 /*                                                                      */
 
 /*                                                                      */
-/*  Funcion que resuelve un P.V.I. mediante un metodo de RUNGE - KUTTA  */
-/*  explicito, *ptstrDatos es un puntero a un tipo de dato definido por */
-/*  el usuario(prototip en struct.h), y (*PVI) es un puntero a una      */
-/*  funcion que devuelve el valor de la ecuacion diferencial en dblX y  */
-/*  dblY.                                                               */
+/*  Function to solve a I.V.P (Cauchy problem) using explicit           */
+/*  Runge-Kutta methods.                                                */
 /*                                                                      */
-/*  La funcion devuelve los siguientes valores:||       |       |       */
+/* Arguments:                                                           */
+/*    *ptstrDatos -> Pointer to a DataRK data structure                 */
+/*    (*IVP)      -> Pointer to a function implementing de differential */
+/*                   equation in (dblX, dblY)                           */
 /*                                                                      */
-/*|     ERR_AMEM -> Hubo algun error en la asignacion de memoria.|      */
-/*|     TRUE     -> Se calculo con exito la aproximacion.|      |       */
+/*  The following values are returned:                                  */
+/*                                                                      */
+/*      BIA_MEM_ALLOC -> Memory allocation error                        */
+/*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-int ExplicitRungeKutta(DatosRK *ptstrDatos, double (*PVI)(double dblX, double dblY) ) {
+int ExplicitRungeKutta(DataRK *ptstrDatos, double (*IVP)(double dblX, double dblY) ) {
 
-int 	i, 		/* CONTADOR */
-   	j,		/* CONTADOR */
-        k;		/* CONTADOR */
+  int i,
+      j,
+      k;
         
-double	dblPtoAct,	/* PUNTO EN EL QUE SE ESTA CALCULANDO LA APROX */
-   	dblPtoPrev,	/* PUNTO ANTERIOR */
-        dblX,
-        dblY,
-        *dblK;		/* PUNTERO DONDE ALMACENAREMOS LOS k_i */       
+  double  dblPtoAct,	/* PUNTO EN EL QUE SE ESTA CALCULANDO LA APROX */
+   	  dblPtoPrev,	/* PUNTO ANTERIOR */
+          dblX,
+          dblY,
+          *dblK;		/* PUNTERO DONDE ALMACENAREMOS LOS k_i */       
 
-/* ALMACENAMOS EL PASO COMO UN NUMERO POSITIVO */
-
-(ptstrDatos->dblPaso) = fabs((ptstrDatos->dblPaso));
+  /* step-size as a positive number, just in case */
+  (ptstrDatos->dblStepSize) = fabs((ptstrDatos->dblStepSize));
      
-/* RESERVA DE MEMORIA */        
+  /* memory reservation */        
+  dblK = (double *)calloc(ptstrDatos->strCoefs.intStages, sizeof(double));
 
-dblK = (double *)calloc(ptstrDatos->strCoefi.intEtapas, sizeof(double));
+  if ( dblK == NULL ) {
+    return (BIA_MEM_ALLOC);
+  }
 
-if ( dblK == NULL )	/* SI HUBO ALGUN ERROR TERMINA */
+  /* initializations */
+  dblPtoAct = (ptstrDatos->dblFirst) + (ptstrDatos->dblStepSize);
+  dblPtoPrev = (ptstrDatos->dblFirst);
+
+  for(i = 1;i < (ptstrDatos->intNumApprox) ;i++) {
+      
+   /* ki */
+   for(k = 0;k < (ptstrDatos->strCoefs.intStages);k++) {
+      
+   dblX = dblPtoPrev + ( (ptstrDatos->dblStepSize)*(ptstrDatos->strCoefs.dblC[k]) );
+   dblY = .0;
    
-   {
-   return (ERR_AMEM);
-   }
-
-/* INICIALIZACIONES */
-
-dblPtoAct = (ptstrDatos->dblInicio) + (ptstrDatos->dblPaso);
-dblPtoPrev = (ptstrDatos->dblInicio);
-
-for(i = 1;i < (ptstrDatos->intNumAprox) ;i++)
-
-   {	/* INICIO PRIMER for */
-      
-   /* CALCULO DE LOS ki */
-      
-   for(k = 0;k < (ptstrDatos->strCoefi.intEtapas);k++)
-      
-      {  /* INICIO SEGUNDO for */
-      
-      dblX = dblPtoPrev + ( (ptstrDatos->dblPaso)*(ptstrDatos->strCoefi.dblC[k]) );
-      dblY = .0;
+   for(j = 0;j < k;j++)
+     dblY += (dblK[j])*(ptstrDatos->strCoefs.dblMatrix[k][j]);   
    
-      for(j = 0;j < k;j++)
-      
-         dblY += (dblK[j])*(ptstrDatos->strCoefi.dblMatriz[k][j]);   
+   dblY *= (ptstrDatos->dblStepSize);
+   dblY += (ptstrDatos->dblPoints[i-1]);
    
-      dblY *= (ptstrDatos->dblPaso);
-      dblY += (ptstrDatos->dblPuntos[i-1]);
-   
-      dblK[k] = (*PVI)(dblX, dblY);
+   dblK[k] = (*IVP)(dblX, dblY);
                   
-      }	/* FINAL SEGUNDO for */
+   }
       
    /* APROXIMACION */
        
-   (ptstrDatos->dblPuntos[i]) = .0;
+   (ptstrDatos->dblPoints[i]) = .0;
 
-   for(j = 0;j < (ptstrDatos->strCoefi.intEtapas);j++)
-   
-      (ptstrDatos->dblPuntos[i]) += dblK[j] * (ptstrDatos->strCoefi.dblB[j]);
+   for(j = 0;j < (ptstrDatos->strCoefs.intStages);j++)
+     (ptstrDatos->dblPoints[i]) += dblK[j] * (ptstrDatos->strCoefs.dblB[j]);
       
-      
-   (ptstrDatos->dblPuntos[i]) *= (ptstrDatos->dblPaso);
-   (ptstrDatos->dblPuntos[i]) += (ptstrDatos->dblPuntos[i-1]);
+   (ptstrDatos->dblPoints[i]) *= (ptstrDatos->dblStepSize);
+   (ptstrDatos->dblPoints[i]) += (ptstrDatos->dblPoints[i-1]);
    
    dblPtoPrev = dblPtoAct;   
-   dblPtoAct += (ptstrDatos->dblPaso);
+   dblPtoAct += (ptstrDatos->dblStepSize);
    
-   }	/* FINAL PRIMER for */
+   }
 
-/* LIBERAR MEMORIA */
-   
-free (dblK);   
+  /* freing memory */
+  free (dblK);   
 
-return (TRUE);   
+  return (BIA_TRUE);   
 }
 
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 /*                                                                      */
 /* Funcion que devuelve el numero de nodos que hay en un intervalo de   */
 /* longitud dblLong e igualmente espaciados por dblPaso.                */
 /*									*/
-/*	B.I.A.G.R.A.	    Jose Angel de Bustos Perez			*/
-/*									*/
-/*	BIbliotecA de proGRamacion cientificA.				*/
-/*                                                                      */
-/*-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_*/
 
 
 int intNumNodos(double dblLong, double dblPaso)
