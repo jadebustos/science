@@ -29,62 +29,60 @@
 /*      BIA_TRUE      -> Success                                        */
 /*                                                                      */
 
-int ExplicitRungeKutta(DataRK *ptstrDatos, double (*IVP)(double dblX, double dblY) ) {
+int ExplicitRungeKutta(biaDataRK *ptData, double (*IVP)(double dblX, double dblY) ) {
 
   int i,
       j,
       k;
         
-  double  dblPtoAct,	/* PUNTO EN EL QUE SE ESTA CALCULANDO LA APROX */
-   	  dblPtoPrev,	/* PUNTO ANTERIOR */
+  double  dblCurrentPoint,	/* point where the approximation is being calculated */
+   	  dbliPrevPoint, 	/* previous point */
           dblX,
           dblY,
-          *dblK;		/* PUNTERO DONDE ALMACENAREMOS LOS k_i */       
+          *dblK;		/* vector to store the k_i */       
 
   /* step-size as a positive number, just in case */
-  (ptstrDatos->dblStepSize) = fabs((ptstrDatos->dblStepSize));
+  (ptData->dblStepSize) = fabs((ptData->dblStepSize));
      
   /* memory reservation */        
-  dblK = (double *)calloc(ptstrDatos->strCoefs.intStages, sizeof(double));
+  dblK = (double *)calloc(ptData->strCoefs.intStages, sizeof(double));
 
   if ( dblK == NULL ) {
     return (BIA_MEM_ALLOC);
   }
 
   /* initializations */
-  dblPtoAct = (ptstrDatos->dblFirst) + (ptstrDatos->dblStepSize);
-  dblPtoPrev = (ptstrDatos->dblFirst);
+  dblCurrentPoint = (ptData->dblFirst) + (ptData->dblStepSize);
+  dblPrevPoint = (ptData->dblFirst);
 
-  for(i = 1;i < (ptstrDatos->intNumApprox) ;i++) {
+  for(i=1;i<(ptData->intNumApprox);i++) {
       
-   /* ki */
-   for(k = 0;k < (ptstrDatos->strCoefs.intStages);k++) {
-      
-   dblX = dblPtoPrev + ( (ptstrDatos->dblStepSize)*(ptstrDatos->strCoefs.dblC[k]) );
-   dblY = .0;
+   /* k_i */
+   for(k = 0;k < (ptData->strCoefs.intStages);k++) {
+     dblX = dblPrevPoint + ( (ptData->dblStepSize)*(ptData->strCoefs.dblC[k]) );
+     dblY = .0;
    
-   for(j = 0;j < k;j++)
-     dblY += (dblK[j])*(ptstrDatos->strCoefs.dblMatrix[k][j]);   
+     for(j = 0;j < k;j++)
+       dblY += (dblK[j])*(ptData->strCoefs.dblMatrix[k][j]);   
    
-   dblY *= (ptstrDatos->dblStepSize);
-   dblY += (ptstrDatos->dblPoints[i-1]);
+     dblY *= (ptData->dblStepSize);
+     dblY += (ptData->dblPoints[i-1]);
    
-   dblK[k] = (*IVP)(dblX, dblY);
-                  
+     dblK[k] = (*IVP)(dblX, dblY);
    }
       
-   /* APROXIMACION */
+   /* approximation */
        
-   (ptstrDatos->dblPoints[i]) = .0;
+   (ptData->dblPoints[i]) = .0;
 
-   for(j = 0;j < (ptstrDatos->strCoefs.intStages);j++)
-     (ptstrDatos->dblPoints[i]) += dblK[j] * (ptstrDatos->strCoefs.dblB[j]);
+   for(j=0;j<(ptData->strCoefs.intStages);j++)
+     (ptData->dblPoints[i]) += dblK[j] * (ptData->strCoefs.dblB[j]);
       
-   (ptstrDatos->dblPoints[i]) *= (ptstrDatos->dblStepSize);
-   (ptstrDatos->dblPoints[i]) += (ptstrDatos->dblPoints[i-1]);
+   (ptData->dblPoints[i]) *= (ptData->dblStepSize);
+   (ptData->dblPoints[i]) += (ptData->dblPoints[i-1]);
    
-   dblPtoPrev = dblPtoAct;   
-   dblPtoAct += (ptstrDatos->dblStepSize);
+   dblPrevPoint = dblCurrentPoint;   
+   dblCurrentPoint += (ptData->dblStepSize);
    
    }
 
@@ -98,7 +96,6 @@ int ExplicitRungeKutta(DataRK *ptstrDatos, double (*IVP)(double dblX, double dbl
 /* Function to get the number of nodes in a dblLong size interval where */
 /* dblStepSize is the distance between two consecutive nodes.           */
 /*									*/
-
 
 int intNodeNumber(double dblLong, double dblStepSize) {
   int  intRes = 1;

@@ -10,52 +10,116 @@
 
 Butcher matricial notation is used in this implementation.\\
 
-Let's assume that the initial value problem or Cauchy problem we want to solve is:
+\section{Data structures}
+
+\subsection{\texttt{biaButcherArray} data structure}
+
+This structure is used to store the Butcher matricial notation.\\
+
+Data structure is defined in figure \ref{fig:biaButcherArray} where:
+%
+\begin{description}
+%
+\item[intStages] method stages.
+%
+\item[*dblC] $c_i$ coefficients stored in an array with size \texttt{intStages}.
+%
+\item[*dblB] $b_i$ coefficients stored in an array with size \texttt{intStages}.
+%
+\item[**dblMatrix] matrix to store $a_{i,j}$ method's coeficients.  
+%
+\end{description}
+
+\begin{figure}[!h]
+\begin{verbatim}
+typedef struct {
+  double  *dblC,
+          *dblB,
+          **dblMatrix;
+
+  int     intStages;
+} biaButcherArray;
+\end{verbatim}
+\caption{biaButcherArray data structure.} \label{fig:biaButcherArray}
+\end{figure}
+%
+\FloatBarrier
+
+\subsection{\texttt{DataRK} data structure}
+
+This structure is used to store all the data needed to apply a Runge-Kutta method.\\
+
+Data structure is defined in figure \ref{fig:biaDataRK} where:
+%
+\begin{description}
+%
+\item[intNumApprox] number of approximations to be done (size of the array \texttt{dblPoints}).
+%
+\item[intImplicit] when the Runge-Kutta method is implicit or not. The following constants are defined in the header file:
+%
+  \begin{center}
+  \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Name} & \textbf{Value} \\
+    \hline
+    \textbf{BIA\_IMPLICIT\_RK\_TRUE} & $0$ \\
+    \hline
+    \textbf{BIA\_IMPLICIT\_RK\_FALSE} & $1$ \\
+    \hline
+  \end{tabular}
+  \end{center}  
+%
+\item[*dblPoints]
+%
+\item[dblStepSize]
+%
+\end{description}
+
+\begin{figure}[!h]
+\begin{verbatim}
+typedef struct {
+  int intNumApprox,
+      intImplicit;
+
+  double  *dblPoints,
+          dblStepSize,
+          dblFirst,
+          dblLast;
+
+  biaButcherArray strCoefs;
+} biaDataRK;
+\end{verbatim}
+\caption{biaDataRK data structure.} \label{fig:biaDataRK}
+\end{figure}
+%
+\FloatBarrier
+
+\section{Explicit Runge-Kutta methods}
+
+Let's assume that the initial value problem (I.V.P.) or Cauchy problem we want to solve is:
 %
 \begin{eqnarray*}
   y'(x) & = & f(x, y(x)) \\
   y(x_0) & = & y_0
 \end{eqnarray*}
 %
+The family of explicit \textbf{Runge-Kutta} methods is given by:
+%
 \begin{displaymath}
   y_{n+1} = y_n  + h \cdot \sum_{i=1}^s b_i \cdot k_i
 \end{displaymath}
 %
-Where:
+where:
 %
 \begin{eqnarray*}
-  k_i & = & f(x_n + (h\cdot c_i), y_n + h\cdot \left(\sum_{j=1}^{i-1} a_{ij} \cdot k_j \right) )\\
-  c_i & = & \sum_{j=1}^s a_{ij}
+  k_i & = & f(x_n + (h\cdot c_i), y_n + h\cdot \left(\sum_{j=1}^{i-1} a_{i,j} \cdot k_j \right) )\\
+  c_i & = & \sum_{j=1}^{i-1} a_{i,j} \qquad \textrm{where} \qquad i \in \{2,\dots,s\}
 \end{eqnarray*}
 
-Todas estas funciones suponen que la variable de \emph{estructura}, del tipo
-\emph{DatosRK}\footnote{Apartado (\ref{sec:datosRK}) en la p\'agina 
-\pageref{sec:datosRK}}, no tienen dimensionados los punteros en ella 
-contenidos, raz\'on por la cual ser\'a necesario liberar la memoria asignada
-a estos antes de pasarle como parametro una variable de este tipo a una de
-las siguientes funciones(siempre y cuando se hayan dimensionado dichos
-punteros).\newline
+\subsection{\texttt{ExplicitRungeKutta} function}
 
-Hay que destacar que \textbf{NO} se inicializan todos los miembros de esta
-estructura, s\'olo aquellos miembros que contienen los coeficientes del 
-m\'etodo.\newline
+\subsection{\texttt{RungeKuttaClasico} function}
 
-Los siguientes miembros \textbf{NO} se inicializan:
-%
-\begin{description}
-\item[intNumAprox]
-\item[dblPuntos]
-\item[dblPaso]
-\item[dblInicio]
-\item[dblFinal]
-\end{description}
-
-Estos miembros son independientes del m\'etodo, dependen del problema que
-se quiera resolver y tendr\'an que ser inicializados por el usuario.
-
-\section{M\'etodos expl\'{\i}citos}
-
-\subsection{RungeKuttaClasico}
 Funci\'on que inicializa los coeficientes para el m\'etodo \emph{Runge-Kutta 
 Cl\'asico}, el cual es un m\'etodo de $4$ etapas y orden $4$.\newline
 
@@ -106,8 +170,6 @@ Por ejemplo:
 Inicializar\'{\i}a los coeficientes del m\'etodo en la variable 
 \emph{varstrDatRK}, en \emph{intResultado} el valor \textbf{TRUE} si se pudieron
 inicializar los coeficientes y en caso contrario \textbf{ERR\_AMEM}.
-
-\newpage
 
 \subsection{MetodoHeun}
 Funci\'on que inicializa los coeficientes para el m\'etodo de \emph{Heun}, el
@@ -160,9 +222,8 @@ Inicializar\'{\i}a los coeficientes del m\'etodo en la variable
 \emph{varstrDatRK}, en \emph{intResultado} el valor \textbf{TRUE} si se pudieron
 inicializar los coeficientes y en caso contrario \textbf{ERR\_AMEM}.
 
-\newpage
-
 \subsection{MetodoKutta}
+
 Funci\'on que inicializa los coeficientes para el m\'etodo de \emph{Kutta}, el
 cual es un m\'etodo \emph{Runge-Kutta} de $3$ etapas y orden $3$.\newline
 
@@ -213,9 +274,7 @@ Inicializar\'{\i}a los coeficientes del m\'etodo en la variable
 \emph{varstrDatRK}, en \emph{intResultado} el valor \textbf{TRUE} si se pudieron
 inicializar los coeficientes y en caso contrario \textbf{ERR\_AMEM}.
 
-\newpage
-
-\subsection{EulerModificado}
+\subsection{\texttt{EulerModificado} function}
 
 Funci\'on que inicializa los coeficientes para el m\'etodo de \emph{Euler 
 modificado}, el cual es un m\'etodo \emph{Runge-Kutta} de $2$ etapas y 
@@ -268,9 +327,8 @@ Inicializar\'{\i}a los coeficientes del m\'etodo en la variable
 \emph{varstrDatRK}, en \emph{intResultado} el valor \textbf{TRUE} si se pudieron
 inicializar los coeficientes y en caso contrario \textbf{ERR\_AMEM}.
 
-\newpage
+\subsection{\texttt{EulerMejorado} function}
 
-\subsection{EulerMejorado}
 Funci\'on que inicializa los coeficientes para el m\'etodo de \emph{Euler mejorado},
 el cual es un m\'etodo \emph{Runge-Kutta} de $2$ etapas y orden $2$.\newline
 
@@ -321,7 +379,31 @@ Inicializar\'{\i}a los coeficientes del m\'etodo en la variable
 \emph{varstrDatRK}, en \emph{intResultado} el valor \textbf{TRUE} si se pudieron
 inicializar los coeficientes y en caso contrario \textbf{ERR\_AMEM}.
 
-\section{M\'etodos impl\'{\i}citos}
 
-\section{M\'etodos semiimpl\'{\i}citos}
 
+
+
+Todas estas funciones suponen que la variable de \emph{estructura}, del tipo
+\emph{DatosRK}\footnote{Apartado (\ref{sec:datosRK}) en la p\'agina 
+\pageref{sec:datosRK}}, no tienen dimensionados los punteros en ella 
+contenidos, raz\'on por la cual ser\'a necesario liberar la memoria asignada
+a estos antes de pasarle como parametro una variable de este tipo a una de
+las siguientes funciones(siempre y cuando se hayan dimensionado dichos
+punteros).\newline
+
+Hay que destacar que \textbf{NO} se inicializan todos los miembros de esta
+estructura, s\'olo aquellos miembros que contienen los coeficientes del 
+m\'etodo.\newline
+
+Los siguientes miembros \textbf{NO} se inicializan:
+%
+\begin{description}
+\item[intNumAprox]
+\item[dblPuntos]
+\item[dblPaso]
+\item[dblInicio]
+\item[dblFinal]
+\end{description}
+
+Estos miembros son independientes del m\'etodo, dependen del problema que
+se quiera resolver y tendr\'an que ser inicializados por el usuario.
