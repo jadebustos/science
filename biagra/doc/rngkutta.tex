@@ -144,26 +144,6 @@ positivos, aunque sean negativos.
 
 \section{Explicit Runge-Kutta methods}
 
-Let's assume that the initial value problem (I.V.P.) or Cauchy problem we want to solve is:
-%
-\begin{eqnarray*}
-  y'(x) & = & f(x, y(x)) \\
-  y(x_0) & = & y_0
-\end{eqnarray*}
-%
-The family of explicit \textbf{Runge-Kutta} methods is given by:
-%
-\begin{displaymath}
-  y_{n+1} = y_n  + h \cdot \sum_{i=1}^s b_i \cdot k_i
-\end{displaymath}
-%
-where:
-%
-\begin{eqnarray*}
-  k_i & = & f(x_n + (h\cdot c_i), y_n + h\cdot \left(\sum_{j=1}^{i-1} a_{i,j} \cdot k_j \right) )\\
-  c_i & = & \sum_{j=1}^{i-1} a_{i,j} \qquad \textrm{where} \qquad i \in \{2,\dots,s\}
-\end{eqnarray*}
-
 \subsection{\texttt{ExplicitRungeKutta} function}
 
 Funci\'on que resuelve un \emph{P.V.I.}\footnote{Problema de valores 

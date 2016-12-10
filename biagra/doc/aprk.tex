@@ -2,166 +2,139 @@
 % Apendice sobre metodos Runge - Kutta 
 %
 
-\chapter{M\'etodos Runge-Kutta} \label{sec:Runge}
+\chapter{Runge-Kutta methods} \label{sec:Runge}
 
-\section{?`Que es un m\'etodo Runge-Kutta?}
+This appendix is intended to help to know how Runge-Kutta methods are implemented and used in this library.
 
-Los m\'etodos \emph{Runge-Kutta} son m\'etodos num\'ericos para la resoluci\'on
-de \emph{P.V.I.}\footnote{Problema de Valores Iniciales.}.\newline
+\section{What is a Runge-Kutta method?}
 
-Estos m\'etodos son de un \emph{s\'olo paso} y la longitud del paso es 
-fija\footnote{Tambi\'en se pueden implementar con longitud de paso variable,
-son conocidos como \emph{embedding} o \emph{adaptativos}.}.\newline
+\textbf{Runge-Kutta} methods are a family of numerical methods to approach solutions of ordinary differential equations (O.D.E). These methods are iterative methods used to solve ``\emph{initial problem value}'' (\textbf{I.P.V}) or ``\emph{Cauchy problem}''.\\
 
-No trataremos de estudiar con detalle este tipo de m\'etodos, sino de
-dar su formulaci\'on para entender como fueron programados los m\'etodos
-num\'ericos que tratan sobre estos m\'etodos.
-\newpage
+These methods are only-one-step methods with a fixed size for the method step\footnote{It is also possible to implement methods with a variable step known as \emph{embedding}.}.\\
 
-\subsection{?`Que es un P.V.I.?}
-Un \emph{P.V.I.} es:
+\subsection{What is a I.V.P.?}
 
-\begin{equation} \label{eq:PVI}
+An \emph{I.V.P.} is:
+
+\begin{equation} \label{eq:IVP}
 \left\{ \begin{array}{l}
 y' = f(x, y(x))\\
 y(x_0) = y_0\\
 \end{array} \right.
 \end{equation}
+%
+So $y'$ is a function depending on the variable $x$, and the function $y(x)$. $y(x)$ is the solution of the equation \ref{eq:IVP} and the point $(x_0,y_0)$ belongs to the curve $y(x)$.\\
 
-Esta notaci\'on nos indica que $y'$ es una funci\'on en la variable $x$, que
-depende de la funci\'on $y(x)$ y que la curva definida por la funci\'on $y(x)$,
-soluci\'on de la ecuaci\'on diferencial (\ref{eq:PVI}) pasa por el punto 
-$(x_0,y_0)$.\newline
+Solving the \emph{I.V.P.} \ref{eq:IVP} is finding a function $y(x)$ such as the equation \ref{eq:IVP} is met.\\
 
-Resolver el \emph{P.V.I.} (\ref{eq:PVI}) es encontrar una funci\'on $y(x)$
-que satisfaga (\ref{eq:PVI}).\newline
-
-Dado el siguiente \emph{P.V.I.}
-
-\begin{equation} \label{eq:PVIej}
+An example of a \emph{I.V.P.}:
+%
+\begin{equation} \label{eq:IVPej}
 \left\{ \begin{array}{l}
 y' = \frac{x * y(x) - y(x)^2}{x^2} \\
 y(1) = 2 \\
 \end{array} \right.
 \end{equation}
-
-podemos ver como $y'$ depende, efectivamente, de la variable $x$ y de la
-funci\'on $y(x)$, la cual, a su vez, tambi\'en depende de la variable $x$.
-\newline
-
-La soluci\'on de (\ref{eq:PVIej}) ser\'a la funci\'on:
-
+%
+The solution of the \ref{eq:IVPej} will be:
+%
 \begin{equation}
 y(x) = \frac{x}{\frac{1}{2}+\ln x}
 \end{equation}
 
-\section{Formulaci\'on de los m\'etodos Runge-Kutta}
+\section{Runge-Kutta's method notation}
 
-\subsection{Notaci\'on}
+$y(x_i)$ will be the exact value of the function $y(x)$ evaluated in $x_i$.\\ \\
+$y_i$ will be the approximation of the function $y(x)$ in the point $x_i$.\\ \\
+$h$ is the step used by the method in each iteration.
 
-$y(x_i)$ ser\'a el valor exacto de la funci\'on $y(x)$ en el punto $x_i$.\\ \\
-$y_i$ ser\'a una aproximaci\'on del valor de la funci\'on $y(x)$ en el punto
-$x_i$.\newline \newline
-$h$ es el paso utilizado por el m\'etodo en cada iteraci\'on.
+\subsection{General formulation}
 
-\newpage
-
-\subsection{Formulaci\'on general}
-
-La formulaci\'on de un m\'etodo \emph{Runge-Kutta} de \emph{\textbf{s}} 
-etapas es:
-
+A $s$-stages \textbf{Runge-Kutta}'s method formulation is:
+%
 \begin{equation}
-y_{n+1} = y_{n} + h * \sum_{i=0}^{s-1} b_i k_i
+y_{n+1} = y_{n} + h \cdot \sum_{i=0}^{s-1} b_i \cdot k_i
+\end{equation}
+%
+where:
+%
+\begin{equation}
+k_i = f(x_n + c_i \cdot h, y_n + h \cdot \sum_{j=0}^{s-1} a_{i,j} \cdot k_j)
+\end{equation}
+%
+satisfying:
+%
+\begin{equation}
+\sum_{j=0}^{s-1} a_{i,j} = c_i
 \end{equation}
 
-donde
+\subsection{Matricial notation (Butcher's)}
 
-\begin{equation}
-k_i = f(x_n + c_i * h, y_n + h * \sum_{j=0}^{s-1} a_{ij} k_j)
-\end{equation}
+Matricial notation is used to represent method's coeficients using a matrix.\\
 
-verificando
-
-\begin{equation}
-\sum_{j=0}^{s-1} a_{ij} = c_i
-\end{equation}
-
-\subsection{Notaci\'on matricial(Butcher)}
-
-La notaci\'on matricial se utiliza para dar los coeficientes del m\'etodo, y
-como su propio nombre indica, en forma matricial.\newline
-
-La notaci\'on matricial para un \emph{Runge-Kutta} de \emph{s} etapas 
-ser\'{\i}a la siguiente: 
-
+For a $s$-stages \textbf{Runge-Kutta} method the matricial notation will be:
+%
 \begin{center}
-$
+\begin{displaymath}
 \begin{array}{c|ccc}
-c_0 & a_{0\,0} & \cdots \cdots & a_{0\,s-1} \\
+c_0 & a_{0,0} & \cdots \cdots & a_{0,s-1} \\
 \vdots & \vdots & & \vdots \\
 \vdots & \vdots & & \vdots \\
-c_{s-1} & a_{s-1\,0} & \cdots \cdots & a_{s-1\,s-1} \\
+c_{s-1} & a_{s-1,0} & \cdots \cdots & a_{s-1,s-1} \\
 \hline
  & b_0 & \cdots \cdots & b_{s-1} \\
 \end{array}
-$
+\end{displaymath}
 \end{center}
 
-\newpage
+\note{In section \ref{sec:biaButcherArray} is shown a data structure used to store the Butcher array.}
 
-\section{Tipos de Runge-Kutta}
+\section{Runge-Kutta types}
 
-\subsection{Runge-Kutta impl\'{\i}citos}
+There are several types of \textbf{Runge-Kutta} methods.
 
-Un m\'etodo \emph{Runge-Kutta} se dice \emph{impl\'{\i}cito} cuando los $a_{ij}
-\neq 0$ para alg\'un $j > i$.\newline
+\subsection{Implicit Runge-Kutta}
 
-El siguiente m\'etodo es un \emph{Runge-Kutta} de \emph{$2$ etapas},
-\emph{impl\'{\i}cito} y recibe el nombre de \emph{\textbf{``M\'etodo de Gauss 
-de dos etapas''}}:
+A \textbf{Runge-Kutta} method is said to be implicit when the $a_{i,j} \neq 0$ for some $j > i$.\\
 
+The $2$-stages Gauss method is an implicit \textbf{Runge-Kutta} method of $2$-stages:
+%
 \begin{center}
-$
+\begin{displaymath}
 \begin{array}{c|cc}
 \frac{3-\sqrt 3}{6} & \frac{1}{4} & \frac{3-2*\sqrt 3}{12} \\
 \frac{3+\sqrt 3}{6} & \frac{3+2*\sqrt 3}{12} &\frac{1}{4} \\
 \hline
  & \frac{1}{2} & \frac{1}{2}
 \end{array}
-$
+\end{displaymath}
 \end{center}
 
-\subsection{Runge-Kutta semiimpl\'{\i}citos}
+\subsection{Semi-implicit Runge-Kutta}
 
-Un m\'etodo \emph{Runge-Kutta} se dice \emph{semiimpl\'{\i}cito} cuando los
-$a_{ij} = 0$ para $j > i$.\newline
+A \textbf{Runge-Kutta} method is said to be semi-implicit when the $a_{i,j} = 0$ when $j > i$.\\
 
-El siguiente m\'etodo es un \emph{Runge-Kutta} de \emph{$2$ etapas},
-\emph{semiimpl\'{\i}cito:}
-
+A $2$-stages semi-implicit \textbf{Runge-Kutta} method:
+%
 \begin{center}
-$
+\begin{displaymath}
 \begin{array}{c|cc}
 \frac{3+\sqrt 3}{6} & \frac{3+\sqrt 3}{6} & 0 \\
 \frac{3-\sqrt 3}{6} & \frac{-\sqrt 3}{3} & \frac {3+\sqrt 3}{6} \\
 \hline
  & \frac{1}{2} & \frac{1}{2}
 \end{array}
-$
+\end{displaymath}
 \end{center}
 
-\subsection{Runge-Kutta expl\'{\i}citos}
+\subsection{Explicit Runge-Kutta}
 
-Un m\'etodo \emph{Runge-Kutta} se dice \emph{expl\'{\i}cito} cuando los 
-$a_{ij} = 0$ para $j \geq i$.\newline
+A \textbf{Runge-Kutta} method is said to be explicit when the $a_{i,j} = 0$ when $j \geq i$.\\
 
-El siguiente m\'etodo es un \emph{Runge-Kutta} de \emph{$4$ etapas}, 
-\emph{expl\'{\i}cito} y recibe el nombre de 
-\emph{\textbf{``Runge-Kutta cl\'asico''}}:\newline
-
+A $4$-stages explicit \textbf{Runge-Kutta} method also known as ``\textbf{classic Runge-Kutta}'':
+%
 \begin{center}
-$
+\begin{displaymath}
 \begin{array}{c|cccc}
 0 & 0 \\
 \frac{1}{2} & \frac{1}{2} & 0 \\
@@ -170,5 +143,5 @@ $
 \hline
  & \frac{1}{6} & \frac{1}{3} & \frac{1}{3} & \frac{1}{6}
 \end{array}
-$
+\end{displaymath}
 \end{center}
