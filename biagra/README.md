@@ -1,6 +1,6 @@
 # B.I.A.G.R.A
 
-B.I.A.G.R.A stands for BIbliotecA de proGRamacion científicA which means Scientic Programming Library.
+B.I.A.G.R.A stands for BIbliotecA de proGRamacion científicA which means Scientific Programming Library.
 
 This library was developed by me to perform my duties at University when I needed to program them instead of using Mathematica/Matlab/Octave ... 
 
