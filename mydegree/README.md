@@ -8,4 +8,4 @@ All the stuff is written in Spanish.
 
 ## Disclaimer
 
-I have uploaded all these stuff as I found it in my backups. What that's this mean? I do not know if this stuff are the final assignment or a previous backup.
+I have uploaded all this stuff as I found it in my backups. What that's this mean? I do not know if this stuff are the final assignment or a previous backup. So buggy source code could be present.
