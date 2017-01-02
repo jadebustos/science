@@ -1,0 +1,90 @@
+%
+% REDES RBF CON FACTOR DE SEGURIDAD
+%
+
+\section{Redes RBF con factor de seguridad}
+
+En los apartados anteriores hemos visto como en algunos casos las predicciones
+de una red $RBF$ no son fiables. Luego no todas las predicciones de una red de
+este tipo son buenas predicciones, por lo tanto es muy importante identificar
+que predicciones son buenas y cuales no lo son.\\
+
+La forma m\'as directa de solucionar este problema es tener una red $RBF$ que
+distinga las buenas predicciones de las malas.\\
+
+Las funciones gausianas $\phi_i$ toman los valores entre $1.0$ y $0.0$. Para
+distinguir las buenas de las malas predicciones utilizaremos un dato al que
+denominaremos ``\emph{factor de seguridad}'', el cual vendr\'a dado por los
+valores que toman las funciones $\phi_i$.\\
+
+La salida de las neuronas de la segunda capa ser\'a de la forma:
+\begin{displaymath}
+\phi_i(d(X,C_i)) = e^{-(\frac{d(X,C_i)}{r_i})^2}
+\end{displaymath}
+sabemos que $\phi_i(x)\in [0,1]$ y el exponente de la funci\'on exponencial
+de $\phi_i$ nos indica lo siguiente:
+\begin{itemize}
+\item Si $\phi_i(d(X,C_i))\approx 1$ entonces $X$ est\'a pr\'oximo al centro
+$C_i$ y su aportaci\'on a la predicci\'on final es buena.
+\item Si $\phi_i(d(X,C_i))\approx 0$ entonces $X$ no est\'a pr\'oximo al centro
+$C_i$ y su aportaci\'on a la predicci\'on final puede estropear esta.
+\end{itemize}
+En el caso de que todos los EP's tengan valores de $\phi_i$ pr\'oximos a cero la
+predicci\'on obtenida no ser\'a buena.\\
+
+El problema es como obtener una medida de la precisi\'on de la predicci\'on
+utilizando estos valores. A primera vista se le puede ocurrir a uno utilizar
+el m\'aximo de los $\phi_i$, pero esto representa un problema y es que puede
+haber varios EP's con $\phi_i \approx 1$ que hagan que la predicci\'on sea
+buena y, por el hecho de existir un $\phi_i$ grande desechar esta
+predicci\'on.
+%
+\newpage
+%
+Para dar una medida de la precisi\'on de la predicci\'on se utiliza la siguiente
+f\'ormula recursiva:
+\begin{equation}\label{eq:FormulaRecursiva}
+CF_i=CF_{i-1}+(1-CF_{i-1})\cdot max_{i}(\{\phi_j(d(X,C_j))\}_{j=1}^N)
+\end{equation}
+donde:
+\begin{itemize}
+\item $N$ es el n\'umero de EP's en la capa oculta.
+\item $max_i$ ser\'a el $i$-\'esimo mayor valor de los $\phi_j$.
+\item $CF_0 = 0$ por definici\'on.
+\item $CF_i$ es el $i$-\'esimo factor de seguridad.
+\item $CF$ es el factor de seguridad.
+\end{itemize}
+%
+\begin{figure}[!h]
+\input{aplicacion/rbfsegur}
+\caption{Red neuronal del tipo $RBF$ con factor de seguridad.}
+\end{figure}
+%
+
+Normalmente se hace que $i$ varie entre $1$ y $N$, pero tambi\'en se puede hacer
+que varie entre $1$ y $M$ donde $M<N$. El factor de seguridad que mejor nos
+indica la precisi\'on de las predicciones ser\'a $CF=CF_N$.\\
+
+En este tipo de red el calculo de los pesos se realiza de igual forma que en la
+red $RBF$ sin factor de seguridad:
+\begin{itemize}
+\item Los pesos de interconexi\'on entre la primera y segunda capa son todos
+uno:
+\begin{displaymath}
+w_{1,1}[2]=w_{2,1}[2]=w_{3,1}[2]=1
+\end{displaymath}
+\item Los pesos de interconexi\'on entre la segunda y tercera capa se calculan
+de la siguiente forma:
+\begin{itemize}
+\item Aquellos que van al EP de predicci\'on se calculan como en el caso
+anterior. Estos pesos son:
+\begin{displaymath}
+w_{1,1}[3]\quad w_{1,2}[3]\quad w_{1,3}[3]
+\end{displaymath}
+\item Aquellos que van al EP que nos da el factor de seguridad son todos iguales
+a uno:
+\begin{displaymath}
+w_{2,1}[3]=w_{2,2}[3]=w_{2,3}[3]=1
+\end{displaymath}
+\end{itemize}
+\end{itemize}

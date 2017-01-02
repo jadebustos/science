@@ -1,0 +1,84 @@
+%
+% CONCLUSIONES 
+%
+
+\chapter{Conclusiones}
+
+Este trabajo esta orientado a la descripci\'on de \textbf{RNA} y a su
+utilizaci\'on para la predicci\'on de series temporales. Por lo que la
+descripci\'on de series temporales y modelos de regresi\'on no se ha tratado
+en profundidad.
+
+\section{Series temporales}
+
+Las series temporales son procesos que siguen un comportamiento dificil de 
+modelizar, de forma exacta, mediante una ecuaci\'on matem\'atica. Por lo tanto
+para conocer el comportamiento de una serie temporal en el futuro se ha de
+modelizar con funciones matem\'aticas ``simples'', las cuales nos indican, de
+forma aproximada, el comportamiento de dicha serie en el futuro.\\
+
+Para empresas, gobiernos, \dots\ es muy importante conocer estos comportamientos
+con la mayor precisi\'on posible, por lo tanto se intenta resolver el problema
+desde distintos puntos de vista y obtener m\'etodos cada vez m\'as precisos para
+la predicci\'on de series temporales.
+
+\section{Redes neuronales}
+
+Las redes neuronales tienen un alto grado de paralelismo y son muy utilizadas 
+para el reconocimiento de patrones. Gracias a esto tambi\'en se pueden utilizar
+para el reconocimiento de pautas de comportamiento.\\
+
+Es por esto que se utilizan para resolver aquellos problemas en los que no
+podemos dar un modelo matem\'atico exacto o aquellos problemas que son de 
+dificil resoluci\'on mediante programaci\'on secuencial.
+
+\section{Modelos $ARIMA$}
+
+Para la predicci\'on de series temporales hemos utilizado los modelos $ARIMA$ ya
+que son los modelos que m\'as se ajustan a las series temporales, aunque no a
+todas, y son un modelo facil de utilizar para predecir el comportamiento de una
+serie temporal.\\
+
+Estos modelos tienen inconvenientes derivados de ser modelos univariantes, es 
+decir, \'unicamente utiliza los estados anteriores de la serie para determinar
+el comportamiento futuro de la serie.\\
+
+En la mayor\'{\i}a de las series temporales intervienen procesos ajenos al
+comportamiento pasado de la serie, y es por esto que estos modelos tienen sus
+inconvenientes. No pueden reconocer patrones sutiles de comportamiento en la
+serie temporal.\\
+
+La utilizaci\'on pr\'actica de modelos $ARIMA$ se ha descrito de una forma
+breve, para una informaci\'on m\'as detallada ver \cite{Daniel},
+\cite{econometria} y \cite{modeconometricos}.
+
+\section{Predicci\'on con redes neuronales}
+
+Debido al grado de paralelismo y las capacidades de las redes neuronales para
+el reconocimiento de patrones solucionan el problema del reconicimiento de
+patrones sutiles de comportamiento en las series temporales.\\
+
+A pesar de esto hemos visto que algunas veces la predicci\'on de una red
+neuronal puede no ser fiable. Para solucionar estos problemas se introdujeron
+los factores de seguridad y los modelos hibridos, mediante los cuales se
+obtienen valores m\'as fiables que en los modelos de redes neuronales puros.\\
+
+Para obtener buenos resultados con estos m\'etodos tenemos que elegir el
+m\'etodo m\'as preciso. El modelo que mejores resultados da es el hibrido,
+pero para dar predicciones con este modelo tenemos tres posibles. La forma 
+para elegir uno ser\'a comprobar los tres m\'etodos y elegir el m\'as preciso.\\
+
+Antes de hacer esto hemos de entrenar la red con un conjunto de patrones que
+hagan que la red se comporte de la ``mejor'' forma posible para nuestros
+propositos.
+%
+\newpage
+%
+El modelo hibrido tiene la ventaja de poder ser utilizado con otro m\'etodo
+de predicci\'on que no sea el de $Box$ y $Jenkins$ con muy pocos cambios. De
+esta manera si no se obtienen resultados precisos con este modelo se puede 
+cambiar el modelo de $Box$ y $Jenkins$ por otro modelo, ya sea univariante o
+multivariante, con el cual se logren predicciones que se ajusten a nuestras
+necesidades.\\
+
+En \cite{RBF} se pueden ver ejemplos del uso de estos m\'etodos a casos reales.

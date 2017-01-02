@@ -1,0 +1,198 @@
+%
+% SERIES TEMPORALES
+%
+
+\section{Series Temporales}
+
+Las ``\emph{Series Temporales}'' tambi\'en reciben el nombre de ``\emph{Series
+Cronol\'ogicas}'' o ``\emph{Series Hist\'oricas}''. Se basan en el estudio del
+comportamiento de una determinada variable, observaciones, con el fin de poder
+predecir el comportamiento de dicha variable a lo largo del tiempo.
+
+\subsection{?`Para que sirven?}
+
+Intentaremos crear un modelo matem\'atico para predecir la evoluci\'on de una
+variable a lo largo del tiempo. Esta variable puede ser de cualquier tipo:
+
+\begin{itemize}
+\item \textbf{Econ\'omica}: \emph{\'{\i}ndice de precios al consumo},
+\emph{demanda de electricidad}, \emph{producto nacional bruto}, \emph{ventas
+de un determinado tipo}, \ldots
+\item \textbf{F\'{\i}sica}: \emph{velocidad del viento}, \emph{temperatura en
+un proceso}, \emph{concentraci\'on en la atm\'osfera de un contaminante}, \ldots
+\item \textbf{Social}: \emph{n\'umero de nacimientos}, \emph{n\'umero de
+defunciones}, \emph{votos a un partido pol\'{\i}tico}, \ldots 
+\end{itemize}
+
+\newpage
+
+\subsection{?`Que se necesita?}
+
+Necesitaremos disponer de datos sobre la evoluci\'on de la variable que nos 
+interesa a intervalos regulares de tiempo (horas, d\'{\i}as, meses, a\~nos,
+\ldots). Utilizando estos datos intentaremos ``adivinar'' el comportamiento de
+dicha variable en el futuro, suponiendo que el comportamiento de la variable es
+uniforme a lo largo del tiempo, es decir que su comportamiento en el
+futuro\footnote{O al menos en un futuro no muy lejano.} es similar al 
+comportamiento que tuvo dicha variable en el pasado. Es decir que su
+comportamiento no experimenta cambios bruscos entre dos espacios de tiempo
+proximos.\\
+
+Este tipo de analisis recibe el nombre de \emph{an\'alisis univariante}, el cual
+es util para predicciones a corto plazo. Si necesitaramos hacer predicciones a
+medio o largo plazo necesitariamos tener en cuenta una serie de variables
+relacionadas con la variable que queremos estudiar. Este tipo de an\'alisis
+recibe el nombre de \emph{an\'alisis multivariante}.
+ 
+\subsection{Modelo matem\'atico}
+
+El modelo matem\'atico para una \emph{serie temporal} es el concepto de
+``\emph{proceso estoc\'astico}''. Supondremos que el valor observado de la serie
+en un instante $t$ es una extracci\'on al azar de una variable aleatoria
+definida en dicho instante $t$.\\
+
+Una serie de $n$ datos ser\'a una muestra de un vector de $n$ variables
+aleatorias ordenadas en el tiempo $(z_1,\ldots,z_n)$. Se denomina
+\emph{proceso estoc\'astico} al conjunto de estas variables $\{z_t\}_{t=1}^n$,
+y la serie observada se considera una realizaci\'on o trayectoria del proceso.\\
+
+Resumiendo, una ``\emph{serie temporal}'' es una sucesi\'on de valores
+observados de una variable en diferentes instantes de tiempo, en la que las
+observaciones aparecen ordenadas cronol\'ogicamente. Los instantes de tiempo en
+los que se toman las mediciones de la variable suelen ser intervalos regulares
+de tiempo.\\
+
+Hay ``\emph{series temporales}'' que tambi\'en reciben el nombre de
+``\emph{series aleatorias}'' ya que son pr\'actiamente impredecibles, como por
+ejemplo pueden ser:
+\begin{itemize}
+\item Los n\'umeros premiados en la Loter\'{\i}a Nacional.
+\item El n\'umero resultante del lanzamiento de un dado equilibrado.
+\end{itemize}
+
+Sin embargo tambi\'en existen ``\emph{series temporales}'' cuyo comportamiento
+es tan regular que se pueden hacer predicciones muy precisas:
+\begin{itemize}
+\item La posici\'on de los astros.
+\item El horario de las mareas.
+\end{itemize}
+
+En un lugar intermedio, entre estos dos tipos de ``\emph{series temporales}'',
+tenemos otro tipo de series que en su comportamiento tienen dos componentes,
+una componente ``\emph{regular}'' y otra ``\emph{irregular}''. Un ejemplo de 
+estas series pueden ser las ``\emph{series temporales econ\'omicas}''%
+\footnote{Si no todas, al menos la mayor\'{\i}a.}.
+
+\subsection{Procesos estoc\'asticos}
+
+Un ``\emph{proceso estoc\'astico}'', $\{X_t\}$, es una colecci\'on de variables
+aleatorias, $X_t$, ordenadas seg\'un un par\'ametro discreto, $t$, que para 
+nosotros ser\'a el tiempo.\\
+
+Como hemos observado antes los modelos estoc\'asticos de series temporales
+conciben una serie temporal dada como una colecci\'on de observaciones
+muestrales, cada una de ellas correspondiente a una variable del proceso.
+
+\subsection{Definiciones sobre procesos estoc\'asticos}
+
+\begin{definicion}[Funci\'on de medias]\label{def:funciondemedias}
+Llamaremos ``funci\'on de medias'' del proceso a una funci\'on, dependiente del
+tiempo, que proporciona las medias de las distribuciones marginales $z_t$ para
+cada instante $t$:
+\begin{displaymath}
+\mu_t = E[z_t]
+\end{displaymath}
+\end{definicion}
+Si todas la variables tienen la misma media, entonces la ``\emph{funci\'on de
+medias}'' es constante y diremos que el proceso es \emph{estable} en la media.
+
+\begin{definicion}[Funci\'on de varianzas]\label{def:funciondevarianzas}
+Llamaremos ``funci\'on de varianzas'' del proceso a una funci\'on, dependiente
+del tiempo, que proporciona las varianzas en cada instante $t$:
+\begin{displaymath}
+\sigma^2_t = Var\ (z_t)
+\end{displaymath}
+\end{definicion}
+Si esta funci\'on es constante en el tiempo diremos que el proceso es
+\emph{estable} en la varianza.
+
+\begin{definicion}[Funci\'on de autocovarianzas]\label{def:fdeautocovarianzas}
+Llamaremos ``funci\'on de autocorrelaci\'on'' del proceso a la funci\'on que
+describe las covarianzas en dos instantes cualesquiera:
+\begin{displaymath}
+Cov\ (t,t+j)=Cov\ (z_t,z_{t+j}) = E\ [(z_t-\mu_t)(z_{t+j}-\mu_{t+j})]
+\end{displaymath}
+\end{definicion}
+
+\begin{definicion}[Funci\'on de autocorrelaci\'on]\label{def:fdeautocorrelacion}
+Llamaremos ``funci\'on de autocorrelaci\'on'' del proceso a la estandarizaci\'on
+de la funci\'on de covarianzas:
+\begin{displaymath}
+\varrho_{(t,t+j)}=\frac{Cov\ (t,t+j)}{\sigma_t,\sigma_{t+j}}
+\end{displaymath}
+\end{definicion}
+%
+Estas dos \'ultimas funciones dependen de dos par\'ametros, $t$ y $j$, donde:
+\begin{itemize}
+\item $t$ es el instante inicial.
+\item $j$ es el intervalo entre observaciones.
+\end{itemize}
+%
+En muchos fen\'omenos din\'amicos se observa una condici\'on de estabilidad en
+la cual la dependencia entre dos observaciones s\'olo depende del intervalo
+entre ellas y no del origen considerado, es decir:
+\begin{displaymath}
+Cov\ (t_1,t_{1+k})=Cov\ (t_2,t_{2+k}) = \gamma_k\qquad \forall k
+\end{displaymath}
+es decir la relaci\'on entre $z_t$ y $z_{t+j}$ es siempre igual a la relaci\'on
+entre $z_t$ y $z_{t-j}$.
+
+\subsection{Procesos estacionarios}
+
+Diremos que un proceso estoc\'astico (serie temporal) es estacionario en
+``sentido d\'ebil'' si existen y son estables la media, la varianza y las
+covarianzas, es decir, si para todo $t$:
+\begin{enumerate}
+\item $\mu_t$ = $\mu$ = cte
+\item $\sigma^2_t$ = $\sigma^2$ = cte
+\item $Cov\ (t,t+k)=Cov\ (t,t-k)=\gamma_k$ $\forall k$
+\end{enumerate}
+%
+Teniendo en cuenta que $\gamma_0=\sigma^2$ la ``funci\'on de autocorrelaci\'on''
+para un proceso estacionario es:
+\begin{displaymath}
+\varrho_{(t,t+k)} = \varrho_k = \frac{\gamma_k}{\gamma_0}
+\end{displaymath}
+adem\'as se verifica que $\varrho_{-k}=\varrho_{k}$.\\
+
+Llamaremos ``\emph{funci\'on de autocorrelaci\'on simple}''(fas) o
+``\emph{correlograma}'' a la representaci\'on de los coeficientes de
+autocorrelaci\'on en funci\'on del retardo.\\
+
+Si la dependencia entre observaciones tiende a cero al aumentar el retardo
+diremos que el proceso es ``\emph{erg\'odico}''. En lo sucesivo supondremos
+que los procesos estacionarios siempre son ``\emph{erg\'odicos}''.
+
+\subsection{Procesos estacionales}
+
+Que un proceso sea estacional implica que la serie temporal que lo representa
+sigue una pauta regular de comportamiento peri\'odico.\\
+
+Si la serie es mensual, por ejemplo, diremos que existir\'a estacionalidad si
+los eneros tienden a ser similares en distintos a\~nos, y lo mismo con el resto
+de meses. La estacionalidad de una serie la hace no estacionaria, ya que el
+valor medio $\mu$ variar\'a de unos meses a otros.\\
+
+\subsection{Procesos de ruido blanco}
+
+Un proceso estacionario muy importante es el definido por:
+\begin{enumerate}
+\item $E\ [z_t] = 0$
+\item $Var\ (z_t) = \sigma^2$
+\item $Cov\ (z_t,z_{t-k})=0$ $\forall \ k$
+\end{enumerate}
+este proceso recibe el nombre de ``\emph{proceso de ruido}''. Si todas las
+variables de un proceso de este tipo tienen una distribuci\'on normal entonces
+diremos que es un proceso de ``\emph{ruido blanco}''.
+
+\newpage

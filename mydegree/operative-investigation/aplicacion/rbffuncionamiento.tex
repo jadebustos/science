@@ -1,0 +1,57 @@
+%
+% FUNCIONAMIENTO DE ESTA RED
+%
+
+\subsection{Funcionamiento de una red RBF}
+
+Supongamos que tenemos un vector $X=(x_1,\dots,x_n)$, donde $\{x_i\}_{i=1}^n$
+son valores de una serie temporal cualquiera.\\
+
+El EP de la primera capa, capa de entrada de datos, suministra el vector $X$ a
+los EP's de la segunda capa, por lo tanto los pesos sin\'apticos de estas
+conexiones ser\'an $1$:
+\begin{itemize}
+\item $w_{1,1}[2]=1$.
+\item $w_{2,1}[2]=1$.
+\item $w_{3,1}[2]=1$.
+\end{itemize}
+%
+\newpage
+%
+Los EP's de la segunda capa funcionan de la siguiente manera:
+\begin{itemize}
+\item Calculan la distancia del vector $X$ al centro del grupo de datos que
+representan $C_i=(c_{1,i},\dots,c_{n,i})$ para $i=1,2,3$.\\
+
+Para el calculo de la distancia normalmente se emplea la distancia euclidea:
+\begin{displaymath}
+d(X,C_i) =\sqrt{\sum_{j=1}^n(x_j-c_{j,i})^2}\quad para\ i=1,2,3
+\end{displaymath}
+aunque tambi\'en puede usarse cualquier otra distancia.
+\item La distancia $d(X,C_i)$ es transformada por alguna funci\'on y el
+resultado obtenido es la salida del nodo.\\
+
+Una funci\'on tipicamente usada para transformar las distancias $d(X,C_i)$ es
+la siguiente:
+\begin{displaymath}
+\phi_i(x) = e^{-(\frac{x}{r_i})^2}
+\end{displaymath}
+donde $r_i$ es el radio del $i$-\'esimo EP de la segunda capa, el cual es
+conocido. Estas funciones reciben el nombre de ``\emph{funciones gausianas}''.
+\end{itemize}
+Los pesos sin\'apticos asociados a las conexiones de esta capa con la capa de
+salida se determinan de forma experimental mediante algoritmos como el de 
+``backpropagation'' que ya vimos.\\ \\
+%
+El EP de la tercera capa funciona de la siguiente manera:
+\begin{itemize}
+\item Calcula la entrada total de red:
+\begin{displaymath}
+I_1[3] = I_1[3](X) = \sum_{i=1}^3 w_{1,i}[3]\cdot \phi_i(d(X,C_i))
+\end{displaymath}
+\item Se le suma un valor constante a la entrada total de red y el valor
+obtenido es la predicci\'on sobre el comportamiento de la serie temporal:
+\begin{displaymath}
+y = w_0+I_1[3][X]
+\end{displaymath}
+\end{itemize}

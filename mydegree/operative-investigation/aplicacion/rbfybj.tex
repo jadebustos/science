@@ -1,0 +1,92 @@
+%
+% MODELO HIBRIDO
+%
+
+\section{El modelo hibrido}
+
+Hemos ido mejorando los modelos de redes.\\
+
+En primer lugar teniamos una red $RBF$, la cual pod\'{\i}a producir predicciones
+poco fiables y no teniamos ninguna forma de saber que predicciones eran fiables
+y cuales no. Para mejorar esto modificamos la red e introdujimos un factor de
+seguridad, el cual nos indicaba cuando una predicci\'on era fiable o no.\\
+
+Aunque la red $RBF$ con factor de seguridad ofrece m\'as garantias que la red
+$RBF$ sin factor de seguridad no tenemos resueltos todos los problemas. En el 
+caso de obtener una predicci\'on no fiable la red $RBF$ no nos da una
+predicci\'on fiable para ese caso, \'unicamente nos indica que la predicci\'on
+no es fiable.\\
+
+Para solucionar esto utilizamos un modelo hibrido, es decir un modelo que
+utiliza una red neuronal y un m\'etodo de predicci\'on, en nuestro caso el de
+$Box$ y $Jenkins$, y con ambos resultados nos ofrece una predicci\'on.
+%
+\begin{figure}[!h]
+\input{aplicacion/rbfhibrida}
+\caption{Modelo de red hibrida utilizando $RBF$ y el modelo de $Box$ y
+$Jenkins$.}
+\end{figure}
+%
+\newpage
+%
+En este modelo tenemos tres datos para realizar la predicci\'on $Y$:
+\begin{itemize}
+\item La predicci\'on dada por la red $RBF$, $y_{RBF}$.
+\item El factor de seguridad, $CF$.
+\item La predicci\'on dada por el modelo de $Box$ y $Jenkins$, $y_{B-J}$.
+\end{itemize}
+Podemos combinar estos datos de varias formas para obtener la predicci\'on
+deseada sobre el comportamiento de la serie temporal.
+
+\subsection{M\'etodo de tolerancia}
+
+En este m\'etodo el usuario dar\'a una tolerancia, $Tol$, para el factor de
+seguridad. Esta tolerancia se determinar\'a experimentalmente para obtener un
+grado alto de precisi\'on sobre las predicciones.\\ \\
+%
+El algoritmo para este m\'etodo es el siguiente:
+\begin{quote}
+if ( $CF\geq Tol$ ) then
+\begin{quote}
+$Y=y_{RBF}$
+\end{quote}
+else
+\begin{quote}
+$Y=y_{B-J}$
+\end{quote}
+\end{quote}
+
+\subsection{M\'etodo de las aproximaciones de igual importancia}
+
+Este m\'etodo es muy similar al anterior y en \'el tambi\'en se ha de
+especificar una tolerancia, $Tol$, la cual se determina de igual forma que en el
+m\'etodo anterior.\\
+
+En el m\'etodo anterior despreciamos la predicci\'on dada por el modelo de
+$Box$ y $Jenkins$ cuando $CF\geq Tol$, suponiendo esta predicci\'on como peor
+que la obtenida por la red $RBF$, pero esto puede no ser cierto. Es por esta
+raz\'on que en este m\'etodo se utiliza la media de ambas predicciones cuando
+$CF\geq Tol$. El algoritmo para este m\'etodo es el siguiente:
+\begin{quote}
+if ( $CF\geq Tol$ ) then
+\begin{quote}
+$Y=\frac{y_{RBF}+y_{B-J}}{2}$
+\end{quote}
+else
+\begin{quote}
+$Y=y_{B-J}$
+\end{quote}
+\end{quote}
+\newpage
+\subsection{M\'etodo de la aproximaci\'on seg\'un el factor de seguridad}
+
+Este m\'etodo combina las predicciones dadas tanto por la red $RBF$ como por el
+modelo de $Box$ y $Jenkins$, pero da tanta importancia a la predicci\'on de la
+red $RBF$ como seguridad nos indique el factor de seguridad. Es decir si el 
+factor de seguridad es $0.80$ en la predicci\'on final el $80\ \%$ ser\'a
+aportado por $y_{RBF}$ y el $20\ \%$ restante ser\'a aportado por $y_{B-J}$.\\
+
+La predicci\'on por este m\'etodo vendr\'a dada por la siguiente f\'ormula:
+\begin{displaymath}
+Y=(CF\cdot y_{RBF})\cdot (1-CF)\cdot y_{B-J}
+\end{displaymath}

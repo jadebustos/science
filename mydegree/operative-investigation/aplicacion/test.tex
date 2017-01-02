@@ -1,0 +1,22 @@
+%
+% TEST DE PRECISION
+%
+
+\section{Test de precisi\'on para las predicciones}
+
+El criterio por el cual elegiremos un m\'etodo de predicci\'on ser\'a el
+grado de precisi\'on que tenga el m\'etodo. Entenderemos que un m\'etodo es
+preciso cuando sus predicciones se ajusten a la realidad observada. \\
+
+El m\'etodo m\'as utilizado para medir la precisi\'on en modelos para series
+temporales es el denominado ``\emph{Desviaci\'on Absoluta Principal}'' al que
+denominaremos $MAD$:
+\begin{displaymath}
+MAD = \frac{1}{T}\sum_{i=1}^T(Y_i-\widehat{Y}_i)
+\end{displaymath}
+donde:
+\begin{itemize}
+\item $T$ es un n\'umero de predicciones hechas por el modelo.
+\item $Y_i=Z_i-\mu$ y $\mu = E[Z_i]$.
+\item $\widehat{Y}_i$ es una predicci\'on para $Y_{i-1}$.
+\end{itemize}

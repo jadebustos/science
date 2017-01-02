@@ -1,0 +1,387 @@
+%
+% REDES NEURONALES 
+%
+
+\section{Redes Neuronales}
+
+\subsection{?`Que son?}
+
+Las ``\emph{Redes Neuronales}'' surgieron como consecuencia del intento de
+modelizar el funcionamiento del cerebro humano, y en particular su capacidad de
+aprendizaje, para poder dotar de ``inteligencia'' a los ordenadores.\\
+
+Estas redes son modelos simplificados de las redes de neuronas que forman el
+cerebro y tambi\'en reciben el nombre de ``\textbf{RNA}''\footnote{Redes
+Neuronales Artificiales.} y al igual que el modelo biol\'ogico intentan 
+``\emph{aprender}'' de los datos de los que le son suministrados.
+
+\subsection{?`Para que sirven?}
+
+Las \textbf{RNA} se utilizan para resolver aquellos problemas en los que su
+complejidad hace casi imposible su resoluci\'on mediante las t\'ecnicas
+habituales de programaci\'on, ya que el algoritmo utilizado para su
+resoluci\'on es altamente complejo y dificilmente programable mediante los
+sistemas de computaci\'on secuenciales.\\
+
+Un ejemplo de estos problemas son los ``\emph{Sistemas de Reconocimiento Optico
+de Caracteres}''\footnote{O.C.R.}. Estos sistemas tratan, basicamente, de que
+un ordenador reconozca las letras y n\'umeros del abecedario a partir de una
+imagen digital(reconocimiento de patrones).
+
+\subsection{Historia}
+
+Las primeras investigaciones en este campo empezaron en los a\~nos $40$ con los
+trabajos de \emph{McCulloh} y \emph{Pitts}. Posteriormente \emph{Donald O. Hebb}
+estableci\'o una conexi\'on entre la psicolog\'{\i}a y  f\'{\i}siologia en la
+organizaci\'on del comportamiento, proponiendo un m\'etodo de aprendizaje que se
+sigue aplicando en muchas redes neuronales actualmente como una de las reglas
+m\'as potentes.
+%
+\newpage
+%
+Posteriormente \emph{Bernard Widrow} y \emph{Marcian Hoff} desarrollaron un
+algoritmo de red adaptativa basado en un modelo simple de neurona al que
+llamaron \textbf{Adaline} y \emph{Frank Rosenblantt} desarrollo el
+\textbf{Perceptron} que era capaz de clasificar patrones contaminados con
+ruido a la entrada\footnote{La informaci\'on original se deteriora antes de ser
+procesada.} y fue inicialmente aplicado a ``O.C.R.''.\\
+
+En $1.969$ hay un declive en la investigaci\'on sobre \textbf{RNA} a partir de
+la publicaci\'on de un trabajo de \emph{Minsky} y \emph{Papert} que demostraba
+que el \textbf{Perceptron} no era capaz de resolver problemas no lineales
+simples, como la funci\'on l\'ogica \emph{XOR}\footnote{Una red de perceptrones
+s\'{\i} era capaz de resolver el problema \emph{XOR} pero no existian
+algoritmos que pudieran entrenar todos los casos.}.
+
+En los a\~nos $80$ el campo de la computaci\'on neuronal resurge como
+consecuencia de los trabajos de:
+
+\begin{itemize}
+\item \textbf{Kohonen}, que aport\'o trabajos sobre memorias adaptativas y
+aprendizaje competitivo, quedando como recompensa la llamada \emph{red de
+Kohonen}, en honor al investigador.
+\item \textbf{Grossberg}, que trabaj\'o sobre dise\~no y construcci\'on de
+modelos neuronales, introduciendo la funci\'on de transferencia de tipo
+\emph{sigmoide} con la que era posible establecer valores de activaci\'on
+reales y acotados. A partir de estos postulados se desarroll\'o su
+\emph{Teor\'{\i}a de la Resonancia Adaptativa (ART)}.
+\item \textbf{Hopfield}, que desarroll\'o un modelo que consist\'{\i}a en un
+sistema de elementos totalmente interconectados y que buscaba la situaci\'on de
+m\'{\i}nima energ\'{\i}a.
+\item \textbf{Rumelhart}, que desarroll\'o el algoritmo de aprendizaje
+``\emph{Backpropagation}'' o propagaci\'on del error hacia atr\'as.
+\end{itemize}
+%
+\newpage
+%
+\subsection{Caracter\'{\i}sticas de las RNA}
+
+Las \textbf{RNA} presentan una serie de caracter\'{\i}sticas que son:
+
+\begin{description}
+\item[Paralelismo:] debido a su dise\~no son entidades altamente paralelas, ya
+que cada elemento de la red puede funcionar independientemente del resto (dentro
+de una misma capa).
+\item[Adaptabilidad:] las \textbf{RNA} son capaces de autoorganizarse y
+aprender. Las redes no son programadas como los ordenadores tradicionales, sino
+que son entrenadas a trav\'es de la repetida presentaci\'on de ejemplos.
+\item[Aprendizaje adaptativo:] consigue el conocimiento en base a una etapa
+caracter\'{\i}stica que es el aprendizaje, que se basa en el entrenamiento.
+\item[Autoorganizaci\'on:] En base a ese entrenamiento la red va a crearse su
+propia representaci\'on de todo el dominio de la informaci\'on que se le puede
+dar. Es decir, aunque no se la entrene para todas las posibles entradas que le
+pueden llegar es capaz de responder a todas ellas de una manera coherente.
+\item[Reconocimiento de patrones:] las \textbf{RNA} tienen la ``habilidad'' de
+clasificar patrones. Dado un patr\'on de entrada encuentra el patr\'on de
+salida asociado.
+\item[Reconstrucci\'on de patrones:] la red toma un patr\'on de entrada
+incompleto\footnote{Del que se ha perdido informaci\'on.} y es capaz de
+insertar la informaci\'on perdida en el patr\'on recuperando el mejor patr\'on
+asociado con la entrada.
+\item[Tolerancia a fallos:] la destrucci\'on o eliminaci\'on de elementos de
+proceso de una red no causar\'a que la red falle e forma global. Dado que la
+informaci\'on en una red es distribuida, peque\~nas porciones de informaci\'on
+pueden perderse sin afectar seriamente al funcionamiento de la red.
+\end{description}
+
+\begin{ejemplo}[RNA aplicada al O.C.R.] \label{ej:OCRSimple}\ \\
+Podemos emplear una \textbf{RNA} para el reconocimiento de
+patrones. Supongamos que utilizamos una matriz rectangular para la
+representaci\'on de las diferentes letras del abecedario. La matriz tendr\'a
+dimensi\'on $7\times 5$.
+%
+\newpage
+%
+\begin{figure}[!ht]
+\begin{displaymath}
+\begin{tabular}{ccccc}
+0&1&1&1&0\\
+1&0&0&0&1\\
+1&0&0&0&1\\
+1&1&1&1&1\\
+1&0&0&0&1\\
+1&0&0&0&1\\
+1&0&0&0&1
+\end{tabular}
+\end{displaymath}
+\caption{Ideal de la letra A} \label{fig:IdealA}
+\end{figure}
+\begin{figure}[!ht]
+\begin{displaymath}
+\begin{tabular}{ccccc}
+1&1&1&1&0\\
+1&0&0&0&1\\
+1&0&0&0&1\\
+1&1&1&1&1\\
+1&0&0&0&1\\
+1&0&0&0&1\\
+1&0&0&0&1
+\end{tabular}
+\end{displaymath}
+\caption{Letra A borrosa} \label{fig:ABorrosa}
+\end{figure}
+
+Podemos entrenar una \textbf{RNA} para que reconozca la entrada mostrada en la
+figura $\ref{fig:IdealA}$ como la letra \emph{A}. Pero por alg\'un motivo puede
+ocurrir que se suministre la figura $\ref{fig:ABorrosa}$ como letra \emph{A},
+puede ocurrir un error en la recepci\'on de los datos, o simplemente una
+persona diferente a nosotros puede tener ``otro ideal de letra
+\emph{A}''\footnote{Cada persona tiene un tipo de escritura propio.}. Mediante
+el entrenamiento podemos lograr que una \textbf{RNA} reconozca el ``patr\'on''
+de la letra \emph{A} en la entrada mostrada en la figura $\ref{fig:ABorrosa}$ y
+lo asocie a la letra \emph{A}.
+\end{ejemplo}
+
+\subsection{Elementos de una RNA}
+
+Una \textbf{RNA} consta de una serie de elementos interconectados entre s\'{\i}
+a los que denominaremos ``EP'', los cuales son elementos simples de procesado,
+neuronas. Las conexiones entre ``EP's'' reciben el nombre de
+``\emph{sinapsis}'', las cuales ir\'an ponderadas con unos determinados valores
+llamados ``\emph{pesos sin\'apticos}'' que var\'{\i}aran a medida que la red
+aprende, por lo cual necesitaremos de un algoritmo\footnote{Algoritmo de
+aprendizaje de la red.} que permita saber c\'omo y
+cu\'anto deben variar estos.
+\subsection{Elementos de proceso o EP's}
+
+Los ``EP's'' son los elementos individuales de una \textbf{RNA} y los podemos
+dividir en tres tipos:
+
+\begin{itemize}
+\item \textbf{Entrada:} reciben datos del ``mundo exterior'' para procesarlos.
+\item \textbf{Salida:} emiten los datos procesados.
+\item \textbf{Ocultos:} procesan los datos recibidos del ``mundo exterior'' o
+de otros ``EP's'' ocultos y emiten la informaci\'on generada a otros ``EP's''
+ocultos o a los de salida.
+\end{itemize}
+
+Todo ``EP'' tiene, como m\'{\i}nimo, una entrada y una salida la cual puede ser
+aplicada a las entradas de otros ``EP's''(incluido el mismo EP).\\
+
+Como hemos dicho antes todos los ``EP's'' que forman una \textbf{RNA} est\'an
+interconectados entre s\'{\i}. Esta interconexi\'on permite transmitir los
+datos de salida de un ``EP'', en forma de un n\'umero real, a todos los ``EP's''
+con los que se encuentre conectado.
+
+\begin{figure}[!ht]
+\input{intro/rna}
+\caption{Ejemplo de RNA} \label{fig:RNA}
+\end{figure}
+
+\begin{ejemplo}[RNA aplicada al O.C.R.]\ \\
+Siguiendo con el ejemplo $\ref{ej:OCRSimple}$, en la p\'agina
+$\pageref{ej:OCRSimple}$, como cada letra esta representada por una matriz de
+dimensi\'on $7\times 5$ entonces tendremos $7\times 5 = 35$ ``EP's'' de entrada
+y tendremos tantos ``EP's'' como letras queramos reconocer con nuestra
+\textbf{RNA}, por ejemplo $26$ para reconocer el siguiente conjunto de
+caracteres:
+\begin{center}
+A B C D E F G H I J K L M N \~N O P Q R S T U V X Y Z
+\end{center}
+Como cada caracter est\'a representado por una matriz de $7\times 5$, si
+ponemos todas las filas de la matriz seguidas tendremos $35$ digitos, cada uno
+asociado con un ``EP'' de entrada. As\'{\i} mismo como el conjunto de
+caracteres a reconocer es de $26$ tendremos $26$ ``EP's'' de salida, cada
+``EP'' estar\'a asociado a un caracter del conjunto.
+\end{ejemplo}
+
+En algunas \textbf{RNA} aparece un ``EP'' especial, denominado \emph{bias} por
+los inform\'aticos, el cual no es m\'as que un ``EP'' con salida constante que
+est\'a conectado a todas la neuronas de una capa. En lo sucesivo supondremos que
+dicho ``EP'' no existe o que tiene salida nula.
+%
+\newpage
+%
+\subsection{Partes de un EP}
+
+Como hemos dicho antes una \textbf{RNA} esta formada por un conjunto de
+``EP's'' interconectados entre s\'{\i}. Al estar, todos ellos, interconectados
+entre s\'{\i} tiene que haber una forma en la que la informaci\'on procesada
+por un ``EP'' se transmita a los dem\'as para seguir siendo procesada. De esto
+se encargan las diferentes partes de un ``EP''.\\ \\
+En un ``EP'' podemos encontrar:
+
+\begin{itemize}
+\item \textbf{Pesos Sin\'apticos}, valores asociados a la conexi\'on de un
+``EP'' con otros ``EP's''. Estos valores se van modificando a medida que la
+\textbf{RNA} va aprendiendo, mediante entrenamiento, para que de esta forma la
+\textbf{RNA} se comporte adecuadamente.
+\item \textbf{Entrada de Red o Entrada Total}, es una suma ponderada de los
+valores de entrada al ``EP'', procedentes de los ``EP's'' conectados con \'el,
+y de los pesos sin\'apticos asociados con dicho ``EP''.
+\item \textbf{Funci\'on de Activaci\'on}, esta funci\'on nos va a indicar si el
+``PE'' est\'a activo o no, y depende de la \emph{entrada de red} y/o \emph{valor
+de la funci\'on de activaci\'on en el instante anterior}.
+\item \textbf{Funci\'on de Salida}, en esta funci\'on se procesa el valor
+obtenido en la \emph{funci\'on de activaci\'on} y el valor obtenido es el valor
+de salida de la neurona, es decir, la informaci\'on que suministra a otras
+neuronas. Normalmente se utiliza como \emph{funci\'on de salida} la funci\'on
+identidad, con lo cual el valor devuelto por la \emph{funci\'on de activaci\'on}
+es la informaci\'on mandada a otras neuronas. En lo sucesivo supondremos que
+esta funci\'on es la funci\'on identidad, salvo que expresamente se diga lo
+contrario.
+\end{itemize}
+Un ejemplo de esto aplicado a la capa oculta de la \textbf{RNA} que aparece en
+la figura $\ref{fig:RNA}$ de la p\'agina $\pageref{fig:RNA}$:
+
+\subsubsection{Pesos sin\'apticos para la RNA de la figura $\ref{fig:RNA}$}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+EP&EP's que suministran informaci\'on al EP &Pesos sin\'apticos\\
+\hline
+$4$&$1$, $2$ y $3$& $w_{1,4}$, $w_{2,4}$ y $w_{3,4}$\\
+\hline
+$5$&$1$, $2$ y $3$& $w_{1,5}$, $w_{2,5}$ y $w_{3,5}$\\
+\hline
+$6$&$1$, $2$ y $3$& $w_{1,6}$, $w_{2,6}$ y $w_{3,6}$\\
+\hline
+$7$&$1$, $2$ y $3$& $w_{1,7}$, $w_{2,7}$ y $w_{3,7}$\\
+\hline
+\end{tabular}
+\end{center}
+Los pesos asociados a cada ``EP'' se suelen determinar experimentalmente
+mediante el ``entrenamiento'' de la red. El ``entrenamiento'' se suele realizar
+introduciendo en la \textbf{RNA} las posibles entradas que se pueden presentar 
+en la pr\'actica, o al menos un subconjunto significativo de las mismas, y
+comparar la salida obtenida con la salida deseada y modificar los pesos mediante
+alg\'un algoritmo de tal forma que el error cometido por la \textbf{RNA} sea
+nulo o practicamente nulo.
+
+\subsubsection{Entrada de red para la \textbf{RNA} de la figura $\ref{fig:RNA}$}
+
+La \emph{entrada de red}, en el instante $t$, de los diferentes ``EP's'' es:
+
+\begin{displaymath}
+s_j(t)=x_1(t)\cdot w_{1,j}+x_2(t)\cdot w_{2,j}+x_3(t)\cdot w_{3,j} =\sum_{i=1}^3
+x_i(t)\cdot w_{i,j}
+\end{displaymath}
+para $j=4,5,6,7$. Donde $x_i(t)$, $i=1,2,3$, es la entrada desde el $i$-esimo
+``EP'', o lo que es lo mismo la salida del $i$-esimo ``EP''.
+
+\subsubsection{Funci\'on de activaci\'on para la \textbf{RNA} de la figura
+$\ref{fig:RNA}$}
+
+La \emph{funci\'on de activaci\'on} no tiene que ser la misma para todos los
+``EP's'' de la \textbf{RNA} y depender\'a del tipo de problema que estemos
+resolviendo. Denotemos como $F_j$ a la funci\'on de activaci\'on para el
+$j$-esimo ``EP''. Normalmente la activaci\'on, $A_j$, para el $j$-esimo ``EP''
+en el momento depende de la \emph{entrada de red} en el momento $t$, es decir:
+
+\begin{displaymath}
+A_j(t+1) = F_j(s_j(t))
+\end{displaymath}
+Tambi\'en se puede dar el caso que la activaci\'on en el momento $t+1$ dependa
+de la activaci\'on en el momento anterior $t$:
+
+\begin{displaymath}
+A_j(t+1)=F_j(A_j(t),s_j(t))
+\end{displaymath}
+A las \emph{funciones de activaci\'on} tambi\'en se las conoce con el nombre de 
+\emph{funciones de transferencia}.\\
+
+La \emph{funci\'on log\'{\i}stica} es comunmente utilizada como \emph{funci\'on de activaci\'on}.
+\begin{displaymath}
+F_j(t)=\frac{1}{1+e^{-t}}
+\end{displaymath}
+Esta funci\'on toma todos los valores comprendidos entre $0$ y $1$.\\
+
+En algunos casos se tiene definido un valor ``\emph{umbral}'', $\theta$, y
+dependiendo de si la ``entrada de red'' es mayor o no que este valor el ``EP''
+correspondiente se activar\'a o no. En caso de activarse mandar\'{\i}a la 
+se\~nal $1$ y en caso contrario la se\~nal $0$(permanecer\'{\i}a inactiva).
+
+\subsection{Notaci\'on para redes neuronales}
+
+En lo sucesivo utilizaremos la siguiente notaci\'on para una red neuronal:
+\begin{itemize}
+\item $n_s$ n\'umero de neuronas en la capa $s$ de la red neuronal.
+\item $f(x)$ funci\'on de activaci\'on para la red neuronal.
+\item $w_{j,i}[s]$ peso sin\'aptico entre la neurona $i$-\'esima de la capa
+$(s-1)$ con la neurona $j$-\'esima en la capa $s$.
+\item $x_j[s](p)$ salida de la $j$-\'esima neurona de la capa $s$ y patr\'on
+$p$.
+\begin{displaymath}
+x_j[s](p) = f(I_j[s](p))
+\end{displaymath}
+\item $I_j[s](p)$ entrada total de red de la neurona $j$-\'esima en la capa $s$
+y patr\'on $p$.
+\begin{displaymath}
+I_j[s](p) = \sum_{i=1}^{n_{(s-1)}} w_{j,i}[s]\cdot x_i[s-1](p)
+\end{displaymath}
+\end{itemize}
+
+\subsection{Redes Feedforward}
+
+En este tipo de redes las salidas de los ``EP's'' de una capa unicamente son
+entrada de los ``EP's'' de la capa siguiente. Normalmente este tipo de redes
+son las m\'as r\'apidas de todas y representan sistemas lineales. \\
+
+Podemos ver un ejemplo de una red de este tipo en la figura $\ref{fig:RNA}$ 
+situada en la p\'agina $\pageref{fig:RNA}$.
+
+\subsection{Redes Feedback} 
+
+En este tipo de redes las salidas de los ``EP's'' de una capa pueden ser la
+entrada de los ``EP's'' de las capas anteriores. Este tipo de redes representa
+sistemas no lineales.
+
+\subsection{Redes Feedlateral}
+
+En este tipo de redes las salidas de los ``EP's'' de una capa pueden ser la 
+entrada de los ``EP's'' situados en la misma capa. Este tipo de redes representa
+sistemas no lineales.
+
+\subsection{Redes Recurrentes}
+
+En este tipo de redes pueden existir lazos cerrados, es decir, un ``EP'' le
+manda informaci\'on a otro ``EP'' y este \'ultimo despu\'es de procesar la
+informaci\'on le manda informaci\'on al primer ``EP''.
+
+\subsection{El aprendizaje en las RNA}
+
+Basicamente el aprendizaje en las Redes Neuronales consiste en encontrar los
+``pesos sin\'apticos'' adecuados para que la red pueda realizar de una forma
+eficiente su trabajo.
+
+\subsubsection{Aprendizaje por correcci\'on de error}
+
+Consiste en tomar un conjunto de pares de datos, entradas con la correspondiente
+salida en la red, y minimizar el error cometido por la red variando los ``pesos
+sin\'apticos''. El conjunto de pares de datos recibe el nombre de
+``\emph{conjunto de entrenamiento}''.
+
+\subsubsection{Aprendizaje por refuerzo}
+
+No se dispone de un conjunto completo del comportamiento deseado de la red, ya
+que no se conoce la salida deseada exacta para cada entrada, sino que se conoce
+el comportamiento de una manera global para diferentes entradas. La relaci\'on
+entrada-salida se realiza a trav\'es de un proceso de \'exito o fracaso,
+produciendo este una se\~nal de refuerzo que mide el buen funcionamiento del
+sistema. La funci\'on del supervisor es m\'as la de un cr\'{\i}tico que la de
+un maestro.
+
+\subsubsection{Aprendizaje estoc\'astico}
+
+Consiste, b\'asicamente, en realizar cambios aleatorios de los valores de los 
+pesos y evaluar su efecto a partir del objetivo deseado.

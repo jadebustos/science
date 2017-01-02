@@ -1,0 +1,54 @@
+%
+% PROCESO AR(p) 
+%
+
+\section{El proceso autoregresivo general AR(p)}
+
+\subsection{Descripci\'on}
+
+Diremos que un proceso $z_t$ es autoregresivo de orden $p$ si:
+\begin{equation}\label{eq:AR(p)I}
+\widetilde{z}_t = \phi_1\cdot \widetilde{z}_{t-1}+\dots+\phi_p\cdot
+\widetilde{z}_{t-p}+a_t
+\end{equation}
+donde $\widetilde{z}_t=z_t-\mu$ y $a_t$ es un proceso de ruido blanco
+independiente de $z_{t-h}$ para todo $h\ge 1$ y las $\phi_i$ son constantes.\\
+
+Podemos expresar la ecuaci\'on $(\ref{eq:AR(p)I})$ utilizando este operador:
+\begin{displaymath}
+\widetilde{z}_t=(\phi_1\cdot B+\dots +\phi_p\cdot B^p)\widetilde{z}_t +a_t
+\end{displaymath}
+o lo que es lo mismo:
+\begin{displaymath}
+(1-\phi_1\cdot B - \phi_2\cdot B^2-\dots - \phi_p\cdot B^p)\widetilde{z}_t
+= a_t
+\end{displaymath}
+
+\subsection{Ecuaci\'on caracter\'{\i}stica}
+
+Para simplificar llamemos
+$\phi_p(B)= 1-\phi_1\cdot B-\phi_2\cdot B^2-\dots -\phi_p\cdot B^p$, entonces
+se tiene que $\phi_p(B)$ es un polinomio de grado $p$ en la variable $B$. 
+Llamaremos ``\emph{ecuaci\'on caracter\'{\i}stica}'' del proceso a la
+ecuaci\'on:
+\begin{equation}\label{eq:ecucaracARp}
+\phi_p(B) = 0
+\end{equation}
+Esta ecuaci\'on es una ecuaci\'on en $B$, la cual tiene $p$ raices, que
+generalmente son distintas\footnote{Ver Ap\'endice $15.A$ de \cite{Daniel}.}.
+Sean estas raices $G_1^{-1}$,\dots,$G_p^{-1}$, podemos expresar
+$(\ref{eq:ecucaracARp})$ de la siguiente forma:
+\begin{equation}
+\phi_p(B)= \prod_{i=1}^p (1-G_i\cdot B) 
+\end{equation}
+
+Teniendo en cuenta la ecuaci\'on caracter\'{\i}stica de un proceso
+\textbf{AR(p)} podemos expresar su ecuaci\'on como:
+\begin{equation}\label{eq:AR(p)II}
+\phi_p(B)\widetilde{z}_t = a_t
+\end{equation}
+Esta ecuaci\'on es la expresi\'on general de un proceso autoregresivo.\\ \\
+%
+El proceso es estacionario si $|G_i|<1$ para todo $i$.\\ \\
+%
+Para obtener informaci\'on m\'as detallada consultar \cite{Daniel}.

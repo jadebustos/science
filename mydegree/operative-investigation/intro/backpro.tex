@@ -1,0 +1,183 @@
+%
+% EL ALGORITMO BACKPROPAGATION
+%
+
+\subsection{El algoritmo ``Backpropagation''}
+
+Supongamos que tenemos una \textbf{RNA} con $s$ capas. El algoritmo de
+``backpropagation'' consiste en ajustar los pesos sin\'apticos de la red
+mediante la comparaci\'on de resultados obtenidos mediante un conjunto de
+patrones con los resultados correctos que se deber\'{\i}an obtener con esos
+mismos patrones.\\
+
+El nombre de ``backpropagation''\footnote{Propagaci\'on hacia atras.} es debido
+a que primero se ajustan los pesos de la capa de salida y luego se van ajustando
+los pesos de las diferentes capas hacia atras.\\
+
+Con este algoritmo se entrena a la \textbf{RNA} mediante un conjunto de
+patrones, el cual se conoce como patrones de entrenamiento y lo denotaremos como
+$Entr$.\\
+
+Supongamos que el conjunto de patrones de entrenamiento para nuestra red es:
+\begin{displaymath}
+Entr = \{\ p_1,\dots,p_n\ \}
+\end{displaymath}
+Definamos los siguientes valores:
+\begin{itemize}
+\item $y_{p,k}$ salida correcta para el patr\'on de entrenamiento $p$ en la
+neurona $k$-\'esima de la capa de salida.
+\item $o_{p,k}$ salida real producida por el patr\'on de entrenamiento $p$ en
+la neurona $k$-\'esima de la capa de salida.
+\end{itemize}
+Para calcular el error cometido en el procesamiento de cada patr\'on
+utilizaremos el error cuadr\'atico medio. Luego el error cometido al procesar
+el patr\'on $p$ ser\'a:
+\begin{equation}\label{eq:ECM}
+E_p = \frac{1}{2} \sum_{i=1}^{n_s} \delta_{p,k}^{^2} = \frac{1}{2}
+\sum_{i=1}^{n_s} (y_{p,k}-o_{p,k})^2
+\end{equation}
+%
+\newpage
+%
+Seg\'un las definiciones la entrada total de red para la neurona $k$-\'esima en
+la capa $s$ ser\'a:
+\begin{equation}\label{eq:ENTRADARED}
+I_{k}[s](p) = \sum_{i=1}^{n_{s-1}} w_{k,i}[s]\cdot x_i[s-1](p)
+\end{equation}
+donde $x_i[s-1]$ es la salida de la $i$-\'esima neurona de la capa $s-1$. Luego
+tendremos que:
+\begin{equation}\label{eq:SALIDACORRECTA}
+y_{p,k} = f(I_k[s](p))
+\end{equation}
+donde $f(x)$ es la funci\'on de activaci\'on de la red.\\
+
+Para minimizar el error que comete la red tendremos que ajustar los pesos
+sin\'apticos $w_{i,j}$, y esto lo haremos mediante el
+``m\'etodo del gradiente''\footnote{No haremos referencia a las capas para no
+complicar m\'as la notaci\'on}:
+\begin{equation}\label{eq:GRADIENTE}
+w_{j+1,k}-w_{j,k}=\Delta_p w_{j,k}=- \gamma \cdot
+\frac{\partial E_p}{\partial w_{j,k}}
+\end{equation}
+donde $\gamma$ es el ``factor de aprendizaje'' de la red, el cual es positivo y
+normalmente menor que uno.\\ \\
+%
+Utilizando la regla de la cadena tendremos:
+\begin{equation}\label{eq:REGLACADENA}
+\frac{\partial E_p}{\partial w_{j,k}} = \frac{\partial E_p}{\partial I_k(p)}
+\cdot \frac{\partial I_k(p)}{\partial w_{j,k}}
+\end{equation}
+Definiendo:
+\begin{equation}\label{eq:DEFINICION}
+\delta_{p,k} = -\frac{\partial E_p}{\partial I_k(p)}
+\end{equation}
+y derivando $(\ref{eq:ENTRADARED})$ respecto de $w_{j,k}$ tendremos:
+\begin{equation}\label{eq:DERIVANDO}
+\frac{\partial I_k(p)}{\partial w_{j,k}} = x_j(p)
+\end{equation}
+Sustituyendo $(\ref{eq:DEFINICION})$ y $(\ref{eq:DERIVANDO})$ en
+$(\ref{eq:REGLACADENA})$ entonces $(\ref{eq:GRADIENTE})$ nos queda:
+\begin{equation}\label{eq:GRADIENTEFINAL}
+\Delta_p w_{j,k} = \gamma \cdot \delta_{p,k}\cdot x_j(p)
+\end{equation}
+La formula $(\ref{eq:GRADIENTEFINAL})$ nos dar\'a el incremento necesario entre
+dos pesos para el patr\'on $p$.\\
+
+El calculo de los $\delta_{p,k}$ se puede hacer de forma recursiva desde la capa
+de salida hac\'{\i}a las capas ocultas:
+\begin{equation}\label{eq:DERFUNC}
+\delta_{p,k}=-\frac{\partial E_p}{\partial I_k(p)}=
+-\frac{\partial E_p}{\partial x_k(p)}\cdot
+\frac{\partial x_k(p)}{\partial I_k(p)}
+\end{equation}
+En la ecuaci\'on $(\ref{eq:DERFUNC})$ el segundo factor es la derivada de la
+funci\'on de activaci\'on $f(x)$:
+\begin{displaymath}
+x_k[s](p) = f(I_k[s](p))
+\end{displaymath}
+Para calcular el primer miembro de $(\ref{eq:DERFUNC})$ consideraremos los
+siguientes casos:
+\begin{itemize}
+\item La neurona $k$-\'esima est\'a en la capa de salida.
+\item La neurona $k$-\'esima est\'a en una capa oculta.
+\end{itemize}
+
+\subsubsection{En la capa de salida}
+
+En este caso tendremos que:
+\begin{displaymath}
+\frac{\partial E_p}{\partial x_i(p)} = -(y_{p,i}-o_{p,i})
+\end{displaymath}
+ya que como estamos en la capa de salida tendremos que:
+\begin{displaymath}
+x_i(p)=x_i[s](p)=o_{p,i}
+\end{displaymath}
+Resultando que para las neuronas de la capa de salida tendremos de la ecuaci\'on
+$(\ref{eq:DERFUNC})$:
+\begin{equation}\label{eq:DeltaSalida}
+\delta_{p,k} = (y_{p,i}-o_{p,i})\cdot f'(I_k[s](p))
+\end{equation}
+%
+\newpage
+%
+\subsubsection{En las capas ocultas}
+En la capa $z$-\'esima para el patr\'on de entrenamiento $p$ utilizando las
+definiciones y la regla de la cadena tendremos:
+\begin{eqnarray*}
+\frac{\partial E_p}{\partial x_h[z](p)}&=& \sum_{i=1}^{n_z}
+\frac{\partial E_p}{\partial I_i[z](p)}\cdot
+\frac{\partial I_i[z](p)}{\partial x_h[z](p)} =\\
+&=& \sum_{i=1} ^{n_z} \frac{\partial E_p}{\partial I_i[z](p)}\cdot
+\frac{\partial }{\partial x_h[z](p)}\Big( \sum_{i=1}^{n_{z-1}}
+w_{j,i}[z]\cdot x_i[z-1](p) \Big) =\\
+&=& \sum_{i=1}^{n_z} \frac{\partial E_p}{\partial I_i[z](p)}\cdot w_{h,i}[z] =
+-\sum_{i=1}^{n_z} \delta_{p,i}\cdot w_{h,i}[z]
+\end{eqnarray*}
+en el \'ultimo paso hemos utilizado la definici\'on dada en
+$(\ref{eq:DEFINICION})$.\\ \\
+%
+Resultando que para las neuronas de las capas ocultas tendremos de la ecuaci\'on
+$(\ref{eq:DERFUNC})$:	
+\begin{equation}\label{eq:DeltaOcultas}
+\delta_{p,k} = \Big( \sum_{i=1}^{n_z} \delta_{p,i}\cdot w_{k,i}[z] \Big) \cdot
+f'(I_k[z](p))
+\end{equation}
+
+\subsubsection{Actualizaci\'on de los pesos}
+
+Una vez que se conoce la expresi\'on de los $\delta_{p,k}$, utilizando las
+ecuaciones $(\ref{eq:GRADIENTE})$, $(\ref{eq:REGLACADENA})$,
+$(\ref{eq:DEFINICION})$ y $(\ref{eq:DERIVANDO})$ o lo que es lo mismo la
+ecuaci\'on $(\ref{eq:GRADIENTEFINAL})$ obtenemos la siguiente formula para la
+acutalizaci\'on de los pesos de la capa $z$-\'esima:
+\begin{displaymath}
+w_{j+1,k}=w_{j,k}+\gamma \cdot \delta_{p,k}\cdot x_j[z](p)
+\end{displaymath}
+donde $\delta_{p,k}$ viene determinada por $(\ref{eq:DeltaSalida})$ o
+$(\ref{eq:DeltaOcultas})$, dependiendo si la capa en la que estamos 
+actualizando los pesos es la capa de salida o es una capa oculta.
+%
+\newpage
+%
+\subsubsection{Factor de aprendizaje}
+
+El valor $\gamma$ recibe el nombre de ``factor de aprendizaje'' y ello es 
+debido a que seg\'un el valor que tenga el aprendizaje de la red ser\'a m\'as o
+menos r\'apido.\\
+
+Este factor es siempre positivo y normalmente es un n\'umero peque\~no, entre
+$0.05$ y $0.25$, para asegurar que la red converge a una soluci\'on.\\
+
+Un valor peque\~no de $\gamma$ significa que la red tendr\'a que hacer un gran
+n\'umero de iteraciones. A veces es posible incrementar el valor de $\gamma$ a
+medida que progresa el aprendizaje. Aumentando $\gamma$ a medida que disminuye
+el error de la red suele acelerarse la convergencia incrementando el tama\~no
+del paso conforme el error alcanza un valor m\'{\i}nimo, pero la red puede
+rebotar, alej\'andose demasiado del valor m\'{\i}nimo verdadero si $\gamma$
+llegara a ser demasiado grande.
+
+\subsubsection{Regla Delta generalizada}
+
+El algoritmo que hemos utilizado para ajustar los pesos sin\'apticos de la
+\textbf{RNA}, utilizando ``backpropagation'', recibe el nombre de
+\emph{Regla Delta generalizada}.

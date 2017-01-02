@@ -1,0 +1,142 @@
+%
+% MODELOS ARIMA EN LA PRACTICA
+%
+
+\section{Modelos ARIMA en la pr\'actica}
+
+Para identificar un modelo utilizaremos todos los datos que tengamos sobre la
+serie temporal.
+
+\subsection{Identificaci\'on de la estructura del modelo}
+
+En esta fase tendremos que decidir las transformaciones necesarias para
+transformar el proceso en estacionario.
+\begin{itemize}
+\item Tendremos que determinar el n\'umero de diferencias que se deben aplicar
+para que la media sea constante. Este n\'umero, $d$, es normalmente uno o dos.
+\item Tendremos que determinar si es necesario transformar la serie para que
+tenga varianza constante.
+\end{itemize}
+%
+\newpage
+%
+Una vez que hemos transformado el proceso en estacionario tendremos que
+determinar un modelo para el proceso estacionario, es decir, los \'ordenes $p$ y
+$q$ de su representaci\'on $ARMA(p,q)$, y si el proceso es estacional tendremos
+que determinar los \'ordenes $P$ y $Q$ de la estructura $ARMA$ estacional.\\
+
+Despu\'es tendremos que realizar un estudio acerca de la estacionalidad. En
+caso de presentar estacionalidad con un per\'{\i}odo $s$ tendr\'{\i}amos que 
+aplicar la diferencia $(1-B^s)$ para convertirla en estacionaria.\\ \\
+%
+Para ver si una serie temporal es estacional podemos utilizar:
+\begin{itemize}
+\item El gr\'afico de la serie, el cual presentar\'a una pauta repetida de
+acuerdo con el per\'{\i}odo estacional $s$.
+\item La funci\'on de autocorrelaci\'on simple, la cual presentar\'a
+coeficientes positivos que decrecer\'an lentamente en los retardos $s$, $2s$,
+$3s$, \dots
+\end{itemize}
+
+\subsection{Estimaci\'on de los par\'ametros del modelo}
+
+Una vez identificado el modelo estimaremos sus par\'ametros mediante
+la mi\-ni\-mi\-za\-ci\'on de la suma de los cuadrados de los errores $a_t$.\\
+
+Para un proceso $AR(p)$ perderemos las $p$ primeras observaciones:
+\begin{displaymath}
+\sum_{t=p+1}^t a_t^2=S(\phi_1,\dots,\phi_p)
+\end{displaymath}
+este tipo de estimaciones recibe el nombre de ``estimaciones condicionadas'',
+ya que depende de $z_1,\dots,z_p$, que son tomados como dato.\\
+
+Las estimaciones condicionadas obtenidas minimizando $S$ se calculan con las
+siguientes hip\'otesis:
+\begin{itemize}
+\item Modelos $AR$ valores iniciales: $z_1,\dots,z_p$.
+\item Modelos $MA$ valores iniciales: $a_0,\dots,a_{-q}$.
+\item Modelos $ARMA$ valores iniciales: $z_1,\dots,z_p;a_0,\dots,a_{-q}$.
+\end{itemize}
+%
+\newpage
+%
+\subsection{Diagn\'ostico del modelo}
+
+Una vez que tenemos construido el modelo hay que comprobar que dicho modelo
+representa el comportamiento de la serie temporal, esto lo haremos mediante un
+contraste de hip\'otesis. Un buen modelo debe cumplir:
+\begin{itemize}
+\item Los residuos del modelo estimado se aproximan al comportamiento de un
+ruido blanco.
+\item El modelo es estacionario e invertible.
+\item Los coeficientes son estad\'{\i}sticamente significativos.
+\item Los coeficientes del modelo est\'an poco correlacionados entre s\'{\i}.
+\item El grado de ajuste es elevado en comparaci\'on al de otros modelos
+alternativos.
+\end{itemize}
+El contraste que m\'as se suele utilizar para comprobar que las
+autocorrelaciones en su conjunto no son significativas es el denominado
+$Box$-$Pierce$.
+
+\subsection{La esperanza condicionada como predictor \'optimo}
+
+Si tenemos una observacion de longitud $T$ $Z_T=(z_1,\dots,z_T)$ de una serie
+temporal y queremos obtener una predicci\'on del valor $z_{T+k}$, donde
+$k\in \mathbb{N}$, minimizando el error cuadr\'atico medio. Podemos ver en
+\cite{Daniel} que:
+\begin{displaymath}
+\hat{z}_{T+k}=E[z_{T+k} | Z_T]
+\end{displaymath}
+minimiza el error cuadr\'atico medio. Utilizando este resultado podemos obtener
+el predictor cuando conozcamos las distribuciones condicionadas. Pero esto, en
+general, no ocurre y buscaremos predictores, funciones lineales de las
+observaciones, qeu minimizen el error de predicci\'on.
+%
+\newpage
+%
+\subsection{La ecuaci\'on de predicci\'on de un modelo ARIMA}
+
+Supongamos que tenemos $T$ datos de un proceso $ARIMA(p,d,q)$ cuyos par\'ametros
+son conocidos:
+\begin{displaymath}
+z_t=\phi_1\cdot z_{t-1}+\dots+\phi_h\cdot z_{t-h}+a_t-\theta_1\cdot a_{t-1}-
+\dots - \theta_q\cdot a_{t-q}
+\end{displaymath}
+donde el operador $\Phi_h(B)=\Theta (B)\nabla^d$ puede tener raices en el
+circulo unidad, luego $h=p+d$.\\
+
+La predicci\'on \'optima de $z_{T+k}$ ser\'a la esperanza condicionada de esta
+variable dada la realizaci\'on $Z_T=(z_1,\dots,z_T)$. Llamando:
+\begin{eqnarray*}
+\hat{z}_t(j)&=&E[z_{T+j} | Z_T]\\
+\hat{a}_t(j)&=&E[a_{T+j} | Z_T]
+\end{eqnarray*}
+donde $T$ representa el origen de la predicci\'on y $j$ el horizonte.
+Sustituyendo $z_t$ en la ecuaci\'on anterior por $z_{T+j}$ y tomando esperanzas
+condicionadas a $Z_T$ tendremos:
+\begin{equation}\label{eq:Esperanzas}
+\hat{z}_T(j)=\phi_1\cdot \hat{z}_T(j-1)+\dots+\phi_h\cdot \hat{z}_t(j-h)-
+\theta_1\cdot \hat{a}_T(j-1)-\dots-\hat{a}_T(j-q)
+\end{equation}
+donde:
+\begin{itemize}
+\item $\hat{z}_T(-i)=z_{T-i}$ para $i>0$.
+\item $\hat{a}_T(i)=0$ para $i>0$.
+\item $a_{T+i}=0$ para $i<0$.
+\end{itemize}
+Para $j=1$ tendremos:
+\begin{displaymath}
+a_{T+1}=z_{T+1}-\hat{z}_T(1)
+\end{displaymath}
+que indica que las perturbaciones del modelo son los errores de predicci\'on
+de un per\'{\i}odo por delante.\\
+
+La ecuaci\'on $(\ref{eq:Esperanzas})$ indica que despu\'es de unos valores
+iniciales la predicci\'on queda determinada por la parte autoregresiva del
+modelo. En efecto, para $j>q$ las predicciones de $(\ref{eq:Esperanzas})$
+satisfacen la ecuaci\'on:
+\begin{displaymath}
+(1-\phi_1\cdot B-\dots-\phi_h\cdot B^h)\hat{z}_{T}(j) = 0
+\end{displaymath}
+siendo $B\cdot \hat{z}_T(j)=\hat{z}_t(j-1)$, es decir, el operador $B$ act\'ua
+ahora sobre el horizonte de la previsi\'on $j$ ya que $T$, origen, el fijo.

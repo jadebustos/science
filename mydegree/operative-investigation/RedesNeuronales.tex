@@ -1,0 +1,70 @@
+\documentclass[a4paper,12pt]{report}
+
+%\addtolength{\voffset}{-2cm}
+\usepackage[spanish]{babel}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\hyphenation{mo-de-li-zar su-pon-ga-mos rea-li-zar mo-de-los pu-bli-ca-do cas-te-lla-no te-ne-mos ave-ra-ge re-pre-sen-ta ge-ne-ra-li-za-da back-pro-pa-ga-tion pre-dicciones uni-va-rian-tes de-no-mi-na-re-mos}
+
+\newtheorem{definicion}{Definici\'on}[chapter]
+\newtheorem{ejemplo}{Ejemplo}[chapter]
+\newtheorem{proposicion}{Proposici\'on}[chapter]
+\newtheorem{observacion}{Observaci\'on:}
+
+\begin{document}
+\ \\ \\
+\Huge
+%\begin{center}
+\textbf{Predicci\'on de Series Temporales}
+\begin{center}
+\textbf{con Redes Neuronales}
+\end{center}
+\ \\ \\
+
+\begin{flushright}
+\Large
+\ \\
+\textbf{Jos\'e Angel de Bustos P\'erez}\\
+\textbf{Investigaci\'on Operativa}\\
+\textbf{Curso $1.999-2.000$}
+\end{flushright}
+
+\normalsize
+
+\thispagestyle{empty}
+
+\tableofcontents
+\listoffigures
+
+%
+% INTRODUCCION 
+%
+
+\include{intro/intro}
+
+%
+% CONSTRUCCION DEL MODELO CLASICO, ARIMA
+%
+
+\include{modelo/modelo}
+
+%
+% APLICACION A SERIES TEMPORALES
+%
+
+\include{aplicacion/aplicacion}
+
+%
+% CONCLUSIONES
+%
+
+\include{conclusiones/conclusiones}
+
+%
+% BIBLIOGRAFIA
+%
+
+\include{biblio/biblio}
+
+\end{document}

@@ -1,0 +1,27 @@
+%
+% DESCRIPCION DE ESTA RED
+% 
+
+\subsection{Descripci\'on de la red RBF}
+
+Este tipo de red es una red de tres capas:
+\begin{itemize}
+\item La primera capa es la capa de entrada de datos, la cual suministra los
+datos de entrada a los EP's de la segunda capa. 
+\item La segunda capa, capa oculta, se comporta de una forma muy diferente a
+otro tipo de redes. Cada EP de esta capa representa a un grupo de datos
+centrados en un punto fijo y con radio conocido.\\
+
+Por comodidad supondremos que en esta capa tenemos tres EP's.
+\item La tercera capa, capa de salida, es la capa que procesa los datos
+obtenidos en la segunda capa y nos devuelve la predicci\'on para la serie
+temporal.\\
+\end{itemize}
+\begin{figure}[!h]
+\input{aplicacion/rbf}
+\caption{Red neuronal del tipo $RBF$.}
+\end{figure}
+
+Una forma l\'ogica de escoger los $C_i$ ser\'{\i}a agrupando todos los patrones
+de entrenamiento en tantos discos como EP's tengamos en la capa oculta y tomar
+como $C_i$ el centro de estos discos y como radio el radio de los mismos.

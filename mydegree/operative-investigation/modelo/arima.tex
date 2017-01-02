@@ -1,0 +1,42 @@
+%
+% PROCESO ARIMA(p,d,q) 
+%
+
+\section{El proceso ARIMA(p,d,q)}
+
+El nombre $ARIMA$ viene de las siglas ``autoregresive integrated moving
+average''\footnote{Procesos autoregresivos integrados de media m\'ovil.}.
+
+\subsection{Descripci\'on}
+
+Dado un proceso $ARMA(p,q)$ cualquiera y permitiendo que el operador $AR$
+tenga raices unitarias obtenemos procesos no estacionarios del tipo:
+\begin{displaymath}
+(1-\phi_1\cdot B-\dots-\phi_p\cdot B^p)(1-B)^d\widetilde{z}_t =(1-\theta_1\cdot 
+B-\dots-\theta_q\cdot B^q)a_t
+\end{displaymath}
+Este tipo de procesos recibe el nombre de \textbf{ARIMA($p$,$d$,$q$)}, donde:
+\begin{itemize}
+\item $p$ es el orden de la parte autoregresiva estacionaria.
+\item $d$ es el n\'umero de raices unitarias del operador $AR$. Tambi\'en recibe
+el nombre de ``\emph{orden de homogeneidad del proceso}''.
+\item $q$ es el orden de la parte media m\'ovil.
+\end{itemize}
+
+Llamando $\nabla=1-B$ la ecuaci\'on que describe este proceso se puede
+escribir como:
+\begin{displaymath}
+\phi_p(B)\nabla^d\widetilde{z}_t=\theta_q(B)a_t
+\end{displaymath}
+
+Todos los procesos $ARIMA(p,d,q)$ no estacionarios se caracterizan por decrecer
+lentamente los coeficientes de la funci\'on de autocorrelaci\'on simple.
+%
+\newpage
+%
+
+%
+% PROCESOS ARIMA ESTACIONALES
+%
+
+\input{modelo/arimaesta}

@@ -1,0 +1,23 @@
+%
+% PROCESO ARMA(p,q) 
+%
+
+\section{El proceso ARMA(p,q)}
+
+Estos procesos son una generalizaci\'on que permite combinar los procesos
+$AR(p)$ y $MA(q)$ en un \'unico proceso, $ARMA(p,q)$, que ser\'a $AR(p)$ y
+$MA(q)$.
+
+\subsection{Descripci\'on}
+
+La ecuaci\'on de un \textbf{ARMA(p,q)} es:
+\begin{displaymath}
+(1-\phi_1\cdot B-\phi_2\cdot B^2-\dots -\phi_p\cdot B^p)\widetilde{z}_t=
+(1-\theta_1\cdot B-\theta_2\cdot B^2-\dots -\theta_q\cdot B^q)a_t
+\end{displaymath}
+que se suele denotar:
+\begin{equation}
+\phi_p(B)\widetilde{z}_t = \theta_q(B)a_t
+\end{equation}
+El proceso es estacionario cuando las raices de $\phi_p(B)=0$  est\'an fuera del
+c\'{\i}rculo unidad, e invertible si lo est\'an las de $\theta_q(B)=0$.

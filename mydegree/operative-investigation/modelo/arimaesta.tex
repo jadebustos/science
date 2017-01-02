@@ -1,0 +1,129 @@
+%
+% PROCESOS ARIMA ESTACIONALES
+%
+
+\subsection{Procesos $ARIMA$ estacionales}
+
+Si la estacionalidad fuese siempre exactamente peri\'odica podr\'{\i}a
+eliminarse de la serie como un componente determinista. En general la
+estacionalidad es s\'olo aproximadamente constante y la eliminaremos de la serie
+tomando diferencias entre observaciones separadas por el per\'{\i}odo
+estacional. A estas diferencias las llamaremos ``diferencias estacionales''.%
+\\ \\
+%
+Sea $z_t$ una serie estacional de per\'{\i}odo $s$:
+\begin{itemize}
+\item $s=12$ para series mensuales.
+\item $s=4$ para series cuatrimestrales.
+\item \dots\dots
+\end{itemize}
+y con una estructura como la siguiente:
+\begin{equation}\label{eq:serieestacional}
+z_t=S_t^{(s)}+n_t
+\end{equation}
+donde:
+\begin{itemize}
+\item $S_t^{(s)}$ es el componente estacional determinista fijo:
+\begin{displaymath}
+S_t^{(s)}=S_{t-k\cdot s}^{(s)}\quad k\in \mathbb{Z}
+\end{displaymath}
+\item $n_t$ es un proceso estacionario.
+\end{itemize}
+Llamando $\nabla_s=1-B^s$ y al tomar diferencias de observaciones separadas
+$s$ per\'{\i}odos tendremos:
+\begin{displaymath}
+\nabla_s z_t = \nabla_s n_t
+\end{displaymath}
+con lo que habremos convertido la serie en estacionaria.\\
+
+Por el contrario, si la estacionalidad no es exactamente constante y se
+verifica que:
+\begin{displaymath}
+S_t^{(s)}=S_{t-k\cdot s} + v_t^{(s)}\quad k\in \mathbb{Z}
+\end{displaymath}
+donde $v_t^{(s)}$ es un proceso estacionario.\\ \\
+%
+Si tomamos diferencias estacionales en $(\ref{eq:serieestacional})$:
+\begin{displaymath}
+\nabla_s z_t = v_t^{(s)}+\nabla_s n_t
+\end{displaymath}
+obtendremos, tambi\'en, un proceso estacionario.\\
+
+Luego el operador $\nabla_s$ convierte procesos estacionales en procesos
+estacionarios.
+
+\subsubsection{Formulaci\'on general}
+
+Sea $z_t$ una serie estacional con per\'{\i}odo $s$ conocido y suponiendo que
+tenemos $n=s\cdot h$ observaciones. Entonces podremos dividir la serie total en
+$s$ series de $h$ datos, tantas series como nos indique el periodo, que
+llamaremos $y_{\tau}^1$,\dots,$y_{\tau}^s$ con $\tau=1,\dots,h$.\\ \\
+%
+La relaci\'on entre estas series y la original $z_t$ ser\'a:
+\begin{equation}\label{eq:relacion}
+y_{\tau}^{(j)}=z_{j+s\cdot (\tau-1)}\quad (\tau=1,\dots,h)\ y\ (j=1,\dots,s)
+\end{equation}
+La relaci\'on que obtenemos es $t=j+s\cdot(\tau-1)$.\\ \\
+%
+Por ejemplo para series mensuales tendremos:
+\begin{itemize}
+\item $s=12$ indicar\'{\i}a el mes.
+\item $h$ nos indicar\'{\i}a de cuantos a\~nos tendr\'{\i}amos observaciones.
+\end{itemize}
+%
+Construyamos ahora un modelo $ARIMA$ para cada una de estas series y supongamos
+que este modelo es ``exactamente'' el mismo para todas. El modelo ser\'a el
+siguiente:
+\begin{equation}\label{eq:ModeloArima}
+(1-\Phi_1\cdot B-\dots-\Phi_P\cdot B^P)(1-B)^Dy_{\tau}^{(j)}=
+(1-\Theta_1\cdot B-\dots -\Theta_Q\cdot B^Q)u_{\tau}^{(j)}
+\end{equation}
+donde $j=1,\dots,s$ y $\tau=1,\dots,h$. Adem\'as como tenemos estacionalidad
+$D\geq 1$ ya que si $D=0$ y las series fueran estacionarias, su modelo
+podr\'{\i}a escribirse:
+\begin{displaymath}
+y_{\tau}^{(j)} = \mu_j+ \Psi_j(B)u_{\tau}^{(j)}\quad (\tau=1,\dots,h)\ y\ 
+(j=1,\dots,s)
+\end{displaymath}
+donde $\mu_j=E[\{y_{\tau}^{(j)}\}_{\tau}]$ y como la serie es estacional
+tendremos que $\mu_i\neq \mu_j$ para $i\neq j$, con lo que las $s$ series no
+podr\'{\i}an tener un modelo com\'un.\\
+
+Podemos escribir los modelos para las $s$ series utilizando
+$(\ref{eq:relacion})$:
+\begin{displaymath}
+By_{\tau}^{(j)}= y_{\tau-1}^{(j)} = z_{j+s\cdot(\tau-2)}=
+B^{s}z_{j+s\cdot(\tau-1)}
+\end{displaymath}
+Luego aplicar $B$ a $y_{\tau}$ es lo mismo que aplicar $B^s$ a $z_t$.\\
+
+Definamos ahora una serie de ruido com\'un, $\alpha_t$, asignando a cada $t$ el
+ruido del modelo $(\ref{eq:ModeloArima})$ correspondiente a dicho $t$:
+\begin{displaymath}
+\alpha_t = \alpha_{j+s\cdot (\tau-1)} = u_{\tau}^{(j)}
+\end{displaymath}
+
+Luego los $s$ modelos $(\ref{eq:ModeloArima})$ podemos escribirlos:
+\begin{equation}\label{eq:sModelosArima}
+(1-\Phi_1\cdot B^s-\dots-\Phi_P\cdot B^{P\cdot s})(1-B^s)^D\widetilde{z}_t=
+(1-\Theta_1\cdot B^s-\dots-\Theta_Q\cdot B^{s\cdot Q})\alpha_t
+\end{equation}
+donde $t=1,\dots,n$.\\
+
+Las series $u_{\tau}^{(j)}$ son, por hip\'otesis, ruido blanco, pero la serie
+$\alpha_t$ para $t=1,\dots,n$ normalmente no lo ser\'a\footnote{Existir\'a en
+general dependencia entre observaciones contiguas.}. Suponiendo que $\alpha_t$
+sigue un proceso $ARIMA$ regular tendremos:
+\begin{equation}\label{eq:ArimaAlpha}
+\phi_p(B)\nabla^d\alpha_t=\theta_q(B)a_t
+\end{equation}
+Sustituyendo $(\ref{eq:ArimaAlpha})$ en $(\ref{eq:sModelosArima})$ obtenemos el
+modelo completo para el proceso:
+\begin{equation}\label{eq:ModeloCompleto}
+\Phi_P(B^s)\phi_p(B)\nabla^d\nabla_s^Dz_t =\theta_q(B)\Theta_Q(B^s)a_t
+\end{equation}
+
+La ecuaci\'on $(\ref{eq:ModeloCompleto})$, que describe el proceso, recibe el nombre de modelo
+$ARIMA\ (P,D,Q)_s\times (p,d,q)$ y fue dado por \emph{Box} y \emph{Jenkins} en
+$1.976$. Representa de una forma simple muchos fen\'omenos reales que
+encontramos en la pr\'actica. A pesar de su frecuencia no se da siempre.

@@ -1,0 +1,22 @@
+%
+% INCONVENIENTES DE LAS REDES RBF
+%
+
+\subsection{Inconvenientes de las redes RBF}
+
+Las redes $RBF$ dan predicciones poco fiables cuando el vector de entrada est\'a
+lejos del conjunto de entrenamiento. Est\'a lejan\'{\i}a nos la da la distancia
+que estemos utilizando, normalmente ser\'a la distancia euclidea.\\
+
+En el caso de las funciones gausianas: 
+\begin{displaymath}
+\phi_i(x)=e^{-(\frac{x}{r_i})^2} = \frac{1}{e^{(\frac{x}{r_i})^2}}
+\end{displaymath}
+cuando el vector de entrada est\'a lejos del centro de los grupos de datos $C_i$
+se tiene que:
+\begin{displaymath}
+\frac{1}{e^{(\frac{x}{r_i})^2}}\to 0\quad donde\ x=d(X,C_i)
+\end{displaymath}
+Luego las redes $RBF$ utilizando funciones gausianas son buenas solamente cuando
+el vector de entrada est\'a proximo a los centros $C_i$. En caso contrario las
+predicciones obtenidas son poco fiables.

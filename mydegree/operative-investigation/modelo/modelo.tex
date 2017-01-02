@@ -1,0 +1,54 @@
+%
+% CONSTRUCCION DEL MODELO CLASICO 
+%
+
+\chapter{Construcci\'on del m\'odelo cl\'asico ARIMA}
+
+En este cap\'{\i}tulo, y mientras no se diga lo contrario, supondremos que los
+modelos son ``estacionarios'', con lo cual la media es constante.
+Luego $\mu_t=\mu = E[z_t]$ para todo $t$.\\
+
+De igual modo se tendr\'a que $\widetilde{z}_t = z_t -\mu$.
+
+\begin{definicion}[Operador de retardo]\label{def:operadorderetardo}
+Definiremos el operador de retardo, $B$, de la siguiente manera:
+\begin{eqnarray*}
+Bz_t=z_{t-1}\\
+B^k z_t=\underbrace{B\dots B}_kz_t&=&z_{t-k}
+\end{eqnarray*}
+Este operador deja invariantes las constantes.
+\end{definicion}
+\newpage 
+%
+% MODELO AR(p)
+%
+
+\input{modelo/ar}
+
+%
+% MODELO MA(q)
+%
+
+\input{modelo/ma}
+
+%
+% MODELO ARMA(p,q)
+%
+
+\input{modelo/arma}
+
+%
+\newpage
+%
+
+%
+% MODELO ARIMA(p,d,q)
+%
+
+\input{modelo/arima}
+
+%
+% MODELOS ARIMA EN LA PRACTICA
+%
+
+\input{modelo/practica}

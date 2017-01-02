@@ -1,0 +1,21 @@
+%
+% VENTAJAS DE LAS REDES RBF
+%
+
+\subsection{Ventajas de las redes RBF}
+
+Los complejos sistemas no lineales, como son las series temporales, normalmente
+son dificiles de modelizar usando t\'ecnicas de regresi\'on lineal est\'andar.
+A diferencia de la regresi\'on las redes neuronales son no lineales. Sus
+par\'ametros se determinan mediante entrenamiento con algoritmos como el de
+``backpropagation''.\\
+
+El mayor problema que tienen las redes neuronales est\'andar es el de determinar
+su par\'ametros. Pero en las redes $RBF$ los \'unicos par\'ametros a determinar
+son los pesos sin\'apticos de interconexi\'on entre las capas segunda y tercera.
+Estos tres par\'ametros\footnote{$w_{1,1}[3]$, $w_{1,2}[3]$ y $w_{1,3}[3]$.}
+son la soluci\'on de un sistema lineal y se pueden obtener mediante
+interpolaci\'on\footnote{C. Bishop, Improving the generalization propierties of
+radial basis function neural networks, Neural Computat. $3$ $(1.991)$
+$579-588$.}. Por lo tanto estos par\'ametros se calculan de forma m\'as r\'apida
+que para otro tipo de redes.
