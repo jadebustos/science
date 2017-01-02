@@ -1,0 +1,57 @@
+\documentclass[a4paper,12pt]{article}
+
+\addtolength{\voffset}{-4cm}
+\usepackage[spanish]{babel}
+
+\pagestyle{headings}
+
+
+\begin{document}
+
+\title{\textbf{Numerical Calculus II homework}}
+\author{Jos\'e \'Angel de Bustos P\'erez}
+\maketitle
+
+\begin{abstract}
+Use the Broyden and Newton-Raphson methods to solve the following.
+\end{abstract}
+
+In calculating the shape of a gravity-flow discarge chute that will minimize transit time of discharged granular particles C. Chiarella, W. Charlton and A.W. Roberts solve the following equations by Newton's method:
+%
+\begin{eqnarray}
+  f_n(\theta_1,\dots,\theta_N) & = & \frac{\sin{\theta_{n+1}}}{\upsilon_{n+1}}\cdot (1 - \mu \cdot \omega_{n+1}) - \frac{\theta_n}{\upsilon_n} \cdot (1 - \mu \cdot \omega_n) = 0 \label{eqn:general} \\
+  f_N(\theta_1,\dots,\theta_N) & = & \Delta y \cdot \sum_{i=1}^N \tan{\theta_i} - X = 0 \label{eqn:last}
+\end{eqnarray}
+%
+Where:
+%
+\begin{eqnarray*}
+  \upsilon_n^2 & = & v_0^2 + 2\cdot g\cdot n \cdot \Delta y - 2\cdot \mu \cdot \Delta y \cdot \sum_{j=1}^n \frac{1}{\cos{\theta_j}} \\
+  \omega_n & = & -\Delta y \cdot \upsilon_n \cdot \sum_{i=1}^N \frac{1}{\upsilon_i^3 \cdot \cos{\theta_i}}
+\end{eqnarray*}
+%
+for each $n=1,\dots,N$.\\
+
+The constant $\upsilon_0$ is the initial velocity of the granular material, $X$ is de $x$-coordinate of the end the chute, $\mu$ is the friction force, $N$ is the number of segments and $g$ = $32.2$ $ft/s^2$ is the gravitational constant. The variable $\theta_i$ is the angle of the $i$-th chute segment.\\
+
+\newpage
+
+Solve (\ref{eqn:general}) and (\ref{eqn:last}) for:
+%
+\begin{eqnarray}
+  \theta & = & (\theta_1,\dots,\theta_N)^t\\
+  \mu & = & 0 \\
+  X & = & 2 \\
+  \Delta y & = & 0.2 \\
+  N & = & 20 \\
+  \upsilon_0 & = & 0
+\end{eqnarray}
+
+Solution will be considered a valid one when:
+%
+\begin{displaymath}
+|| \theta^{k)} - \theta^{k-1)}||_{\infty} < 10^{-2}  
+\end{displaymath}
+%
+
+\end{document}

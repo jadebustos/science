@@ -1,0 +1,193 @@
+    
+     +--------------------------------------------------------------------+
+     |        PRACTICA REALIZADA CON TURBO C DE BORLAND VERSION 2.0       |
+     +--------------------------------------------------------------------+
+
+
+
+# cal.prj
+
+  Fichero proyecto, para compilar y enlazar todos los ficheros.
+
+# struct.h
+
+  Fichero de cabezera con la estructura definida para los datos del
+  problema.
+
+# cal.c
+
+  Fichero principal con la funcion main que se encarga de llamar a las demas
+  funciones.
+
+# inc_grap.c
+  
+  Fichero que contiene la funcion que inicializa el modo grafico.
+
+# rotulo.c
+
+  Fichero con la funcion, grafica, del rotulo de presentaci¢n, solo para
+  modo VGA, si no se detecta VGA, entonces la presentacion ser en modo
+  texto.
+
+# rot_text.c
+  
+  Fichero con la presentaci¢n en modo texto.
+
+# fin_grap.c
+
+  Fichero con la funci¢n que pasa del modo grafico a modo texto.
+
+# EGAVGA.BGI
+
+  Fichero que soporta el modo grafico VGA.
+
+# trip.chr y tscr.chr
+
+  Ficheros con los tipos de letra para el rotulo en modo grafico.
+
+# compchar.c
+
+  Fichero que contiene una funcion que comprueba las entradas desde
+  teclado que no son teclas de control y solo da de paso aquellas con las 
+  cuales se puede realizar una opcion util dentro del programa, son las 
+  letras resaltadas en rojo, el programa no distingue entre MAYUSCULAS 
+  y minusculas.
+
+# plantill.c
+  
+  Fichero con el codigo fuente de la plantilla de las pantallas modo
+  texto.
+
+# navegar.c
+
+  Fichero con la funci¢n que indica la pagina a la que se debe saltar
+  segun indicacion del usuario.
+
+# menu.c
+  
+  Funcion mediante la cual nos movemos por el programa.
+
+# pag_1.c y pag_2.c
+  
+  Enunciado del problema a resolver.
+
+# menu_dat.c
+  
+  Fichero que contiene el codigo fuente del menu(pg 3), para seleccionar los 
+  parametros con los cuales el programa resolver el problema propuesto.
+
+# pet_dat.c
+
+  Fichero que contiene la funcion que se encarga de alterar los datos
+  iniciales con los cuales el programa va a resolver el problema, estos 
+  datos son los mostrados en la pantalla del menu.
+
+# ayuda_1.c y ayuda_2.c
+
+  Paginas 1 y 2 con la ayuda del menu para seleccionar los parametros 
+  generales.
+  
+# nav_ayu.c
+
+  Funcion para moverse dentro de la ayuda del menu de peticion de los
+  datos iniciales para resolver el problema.
+
+# det_pag.c
+  
+  En cada pagina hay 20 variables como maximo, la funcion de este fichero
+  determina el numero de paginas que hay en funcion del numero de variables
+  que se haya introducido.
+
+# plan_pet.c
+
+  Plantilla de las paginas que muestran las variables y sus valores.
+
+# menu_var.c
+
+  Se mueve por las paginas que muestran las variables.
+
+# intr_var.c
+
+  Se mueve, en una pagina determinada, por las diferentes variables, 
+  para modificar un valor determinado se situa 'û' al lado de la variable
+  que se quiere modificar, utilizando los cursores, y con el cursor derecha
+  se modifica el dato, return para almacenarlo.
+
+# start.c
+
+  Funcion que resuelve el problema con el metodo elegido por el usuario.
+ 
+# matriz.h
+
+  Fichero cabezera que contiene las funciones para tratar matrices, 
+  calculo de la inversa de una matriz dada y multiplicar dos matrices.
+
+# ecuacion.c
+
+  Fichero que contiene las ecuaciones del sistema de ecuaciones a resolver.
+
+# par_vn.c
+
+  Fichero que contiene las derivadas parciales de las ecuaciones v(n) 
+  del sistema.
+
+# par_wn.c
+
+  Fichero que contiene las derivadas parciales de las ecuaciones w(n)
+  del sistema.
+
+# par_fn.c
+  
+  Fichero que contiene la derivadas parciales de las ecuaciones f(n)
+  del sistema.
+
+# plan_met.c
+
+  Fichero que contiene la plantilla de la pantalla para seleccionar el
+  metodo por el cual se resolvera el problema propuesto.
+
+# norma.c
+
+  Fichero con la norma infinito.
+
+# funcion.c
+
+  Funcion que calcula el valor de la funcion en un punto.
+
+# jacobian.c
+
+  Funcion que calcula el valor del jacobiano en un punto.
+
+# newton.c
+
+  Fichero que contiene las funci¢nes con el metodo de newton.
+
+# errores.c
+
+  Fichero con las funciones para mostrar mensajes de error en caso de
+  que hay algun tipo de error.
+
+# esperar.c
+
+  Fichero con la funcion que indica cuando el ordenador esta buscando
+  la solucion al problema.
+
+# plan_sol.c
+
+  Fichero con la plantilla de la pantalla para ver las soluciones obtenidas.
+
+# ver_sol.c
+
+  Fichero con la funcion que muestra en pantalla las soluciones obtenidas.
+
+# disco.c
+
+  Fichero con la funcion que saca a disco los resultados obtenidos.
+
+# dib_graf.c
+
+  Dibuja los ejes de coordenadas de las graficas.
+
+# graficas.c
+
+  Dibuja las graficas de los errores cometidos con ambos metodos.
