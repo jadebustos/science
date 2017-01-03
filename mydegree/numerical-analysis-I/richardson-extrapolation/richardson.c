@@ -28,6 +28,8 @@ int n = 0, 		/* CONTADOR */
     precision = 6,	/* PRECISION CON LA QUE SE MOSTRARAN LOS CALCULOS */
     NMI = 256;  	/* NUMERO MAXIMO DE ITERACIONES QUE VAMOS A REALIZAR */
 
+FILE *fichero;
+
 double funcion(double punto);
 double d(double punto, double paso, int n, int k, double **triangulo);
 double derivada(double punto);
@@ -53,12 +55,37 @@ scanf("%d", &precision);
 
 triangulo = (double **)calloc(NMI, sizeof(double *));
 
+/* COMPROBACION DE QUE SE PUDO ASIGNAR LA MEMORIA */
+
+if ( triangulo == NULL )
+	{
+	printf("Ocurrio un error durante la asignacion de memoria.\n");
+
+	exit (1);
+	}
+
+/* CREACION DEL FICHERO */
+
+fichero = fopen("richardson-info.txt","a");
+
+/* INTRODUCCION DE DATOS EN FICHERO */
+
+fprintf(fichero,"Extrapolacion de Richardson para calcular la derivada de "
+	"la funcion:\n\n\t\t sen(x)\n\n"
+	"Punto: %lf\nPaso: %e\nTolerancia: %e\nNMI: %d\n\n"
+	"Direccion base del puntero donde se van a almacenar los datos: %X"
+	, punto, paso, tol, NMI, triangulo);
+
 for(i=0;i<NMI;i++)
 	triangulo[i] = (double *)calloc(NMI, sizeof(double ));
 
 /* CALCULO DE "D(0,0)" */
 
 triangulo[0][0] = d(punto, paso, 0, 0, triangulo);
+
+/* GUARDA EN EL FICHERO LA PRIMERA APROXIMACION */
+
+fprintf(fichero,"\n\nD(0,0) = %.*lf", precision, triangulo[0][0]);
 
 while (error > tol)
 
@@ -72,16 +99,36 @@ while (error > tol)
 		}
 
 	for(k=0;k<=n;k++)
+		{
 		triangulo[n][k] = d(punto, paso, n, k, triangulo);
 
-	error = fabsl(triangulo[n][n]-triangulo[n-1][n-1]);
+		/* GUARDA EN EL FICHERO LOS DATOS INTERMEDIOS */
+
+		fprintf(fichero,"\nD(%d,%d) = %.*lf", n, k,
+			precision, triangulo[n][k]);
+		}
+
+	error = fabs(triangulo[n][n]-triangulo[n-1][n-1]);
 
 	printf("Error cometido en la aproximacion %d es %.*lf\n", n+1, precision, error);
+
+	/* GUARDA EN EL FICHERO LOS DATOS INTERMEDIOS */
+
+	fprintf(fichero,"\n\nError: %.*lf\n", precision, error);
+
 	}
 
 printf("\nEl valor aproximado en el punto %.*lf es %.*lf\n", precision, punto, precision, triangulo[n][n]);
 
 exacto = derivada(punto);
+
+/* GUARDA EN EL FICHERO EL VALOR EXACTO */
+
+fprintf(fichero,"\nValor exacto: %.*lf\n\n", precision, exacto);
+
+/* CIERRA FICHERO */
+
+fclose(fichero);
 
 printf("\nEl valor exacto en el punto %.*lf es %.*lf\n", precision, punto, precision, exacto);
 
@@ -98,7 +145,7 @@ if ( k == 0 )
 	valor = fi(punto, paso/(pow(2,n)));
 
 	return (valor);
-	}
+	}       /* FINAL if */
 else
 	{
 	double numerador = pow(4,k),
@@ -122,7 +169,7 @@ double funcion(double punto)
 {
 double valor = .0;
 
-valor = sin(punto);
+valor = (2*sqrt(pow(punto,3)))/3;
 
 return (valor);
 }
@@ -132,7 +179,7 @@ double derivada(double punto)
 {
 double valor = .0;
 
-valor = cos(punto);
+valor = sqrt(punto);
 
 return (valor);
 }
