@@ -1,0 +1,421 @@
+%
+%
+%
+
+\chapter{An\'alisis num\'erico de un EVI II}
+
+\section{Problema de un fluido r\'{\i}gido$-$viscopl\'astico}
+
+El problema es el siguiente, calcular $u\in V$ tal que $\forall \ v \in V$:
+
+\begin{displaymath}
+a\ (u,v-u)+g\cdot j\ (v)-g\cdot j\ (u) \ge L\ (v)
+\end{displaymath}
+donde $V=H^1_0(\Omega )$ y $g>0$ y:
+
+\begin{displaymath}
+a\ (u,v) =\mu \cdot \int_{\Omega} (\nabla u \cdot \nabla v),\qquad L\ (v) =
+<\ell,v> = \int_{\Omega }f\cdot v
+\end{displaymath}
+donde $\mu >0$.
+
+\begin{displaymath}
+j\ (v) =\int_{\Omega } |\nabla v| dx
+\end{displaymath}
+
+De ahora en adelante a este problema nos referiremos como $(P_2)$.
+
+\newpage
+
+\section{Teorema de existencia y unicidad}
+
+\begin{teorema}[Existencia y unicidad de $(P_2)$]
+\ \\
+El problema $(P_2)$ tiene soluci\'on \'unica.
+\end{teorema}
+
+\begin{demosteorema}
+\ \\
+El problema $(P_2)$ cumple todas las propiedades para la existencia y unicidad
+de soluci\'on de un problema EVI II\footnote{Teorema $\ref{th:exisEVIII}$ en la
+p\'agina $\pageref{th:exisEVIII}$.}, todas ellas son inmediatas salvo que el
+funcional $j\ (\cdot )$ sea convexo, propio y \textbf{s.c.i}.\\
+
+Toda seminorma es convexa, en particular toda norma es convexa, por lo tanto
+si $j\ (\cdot )$ es norma sobre $V$ entonces ser\'a convexa. Veamos que
+$j\ (\cdot )$ es norma\footnote{Pero no ser\'a equivalente a la norma natural
+de este espacio $||\cdot ||_{0,1}$.} sobre $V=H^1_0(\Omega )$.
+
+\begin{itemize}
+\item $j\ (\cdot )$ es norma sobre $V=H^1_0(\Omega )$.
+\begin{enumerate}
+\item $j\ (v+w) \le j\ (v)+j\ (w)$, $\forall \ v,w \in V$.
+\begin{eqnarray*}
+j\ (v+w)&=&\int_{\Omega } |\nabla (v+w)| \le \int_{\Omega }(|\nabla v|+
+|\nabla w|) = \\ 
+&=& \int_{\Omega }|\nabla v|+\int_{\Omega }|\nabla w|=j\ (v) + j\ (w)
+\end{eqnarray*}
+
+\item $j\ (\lambda \cdot v) = |\lambda |\cdot j\ (v)$, $\forall \ v\in V$ y
+$\lambda \in \Re$.
+
+\begin{displaymath}
+j\ (\lambda \cdot v) =\int_{\Omega } |\nabla (\lambda \cdot v)|\le |\lambda |
+\cdot \int_{\Omega } |\nabla v| = |\lambda |\cdot j\ (v)
+\end{displaymath}
+
+\item $j\ (v)= 0\Longleftrightarrow v = 0$, $\forall \ v \in V$.
+
+\begin{displaymath}
+j\ (v) = 0 \Longleftrightarrow \int_{\Omega } |\nabla v| = 0
+\Longleftrightarrow |\nabla v| = 0\ c.t.p\ \Omega
+\end{displaymath}
+Si $|\nabla v|= 0$ en c.t.p $\Omega$\footnote{En casi todo punto de $\Omega$.}
+entonces se tiene que $v = cte$ en c.t.p $\Omega$, pero como $v_{|\Gamma}=0$,
+ya que $v\in H^1_0(\Omega )$ entonces se tiene que $v=0$ en c.t.p $\Omega$.
+
+\end{enumerate}
+
+\end{itemize}
+Tenemos que $j\ (\cdot )$ es norma, en consecuencia es convexa.\\ 
+
+Veamos que $j\ (\cdot )$ es continua, lo cual se deduce de ser norma. Para
+demostrar la continuidad de $j\ (\cdot )$ utilizaremos la siguiente propiedad,
+la cual se deduce de la desigualdad triangular:
+
+\begin{displaymath}
+|\ ||u||-||v||\ |\le ||u-v||
+\end{displaymath}
+Como $j\ (\cdot )$ es norma esta expresi\'on la podemos escribir como:
+
+\begin{displaymath}
+|j\ (u)-j\ (v)|\le j(u-v)
+\end{displaymath}
+
+\begin{itemize}
+\item $j\ (\cdot )$ es continua en $V$.\\ \\
+Por lo anterior se tiene que:
+
+\begin{displaymath}
+|j\ (v_2)-j\ (v_1))|\le j\ (v_2-v_1) = \int_{\Omega }|\nabla (v_2-v_1)|
+\end{displaymath}
+y por Cauchy$-$Schwarz se tiene:
+\begin{eqnarray*}
+|j\ (v_2)-j\ (v_1)|&\le &\sqrt{\int_{\Omega} 1^2}\cdot
+\sqrt{\int_{\Omega}|\nabla (v_2-v_1)|^2} = \\
+&=& \sqrt{\mu(\Omega )}\cdot |v_2-v_1|_{1,\Omega }
+\end{eqnarray*}
+Recordemos que la seminorma $|\cdot |_{1,\Omega }$ es equivalente a la norma
+$||\cdot ||_{1,\Omega }$\footnote{Norma de $H^1(\Omega )$.} en $H^1_0(\Omega )$,
+por lo tanto se tiene que:
+
+\begin{displaymath}
+|j\ (v_2)-j\ (v_1)|\le \sqrt{\mu (\Omega )}\cdot |v_2-v_1|_{1,\Omega }
+\longrightarrow 0
+\end{displaymath}
+cuando $v_2\to v_1$ en $H^1_0(\Omega )$.
+\end{itemize}
+Luego $j\ (\cdot )$ es continua y Lipschitziana de constante
+$\sqrt{\mu (\Omega )}$.\\ \\
+Tenemos que $j\ (\cdot )$ es continua y tambi\'en propia, entonces dado que es
+continua y convexa se tiene que es \textbf{s.c.i}.
+
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\end{demosteorema}
+
+\newpage
+
+\section{Propiedades de regularidad}
+
+\begin{teorema}[Brezis]
+\ \\
+Si $\Omega $ es de frontera suficientemente regular y $f \in L^2(\Omega )$
+entonces $\mu \in H^2(\Omega )$.\\
+
+Adem\'as si $\Omega $ es convexo se tiene que:
+
+\begin{displaymath}
+||u||_{2,\Omega }\le \frac{C(\Omega )}{\mu}\cdot ||f||_{o,\Omega }
+\end{displaymath}
+mayorizaci\'on independiente de $g$.
+\end{teorema}
+
+\section{Algunas propiedades de la soluci\'on}
+
+Si $g$ es suficientemente grande, tenemos que $u\equiv 0$\footnote{El liquido
+se convertir\'{\i}a en solido.}, donde $u$ es la soluci\'on de $(P_2)$.\\ \\
+Para demostrar esto en el caso en que $f\in L^\infty (\Omega )$ admitiremos el
+lema que vamos a demostrar a continuaci\'on de esta demostraci\'on.\\
+
+En $(P_2)$ cogemos $v=0$ y tenemos:
+
+\begin{equation}\label{eq:v=0}
+-\mu |u|^2_{1,\Omega }-g\ j\ (u)\ge - \int_{\Omega } fu
+\end{equation}
+y tomando en $(P_2)$ $v=2u$ tenemos
+
+\begin{equation} \label{eq:v=2u}
+\mu |u|^2_{1,\Omega }+g\ j\ (u)\ge \int_{\Omega } fu
+\end{equation}
+De $(\ref{eq:v=0})$ y $(\ref{eq:v=2u})$ se tiene que:
+
+\begin{equation} \label{eq:util}
+\mu |u|^2_{1,\Omega }+g\ j\ (u) =\int_{\Omega }fu
+\end{equation}
+Utilizando el lema que demostraremos a continuaci\'on tendremos:
+
+\begin{displaymath}
+\mu \int_{\Omega }|\nabla u|^2 + \frac{g}{\beta}\cdot ||u||_{0,1,\Omega }\le
+\int_{\Omega }fu
+\end{displaymath}
+Utilizando la desigualdad de Holder y teniendo en cuenta que
+$f\in L^{\infty } (\Omega )$ y $u\in L^1 (\Omega )$ tenemos:
+
+\begin{displaymath}
+\mu \int_{\Omega }|\nabla u|^2+\frac{g}{\beta}\cdot ||u||_{0,1,\Omega }\le
+||f||_{0,\infty ,\Omega }\cdot ||u||_{0,1,\Omega }
+\end{displaymath}
+es decir:
+
+\begin{displaymath}
+\mu \cdot |u|^2_{1,\Omega }+\frac{g}{\beta}\cdot ||u||_{0,1,\Omega }\le
+||f||_{0,\infty ,\Omega }\cdot ||u||_{0,1,\Omega }
+\end{displaymath}
+de donde se deduce que:
+
+\begin{displaymath}
+\mu \cdot |u|^2_{1,\Omega }\le \{ ||f||_{0,\infty ,\Omega}-\frac{g}{\beta} \}
+||u||_{1,0\Omega }
+\end{displaymath}
+Es decir si $g\ge\beta $ entonces $u\equiv 0$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\begin{lema}
+\ \\
+Existe $\beta$ tal que $\forall \ v \in H^1_0 (\Omega )$ se verifica:
+
+\begin{displaymath}
+||v||_{0,1,\Omega }\le \beta \cdot j\ (v)
+\end{displaymath}
+Recordemos que:
+
+\begin{displaymath}
+||v||_{0,1,\Omega }=\int_{\Omega }|v|
+\end{displaymath}
+\end{lema}
+
+\begin{demoslema}
+\ \\
+Supondremos que $\Omega $ esta acotado en una direcci\'on, por ejemplo en 
+$x_2$, es decir que $\forall \ (x_1,x_2)\in \Omega$ se tiene que
+$a\le x_2\le b$. Entonces basta demostrarlo $\forall \ v \in
+\mathcal{D}(\Omega)$, donde:
+
+\begin{displaymath}
+\mathcal{D}(\Omega )=\{Funciones\ \mathcal{C}^{\infty}(\Omega )\ con\ soporte\
+compacto\ en\ \Omega .\}
+\end{displaymath}
+Sea $v\in \mathcal{D}(\Omega )$ y sea $\overline{v}\in \mathcal{D}(\Re ^d)$ su
+prolongaci\'on por cero a todo $\Re ^d$.
+
+\begin{displaymath}
+|\overline{v}(x_1,x_2)| = |\int_a^{x_2} \frac{\partial \overline{v}}
+{\partial x_2}\ (x_1,\varepsilon)\ d\varepsilon|
+\end{displaymath}
+luego se tiene que:
+
+\begin{displaymath}
+|\overline{v}(x_1,x_2)|\le \int_a^{x_2}|\frac{\partial \overline{v}}
+{\partial x_2}\ (x_1,\varepsilon)|\ d\varepsilon \le \int_a^b 
+|\frac{\partial \overline{v}}{\partial x_2}\ (x_1,\varepsilon) |\ d\varepsilon
+\end{displaymath}
+Integrando en $\Re$ respecto de $x_1$ en esta \'ultima expresi\'on tendremos:
+
+\begin{eqnarray*}
+\int_{\Re} |\overline(x_1,x_2)|\ dx_1&\le& \int_{\Re} \int_a^b 
+|\frac{\partial \overline{v}}{\partial x_2}\ (x_1,x_2)|\ dx_1\ dx_2\le \\
+&\le &\int_{\Omega }|\nabla v|\ dx_1\ dx_2 = j\ (v)
+\end{eqnarray*}
+Finalmente integrando entre $a$ y $b$:
+
+\begin{eqnarray*}
+||v||_{0,1,\Omega }&=& ||\overline{v}||_{0,1,\Re^d} =\int_a^b \int_{\Re}
+|\overline{v} (x_1,x_2)|\ dx_1\ dx_2\le \\
+&\le & \int_a^bj\ (v)\ dx_1\ dx_2 = (b-a)\cdot j\ (v)
+\end{eqnarray*}
+Por densidad el resultado es v\'alido $\forall \ v \in H^1_0(\Omega )$ ya que
+$j\ (\cdot )$ es continua en $H^1_0(\Omega )$.
+
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\end{demoslema}
+
+\subsection{Observaciones}
+
+\begin{enumerate}
+\item El teorema es cierto para $f\in L^2(\Omega )$. Se demuestra utilizando un
+lema debido a \emph{M.Strauss$-$L.Niremberg}.\\ \\
+Existe $\alpha $ tal que $\forall \ v \in H^1_0(\Omega )$ se verifica:
+
+\begin{displaymath}
+||v||_{0,\Omega }\le \alpha \cdot \int_{\Omega } |\nabla u| = \alpha \cdot
+j\ (v)
+\end{displaymath}
+\end{enumerate}
+
+\newpage
+
+\section{Resultados de dualidad}
+
+\begin{teorema}
+\ \\
+Para $d=2$ se tiene:
+
+\begin{displaymath}
+\Lambda = \{\mu \in L^{\infty}(\Omega)\times L^{\infty}(\Omega )\ |\mu \ (x)|
+\le 1\ c.t.p.\ \Omega \}
+\end{displaymath}
+
+\begin{displaymath}
+\mu = (\mu_1,\mu_2)\qquad |\mu \ (x)| = \sqrt{\mu_1\ (x)^2+\mu_2\ (x)^2 }
+\end{displaymath}
+La soluci\'on $u$ de $(P_2)$ esta caracterizada por la existencia de
+$\lambda \in \Lambda$ tal que el par $(u,\lambda )$ verifica la propiedad
+siguiente:
+
+\begin{displaymath}
+(P') \left\{ \begin{array}{lr}
+\mu \int_{\Omega } \nabla u \cdot \nabla v + g 
+\int_{\Omega }  \lambda \cdot \nabla v = \int_{\Omega } fv & \forall \ v \in
+H^1_0 (\Omega ) \\
+\\
+\lambda \cdot \nabla u = |\nabla u| & c.t.p \ de\ \Omega \\
+\\
+(u,\lambda) \in H^1_0 (\Omega )\times \Lambda
+\end{array} \right.
+\end{displaymath}
+
+\end{teorema}
+
+\begin{demosteorema}
+\ \\
+Utilizaremos el teorema de Hanh$-$Banach.\\ \\ 
+$\Rightarrow |$Por ser $u$ soluci\'on de $(P_2)$ se tiene:
+
+\begin{equation} \label{eq:ateorema}
+a\ (u,v-u)+g \int_{\Omega }|\nabla v|-g \int_{\Omega } |\nabla u|
+\ge <\ell,v-u>=L\ (v-u)
+\end{equation}
+Sumando $(\ref{eq:util})$ y $(\ref{eq:ateorema})$ tenemos:
+
+\begin{displaymath}
+a\ (u,v)+g \int_{\Omega} |\nabla v|\ge <\ell,v>
+\end{displaymath}
+es decir:
+
+\begin{displaymath}
+<\ell,v>-a\ (u,v) \le g \int_{\Omega} |\nabla v|\qquad \forall \ v \in
+H^1_0(\Omega )
+\end{displaymath}
+Tomando $-v$ por $v$ en la \'ultima expresi\'on:
+
+\begin{displaymath}
+<\ell,v> -a\ (u,v) \ge -g \int_{\Omega }|\nabla u|\qquad \forall \ v \in
+H^1_0(\Omega )
+\end{displaymath}
+de donde tenemos:
+
+\begin{equation} \label{eq:cteorema}
+|<\ell,v>-a\ (u,v)|\le g \int_{\Omega }|\nabla v| = g
+||\nabla v||_{0,1,\Omega }
+\end{equation}
+Sea $S$ el siguiente subespacio de $L^1(\Omega )\times L^1(\Omega )$:
+
+\begin{displaymath}
+S=\{q \in L^1(\Omega )\times L^1(\Omega )\ tal\ que\ q=\nabla v\ \ v\in
+H^1_0(\Omega ) \}
+\end{displaymath}
+Definamos ahora la siguiente aplicaci\'on $T:S\longrightarrow \Re$:
+
+\begin{displaymath}
+T\ (q) = <\ell,v>-a\ (u,v)
+\end{displaymath}
+donde $v$ verifica $q=\nabla v$. Observar que $T\ (\cdot )$ esta bien definida
+ya que no puede haber dos $v$ verificando $q=\nabla v$ ya que entonces el
+gradiente de la diferencia ser\'{\i}a cero con lo cual la funci\'on ser\'{\i}a
+constante y como $v \in H^1_0(\Omega )$ entonces $v=0$.
+
+\begin{itemize}
+\item $T\ (\cdot )$ es lineal. Es inmediato.
+\item $T\ (\cdot )$ es continua. Tenemos que demostrar lo siguiente:
+
+\begin{displaymath}
+|T\ (q)|\le C\cdot ||q||_{0,1,\Omega }=C\cdot ||\nabla v||_{0,1,\Omega }
+\end{displaymath}
+Sabemos que:
+
+\begin{displaymath}
+\mu \int_{\Omega }\nabla \cdot u\nabla (v-u) +g \int_{\Omega }
+|\nabla v|-g \int_{\Omega }|\nabla u|\ge \int_{\Omega }f(v-u)
+\end{displaymath}
+ya que $u$ es soluci\'on de $(P_2)$.\\ \\
+Si sumamos esta expresi\'on con $(\ref{eq:util})$ obtenemos:
+
+\begin{displaymath}
+\int_{\Omega }fu-\mu \int_{\Omega }\nabla u \cdot \nabla v \le
+-g \int_{\Omega } |\nabla v|\qquad \forall \ v \in H^1_0(\Omega )=V
+\end{displaymath}
+tomando valores absolutos en esta expresi\'on tenemos:
+
+\begin{displaymath}
+|\int_{\Omega }fu -\mu \int_{\Omega }\nabla u\cdot \nabla v|\le
+g \int_{\Omega }|\nabla v|\qquad \forall\ v\in H^1_0(\Omega )
+\end{displaymath}
+es decir:
+
+\begin{displaymath}
+|T\ (q)|\le g\int_{\Omega }|\nabla v| = g\int_{\Omega }|q|=g\cdot
+||q||_{0,1,\Omega }\qquad \forall \ q\in S
+\end{displaymath}
+Luego $T\ (\cdot )$ es continua y adem\'as se tiene que $||T||\le g$.
+\end{itemize}
+Aplicando el teorema de Hanh$-$Banach podemos extender a todo el espacio
+\mbox{$L^1(\Omega )\times L^1(\Omega )$} la aplicaci\'on $T\ (\cdot)$, es
+decir existe una aplicaci\'on lineal y continua,
+$\overline{T}:L^1(\Omega )\times L^1(\Omega )\longrightarrow \Re$, tal que
+$||\overline{T}||\le g$ y $\overline{T}\ (q)=T\ (q)$ $\forall \ q \in S$.\\ \\
+Luego $\overline{T}\in (L^1(\Omega )\times L^1(\Omega ))^*=
+L^{\infty}(\Omega )\times L^{\infty}(\Omega )$, luego existe
+
+
+
+
+
+
+
+
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\end{demosteorema}
+
+\subsection{Observaciones}
+
+\begin{enumerate}
+\item Si $a\ (\cdot ,\cdot )$ es sim\'etrica el problema anterior es equivalente
+a resolver:
+
+\begin{displaymath}
+J\ (u) =\inf_{v\in V} J\ (v)
+\end{displaymath}
+donde:
+
+\begin{displaymath} 
+J\ (v) = \frac{1}{2}\ \mu \int_{\Omega }|\nabla v|^2+j\ (v)-\int_{\Omega} fv
+\end{displaymath}
+\end{enumerate}

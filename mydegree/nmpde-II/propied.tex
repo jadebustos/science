@@ -1,0 +1,61 @@
+%
+%
+%
+
+\chapter{Elementos de an\'alisis convexo}
+
+Podemos encontrar un resumen de esto en el Brezis.
+
+\begin{displaymath}
+\varphi : V \longrightarrow ]-\infty ,+\infty ]
+\end{displaymath}
+
+\begin{displaymath}
+dom \ \varphi =\{x\in V\ | \ \varphi (x) < \infty \}
+\end{displaymath}
+Se define el \textbf{ep\'{\i}grafe} de $\varphi$ como:
+
+\begin{displaymath}
+Epi\ \varphi = \{[x,\lambda ] \in V\times \Re \ |\ \varphi(x)\le \lambda \}
+\end{displaymath}
+
+\section{Propiedades de las funciones convexas y s.c.i}
+
+\begin{enumerate}
+\item $\varphi$ es \textbf{s.c.i} $\Longleftrightarrow$ Epi $\varphi$ es
+cerrado en $V\times \Re$.
+\item $\varphi$ es \textbf{s.c.i} $\Longrightarrow$ $\forall \ \lambda \in \Re$
+el conjunto $\{ x\in V \ | \ \varphi (x)\le \lambda \}$ es cerrado.
+\item $\varphi_1$ y $\varphi_2$ son \textbf{s.c.i} $\Longrightarrow$
+$\varphi_1 +\varphi_2$ es \textbf{s.c.i}.
+\item Si $\{\varphi_i \}_{i\in I}$ es una familia de funciones \textbf{s.c.i}
+$\Longrightarrow$ la envolvente superior es \textbf{s.c.i}, es decir:
+
+\begin{displaymath}
+\varphi(x) = \sup_{i\in I} \varphi_i (x)
+\end{displaymath}
+
+es \textbf{s.c.i}.
+\item $\varphi$ es convexa $\Longleftrightarrow$ Epi $\varphi$ es convexo.
+\item $\varphi$ es convexa $\Longrightarrow$ $\{x\in V\ |\ \varphi (x)\le
+\lambda \}$ es convexo $\forall \ \lambda \in \Re$.
+\item $\varphi_1$ y $\varphi_2$ convexas $\Longrightarrow$ $\varphi_1+\varphi_2$
+es convexa.
+\item Si $\{\varphi_i \}_{i\in I}$ es una familia de funciones convexas
+$\Longrightarrow$ la envolvente superior es convexa, es decir:
+
+\begin{displaymath}
+\varphi(x)= \sup_{i \in I} \varphi_i (x)
+\end{displaymath}
+
+es convexa.
+\item Si $\varphi$ es \textbf{s.c.i} y convexa para la topolog\'{\i}a de
+$||\cdot ||$ seguira siendo \textbf{s.c.i} para la topolog\'{\i}a d\'ebil.
+\item $\varphi$ es \textbf{s.c.i} y convexa $\Longleftrightarrow$ existe
+$\lambda \in V^*$ y $\mu \in \Re$ tales que:
+
+\begin{displaymath}
+\varphi(x) \ge <\lambda ,x> + \mu
+\end{displaymath}
+\end{enumerate}
+Todas estas propiedades son consecuencia del teorema de Hahn-Banach.\\

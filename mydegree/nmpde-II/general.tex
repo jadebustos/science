@@ -1,0 +1,1663 @@
+%
+% CAPITULO 1 Generalidades sobre inecuaciones variacionales elpticas y
+%		sus aproximaciones
+
+\chapter{Generalidades sobre inecuaciones variacionales el\'{\i}pticas y sus
+aproximaciones}
+
+\section{Introducci\'on}
+
+Las inecuaciones variacionales son una clase de problemas no lineales, 
+importantes y muy utiles, que aparecen en mec\'anica y f\'{\i}sica \dots.
+Principalmente consideraremos los dos siguientes tipos de inecuaciones
+variacionales:
+
+\begin{enumerate}
+\item Inecuaci\'on Variacional El\'{\i}ptica (\textbf{EVI}).
+\item Inecuaci\'on Variacional Parab\'olica (\textbf{PVI}).
+\end{enumerate}
+
+\section{Marco funcional}
+
+En esta secci\'on consideraremos dos clase de \textbf{EVI}, llamados
+\textbf{EVI} de primera y segunda clase.
+
+\subsection{Notaciones}
+
+\begin{itemize}
+\item $V$ Espacio Real de Hilbert con producto escalar $(\cdot ,\cdot )$
+y como norma asociada $||\cdot||$.
+\item $V^*$ Espacio dual del espacio $V$.
+\item $a\ (\cdot ,\cdot )\ : \ V \times V \longrightarrow \Re $ forma
+bilineal, continua y $V-$el\'{\i}ptica.
+\end{itemize}
+
+La forma bilineal $a\ (\cdot ,\cdot )$ se dice que es
+$V-$el\'{\i}ptica si existe una constante positiva $\alpha $ tal que:
+
+\begin{displaymath}
+a \ (v,v) \ge \alpha \ ||v||^2 \qquad \forall \ v \in V
+\end{displaymath}
+
+Normalmente $a\ (\cdot ,\cdot )$ no ser\'a sim\'etrica, aunque se
+puede dar el caso en que lo sea.
+
+\begin{itemize}
+\item $L  : \ V \longrightarrow \Re $ funcional lineal y continuo. Tambi\'en
+podemos encontrarlo de la siguiente forma:
+\begin{displaymath}
+L  (v) = \ <\ell ,v> \qquad \forall \ v \in V
+\end{displaymath}
+\item $K \subseteq V$ cerrado, convexo y no vac\'{\i}o.
+\item $j : \ V \longrightarrow \overline{\Re}$  funcional propio,
+convexo y semicontinuo inferior (\textbf{s.c.i}).
+
+\begin{displaymath}
+\overline{\Re} = \Re \cup \{+\infty \}
+\end{displaymath}
+\end{itemize}
+
+Que el funcional sea propio significa:
+
+\begin{equation} \label{eq:defpropio}
+j(v)\neq + \infty \qquad para \ alg\acute{u}n \ v \in V
+\end{equation}
+
+Que el funcional sea convexo significa:
+
+\begin{equation} \label{eq:defconvexo}
+j(\lambda x + (1- \lambda) y) \le \lambda j(x) + (1-\lambda ) j(y) 
+\qquad \lambda \in \Re \qquad x,y \in V
+\end{equation} 
+
+Que el funcional sea \textbf{s.c.i} significa:
+
+\begin{equation} \label{eq:defsci}
+\liminf_{v_n \to v} j(v_n) \ge j(v)
+\end{equation}
+
+\subsection{EVI de primera clase (EVI I)}
+
+Encontrar $u \in K$ tal que $u$ sea soluci\'on del problema:
+
+\begin{equation} \label{eq:EVI2}
+(P_1) \qquad \left\{ \begin{array}{lrlr}
+a \ (u,v-u) & \ge & L \ (v-u) & \forall \ v \in K \\
+\\
+u \in K
+\end{array} \right.
+\end{equation}
+
+\subsection{EVI de segunda clase (EVI II)}
+
+Encontrar $u \in V$ tal que $u$ sea soluci\'on del problema:
+
+\begin{equation} \label{eq:EVI1}
+(P_2) \qquad \left\{ \begin{array}{lrlr}
+a \ (u,v-u) + j(v)-j(u) & \ge & L \ (v-u) & \forall \ v \in V \\
+\\
+u \in V
+\end{array} \right.
+\end{equation}
+
+\subsection{Observaciones}
+
+\begin{enumerate}
+\item Los casos anteriormente considerados son los casos m\'as simples e
+importantes. \textbf{LIONS} y \textbf{BENSOUSSAN} consideraron una
+generalizaci\'on del problema $(P_1)$ llamada \textbf{Inecuaci\'on Cuasi
+Variacional (QVI)} la cual aparece en las ciencias de decision. Un problema
+t\'{\i}pico de (QVI) es:\newline
+
+Encontrar $u \in V$ tal que:
+
+\begin{equation} \label{eq:QVI}
+(QVI) \qquad \left\{ \begin{array}{lrlr}
+a \ (u,v-u) & \ge & L \ (v-u) & \forall \ v \in K(u) \\
+\\
+u \in K(u)
+\end{array} \right.
+\end{equation}
+
+donde $v \longrightarrow K(v)$ es una familia de cerrados, convexos no
+vac\'{\i}os de $V$.
+
+\item Si $K = V$ y $j \equiv 0$ entonces los problemas $(P_1)$ y $(P_2)$ se
+reducen a la cl\'asica ecuaci\'on variacional:
+
+\begin{equation} \label{eq:variacional}
+\left\{ \begin{array}{lrlr}
+a \ (u,v) & = & L \ (v) & \forall \ v \in V \\
+\\
+u \in V
+\end{array} \right.
+\end{equation}
+
+\item Podemos considerar $(P_1)$ como un caso particular de $(P_2)$ remplazando
+$j(\ \cdot \ )$ en $(P_2)$ por la funci\'on $I_K$:
+
+\begin{equation} \label{eq:defiIK}
+I_K(v) = \left\{ \begin{array}{cccc}
+0 & v & \in & K \\
+\\
++ \infty & v & \notin & K
+\end{array} \right.
+\end{equation}
+
+Merece la pena considerar $(P_1)$ aparte de $(P_2)$ ya que aparece de forma
+natural y de esta forma tendremos una visi\'on general del problema.
+\end{enumerate}
+\newpage
+\begin{ejercicio}
+Demostrar que $I_K$ es convexo, \textbf{s.c.i} y propio.
+\end{ejercicio}
+
+\begin{demosejer}
+\ %\newline
+\begin{enumerate}
+\item Veamos primero que $I_K$ es convexa. Tendremos que demostrar que $I_K$ verifica $(\ref{eq:defconvexo})$.\\
+
+Podemos distinguir varios casos:
+
+\begin{itemize}
+\item $x,y \in K$ %\newline
+
+\begin{displaymath}
+I_K (\lambda x + (1-\lambda )y) = 0
+\end{displaymath}
+
+ya que como $K$ es convexo $\Longrightarrow$ $\lambda x + (1-\lambda )y \in K$,
+y por la definici\'on de $I_K$. De igual forma se tiene que
+$I_K(x) = I_K(y) = 0$.\newline
+
+Luego $I_K$ verifica $(\ref{eq:defconvexo})$, en este caso.
+
+\item $x,y \notin K$
+
+\begin{displaymath}
+I_K(x) = I_K(y) = + \infty
+\end{displaymath}
+
+Se deduce de la definici\'on de $I_K$.\newline
+
+Luego $I_K$ verifica $(\ref{eq:defconvexo})$, en este caso.
+
+\item $x \in K, \qquad y \notin K$
+
+\begin{displaymath}
+I_K(x) = 0 \qquad I_K(y) = +\infty
+\end{displaymath}
+
+Se deduce de la definici\'on de $I_K$.\newline
+
+Luego $I_K$ verifica $(\ref{eq:defconvexo})$, en este caso.
+
+\item $x \notin K, \qquad y \in K$
+
+\begin{displaymath}
+I_K(x) = +\infty \qquad I_K(y) = 0
+\end{displaymath}
+
+Se deduce de la definici\'on de $I_K$.\newline
+
+Luego $I_K$ verifica $(\ref{eq:defconvexo})$, en este caso.
+\end{itemize}
+
+Luego $I_K$ es una funci\'on convexa.
+
+\item Veamos que $I_K$ es propia.\newline
+
+Por definici\'on $K$ es no vac\'{\i}o $\Longrightarrow $ por lo menos tiene un
+elemento $v \in K$ $\Longrightarrow I_K(v) = 0 \neq +\infty $, luego
+$j \ne +\infty $. 
+
+\item Veamos ahora que $I_K$ es \textbf{s.c.i}.\newline
+
+$I_K$ tiene que verificar $(\ref{eq:defsci})$.\newline
+
+Sea $\{ v_n \}_{n \in N}$ una suceci\'on en $V$, espacio de Hilbert, la
+cual converge a $v$.
+
+\begin{itemize}
+\item Si algun $v_i \in K \Longrightarrow Inf I_K(v_n) = 0 \ \forall n \in N$
+
+Luego si demostramos que $I_K(v)=0$, es decir $v \in K$ terminamos.\newline
+
+Como $K$ es cerrado por definici\'on entonces se tiene que:
+
+\begin{displaymath}
+\{ v_{n_i} \}_{i \in I} \to v \in K \qquad \{ v_{n_i} \}_{i \in I} \subset
+\{ v_n \}_{n \in N} \qquad v_{n_i} \in K \ \forall \ i \in I
+\end{displaymath}
+
+Entonces $I_K(v) = 0$.
+
+\item Si ning\'un $v_{n_i} \in K$ se tiene que $I_K(v_{n_i}) = +\infty$, con
+lo cual $(\ref{eq:defsci})$ se verifica siempre.
+\end{itemize}
+
+Luego $I_K$ es \textbf{s.c.i}.
+\end{enumerate}
+\end{demosejer}
+
+\begin{ejercicio}
+Ver que $(P_1)$ es equivalente al problema de encontrar $u \in V$ tal que:
+\begin{displaymath}
+a \ ( a , v-u ) + I_K(v) - I_K(u) \ge L\ (v-u) \qquad v \ \in V
+\end{displaymath}
+\end{ejercicio}
+
+\begin{demosejer}
+\ \newline
+$\Rightarrow |$ Sea $u \in K \subset V$ tal que verifica $(P_1)$, entonces por
+la definici\'on de $I_K$ se tiene que $I_K(u) = 0$.\newline
+
+Teniendo en cuenta lo anterior tenemos que $u$ verifica:
+
+\begin{displaymath}
+a\ (u,v-u)-I_K(u) \ge L\ (v-u) \qquad \forall \ v \in K
+\end{displaymath}
+
+Si adem\'as tenemos en cuenta la definici\'on de $I_K$ dada por
+$(\ref{eq:defiIK})$ tendremos que:
+
+\begin{displaymath}
+a\ (u,v-u)+I_K(v)-I_K(u) \ge L\ (v-u) \qquad \forall \ v \in V
+\end{displaymath}
+$\Leftarrow |$ Sea $u \in V$ verificando:
+
+\begin{displaymath}
+a\ (u,v-u) + I_K(v) - I_K(u) \ge L\ (v-u) \qquad \forall \ v \in V
+\end{displaymath}
+
+Como $K \subset V$ es no vac\'{\i}o entonces se tiene que $I_K$ es propio. Si
+$u,v \notin K$ entonces llegamos a contradicci\'on ya que $I_K(u)=I_K(v)=+
+\infty$. Luego $u,v \in K \subset V$ con lo que $I_K(u)=I_K(v) = 0$, y 
+concluimos.
+\end{demosejer}
+
+\section{Resultados de existencia y unicidad para EVI I}
+
+\subsection{Teorema de existencia y unicidad}
+
+\begin{teorema}[Existencia y unicidad EVI I] \label{th:exisEVII}
+\ \newline \newline
+El problema $(P_1)$ tiene soluci\'on \'unica.
+\end{teorema}
+
+\begin{demosteorema}
+\ \newline
+\begin{itemize}
+\item Unicidad\newline
+
+Sean $u_1$ y $u_2$ dos soluciones de $(P_1)$, entonces tenemos:
+
+\begin{equation} \label{eq:unicidad1}
+a\ (u_1,v-u_1) \ge L\ (v-u_1) \qquad \forall \ v \in K
+\end{equation}
+
+\begin{equation} \label{eq:unicidad2}
+a\ (u_2,v-u_2) \ge L\ (v-u_2) \qquad \forall \ v \in K
+\end{equation}
+
+Sustituyendo $v$ por $u_2$ en $(\ref{eq:unicidad1})$ y por $u_1$ en 
+$(\ref{eq:unicidad2})$, sumando y utilizando la $V-$elipticidad de
+$a\ (\ \cdot \ , \ \cdot \ )$ tenemos:
+
+\begin{displaymath}
+\alpha \ ||u_2 -u_1 ||^2 \le a\ (u_2 - u_1, u_2 - u_1) \le 0
+\end{displaymath}
+y como $\alpha > 0 \Longrightarrow u_1 = u_2$.
+
+\item Existencia\newline
+
+Vamos a reducir el problema $(P_1)$ a un problema de punto fijo.\newline
+
+Por el teorema de representaci\'on de \emph{Riesz-Fr\'echet}, para espacios
+de Hilbert, existe $A \in \pounds(V,V)$ (lineal y continua) y $\ell \in V$
+tal que:
+
+\begin{displaymath}
+(Au,v) = a(u,v) \qquad \forall \ u,v \in V \qquad y \ \ L\ (v) = (\ell ,v)
+\qquad \forall \ v \in V
+\end{displaymath}
+
+El problema $(P_1)$ es equivalente al problema:
+
+\begin{equation} \label{eq:p1ro}
+(P_1^{\rho}) \left\{ \begin{array}{lrlr}
+(u-\rho (Au-\ell )-u, v-u) & \le & 0 & \forall \ v \in K \\
+\\
+u \in K,\ \rho > 0
+\end{array} \right.
+\end{equation}
+
+Veamos la equivalencia:\newline \\
+$\Rightarrow |$ Sea $u \in K$ tal que es soluci\'on de $(P_1)$, veamos que
+es soluci\'on de $(P_1^{\rho} )$, como $u$ verifica $(P_1)$ se tiene:
+
+\begin{displaymath}
+a\ (u,v-u) - L\ (v-u) \ge 0
+\end{displaymath}
+y aplicando el teorema de representaci\'on de \emph{Riesz-Fr\'echet}:
+
+\begin{displaymath}
+(Au,v-u) - (\ell ,v-u) \ge 0
+\end{displaymath}
+como el producto escalar es bilineal se tiene que:
+
+\begin{displaymath}
+(Au-\ell ,v-u) \ge 0
+\end{displaymath}
+si multiplicamos por $-\rho $ a toda la desigualdad y a continuaci\'on
+sumamos y restamos $u$ en el primer factor del producto escalar tenemos que
+$u \in K$ verifica:
+
+\begin{displaymath}
+(u-\rho (Au-\ell)-u,v-u) \le 0 \qquad \rho > 0
+\end{displaymath}
+
+$\Leftarrow |$ Sea $u \in K$ soluci\'on de $(P_1^{\rho})$, como es soluci\'on
+de $(P_1^{\rho})$ se tiene:
+
+\begin{eqnarray*}
+0 & \ge & (u-\rho (Au-\ell )-u,v-u) = -\rho (Au-\ell,v-u) = \\
+  & =   & -\rho \{(Au,v-u) -(\ell ,v-u)\} = -\rho \{ a\ (u,v-u)-L\ (v-u) \}
+\end{eqnarray*}
+Luego se tiene que:
+
+\begin{displaymath}
+-\rho \{ a\ (u,v-u) - L(v-u)\} \le 0 \qquad \rho > 0
+\end{displaymath}
+multiplicando por $-\rho$:
+
+\begin{displaymath}
+\rho \{ a\ (u,v-u)-L\ (v-u) \} \ge 0	\qquad \rho > 0
+\end{displaymath}
+de donde se deduce:
+
+\begin{displaymath}
+a\ (u,v-u) \ge L\ (v-u)	\qquad \rho > 0
+\end{displaymath}
+
+Luego $(P_1) \equiv (P_1^{\rho})$.\newline
+
+Sea $P_K$ el operador de proyecci\'on de $V$ a $K$ seg\'un la norma
+$||\cdot ||$.\newline
+
+El problema $(P_1^{\rho})$ es equivalente a encontrar $u \in K$ verificando
+para alg\'un $\rho > 0$:
+
+\begin{displaymath} 
+P_K(u-\rho (Au-\ell )) = u
+\end{displaymath}
+
+Definamos la siguiente aplicaci\'on $W_{\rho}\ :V \longrightarrow V$ de
+forma que:
+
+\begin{equation} \label{eq:wro}
+W_{\rho} (v) = P_K(v-\rho (Av-\ell))
+\end{equation}
+
+Veamos que $W_{\rho}$ es una contracci\'on estricta.\newline
+
+Dados $v_1,v_2 \in V$ tenemos que:
+
+\begin{eqnarray*}
+||W_{\rho}(v_1)-W_{\rho}(v_2)||^2 & = & ||P_K(v_1-\rho (Av_1-\ell ))-
+P_H(v_2-\rho (Av_2-\ell )) ||^2 \le \\
+& \le & || v_1 -\rho Av_1 + \rho \ell -v_2 + Av_2 - \rho \ell ||^2 = \\
+& = & || v_1 - v_2 - \rho A(v_1-v_2)|| ^2 \le \\
+& \le & || v_1 - v_2 ||^2 - 2\rho(A(v_1-v_2),v_1-v_2)+ \\
+& + & \rho^2 ||A(v_1-v_2)||^2
+\end{eqnarray*}
+por definici\'on se tiene que:
+
+\begin{displaymath}
+(A(v_1-v_2),v_1-v_2) = a\ (v_1-v_2,v_1-v_2) \ge \alpha ||v_1-v_2 ||^2
+\end{displaymath}
+luego tenemos que:
+
+\begin{displaymath}
+||W_{\rho}(v_1)-W_{\rho}(v_2)||^2 \le (1-2\alpha \rho +||A||^2 \rho^2)
+||v_1-v_2||^2
+\end{displaymath}
+
+Para que sea contracci\'on estricta se tiene que verificar que:
+
+\begin{displaymath}
+1-2\alpha \rho + ||A||^2 \rho^2 < 1 \Longleftrightarrow -2\alpha \rho +
+||A||^2 \rho ^2 < 0
+\end{displaymath}
+
+Luego para que $W_{\rho}$ sea una contracci\'on estricta:
+
+\begin{displaymath}
+0 < \rho < \frac{2\alpha}{||A||^2}
+\end{displaymath}
+
+Si elegimos $\rho$ adecuadamente para que $W_{\rho}$ sea una contracci\'on
+estricta, entonces $P_K$ tiene un punto fijo $u \in K \subset V$, el cual es
+soluci\'on de $(P_1^{\rho})$ y como $(P_1^{\rho}) \equiv (P_1)$ tenemos que
+dicho $u$ es soluci\'on de $(P_1)$.
+
+\end{itemize}
+
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\end{demosteorema}
+
+\subsection{Observaciones}
+
+\begin{enumerate}
+\item Si $K=V$ el teorema $\ref{th:exisEVII}$ es el lema de \emph{Lax-Milgram}.
+\item La demostraci\'on del teorema $\ref{th:exisEVII}$ nos da un algoritmo para
+resolver el problema $(P_1)$, siempre que $P_K$ sea una contracci\'on
+estricta.\newline
+
+Recordemos la definici\'on de $P_K$ y la condici\'on que tiene que verificar
+$\rho$ para que sea una contracci\'on estricta:
+
+\begin{displaymath}
+v \to P_K(v-\rho(Av - \ell) ) \qquad 0<\rho < \frac{2 \alpha}{||A||^2}
+\end{displaymath}
+\newpage
+
+El algoritmo es el siguiente:
+
+\begin{itemize}
+\item Dado $u^0 \in V$
+\item $u^{n+1} = P_K(u^n-\rho (Au^n -\ell))$
+\end{itemize}
+
+Entonces $u^n \longrightarrow u$ fuertemente en $V$, donde $u$ es la soluci\'on
+de $(P_1)$. En la practica no es facil calcular $\ell$ y $A$ cuando
+$V \neq V^{*}$. Proyectar sobre $K$ puede ser tan dificil como resolver
+$(P_1)$. En general este m\'etodo no suele ser usado para calcular la soluci\'on
+de $(P_1)$ si $K \neq V$, al menos no directamente.\newline
+
+Si $a\ (\cdot, \cdot)$ es sim\'etrica entonces $J'(u) = Au - \ell$ y se tiene
+que:
+
+\begin{itemize}
+\item $u^{n+1} = P_K(u^n-\rho (J'(u^n)))$
+\end{itemize}
+
+este m\'etodo es conocido como el m\'etodo de la \textbf{proyecci\'on del
+gradiente}.
+\end{enumerate}
+
+\begin{ejercicio}
+Probar que $(J'(u),v)=a(u,v)-L(v)$ $\forall \ u,v \in V$ y deducir que
+$J'(u) = Au-\ell$ (suponiendo $a\ (\cdot ,\cdot )$ sim\'etrica).
+\end{ejercicio}
+
+\begin{demosejer}
+\begin{displaymath}
+J(v) = \frac{1}{2}\ a\ (v,v)- L\ (v)
+\end{displaymath}
+
+Dada una funci\'on $J\ (\cdot) \in \pounds(V,\Re )$, siendo $V$ un espacio de
+Hilbert, se dice que $J\ (\cdot)$ es \textbf{diferenciable en el sentido de
+Gauteaux}, si existe una funci\'on, a la que denotaremos $J'\ (\cdot)$
+verificando:
+
+\begin{equation} \label{eq:defigateaux}
+\lim_{\lambda \to 0} \frac{J(u+\lambda v)-J(u)}{\lambda} = (J'(u), v)
+\qquad \forall \ v \in V
+\end{equation}
+
+Aplicando la definici\'on de $(J'(u),v)$ tenemos que:
+
+\begin{displaymath}
+(J'(u),v) = \lim_{\lambda \to 0} \frac{\frac{1}{2}\ a\ (u+\lambda v,u+\lambda
+v)-L\ (u+\lambda v)-\{ \frac{1}{2}\ a\ (u,u)-L\ (v)\}}{\lambda}
+\end{displaymath}
+teniendo en cuenta que $L\ (\cdot)$ es lineal y que $a\ (\cdot ,\cdot )$ es
+bilineal y sim\'etrica se tiene que:
+
+\begin{eqnarray*}
+(J'(u),v) & = & \lim_{\lambda \to 0} \frac{\lambda a\ (u,v)+
+\frac{\lambda^2}{2}\ a\ (v,v)-\lambda L\ (v)}{\lambda} = \\
+& = & \lim_{\lambda \to 0} \{ a\ (u,v)-L\ (v)+\frac{\lambda}{2}\ a\ (v,v) \} =
+a\ (u,v) - L\ (v)
+\end{eqnarray*}
+
+Veamos ahora que $J'(u) = Au - \ell$ $\forall \ u \in V$.\newline
+
+Por el teorema de \emph{representaci\'on de Riesz-Fr\'echet}, para espacios
+de Hilbert, tenemos que existe $A \in \pounds(V,V)$ (lineal y continua) y
+$\ell \in V$ tal que:
+
+\begin{displaymath}
+(Au,v) = a\ (u,v)\qquad \forall \ u,v \in V \qquad y\ \ L\ (v)=(\ell , v)
+\qquad \forall \ v \in V
+\end{displaymath}
+Luego se tiene que:
+
+\begin{displaymath}
+a\ (u,v) - L\ (v) = (Au,v) - (\ell ,v) = (Au-\ell , v)\qquad \forall \
+u,v \in V
+\end{displaymath}
+es decir:
+
+\begin{displaymath}
+(J'(u),v) = a\ (u,v) - L\ (v) = (Au-\ell , v) \qquad \forall \ u,v \in V
+\end{displaymath}
+de esto \'ultimo se deduce que $J'(u)= Au -\ell$ $\forall \ u \in V$.
+
+\end{demosejer}
+
+\begin{teorema}[Existencia de soluci\'on para un problema de optimizaci\'on] \label{th:exissolopt}
+\ \newline
+
+Dada $J\ : V \longrightarrow ] -\infty ,+\infty ]$ definida de la siguiente
+manera:
+\begin{displaymath}
+J(v) = \frac{1}{2} \ a(v,v)-L(v)
+\end{displaymath}
+y verificando:
+
+\begin{itemize}
+\item J es convexa, propia y \textbf{s.c.i.}.
+\item J es coerciva.
+\begin{equation} \label{eq:deficoerciva}
+\lim_{||v|| \to +\infty} J(v) = +\infty
+\end{equation}
+\end{itemize}
+Si $K \subset V$ es convexo, cerrado y no vac\'{\i}o entonces existe, al menos
+una, soluci\'on de:\newline
+
+Hallar $u \in K$ tal que:
+
+\begin{displaymath}
+J(u) = \inf_{v \in K} J(v)
+\end{displaymath}
+Si $J$ es estrictamente convexa entonces la soluci\'on es \'unica (el
+m\'{\i}nimo es \'unico).
+
+\end{teorema}
+
+\begin{demosteorema}
+\ \newline
+
+Sea $\alpha$ tal que:
+
+\begin{displaymath}
+\alpha = \inf_{v \in K} J(v)
+\end{displaymath}
+Puede darse el caso $\alpha=- \infty$.\newline
+
+Podemos construir una suceci\'on en $K$ $\{ v_n \}_{n \in N}$ tal que:
+
+\begin{displaymath}
+\lim_{n \to +\infty} J(v_n) = +\infty
+\end{displaymath}
+La sucesi\'on $\{ v_n\}_{n \in N}$ esta acotada, es decir $||v_n || \le C$ 
+$\forall \ n \in N$, ya que si esto no fuera cierto como $J$ es coerciva se
+tendr\'{\i}a lo siguiente:
+
+\begin{displaymath}
+||v_n|| \mathop{\longrightarrow}_{n \to +\infty} +\infty \Longrightarrow
+\lim_{n \to +\infty} J(v_n) = +\infty \qquad !!!
+\end{displaymath}
+Luego las $v_n$ estan acotadas $\Longrightarrow$ $\alpha$ es finito.\newline
+
+Si estuvieramos en dimensi\'on finita donde las $v_n$ pertenecieran a una
+bola cerrada (recordemos que estan acotadas) entonces podriamos extraer una
+subsucesi\'on convergente, pero como estamos en espacios de dimensi\'on
+infinita no podemos hacer esto.\newline
+
+$V$ es de \emph{Hilbert} luego es \emph{Banach reflexivo}, en la
+\emph{topolog\'{\i}a d\'ebil} de $V$ podemos extraer una subsucesi\'on
+convergente $v_{\sigma}\longrightarrow v^{*}$.\newline
+
+Como $J$ es \textbf{s.c.i.} se tiene (en la topolog\'{\i}a d\'ebil) que:
+
+\begin{displaymath}
+\liminf_{n \to +\infty} J(v_n) \ge J(v^{*}) \Longrightarrow \alpha \ge J(v^{*})
+\end{displaymath}
+Entonces $v^{*}$ es el $u$ buscado.\newline
+
+Adem\'as como $J$ es convexa entonces $J$ no puede tomar el valor $-\infty$,
+ya que si lo tomar\'a, al ser convexa, lo tomar\'{\i}a siempre.\newline
+
+Si $J$ es estrictamente convexa, dadas $u_1$, $u_2$ dos soluciones del problema
+de optimizaci\'on, que estamos intentando resolver, se tiene:
+
+\begin{displaymath}
+J(\frac{u_1 +u_2}{2})< \frac{1}{2}\ \{ J(u_1)+ J(u_2)\} \le \alpha
+\end{displaymath}
+
+con lo cual llegamos a contradicci\'on si $u_1 \neq u_2$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\end{demosteorema}
+
+\section{Resultados de existencia y unicidad para EVI II}
+
+\subsection{Teorema de existencia y unicidad}
+
+\begin{teorema}[Existencia y unicidad EVI II] \label{th:exisEVIII}
+\ \newline
+
+El problema $(P_2)$ tiene soluci\'on \'unica.
+\end{teorema}
+
+\begin{demosteorema}
+\ \newline
+\begin{itemize}
+\item Unicidad \newline
+
+Sean $u_1$ y $u_2$ dos soluciones de $(P_2)$, entonces tenemos:
+
+\begin{equation} \label{eq:unicidadEVI2I}
+a\ (u_1,v-u_1)+j\ (v)-j\ (u_1) \ge L\ (v-u_1) \qquad \forall \ v \in V
+\end{equation}
+
+\begin{equation} \label{eq:unicidadEVI2II}
+a\ (u_2,v-u_2)+j\ (v)-j\ (u_2) \ge L\ (v-u_2) \qquad \forall \ v \in V
+\end{equation}
+
+Como $j(\cdot )$ es propio, entonces existe $v_0 \in V$ tal que:
+
+\begin{displaymath}
+-\infty < j\ (v_0) < + \infty
+\end{displaymath}
+
+Entonces para $i=1,2$ se tiene que:
+
+\begin{displaymath}
+-\infty < j\ (u_i) \le j\ (v_0)- L\ (v_0-u_i)+a\ (u_i,v_0,v_i)
+\end{displaymath}
+
+lo que nos indica que $j\ (u_i)$ es finito para $i=1,2$.\newline
+
+Si sustituimos $v$ por $u_2$ en $(\ref{eq:unicidadEVI2I})$ y sustituimos $v$
+por $u_1$ en $(\ref{eq:unicidadEVI2II})$ y sumamos las expresiones obtenidas
+tendremos que:
+
+\begin{displaymath}
+0 \ge a\ (u_1-u_2,u_1-u_2)
+\end{displaymath}
+
+como $a\ (\cdot,\cdot )$ es $V-$el\'{\i}ptica se tiene que:
+
+\begin{displaymath}
+0 \ge a\ (u_1-u_2,u_1-u_2) \ge \alpha\ ||u_1-u_2 ||^2 \qquad \alpha > 0
+\end{displaymath}
+
+como $\alpha > 0$ se deduce que:
+
+\begin{displaymath}
+||u_1-u_2||^2=0\Longrightarrow ||u_1-u_2|| = 0\Longrightarrow u_1-u_2=0
+\Longrightarrow u_1=u_2
+\end{displaymath}
+
+\item Existencia \newline
+
+Para cada $u \in V$ y cada $\rho > 0$ asociaremos el problema $(\pi^u_{\rho})$,
+de tipo $(P_2)$, siguiente:\newline
+
+Encontrar $w \in V$ tal que:
+
+\begin{equation} \label{eq:piuro}
+(\pi^u_{\rho}) \left\{ \begin{array}{lr}
+(w,v-w)+\rho j\ (v)-\rho j\ (w) \ge \\
+\ge (u,v-w)+\rho L\ (v-w)-\rho a\ (u,v-w) & \forall \ v \in V \\
+\\
+w \in W
+\end{array} \right.
+\end{equation}
+
+La ventaja de considerar este problema sobre el problema $(P_2)$ es que la 
+forma bilineal asociada al problema $(\pi^u_{\rho})$ es el producto interior de
+$V$, el cual es sim\'etrico.\newline
+
+Admitiremos, de momento, que el problema $(\pi^u_{\rho})$ tiene soluci\'on
+\'unica $\forall \ u \in V$ y $\rho > 0$.\newline
+
+Para cada $\rho > 0$ definiremos la siguiente aplicaci\'on
+$f_{\rho}\ :V \longrightarrow V$, definida de la siguiente manera:
+
+\begin{displaymath}
+f_{\rho}\ (u) = w \qquad donde \ \ w \ \ verifica \ \ (\pi^u_{\rho})
+\end{displaymath}
+
+Vamos a ver que $f_{\rho}\ (\cdot)$ es una contracci\'on estricta, eligiendo
+adecuadamente el par\'ametro $\rho$.\newline
+
+Sean $u_1,u_2 \in V$ tales que $f_{\rho}\ (u_i) = w_i$ para $i=1,2$.\newline
+
+Como $j\ (\cdot)$ es propio, se puede demostrar\footnote{Al igual que hicimos
+en la unicidad.} que $j\ (u_i)$ es finito para $i=1,2$.\newline
+
+Como $w_1$ es soluci\'on de $(\pi^{u_1}_{\rho})$ se tiene que:
+
+\begin{equation} \label{eq:existenciaI}
+\begin{array}{lr}
+(w_1,w_2-w_1)+\rho j\ (w_2)-\rho j\ (w_1) &\ge \\
+(u_1,w_2-w_1)+\rho L\ (w_2-w_1)-\rho a\ (u_1,w_2-w_1)
+\end{array}
+\end{equation}
+
+y como $w_2$ es soluci\'on de $(\pi^{u_2}_{\rho})$ se tiene que:
+
+\begin{equation} \label{eq:existenciaII}
+\begin{array}{lr}
+(w_2,w_1-w_2)+\rho j\ (w_1)-\rho j\ (w_2)&\ge \\
+(u_2,w_1-w_2)+\rho L\ (w_2-w_1)-\rho a\ (u_2,w_1-w_2)
+\end{array}
+\end{equation}
+
+Sumando $(\ref{eq:existenciaI})$ y $(\ref{eq:existenciaII})$ tenemos que:
+
+\begin{equation} \label{eq:existenciacontraccion}
+||w_2-w_1||^2 \le ((I-\rho A)(u_2-u_1),w_2-w_1)
+\end{equation}
+
+pero por definici\'on de $f_{\rho}\ (\cdot)$ se tiene que:
+
+\begin{equation} \label{eq:existenciadef}
+||w_2-w_1||^2=||f_{\rho}\ (u_2)-f_{\rho}\ (u_1)||^2
+\end{equation}
+
+si desarrollamos el producto escalar que aparece en el segundo miembro de la
+desigualdad $(\ref{eq:existenciacontraccion})$ y si tenemos en cuenta
+$(\ref{eq:existenciadef})$ tendremos:
+
+\begin{displaymath}
+||f_{\rho}\ (u_2)-f_{\rho}\ (u_1)||^2 \le ||I-\rho A||\ ||u_2-u_1||\
+||w_2-w_1||
+\end{displaymath}
+
+es decir:
+
+\begin{equation} \label{eq:existenciadesigualdad}
+||f_{\rho}\ (u_2)-f_{\rho}\ (u_1)|| \le ||I -\rho A||\ ||u_2-u_1||
+\end{equation}
+
+Recordemos que:
+
+\begin{equation} \label{eq:existencianorma}
+||I-\rho A|| = \sup_{||v||=1} ||v-\rho Av||
+\end{equation}
+
+para que $f_{\rho}\ (\cdot )$ sea contracci\'on estricta se tiene que
+verificar que:
+
+\begin{displaymath}
+||I-\rho A|| < 1
+\end{displaymath}
+
+Desarrollemos $||v-\rho Av||$:
+
+\begin{displaymath}
+||v-\rho Av||^2 =  (v-\rho Av, v-\rho Av)
+\end{displaymath}
+
+como el producto escalar es bilineal y sim\'etrico tenemos:
+
+\begin{displaymath}
+||v-\rho Av||^2 = (v,v)-2\rho (Av,v)+\rho^2 (Av,Av)
+\end{displaymath}
+
+utilizando ahora el teorema de \emph{Riesz-Fr\'echet}\footnote{Otra vez.},
+para espacios de Hilbert, y utilizando la definici\'on de norma a partir de
+un producto escalar tenemos:
+
+\begin{displaymath}
+||v-\rho Av||^2 = ||v||^2-2\rho a(v,v)+ \rho^2 ||Av||^2
+\end{displaymath}
+
+como $a\ (\cdot ,\cdot )$ es $V-$el\'{\i}ptica se tiene que existe $\alpha > 0$
+tal que:
+
+\begin{displaymath}
+a\ (v,v) \ge \alpha \ ||v||^2 \qquad \forall \ v \in V
+\end{displaymath}
+
+utilizando esto \'ultimo tendremos:
+
+\begin{displaymath}
+||v-\rho Av||^2 \le (1-2\alpha \rho+\rho^2 ||A||^2)\ ||v||^2 
+\end{displaymath}
+
+juntando todos estos resultados se tiene que $f_{\rho}\ (\cdot )$ ser\'a 
+una contracci\'on estricta si:
+
+\begin{displaymath}
+1-2\alpha \rho+\rho^2 ||A||^2 < 1 \Longleftrightarrow 0 < \rho <
+\frac{2\ \alpha}{||A||^2}
+\end{displaymath}
+
+luego si elegimos $\rho$ adecuadamente entonces $f_{\rho}\ (\cdot )$ es una
+contracci\'on estricta, es decir, admite un \'unico punto fijo $u \in V$.\\
+
+Como $u$ es un punto fijo de $f_{\rho}\ (\cdot )$ se tiene que
+$f_{\rho}\ (u) = u$ y $u$ ser\'a soluci\'on de $(\pi^u_{\rho})$, por
+definici\'on de $f_{\rho}\ (\cdot )$. Como $u$ verifica $(\pi^u_{\rho})$ se
+tiene que $\forall \ v \in V$:
+
+\begin{displaymath}
+(u,v-u)+\rho j\ (v)-\rho j\ (u) \ge (u,v-u)+\rho L\ (v-u)-\rho a\ (u,v-u)
+\end{displaymath}
+
+es decir:
+
+\begin{displaymath}
+a\ (u,v-u)+j\ (v)-j\ (u) \ge L\ (v-u) \qquad \forall \ v \in V
+\end{displaymath}
+
+\end{itemize}
+
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\end{demosteorema}
+
+La existencia y unicidad de la soluci\'on del problema $(\pi^u_{\rho})$ se
+deduce del siguiente lema.
+
+\begin{lema}
+\ \newline
+Sea $b : V\times V \longrightarrow \Re$ una forma bilineal sim\'etrica,
+continua y $V-$el\'{\i}ptica con constante de el\'{\i}pticidad $\beta$. Sea
+$L \in V^*$ y $j:V \longrightarrow \overline{\Re}$ funcional propio, convexo y
+\textbf{s.c.i.}. Sea $J (\cdot )$ definido:
+
+\begin{displaymath}
+J(v) = \frac{1}{2}\ b\ (v,v)+j(v)-L(v)
+\end{displaymath}
+
+El problema de minimizaci\'on $(\pi)$, encontrar $u$ tal que:
+
+\begin{equation}
+(\pi) \left\{ \begin{array}{lrlr}
+J(u) &\le & J(v) & \forall \ v \in V\\
+\\
+u \in V
+\end{array} \right.
+\end{equation}
+
+tiene soluci\'on \'unica, la cual esta caracterizada por:
+
+\begin{equation} \label{eq:caracter}
+\left\{ \begin{array}{lrlr}
+b\ (u,v-u)+j(v)-j(u)&\ge & L (v-u) & \forall \ v \in V\\
+\\
+u \in V
+\end{array} \right.
+\end{equation}
+
+\end{lema}
+
+\begin{demoslema}
+\ \newline
+
+Utilizando el teorema $\ref{th:exissolopt}$, en la p\'agina
+$\pageref{th:exissolopt}$, el problema $(\pi )$ tiene soluci\'on si:
+
+\begin{itemize}
+\item $J\ (\cdot )$ es convexo.\newline
+
+Como $b\ (\cdot ,\cdot )$ es estrictamente convexa, $j\ (\cdot )$ es convexa y
+$L\ (\cdot )$ es lineal tenemos que $J\ (\cdot )$ es estrictamente convexa, lo
+que nos implica, seg\'un el teorema antes mencionado, la unicidad de la
+soluci\'on, suponiendo que exista.
+
+\item $J\ (\cdot )$ es \textbf{s.c.i}.\newline
+
+Como $b\ (\cdot ,\cdot )$ y $L\ (\cdot )$ son continuas y $j\ (\cdot )$ es
+\textbf{s.c.i} tenemos que $J\ (\cdot )$ es \textbf{s.c.i}.
+
+\item $J\ (\cdot )$ es propio.\newline
+
+Como $b\ (\cdot ,\cdot )$ y $L\ (\cdot )$ son continuas y $j\ (\cdot )$ es
+propio tenemos que $J\ (\cdot )$ es propio.
+
+\item $J\ (\cdot )$ es coerciva.\newline
+
+Para demostrar esto vamos a utilizar una propiedad de las funciones convexas y
+\textbf{s.c.i.} que es la siguiente:
+
+\begin{quote}
+Si $j\ (\cdot )$ es una funci\'on convexa y \textbf{s.c.i.} existe una funci\'on
+$\lambda \ (\cdot ) \in V^*$ y $\mu \in \Re$ tal que:
+
+\begin{displaymath}
+j\ (v) \ge <\lambda ,v> + \mu = \lambda \ (v)+\mu
+\end{displaymath}
+
+\end{quote}
+Por lo tanto:
+
+\begin{eqnarray*}
+J\ (v) &\ge & \frac{\beta}{2}\ ||v||^2-||\lambda ||\ ||v||-||L||\ ||v||+\mu = \\
+& = & ( \sqrt{\frac{\beta}{2}}-\frac{||\lambda ||+||L||}{2}\
+\sqrt{\frac{2}{\beta}}\ )^2+\mu -\frac{(||\lambda ||+||L||)^2}{2\beta }
+\end{eqnarray*}
+Luego $J\ (v)\to +\infty$ cuando $||v||\to +\infty$, es decir $J\ (\cdot )$ es
+coerciva.
+
+\end{itemize}
+
+De esto se deduce que existe soluci\'on para el problema $(\pi )$, y su unicidad
+viene dada por la convexidad estricta de $J\ (\cdot )$.\newline
+
+Una vez demostrada la existencia y unicidad del problema $(\pi )$ veamos su
+caracterizaci\'on.\newline
+
+$\Rightarrow |$Sea $u$ la soluci\'on del problema $(\pi )$ y sea $0<t\le 1$
+entonces $\forall \ v \in V$ tendremos:
+
+\begin{equation} \label{eq:minimizacion}
+J\ (u) \le J(u+t(v-u))
+\end{equation}
+Para simplificar llamaremos $J_0\ (v)$ a $\frac{1}{2}\ b\ (v,v)-L\ (v)$, es
+decir:
+
+\begin{displaymath}
+J_0\ (v) = \frac{1}{2}\ b(v,v)-L\ (v)
+\end{displaymath}
+Sustituyendo $J\ (\cdot )$ por su valor en $(\ref{eq:minimizacion})$, agrupando
+seg\'un $J_0\ (\cdot)$ y pasando todo a un miembro de la inecuaci\'on
+tendremos:
+
+\begin{displaymath}
+0 \le J_0\ (u+t(v-u))-J_0\ (u)+j\ (u+t(v-u))-j\ (u) \qquad \forall \ v \in V
+\end{displaymath}
+y usando la convexidad de $j\ (\cdot )$ tendremos que:
+
+\begin{displaymath}
+0 \le J_0\ (u+t(v-u))-J_0\ (u)+t\ [j\ (v)-j\ (u)]\qquad \forall \ v \in V
+\end{displaymath}
+si dividimos por $t$ tendremos:
+
+\begin{displaymath} 
+0 \le \frac{J_0\ (u+t(v-u))-j_0\ (u)}{t} +[j\ (v)-j\ (u)]\qquad \forall 
+\ v \in V
+\end{displaymath}
+si sustituimos $J_0\ (\cdot )$  por su valor, y teniendo en cuenta que
+$L\ (\cdot )$ es lineal y que $b\ (\cdot ,\cdot )$ es bilineal y sim\'etrica
+tendremos que $\forall \ v \in V$:
+
+\begin{displaymath}
+0 \le \frac{t\ b\ (u,v-u)+\frac{t^2}{2}\ b\ (v-u,v-u)-t\ L\ (v-u)}{t} +
+[j\ (v)-j\ (u)]
+\end{displaymath}
+simplificando y tomando el limite cuando $t \to 0$ tendremos que:
+
+\begin{displaymath}
+0 \le b\ (u,v-u)-L\ (v-u)+j\ (v)-j\ (u) \qquad \forall \ v \in V
+\end{displaymath}
+es decir:
+
+\begin{displaymath}
+b\ (u,v-u)+j\ (v)-j\ (u) \ge L\ (v-u)\qquad \forall \ v \in V
+\end{displaymath}
+$u$ es soluci\'on de $(\ref{eq:caracter})$.\newline
+
+$\Leftarrow |$ Sea $u$ una soluci\'on de $(\ref{eq:caracter})$ entonces 
+$\forall \ v \in V$ se tiene que:
+
+\begin{equation} \label{eq:asaber}
+J\ (v)-J\ (u) = \frac{1}{2}\ [b\ (v,v)-b\ (u,u)]+j\ (v)-j\ (u)-L\ (v-u)
+\end{equation}
+si tenemos en cuenta que:
+
+\begin{eqnarray*}
+b\ (v,v) &=& b\ (u+v-u,u+v-u)=\\
+&=& b\ (u,u)+2\ b\ (u,v-u)+b\ (u-v,u-v)
+\end{eqnarray*}
+sustituyendo esto en $(\ref{eq:asaber})$ y simplificando tendremos:
+
+\begin{displaymath}
+J\ (v)-J\ (u) = b\ (u,v-u)+j\ (v)-j\ (u)-L\ (v-u) +\frac{1}{2}\ b\ (v-u,v-u)
+\end{displaymath}
+ahora bien como $u$ es soluci\'on de $(\ref{eq:caracter})$ se tiene que:
+
+\begin{displaymath}
+b\ (u,v-u)+j\ (v)-j\ (u)-L\ (v-u) \ge 0\qquad \forall \ v \in V
+\end{displaymath}
+y como $b\ (\cdot ,\cdot )$ es $V-$el\'{\i}ptica:
+
+\begin{displaymath}
+b\ (v-u,v-u) \ge \beta \ ||v-u||^2 \ge 0\qquad \forall \ v \in V
+\end{displaymath}
+de donde se deduce que:
+
+\begin{displaymath}
+J\ (v) - J\ (u) \ge 0\qquad \forall \ v \in V
+\end{displaymath}
+Por lo tanto $u$ es soluci\'on de $(\pi )$. Si en $(\ref{eq:caracter})$
+sustituimos $b\ (\cdot ,\cdot )$ por el producto escalar en $V$, $j\ (v)$ por
+$\rho \ j\ (v)$ y $L\ (v)$ por $(u,v)+\rho L\ (v)-\rho \ a\ (u,v)$ tendremos el
+problema $(\pi_{\rho}^u)$, con lo que se demuestra la existencia y unicidad de
+la soluci\'on de dicho problema.
+
+\end{demoslema}
+
+\subsection{Observaciones}
+
+\begin{enumerate}
+\item De la demostraci\'on del teorema $\ref{th:exisEVIII}$ se deduce un
+algoritmo para la \mbox{resoluci\'on} del problema $(P_2)$. El algoritmo es el
+siguiente:
+
+\begin{itemize}
+\item Dado $u^0 \in V$ y $0<\rho < \frac{2\alpha }{||A||^2}$
+\item $(u^{n+1},v-u^{n+1})+\rho \ j\ (v)-\rho \ j\ (u^{n+1}) \ge$ \newline
+$(u^n,v-u^{n+1})+\rho \ L\ (v-u^{n+1})-\rho \ a\ (u^n,v-u^{n+1})$ $\forall
+\ v \in V$
+\item $u^{n+1} \in V$
+\end{itemize}
+
+Se puede comprobar facilmente que $u^n \to u$ fuertemente en $V$, donde $u$
+es la soluci\'on del problema $(P_2)$. Podemos encontrarnos con dificultades
+si $j\ (\cdot )$ no es diferenciable. En cada iteraci\'on tenemos que resolver
+un problema del mismo orden de dificultad que el problema original (el
+condicionamiento del problema que estamos resolviendo depende de la buena
+elecci\'on del par\'ametro $\rho$). Si $a\ (\cdot ,\cdot )$ no es sim\'etrica
+el hecho de que $(\cdot ,\cdot )$ lo sea puede proporcionar alguna
+simplificaci\'on.
+
+\end{enumerate}
+\newpage
+\section{Aproximaci\'on EVI I}
+
+\subsection{Discretizaci\'on de $V$ y $K$}
+
+Sea $\{ V_h\}_h$ una familia de cerrados de $V$ con $0<h \to 0$ (en la
+pr\'actica ser\'an de dimensi\'on finita).\newline
+
+Sea $\{ K_h\}_h$ una familia de cerrados, convexos no vacios de $V$ verificando
+$K_h \subset V_h \ \forall \ h$. Normalmente se tendr\'a $K_h \nsubseteq K$.\\
+
+A\~nadiremos dos hip\'otesis sobre $K_h$:
+
+\begin{enumerate}
+\item \textbf{Hip\'otesis de consistencia}\newline
+Los puntos de acumulaci\'on, para la topolog\'{\i}a d\'ebil de $V$, de las
+sucesiones acotadas de $\{K_h \}$ est\'an en $K$, es decir $\{ V_h\}_h$ acotada
+$V_h \in K_h$ y al estar en un espacio de Hilbert podemos extraer subsucesiones
+convergentes cuyos limites est\'an en $K$.
+
+\begin{quote}
+\begin{displaymath}
+\{V_h \}_h \qquad V_h \in K_h \qquad donde \ ||V_h|| \le C
+\end{displaymath}
+
+Este tipo de conjuntos no es compacto para la topolog\'{\i}a, pero si para la
+topolog\'{\i}a de d\'ebil.\newline
+
+Los puntos de acumulaci\'on para la topolog\'{\i}a d\'ebil de la sucesi\'on
+$\{V_h \}$ estan en $K$ esto es necesario para demostrar que:
+
+\begin{displaymath}
+\lim_{h \to 0} ||u-u_h|| = 0
+\end{displaymath}
+
+\end{quote}
+
+\item Existe $\chi \subset V$ tal que $\overline{\chi}=K$ y para cada $h>0$
+existe $r_h : \chi \longrightarrow K_h$ tal que:
+
+\begin{displaymath}
+\lim_{h \to 0} r_h (v) = v \qquad (\equiv \lim_{h \to 0}
+||r_h (v)-v||=0) \qquad \forall \ v \in \chi
+\end{displaymath}
+
+\end{enumerate}
+
+\newpage
+
+\subsubsection{Observaciones}
+
+\begin{enumerate}
+\item Si $K_h \subset K$ la hip\'otesis de consistencia es inmediata.
+\item $\cap K_h \subset K$
+\item Variante \'util de la segunda hip\'otesis:\newline
+
+Supondremos que existe un subconjunto $\chi \subset V$ tal que
+$\overline{\chi} = K$ y $r_h : \chi \longrightarrow V_h$ con la
+propiedad de que para cada $v \in \chi$ existe $h_0 = h_0(v)$ con
+$r_h (v) \in K_h$ $\forall \ h \le h_0(v)$ y:
+
+\begin{displaymath}
+\lim_{h \to 0} r_h (v) = v
+\end{displaymath}
+
+fuertemente en $V$.
+
+\end{enumerate}
+
+\subsection{Aproximaci\'on de $(P_1)$}
+
+El problema aproximado ser\'a el siguiente:
+
+\begin{equation}
+(P^h_1) \left\{ \begin{array}{lrlr} 
+a\ (u_h,v_h-u_h)&\ge & L\ (v_h-u_h) & \forall \ v_h \in K_h \\
+\\
+u_h \in K_h
+\end{array} \right.
+\end{equation}
+
+\subsection{Teorema de existencia y unicidad}
+
+\begin{teorema}[Existencia y unicidad EVI I aproximado]
+\ \newline
+$(P^h_1)$ tiene soluci\'on unica.
+\end{teorema}
+
+\begin{demosteorema}
+\ \newline
+En la demostraci\'on del teorema $\ref{th:exisEVII}$ coger $V_h$ en lugar de
+$V$ y $K_h$ en lugar de $K$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\end{demosteorema}
+
+\newpage
+
+\subsection{Observaciones}
+
+\begin{enumerate}
+\item En la mayor\'{\i}a de los casos sera necesario reemplazar
+$a\ (\cdot, \cdot)$ y $L\ (\cdot )$ por $a_h\ (\cdot , \cdot )$ y
+$L_h\ (\cdot )$ (normalmente definidos a partir de $a\ (\cdot ,\cdot)$ y
+$L\ (\cdot )$ por un procedimiento de integraci\'on num\'erica).
+
+\item En lo sucesivo utilizaremos lo siguiente:\\
+
+Si $v_n \to v$ d\'ebil y $w_n  \to w$ fuerte entonces se tiene que:
+
+\begin{displaymath}
+a\ (v_n,w_n) \longrightarrow a\ (v,w)
+\end{displaymath}
+
+\end{enumerate}
+
+\subsection{Convergencia}
+
+Para demostrar la convergencia utilizaremos el siguiente lema:
+
+\begin{lema}\label{lema:debilsci}
+\ \newline
+Si $a\ (\cdot ,\cdot )$ es bilineal, continua y semidefinido$-$positiva,
+y $v_n \to v$ d\'ebil en $V$ entonces:
+
+\begin{displaymath}
+\liminf_{n \to \infty} a\ (v_n,v_n) \ge a\ (v,v)
+\end{displaymath}
+\end{lema}
+
+\begin{demoslema}
+\ \\
+\begin{displaymath}
+0 \le a\ (v-v_n,v-v_n)=a\ (v,v)-a\ (v,v_n)-a\ (v_n,v)+a\ (v_n,v_n)
+\end{displaymath}
+de esta expresi\'on se obtiene que:
+
+\begin{displaymath}
+a\ (v_n,v_n) \ge a\ (v,v_n)+a\ (v_n,v)-a\ (v,v)
+\end{displaymath}
+tomando limites se tiene que:
+
+\begin{displaymath}
+\liminf_{n \to \infty} a\ (v_n,v_n) \ge \liminf_{n\to \infty} \{ a\ (v,v_n)+
+a\ (v_n,v) -a\ (v,v)\}
+\end{displaymath}
+con lo que se obtiene que:
+
+\begin{displaymath}
+\liminf_{n \to \infty} a\ (v_n,v_n) \ge a\ (v,v) + a\ (v,v)-a\ (v,v) = a\ (v,v)
+\end{displaymath}
+
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\end{demoslema}
+
+\begin{teorema}[Convergencia de $(P^h_1)$]
+\ \newline
+Con las hip\'otesis habituales sobre $a\ (\cdot ,\cdot )$ y $L\ (\cdot )$ y
+las hip\'otesis anteriores sobre $K$, $K_h$, $V$ y $V_h$ se verifica que:
+
+\begin{displaymath}
+\lim_{h \to 0} ||u_h-u|| = 0
+\end{displaymath}
+
+donde $u$ es soluci\'on de $(P_1)$ y $u_h$ es soluci\'on de $(P^h_1)$.
+\end{teorema}
+
+\begin{demosteorema}
+\ \newline
+\begin{itemize}
+\item Estimaciones para $u_h$.\newline
+
+Vamos a demostrar que existen constantes $C_1$ y $C_2$ independientes de $h$
+tales que:
+
+\begin{displaymath}
+||u_h||^2 \le C_1 ||u_h|| + C_2 \qquad \forall \ h
+\end{displaymath}
+
+Sea $u_h$ soluci\'on de $(P^h_1)$ entonces:
+
+\begin{displaymath}
+a\ (u_h,v_h-u_h) \ge L\ (v_h-u_h) \qquad \forall \ v_h \in K_h
+\end{displaymath}
+
+es decir tenemos:
+
+\begin{displaymath}
+a\ (u_h,u_h) \le a\ (u_h,v_h)- L\ (v_h-u_h) \qquad \forall \ v_h \in K_h
+\end{displaymath}
+
+teniendo en cuenta la $V-$el\'{\i}pticidad de $a\ (\cdot ,\cdot)$ tenemos que:
+
+\begin{equation} \label{eq:estimaciones}
+\alpha ||u_h||^2 \le ||A||\ ||u_h||\ ||v_h|| + ||L||\ (||v_h||+||u_h||)\qquad
+\forall \ v_h \in K_h
+\end{equation}
+
+Sea $v_0 \in \chi$ entonces se tiene que $v_h=r_h (v_0)\in K_h$ y por
+las hip\'otesis que hemos a\~nadido sobre $K_h$ tenemos que
+$r_h(v_0) \to v_0$ en $V$ fuerte y $||r_h(v_0)|| \le m$
+acotada. Como $||v_h||=||r_h(v_0)||\le m$ podemos reescribir
+$(\ref{eq:estimaciones})$ de la siguiente forma:
+
+\begin{displaymath}
+||u_h||^2 \le C_1||u_h|| + C_2
+\end{displaymath}
+
+donde
+
+\begin{displaymath}
+C_1 = \frac{1}{\alpha}\ (m ||A|| + ||L||)\qquad C_2=\frac{m}{\alpha} ||L||
+\end{displaymath}
+En particular se tiene que:
+
+\begin{displaymath}
+||u_h|| \le C\qquad \forall \ h
+\end{displaymath}
+
+\item Convergencia d\'ebil.\\
+
+Como $\{ u_h \}$ esta acotada podemos extraer una subsucesi\'on convergente, la
+cual tiene l\'{\i}mite en $K$\footnote{Por la hip\'otesis de consistencia.}.
+
+\begin{displaymath}
+\{ u_{h_i} \} \longrightarrow u^* \ \in K
+\end{displaymath}
+esta convergencia es d\'ebil en la topolog\'{\i}a de $V$.\\
+
+Veamos que $u^*$ es soluci\'on de $P_1$.\\
+
+Por ser $u_h$ soluci\'on de $P^1_h$ se tiene que:
+
+\begin{displaymath}
+a\ (u_{h_i}, u_{h_i}) \le a\ (u_{h_i},v_{h_i}) - L\ (v_{h_i}-u_{h_i})\qquad
+\forall \ v_{h_i} \in K_{h_i}
+\end{displaymath}
+por la segunda hip\'otesis que hemos introducido sobre $K_h$ sabemos que existe
+$v \in \chi$ tal que $r_{h_i} (v) = v_{h_i}$, entonces utilizando esta
+propiedad podemos reescribir la expresi\'on anterior de la siguiente manera:
+
+\begin{equation} \label{eq:b}
+a\ (u_{h_i},u_{h_i}) \le a\ (u_{h_i},r_{h_i}\ (v))-L\ (r_{h_i} (v) - u_{h_i})
+\ \forall \ v \in \chi
+\end{equation}
+Utilizando el lema $\ref{lema:debilsci}$ y que $r_{h_i}(v)\to v$ fuerte en $V$
+y que $u_{h_i}\to u^*$ d\'ebil en $V$ en $(\ref{eq:b})$ se tiene:
+
+\begin{equation} \label{eq:c}
+\liminf_{h_i \to 0} a\ (u_{h_i},u_{h_i}) \le a\ (u^*,v)-L\ (v-u^*)\qquad \forall
+\ v \in \chi
+\end{equation}
+Como $a\ (\cdot ,\cdot )$ es $V-$el\'{\i}ptica se tiene:
+
+\begin{equation} \label{eq:c1}
+a\ (u_{h_i}-u^*,u_{h_i}-u^*)\ge \alpha \ ||u_{h_i}-u^*||^2 \ge 0
+\end{equation}
+Por otro lado se tiene lo siguiente:
+\begin{eqnarray} \label{eq:c2}
+a\ (u_{h_i}-u^*,u_{h_i}-u^*)& =& a\ (u^*,u^*)-a\ (u_{h_i},u^*)-
+\\ \nonumber
+& &-a\ (u^*,u_{h_i})+a\ (u_{h_i},u_{h_i})
+\end{eqnarray}
+de $(\ref{eq:c1})$ y $(\ref{eq:c2})$ se obtiene:
+
+\begin{displaymath}
+a\ (u_{h_i},u^*)+a\ (u^*,u_{h_i})-a\ (u^*,u^*) \le a\ (u_{h_i},u_{u_i})
+\end{displaymath}
+Como $u_{h_i} \to u^*$ d\'ebil en $V$ si tomamos l\'{\i}mites en la expresi\'on
+anterior:
+
+\begin{equation} \label{eq:d}
+a\ (u^*,u^*)\le \liminf_{h_i \to 0} a\ (u_{h_i},u_{h_i})
+\end{equation}
+de $(\ref{eq:c})$ y $(\ref{eq:d})$ obtenemos:
+
+\begin{displaymath}
+a\ (u^*,u^*) \le \liminf_{h\to 0} a\ (u_{h_i},u_{h_i})\le a\ (u^*,v)-
+L\ (v-u^*)\qquad \forall \ v \in \chi
+\end{displaymath}
+es decir:
+
+\begin{displaymath}
+a\ (u^*,v-u^*)\ge L\ (v-u^*)\qquad \forall \ v \in \chi
+\end{displaymath}
+Como $\overline{\chi }=K$, $a\ (\cdot ,\cdot )$ y $L\ (\cdot )$ son continuas se
+tiene que:
+
+\begin{displaymath}
+a\ (u^*,v-u^*)\ge L\ (v-u^*)\qquad \forall \ v \in K,\ u^* \in K
+\end{displaymath}
+Como $(P_1)$ tiene soluci\'on \'unica entonces $u^*=u$, luego $u^*$ es
+soluci\'on de $(P_1)$ y $\{ u_h \}\longrightarrow u$ d\'ebil.
+
+\item Convergencia fuerte.\\
+
+Como $a\ (\cdot ,\cdot )$ es $V-$el\'{\i}tica se tiene:
+\begin{eqnarray}\label{eq:aa}
+0 &\le & \alpha \cdot ||u_h-u||^2\le a\ (u_u-u.u_h-u) =\\ \nonumber
+  &= & a\ (u_h,u_h)-a\ (u_h,u)-a\ (u,u_h)+a\ (u,u)
+\end{eqnarray}
+donde $u_h$ es soluci\'on de $(P^h_1)$ y $u$ es soluci\'on de $(P_1)$.\\
+
+Sabemos que existe $r_h:\chi\longrightarrow K_h$ tal que $r_h(v)=v_h$ y por
+ser $u_h$ soluci\'on de $(P_1^h)$ tenemos que:
+
+\begin{equation}\label{eq:bb}
+a\ (u_h,u_h)\le a\ (u_h,r_h(v))-L\ (r_h(v)-u_h)\qquad \forall \ v \in \chi
+\end{equation}
+de $(\ref{eq:aa})$ y $(\ref{eq:bb})$ obtenemos:
+
+\begin{eqnarray}\label{eq:cc}
+0& \le & \alpha \cdot ||u_h-u||^2\le a\ (u_h,r_h(v))-L\ (r_h(v)-u_h) \\
+\nonumber
+& & -a\ (u_h,u)-a\ (u,u_h)+a\ (u,u)\qquad \forall \ v \in \chi
+\end{eqnarray}
+tomando l\'{\i}mites en $(\ref{eq:cc})$ tenemos:
+
+\begin{eqnarray}\label{eq:dd}
+0&\le &\alpha \cdot \liminf_{h\to 0} ||u_h-u||^2 \le \alpha \cdot
+\limsup_{h\to 0} ||u_u-u||^2\le \\ \nonumber
+&\le &a\ (u,v-u)-L\ (v-u)\qquad \forall \ v \in \chi
+\end{eqnarray}
+por densidad y continuidad $(\ref{eq:dd})$ se verifica $\forall \ v \in K$.\\
+
+Si tomamos $v=u$ en $(\ref{eq:dd})$ tenemos:
+
+\begin{displaymath}
+\lim_{h \to 0} ||u_h-u||^2 = 0
+\end{displaymath}
+es decir tenemos la convergencia fuerte.
+
+\end{itemize}
+
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\end{demosteorema}
+\newpage
+
+\section{Aproximaci\'on EVI II}
+
+\subsection{Definici\'on del problema aproximado}
+
+Asumiremos en lo siguiente que $j:V\longrightarrow \Re$ es un funcional
+continuo.
+
+\subsection{Aproximaci\'on de V}
+
+$h\to 0$, y sean $\{ V_h\}_h$ una familia de subespacios cerrados de $V$, en
+la pr\'actica los $V_h$ ser\'an de dimensi\'on finita.\\
+
+Supondremos que los $\{ V_h \}_h$ verifican:
+
+\begin{itemize}
+\item $\exists \ U\subset V$ tal que $\overline{U}=V$ y para cada h
+$r_h:U\longrightarrow V_h$ tal que:
+
+\begin{displaymath}
+\lim_{h\to 0} r_h(v) = v
+\end{displaymath}
+fuerte en $V\ \forall \ v \in U$.
+\end{itemize}
+
+\subsection{Aproximaci\'on de $j\ (\cdot )$}
+
+Aproximaremos el funcional $j\ (\cdot )$ por $\{j_h\ (\cdot ) \}_h$ donde para
+cada $h$ $j_h\ (\cdot )$ satisface:
+
+\begin{itemize}
+\item $j_h:V_h \longrightarrow \overline{\Re}$
+\end{itemize}
+es un funcional convexo, \textbf{s.c.i} y uniformemente propio en h.\\
+
+Que la familia $\{j_h\ (\cdot )\}_h$ sea uniformemente propia en h significa
+que existe $\lambda \in V^*$ y $\mu \in \Re$ verificando lo siguiente:
+
+\begin{displaymath}
+j_h\ (v_h) \ge <\lambda,v_h>+\mu= \lambda (v_h)+\mu \qquad \forall \ v_h \in
+V_h,\ \forall \ h
+\end{displaymath}
+
+Asumiremos que la familia $\{j_h\ (\cdot ) \}_h$ verifica:
+
+\begin{itemize}
+\item Si $v_h \to v$ d\'ebil en V entonces se tiene:
+
+\begin{displaymath}
+\liminf_{h\to 0} j_h\ (v_h) \ge j(v)
+\end{displaymath}
+
+\item Y se verifica:
+
+\begin{displaymath}
+\lim_{h\to 0} j_h\ (r_h(v)) = j\ (v)\qquad \forall \ v \in U
+\end{displaymath}
+\end{itemize}
+
+\subsection{Observaciones}
+
+\begin{enumerate}
+\item Si $j\ (\cdot )$ es continua siempre se pueden construir $j_h\ (\cdot )$
+continuas verificando las condiciones anteriores.
+\item En algunos casos, en los que seremos afortunados, y se tiene que
+$j_h\ (v_h) = j\ (v_h)$ $\forall \ v_h$, $\forall \ h$ entonces se verifican
+trivialmente las condiciones anteriores.
+\end{enumerate}
+
+\subsection{Aproximaci\'on de $(P_2)$}
+
+El problema aproximado ser\'a el siguiente:
+
+\begin{equation}
+(P_2^h) \left\{ \begin{array}{lrlr}
+a\ (u_h,v_h-u_u)+j_h\ (v_h)-j_h (u_h)&\ge &L\ (v_h-u_h) &\forall \ v_h \in V_h \\
+\\
+u_h \in V_h
+\end{array} \right.
+\end{equation}
+
+\subsection{Teorema de existencia y unicidad}
+
+\begin{teorema}[Existencia y unicidad EVI II aproximado]
+\ \\
+$(P_2^h)$ tiene soluci\'on \'unica.
+\end{teorema}
+
+\begin{demosteorema}
+\ \\
+En la demostraci\'on del teorema $\ref{th:exisEVII}$ coger $V_h$ en lugar de $V$
+y $j_h\ (\cdot )$ en lugar de $j\ (\cdot )$.
+
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\end{demosteorema}
+
+\newpage
+
+\subsection{Convergencia}
+
+\begin{teorema}
+\ \\
+Se verifica lo siguiente:
+\begin{equation}\label{eq:convergenciaEVIIIa}
+\lim_{h\to 0}||u_h-u|| = 0
+\end{equation}
+
+\begin{equation}\label{eq:convergenciaEVIIIb}
+\lim_{h\to 0} j_h\ (u_h) =j\ (u)
+\end{equation}
+\end{teorema}
+
+\begin{demosteorema}
+\ \\
+\begin{itemize}
+\item Estimaciones para $u_h$.\\ \\
+Vamos a demostrar que existen constantes $C_1$ y $C_2$ independientes de $h$
+tales que:
+
+\begin{displaymath}
+||u_h||^2\le C_1 \cdot ||u_h|| + C_2 \qquad \forall \ h
+\end{displaymath}
+Sea $u_h$ soluci\'on de $(P_2^h)$ entonces $\forall \ v_n \in V_h$ se tiene:
+
+\begin{equation}\label{eq:aaa}
+a\ (u_h,u_h)+j_h\ (u_h)\le a\ (u_h,v_h)+j_h\ (v_h)-L\ (v_h-u_h)
+\end{equation}
+Por ser $\{j_h (\cdot )\}_h$ uniformemente propia se tiene que $\forall \ h$:
+
+\begin{displaymath}
+j_h\ (v_h) \ge \lambda (v_h)+\mu\qquad \forall \ v_h \in V_h
+\end{displaymath}
+donde $j_h \in V^*$, utilizando esto en $(\ref{eq:aaa})$iy teniendo en cuenta
+que $a\ (\cdot ,\cdot )$ es $V-$el\'{\i}ptica tendremos:
+\begin{eqnarray}\label{eq:bbb}
+\alpha \cdot ||u_h||^2 &\le & ||\lambda ||\cdot ||u_h || + |\mu |+||A||\cdot
+||u_h||\cdot ||v_h|| + \\ \nonumber
+& & + |j_h\ (v_h)| + ||L||\cdot (||v_h||+||u_h||)
+\end{eqnarray}
+Existe $v_0 \in U$ tal que $r_h(v_0)=v_h$ y como se tiene que:
+
+\begin{displaymath}
+\lim_{h\to 0} j_h\ (r_h(v_0)) = j\ (v_0)
+\end{displaymath}
+y que $j_h\ (\cdot )$ es \textbf{s.c.i} se tiene que existe una constante
+$m\ >\ 0$ tal que $||v_h|| \le m$ y $|j_h\ (v_h)|\le m$, luego podemos
+reescribir $(\ref{eq:bbb})$ de la siguiente forma:
+
+\begin{displaymath}
+||u_h||^2\le C_1 \cdot ||u_h|| + C_2
+\end{displaymath}
+donde:
+
+\begin{displaymath}
+C_1=\frac{1}{\alpha }(||\lambda||+||A||\cdot m + ||L||)
+\end{displaymath}
+
+\begin{displaymath}
+C_2 = \frac{m}{\alpha }(1+||L||)+\frac{|\mu |}{\alpha }
+\end{displaymath}
+Lo cual implica que $||u_h||\le C$ $\forall \ h$, es decir $\{ u_h \}_h$ esta
+acotada.
+
+\item Convergencia d\'ebil.\\ \\
+Como $\{ u_h\}_h$ esta acotada entonces podemos extraer una subsucesi\'on
+convergente $u_{h_i}\longrightarrow u^*$ d\'ebil en $V$.\\ \\
+Sea $u_h$ soluci\'on de $(P_2^h)$, tenemos $r_{h_i}(v)=v_{h_i}\in V_h$ y
+$v\in U$ entonces se tiene $\forall \ v\in U$:
+\begin{eqnarray} \label{eq:ccc}
+a\ (u_{h_i},u_{h_i})+j_{h_i}\ (u_{h_i}) &\le &a\ (u_{h_i},r_{h_i}(v))+
+j_{h_i}\ (r_{h_i}(v))-\\ \nonumber
+& &-L\ (r_{h_i}(v)-u_{h_i})
+\end{eqnarray}
+Como $u_{h_i}\to u^*$ d\'ebil en $V$ y $r_{h_i}(v)\to v$ fuerte en $V$ y
+teniendo en cuenta las propiedades que verifica la familia
+$\{ j_h\ (\cdot )\}_h$ se tiene que $\forall \ v \in U$:
+
+\begin{equation}\label{eq:ddd}
+\liminf_{h\to 0} \{a\ (u_{h_i},u_{h_i})+j_{h_i}\ (u_{h_i}) \}\le a\ (u^*,v)+
+j\ (v)-L\ (v-u^*)
+\end{equation}
+teniendo en cuenta las propiedades de la familia $\{j_h\ (\cdot )\}_h$ se
+verifica:
+
+\begin{equation}\label{eq:eee}
+a\ (u^*,u^*)+j(u^*)\le \liminf_{h\to 0} \{a\ (u_{h_i},u_{h_i})+
+j_{h_i}\ (u_{h_i}) \}
+\end{equation}
+Utilizando $(\ref{eq:ddd})$ y $(\ref{eq:eee})$ y la densidad de $U$ se tiene
+$\forall v \in V$ que:
+
+\begin{displaymath}
+a\ (u^*,v-u^*)+j\ (v)-j\ (u^*) \ge L\ (v-u^*)
+\end{displaymath}
+donde $u^*\in V$ es soluci\'on de $(P_2)$ entonces por la unicidad de la
+soluci\'on de $(P_2)$ se tiene que $u^*=u$ entonces $u_h\to u$ d\'ebil en $V$.
+
+\item Convergencia fuerte.\\ \\
+De la $V-$el\'{\i}pticidad de $a\ (\cdot ,\cdot )$ se tiene:
+
+\begin{displaymath}
+\alpha \cdot ||u_h-u||^2+j_h\ (u_h)\le a\ (u_h-u,u_h-u)+j_h\ (u_h)
+\end{displaymath}
+Como $u_h$ es soluci\'on de $(P^h_2)$ y $r_h(v)=v_h\in V_h$ se tiene
+$\forall \ v\in U$ que:
+\begin{eqnarray*}
+\alpha \cdot ||u_h-u||^2 +j_h\ (u_h)&\le &a\ (u_h,r_h(v))+j_h\ (r_h(v))-
+L\ (r_h(v)-u_h)-\\
+& &-a\ (u,u_h)-a\ (u_h,u)+a\ (u,u)
+\end{eqnarray*}
+La segunda parte de esta desigualdad cuando $h\to 0$ y $\forall \ v \in U$
+tiende a:
+
+\begin{equation} \label{eq:fff}
+a\ (u,v-u)+j\ (v)-L\ (v-u)
+\end{equation}
+tenemos que $\forall \ v \in V$:
+\begin{eqnarray*}
+\liminf_{h\to 0}j_h\ (u_h)&\le & \liminf_{h\to 0}\{\alpha \cdot ||u_h-u||^2
++j_h\ (u_h)\}\le \\
+&\le &\limsup_{h\to 0}\{\alpha \cdot ||u_h-u||^2+j_h\ (u_h)\}\le \\
+&\le &a\ (u,v-u)+j\ (v)-L\ (v-u)
+\end{eqnarray*}
+Por la densidad de $U$ esta expresi\'on se verifica $\forall \ v \in V$ y
+tomando $u$ en lugar de $v$ en la expresi\'on anterior y teniendo en cuenta
+las propiedades de $j_h\ (\cdot )$ tenemos que:
+
+\begin{displaymath}
+j\ (u)\le \liminf_{h\to 0} j_h\ (u_h)\le \limsup_{h\to 0} \{\alpha \cdot
+||u_h-u||^2+j_h\ (u_h) \}\le j\ (u)
+\end{displaymath}
+de donde se deduce que:
+
+\begin{displaymath}
+\lim_{h\to 0} j_h\ (u_h) = j\ (u)
+\end{displaymath}
+y tambi\'en se deduce que:
+
+\begin{displaymath}
+\lim_{h\to 0} ||u_h-u||= 0
+\end{displaymath}
+
+\end{itemize}
+
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\end{demosteorema}
