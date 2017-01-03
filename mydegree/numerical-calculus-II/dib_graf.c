@@ -1,5 +1,13 @@
 #include <graphics.h>
 
+/*                                                                      */
+/*                      (c) 1995 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */
+/*      This software is licensed under GPLv2:                          */
+/*        http://www.gnu.org/licenses/gpl-2.0.html                      */
+/*                                                                      */
+
 /*--------------------------------------------------------------------------
   DIBUJA LOS EJES DE COORDENADAS DE LAS GRAFICAS, Y DEVUELVE EL VALOR 1
   SI SE HA PODIDO INICIALIZAR EL MODO GRAFICO O CERO SI NO SE HA PODIDO

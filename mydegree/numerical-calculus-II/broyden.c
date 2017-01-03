@@ -3,6 +3,14 @@
 
 #define BROYDEN 2
 
+/*                                                                      */
+/*                      (c) 1995 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */
+/*      This software is licensed under GPLv2:                          */
+/*        http://www.gnu.org/licenses/gpl-2.0.html                      */
+/*                                                                      */
+
 /*--------------------------------------------------------------------------
   FUNCION QUE SE ENCARGA DE RESOLVER EL PROBLEMA MEDIANTE EL METODO
   DE BROYDEN, DONDE vector ES LA APROXIMACION INICIAL, LA FUNCION

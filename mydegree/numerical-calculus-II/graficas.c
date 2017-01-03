@@ -2,6 +2,14 @@
 #include <graphics.h>
 #include <stdlib.h>
 
+/*                                                                      */
+/*                      (c) 1995 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */
+/*      This software is licensed under GPLv2:                          */
+/*        http://www.gnu.org/licenses/gpl-2.0.html                      */
+/*                                                                      */
+
 /*--------------------------------------------------------------------------
   SE ENCARGA DE DIBUJAR LAS GRAFICAS, SI NO SE HA PODIDO INICIALIZAR
   EL MODO GRAFICO DEVUELVE 0 SI SE PUDO DEVUELVE 1

@@ -1,6 +1,14 @@
 #include <ctype.h>
 #include "struct.h"
 
+/*                                                                      */
+/*                      (c) 1995 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */
+/*      This software is licensed under GPLv2:                          */
+/*        http://www.gnu.org/licenses/gpl-2.0.html                      */
+/*                                                                      */
+
 /*--------------------------------------------------------------------------
 	 FUNCION MEDIANTE LA CUAL NOS MOVEMOS POR LA PRIMERA PARTE
 	 DEL PROGRAMA, ENUNCIADO DEL PROBLEMA Y INTRODUCCION DE LOS

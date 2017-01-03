@@ -1,6 +1,14 @@
 #include <stdlib.h>
 #include <math.h>
 
+/*                                                                      */
+/*                      (c) 1995 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */
+/*      This software is licensed under GPLv2:                          */
+/*        http://www.gnu.org/licenses/gpl-2.0.html                      */
+/*                                                                      */
+
 /*---------------------------------------------------------------------------
   FUNCION QUE CALCULA LAS MATRICES DE ITERACION DEL METODO DE BROYDEN,
   DEVUELVE LOS SIGUIENTES CODIGOS.

@@ -1,6 +1,14 @@
 #include <stdlib.h>
 #include <math.h>
 
+/*                                                                      */
+/*                      (c) 1995 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */
+/*      This software is licensed under GPLv2:                          */
+/*        http://www.gnu.org/licenses/gpl-2.0.html                      */
+/*                                                                      */
+
 /*--------------------------------------------------------------------------
 	  CALCULA LA DISTANCIA ENTRE DOS APROXIMACIONES SUCESIVAS
 	  UTILIZANDO LA NORMA INFINITO, DONDE *punto ES EL VECTOR

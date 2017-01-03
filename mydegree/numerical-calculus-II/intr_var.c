@@ -3,6 +3,14 @@
 
 #define TAB 5 /* LUGAR DONDE SE VA A COLOCAR û (COORDENADA X) */
 
+/*                                                                      */
+/*                      (c) 1995 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */
+/*      This software is licensed under GPLv2:                          */
+/*        http://www.gnu.org/licenses/gpl-2.0.html                      */
+/*                                                                      */
+
 extern struct datos
 	{
 

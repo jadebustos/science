@@ -3,6 +3,14 @@
 
 #define NEWTON 1
 
+/*                                                                      */
+/*                      (c) 1995 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */
+/*      This software is licensed under GPLv2:                          */
+/*        http://www.gnu.org/licenses/gpl-2.0.html                      */
+/*                                                                      */
+
 /*--------------------------------------------------------------------------
 	FUNCION QUE LLAMA A LA FUNCION QUE REALIZA UNA ITERACION
 	DEL METODO DE NEWTON Y LA REALIZA MIENTRAS NO SE ALCANZE

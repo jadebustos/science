@@ -1,3 +1,11 @@
+/*                                                                      */
+/*                      (c) 1995 Jose Angel de Bustos Perez             */
+/*                       <jadebustos@gmail.com>                         */
+/*                                                                      */
+/*      This software is licensed under GPLv2:                          */
+/*        http://www.gnu.org/licenses/gpl-2.0.html                      */
+/*                                                                      */
+
 /*--------------------------------------------------------------------------
 	ESTA FUNCION INDICA LA PAGINA A MOSTRAR EN PANTALLA, DONDE
 	p_pagina, ES LA PRIMERA PAGINA, u_pagina ES LA ULTIMA PAGINA,
