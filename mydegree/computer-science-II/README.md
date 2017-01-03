@@ -1,3 +1,3 @@
 # Computer science II
 
-FORTRAN programming exercices.
+FORTRAN 77 programming exercices.
