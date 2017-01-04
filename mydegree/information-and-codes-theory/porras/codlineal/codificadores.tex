@@ -1,0 +1,146 @@
+%
+% CODIFICADORES
+%
+
+\section{Codificadores}
+
+Seg\'un el apartado $\ref{sec:Codificadores}$, en la p\'agina
+$\pageref{sec:Codificadores}$, un codificador es una aplicaci\'on biyectiva.
+
+\begin{definicion}[Codificador para c\'odigos lineales]
+\ \\
+Sea $\mathcal{C}\subset \mathbb{F}^{^n}_q$ un c\'odigo lineal. Un
+\textbf{``codificador''} para un c\'odigo lineal es un isomorfismo%
+\footnote{Aplicaci\'on lineal biyectiva.} del siguiente tipo:
+\begin{eqnarray*}
+C:\mathbb{F}^{^m}_q&\stackrel{\sim}\longrightarrow&\mathcal{C}\\
+x&\longrightarrow& u
+\end{eqnarray*}
+tal que codifica palabras de longitud $m$ con palabras de longitud $n$.
+\end{definicion}
+\begin{observacion}
+\ \\
+\begin{itemize}
+\item Al ser el codificador una aplicaci\'on biyectiva cada palabra tiene una, y
+s\'olo una, forma de codificarse. 
+\item Todas las posibles palabras que puedan formar un mensaje se pueden
+codificar con una palabra del c\'odigo. Esto es gracias a que el codificador es
+epiyectivo, y, por lo dicho en el punto anterior dicha palabra es \'unica.
+\item Como el codificador es una aplicaci\'on lineal podemos representar el
+codificador por la matriz que representa a la aplicaci\'on lineal una vez
+fijadas las correspondientes bases. A est\'a matriz se la conoce como
+``\textbf{matriz generadora}''.
+\item Como la matriz depende de las bases escogidas, entonces la matriz del
+codificador no es \'unica.
+\item La matriz de un codificador de un c\'odigo lineal estar\'a formada por
+tantas columnas como dimensi\'on tenga el c\'odigo. Y la columna $i$-\'esima
+del codificador ser\'a el vector $i$-esimo de la base, del c\'odigo, 
+codificado seg\'un el c\'odigo.
+\item Como el codificador es un isomorfismo, aplicaci\'on lineal biyectiva, la
+imagen de una base es otra base, entonces las columnas de la matriz generadora
+son base del c\'odigo $\mathcal{C}$.
+\end{itemize}
+\end{observacion}
+
+\subsection{Matriz generadora}
+
+\begin{definicion}[Matriz generadora]
+\ \\
+Dado un c\'odigo lineal y su codificador llamaremos \textbf{``matriz
+generadora''} de c\'odigo a la matriz de la aplicaci\'on lineal que representa
+al codificador respecto de unas bases fijadas.
+\end{definicion}
+Para codificar una palabra basta con multiplicarla por la matriz generadora del
+c\'odigo y obtendremos la palabra codificada. Por ejemplo, sea $C$ la matriz
+generadora de un c\'odigo y queremos codificar la palabra $(1,1,0)$:
+\begin{displaymath}
+\left( \begin{array}{ccc}
+1&0&0\\
+0&1&0\\
+0&0&1\\
+1&1&0\\
+1&0&1\\
+0&1&1
+\end{array} \right) \cdot
+\left( \begin{array}{c}
+1\\
+1\\
+0
+\end{array} \right) =
+\left( \begin{array}{c}
+1\\
+1\\
+0\\
+0\\
+1\\
+1
+\end{array} \right)
+\end{displaymath}
+Luego la palabra $(1,1,0)$ codificada es $(1,1,0,0,1,1)$.\\ 
+
+La siguiente proposici\'on nos dice cuando una matriz es una matriz generadora
+de un c\'odigo, y en caso afirmativo, de que tipo de c\'odigo se trata.
+
+\begin{proposicion}
+\ \\
+Sea $\mathcal{C}[n,m]$ un c\'odigo lineal y sea $C$ una matriz de orden
+$n\times m$. $C$ es una matriz generadora para el c\'odigo $\mathcal{C}[n,m]$
+s\'{\i} y s\'olo s\'{\i} tiene rango $m$ y sus columnas son palabras del
+c\'odigo.
+\end{proposicion}
+\underline{\textbf{Demostraci\'on}}:\\
+$\Rightarrow |$ Sea $C$ una matriz generadora para el c\'odigo
+$\mathcal{C}[n,m]$. \\
+
+Por definici\'on de matriz generadora sus columnas ser\'an palabras del
+c\'odigo, y como el c\'odigo lineal es de dimensi\'on $m$, dimensi\'on
+del subespacio imagen de la aplicaci\'on lineal que determina $C$, entonces
+el rango de $C$ es $m$.\\ \\
+%
+$\Leftarrow |$ Sean $C_1$ , \dots, $C_m$ las columnas de la matriz $C$, las
+cuales son, por hip\'otesis, palabras del c\'odigo.\\
+
+Sea $a=(a_1,\dots,a_m )$ una palabra entonces $C\cdot a^t = a_1\cdot
+C_1^t+\dots +a_m\cdot C_m^t$ que es una combinaci\'on lineal de
+$\{C_i \}_{i=1}^m$ y como el c\'odigo $\mathcal{C}[n,m]$ es lineal se tiene
+que las combinaciones lineales de palabras del c\'odigo son palabras del 
+c\'odigo. Luego la matriz $C$ transforma cualquier palabra, de longitud $m$, 
+en una palabra del c\'odigo.\\
+
+La dimensi\'on del subespacio imagen es el rango de la matriz $C$, luego la
+dimensi\'on del subespacio imagen es $m$.\\
+
+Como la matriz $C$ codifica palabras de longitud $m$ en palabras de longitud
+$n$ en un subespacio de dimensi\'on $m$ entonces $C$ es la matriz generadora
+de un c\'odigo $\mathcal{C}[n,m]$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+%
+\newpage
+%
+\subsection{Forma est\'andar de la matriz generadora}
+
+La expresi\'on de la ``\textbf{matriz generadora}'' no es unica, sino que
+depende de las bases escogidas. Luego eligiremos un convenio para elegir
+las bases en las que expresaremos dicha matriz.
+\begin{definicion}[Forma est\'andar de la matriz generadora]
+\ \\
+Sea $\mathcal{C}\subset \mathbb{F}^{^n}_q$ un c\'odigo lineal que utilizaremos
+para codificar palabras de longitud $m$, $\mathbb{F}^{^m}_q$. Sea $C$ la
+matriz del codificador, una vez fijadas las bases correspondientes. Diremos
+que $C$ est\'a en \textbf{``forma est\'andar''} cuando los $m$ primeros elementos
+de la palabra codificada $C(x)\in \mathcal{C}\subset \mathbb{F}^{^n}_q$
+coincidan con $x\in \mathbb{F}^{^m}_q$.
+\end{definicion}
+\begin{proposicion}
+\ \\
+Sea $\mathcal{C}[n,m]$ un c\'odigo lineal. La matriz generadora est\'a en 
+forma est\'andar s\'{\i} y s\'olo s\'{\i} en las $m$ primeras columnas
+aparece la matriz identidad de orden $m$.
+\end{proposicion}
+\underline{\textbf{Demostraci\'on}}:\\
+Tanto el directo como el rec\'{\i}proco son una mera comprobaci\'on.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
