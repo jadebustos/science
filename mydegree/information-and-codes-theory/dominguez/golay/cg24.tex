@@ -1,0 +1,86 @@
+%
+% CONSTRUCCION GOLAY 24
+%
+
+\section{Construcci\'on del c\'odigo Golay $G_{24}$}
+
+Este c\'odigo es un c\'odigo lineal $3$-perfecto, es del tipo
+$\mathcal{C}[24,12]$ y lo denotaremos como $G_{24}$.\\
+
+\begin{definicion}[C\'odigo de Golay $G_{24}$]
+\ \\
+El c\'odigo de Golay $G_{24}$ consiste en todas las palabras de longitud $24$
+que son de la forma:
+\begin{displaymath}
+a+x,b+x,a+b+x
+\end{displaymath}
+donde $a,b\in Ham(3)'$ y $x\in K'$.
+\end{definicion}
+Por ejemplo, si $a=11010001$, $b=10010110$ y $x=01011001$ la palabra del
+c\'odigo $G_{24}$ que definen es:
+\begin{displaymath}
+\underbrace{10001000}_{a+x}\underbrace{11001111}_{b+x}\underbrace{00011110}_{a+b+x}
+\end{displaymath}
+
+\begin{proposicion}
+\ \\
+Sea $u\in G_{24}$ entonces est\'a determinada de forma \'unica por
+$a,b\in Ham(3)'$ y $x\in K'$.
+\end{proposicion}
+\underline{\textbf{Demostraci\'on}}:\\
+Supongamos que existen $c,d\in Ham(3)'$ e $y\in K'$ tales que:
+\begin{displaymath}
+a+x,b+x,a+b+x=c+y,d+y,c+d+y
+\end{displaymath}
+Como $a+x=c+y$ y $a,c\in Ham(3)'$ y $x,y\in K'$ tendremos que $a+c=x+y$,
+recordar que son palabras binarias y que $-1\equiv 1$ en $\mathbb{F}_2$.
+Luego $a+c$ pertenece a $Ham(3)'$ y a $K'$, entonces tenemos dos posibilidades:
+\begin{itemize}
+\item $a+c=00000000$\\
+
+En este caso tendremos que $a=c$ de donde se deduce que $x=y$. Como tenemos, por
+hip\'otesis, que $a+b+x=c+d+y$ entonces $a+b+x=a+d+x$ o lo que es lo mismo
+$a+a+b=x+x+d$. La suma de una palabra binaria consigo misma es nula entonces
+$b=d$.\\
+
+Con lo cual hemos demostrado que, en este caso, la descomposici\'on de una
+palabra de $G_{24}$ es \'unica.
+\item $a+c=11111111$\\
+
+En este caso tendremos que $a$ es la palabra complementaria de $c$ y $x$ lo
+ser\'a de $y$. Como tenemos, por hip\'otesis, que $a+b+x=c+d+y$ entonces
+tendremos que:
+\begin{displaymath}
+\underbrace{a+c}_{11111111}+\underbrace{x+y}_{11111111}+b=d
+\end{displaymath}
+de donde se tiene que $b=d$.\\
+
+Con lo cual hemos demostrado que, en este caso, la descomposici\'on de una
+palabra de $G_{24}$ es \'unica.
+\end{itemize}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\subsection{Propiedades de $G_{24}$}
+
+\begin{proposicion}
+\ \\
+La longitud de las palabras de $G_{24}$ es $24$ y su rango es $12$.
+\end{proposicion}
+\underline{\textbf{Demostraci\'on}}:\\
+La longitud de las palabras de $G_{24}$ se deduce de su construcci\'on y es
+$24$.\\
+
+$G_{24}$ es un c\'odigo lineal, donde cada palabra se construye a partir de
+tres palabras, cada una de las cuales pertenece a un c\'odigo de rango $4$.
+De esto se deduce que $G_{24}$ es un c\'odigo con $2^4\cdot 2^4\cdot 2^4=2^{12}$
+palabras, luego su rango es $12$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\begin{proposicion}
+\ \\
+La distancia m\'{\i}nima de $G_{24}$ es $8$.
+\end{proposicion}

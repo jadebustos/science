@@ -1,0 +1,74 @@
+%
+% PROCESADORES DE ERROR PARA CODIGOS LINEALES
+%
+
+\chapter{Procesamiento de error en c\'odigos lineales}\label{cap:PError}
+
+En este cap\'{\i}tulo supondremos que estamos utilizando un c\'odigo lineal
+$\mathcal{C}[n,m]$, es decir, $\mathcal{C}[n,m]\subset \mathbb{F}^{^n}_q$.\\
+
+Ya vimos en el apartado $(\ref{sec:ProcErr})$ lo que era un procesador de error
+para c\'odigos de bloques.\\
+
+En los c\'odigos lineales nos es posible sumar palabras y multiplicarlas por
+constantes, de modo que utilizaremos estas propiedades para simplificar el
+procesamiento de errores. \\
+
+Utilizando la linealidad de estos c\'odigos construiremos una tabla con todas
+las palabras de $\mathbb{F}^{^n}_q$ situadas por proximidad con las palabras
+del c\'odigo $\mathcal{C}[n,m]$. La proximidad vendr\'a dada por la distancia
+de Hamming.
+
+% 
+% CONSTRUCCION DE LA TABLA DE UN CODIGO
+%
+
+\input{procerror/constabla}
+
+%
+% ESTRUCTURA DE UNA TABLA ESTANDAR
+%
+
+\input{procerror/estructabla}
+
+%
+% PROCESAMIENTO DE ERROR
+%
+
+\input{procerror/procerror}
+
+%
+% ERRORES QUE SE CORRIGEN ADECUADAMENTE
+%
+
+\input{procerror/erroadec}
+
+%
+% CORRECCION Y DETECCION DE ERRORES MEDIANTE LA MATRIZ DE CHEQUEO
+%
+
+\input{procerror/correcheck}
+
+%
+% CONDICION PARA LA CORRECCION DE ERRORES SIMPLES
+%
+
+\input{procerror/simple}
+
+%
+% DISTANCIA MINIMA Y MATRIZ DE CONTROL
+%
+
+\input{procerror/dmin}
+
+%
+% EJEMPLOS
+%
+
+\input{procerror/ejemplos}
+
+%
+% EJERCICIOS
+%
+
+\input{procerror/ejercicios}

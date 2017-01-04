@@ -1,0 +1,37 @@
+% 
+% NUMERO DE PALABRAS EN UN DISCO CERRADO
+%
+
+\subsection{N\'umero de palabras en un disco cerrado}
+
+\begin{lema}[N\'umero de palabras en un disco cerrado]\label{lem:Cantidad}
+\ \\
+Dado un disco cerrado $\overline{D}(u,r)$ donde $u\in\mathbb{F}^{^n}_2$ y
+$r\in \mathbb{Z}$ se tiene que el n\'umero de palabras que hay en dicho
+disco, $|\overline{D}(u,r)\ |$, es:
+\begin{displaymath}
+|\overline{D}(u,r)\ | = {n \choose 0}+{n \choose 1}+\cdots+{n\choose r}
+\end{displaymath}
+\end{lema}
+\underline{\textbf{Desmostraci\'on}}:\\
+El n\'umero de palabras en $\overline{D}(u,r)$ es el n\'umero de palabras que
+podemos construir variando hasta $r$ bits.\\
+
+Dada $u$ hay ${n \choose i}$ palabras $v$ tales que $d(u,v) = i$, luego por
+la definici\'on de disco cerrado y distancia tendremos que:
+\begin{displaymath}
+|\overline{D}(u,r)\ | = {n\choose 0}+{n\choose 1}+\cdots+{n\choose r}
+\end{displaymath}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\begin{observacion}\ \\
+\begin{itemize}
+\item De este lema se deduce que el n\'umero de palabras que hay en un disco
+cerrado\footnote{Con la distancia de Hamming.} \'unicamente depende de su
+radio $r$ y nunca de su centro. Luego utilaremos la siguiente notaci\'on:
+\begin{displaymath}
+|\overline{D}(u,r)\ | = |\overline{D}_r\ |
+\end{displaymath}
+\end{itemize}
+\end{observacion}

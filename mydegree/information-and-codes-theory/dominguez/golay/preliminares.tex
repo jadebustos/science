@@ -1,0 +1,48 @@
+%
+% PRELIMINARES
+%
+
+\section{Preliminares}
+
+Consideremos el c\'odigo $Ham(3)$, si rotamos c\'{\i}clicamente sus palabras:
+\begin{displaymath}
+a_1a_2a_3a_4a_5a_6a_7\rightarrow a_7a_1a_2a_3a_4a_5a_6
+\end{displaymath}
+obtenemos otro c\'odigo lineal, $K$ con las mismas propiedades que $Ham(3)$:
+\begin{itemize}
+\item $n=7$
+\item $m=4$
+\item $d_{min}=3$ 
+\end{itemize}
+y verificando que las \'unicas palabras que tienen en com\'un ambos c\'odigos
+son el $0$ y el $1$.
+%
+\newpage
+%
+Adem\'as podemos a\~nadir en los dos c\'odigos un octavo bit de ``control de
+paridad'' y hacer que mantengan las propiedades. Luego tendremos unos nuevos
+c\'odigos $Ham(3)'$ y $K'$ de modo que:
+\begin{itemize}
+\item $n=8$
+\item $m=4$
+\item $d_{min}=3$
+\end{itemize}
+
+Estos nuevos c\'odigos lineales que hemos construidos nos van a servir para
+construir otros c\'odigos lineales entendiendolos como subespacios. Esto lo
+podemos hacer aprovechando la estructura de espacios vectoriales que tienen
+los c\'odigos $Ham(3)'$ y $K'$, la cual nos permite realizar operaciones con
+dichos espacios:
+\begin{itemize}
+\item Sumas.
+\item Productos directos.
+\item Intersecciones.
+\item Uniones.
+\end{itemize}
+
+Las propiedades que tienen estos c\'odigos se obtienen de las propiedades de las
+operaciones con subespacios:
+\begin{eqnarray*}
+\dim (Ham(3)'\times K')&=&\dim Ham(3)'+\dim K'\\
+\dim (Ham(3)'+K')&=&\dim Ham(3)'+\dim K' -\dim (Ham(3)'\bigcap K')
+\end{eqnarray*}

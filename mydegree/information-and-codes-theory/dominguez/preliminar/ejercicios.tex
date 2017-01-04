@@ -1,0 +1,47 @@
+%
+% EJERCICIOS
+%
+
+\section{Ejercicios}
+
+\begin{ejercicio}
+\ \\
+Dada una palabra cualquiera del c\'odigo de triple control, comprobar que es lo
+que falla s\'{\i} se produce un fallo en cualquiera de los seis bits.
+\end{ejercicio}
+\textbf{\underline{Soluci\'on:}}\\
+Sea $110011$ una palabra perteneciente al c\'odigo de triple control.\\ \\
+%
+Todas las palabras del c\'odigo son de la forma:
+\begin{displaymath}
+\mathcal{C}[6,3]=\{\ (u_1,u_2,u_3,u_1+u_2,u_1+u_3,u_2+u_3)\ u_i \in \mathbb{F}_2
+\ \}
+\end{displaymath}
+Llamaremos a los bit de control:
+\begin{displaymath}
+c_1 = u_1+u_2\quad c_2=u_1+u_3\quad c_3=u_2+u_3
+\end{displaymath}
+Introduciremos un error en cada bit y veremos que bits de control fallan,
+suponiendo siempre que los bits de informaci\'on son correctos.\\ 
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Bit de error & Palabra erronea & Bits de control & Bits correctos\\
+\hline
+Primer bit & $010011$ & $011$ & $101$ \\
+\hline
+Segundo bit & $100011$ & $011$ & $110$ \\
+\hline
+Tercer bit & $111011$ & $011$ & $000$ \\
+\hline
+Cuarto bit & $110111$ & $111$ & $011$ \\
+\hline
+Quinto bit & $110001$ & $001$ & $011$ \\
+\hline
+Sexto bit & $110010$ & $010$ & $011$ \\
+\hline
+\end{tabular}
+\end{center}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}

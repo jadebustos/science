@@ -1,0 +1,242 @@
+%
+% DETECTAR O CORREGIR
+%
+
+\section{?`Detectar o corregir?}
+
+Si observamos los ejercicios de este cap\'{\i}tulo, en la p\'agina
+$\pageref{sec:EjerciciosCodBloques}$, podemos ver que en los c\'odigos
+de ``\emph{triple repetici\'on}'' y de ``\emph{triple control}'' tenemos una
+de las dos siguientes opciones:
+\begin{itemize}
+\item Detectar y corregir un error.
+\item Detectar dos errores y no corregir.
+\end{itemize}
+%
+\newpage
+%
+\subsection{Probabilidad de error en el canal}
+
+Para saber cual de las dos opciones utilizar necesitaremos conocer
+``\emph{algo}'' m\'as sobre el canal de transmisi\'on. Ese ``\emph{algo}''
+ser\'a la ``\emph{probabilidad de errores en el canal}''.
+\begin{teorema}[Resultados sobre la probabilidad de error]
+\ \\
+Supongamos que tenemos un canal sim\'etrico, aleatorio, binario y con una
+probabilidad de error $P$. En dicho canal transmitiremos palabras de longitud
+$n$ mediante un c\'odigo de bloques.
+\begin{enumerate}
+\item La probabilidad de que ocurra un error concreto de peso $k$ ser\'a:
+\begin{displaymath}
+P^k\cdot (1-P)^{n-k}
+\end{displaymath}
+\item La probabilidad de que ocurra un error cualquiera de peso $k$ ser\'a:
+\begin{displaymath}
+{n \choose k}\cdot P^k\cdot (1-P)^{n-k}
+\end{displaymath}
+\end{enumerate}
+\end{teorema}
+\underline{\textbf{Demostraci\'on}}:
+\begin{enumerate}
+\item Si se ha cometido un error especifico de peso $k$ entonces tendremos que
+$k$ bits son incorrectos y los $n-k$ restantes son correctos.\\
+
+La probabildad de tener un bit en particular incorrecto es $P$, por lo tanto
+la probabilidad de que un bit en particular sea correcto es $1-P$. Como el
+canal es aleatorio todas estas probabilidades son independientes.\\
+
+De todo esto y de que tenemos $k$ bits erroneos y $n-k$ correctos se tiene que
+la probabilidad buscada es:
+\begin{displaymath}
+P^k\cdot (1-P)^{n-k}
+\end{displaymath}
+\item El n\'umero total de palabras con un error de peso $k$ es el mismo que
+la cantidad de formas de elegir $k$ lugares de error, que es ${n\choose k}$. 
+Como los errores son excluyentes, que s\'{\i} ocurre uno no puede
+ocurrir otro, tenemos entonces que la probabilidad de que ocurra uno de ellos
+es la suma de las probabilidades de cada error, es decir:
+\begin{displaymath}
+{n\choose k}\cdot P^k\cdot (1-P)^{n-k}
+\end{displaymath}
+\end{enumerate}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\begin{teorema}[Probabilidad de transmisiones correctas]
+\ \\
+Supondremos que utilizamos un c\'odigo de bloques para transmitir un mensaje
+sobre un canal binario y sim\'etrico. Tenemos los siguientes resultados:
+\begin{enumerate}
+\item La probabilidad de que un procesador de error produzca la palabra correcta
+es la suma de las probabilidades de error de los errores que el procesador de
+error puede corregir.
+\item Si los errores que el procesador de error puede corregir son
+independientes de la palabra transmitida entonces la probabilidad de que el
+mensaje se haya recibido correctamente es la suma de las probabilidades de que
+se den los errores que el procesador corrige.
+\end{enumerate}
+\end{teorema}
+\underline{\textbf{Demostraci\'on}}:
+\begin{enumerate}
+\item Los errores que el procesador corrige son excluyentes, ya que si se
+produce un error no se puede producir otro. Entonces la probabilidad de que uno
+ocurra es la suma de sus probabilidades individuales.
+\item Como los errores que el procesador corrige son independientes de la
+palabra entonces la probabilidad de transmisi\'on correcta es la suma de las
+probabilidades individuales de los errores que el procesador de error corrige.
+\end{enumerate}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\subsection{Ejemplos sobre probabilidad de error}
+
+Supongamos que vamos a transmitir un mensaje de $10000$ bits por un canal con
+una probabilidad de error de $\frac{1}{1000}$. Esto significa que hay una
+probabildad de error en cada bit de $\frac{1}{1000}$, o lo que es lo mismo, que
+hay una probabilidad de transmisi\'on correcta en un bit de
+$1-\frac{1}{1000}=0.999$.\\
+
+Sin utilizar ning\'un tipo de codificaci\'on la probabildad de transmisi\'on
+correcta es $(0.999)^{10000}\simeq0.000045$.
+%
+\newpage
+%
+\subsubsection{C\'odigo del bit de control de paridad}
+
+Este c\'odigo detecta hasta un error en cada palabra transmitida de longitud
+ocho, pero no lo corrige.
+\begin{itemize}
+\item Probabilidad de que no haya errores en una palabra.\\
+
+Como una palabra tiene $8$ bits la probabilidad de que no haya error en una
+palabra ser\'a:
+$$(0.999)^8\simeq 0.992028$$
+\item Probabilidad de que haya un error en una palabra.\\
+
+La probabilidad de que ocurra un error en una palabra es la probabilidad de
+que en una palabra haya siete bits correctos y uno incorrecto:
+$$(0.999)^7\cdot \frac{8}{1000}\simeq 0.007944$$
+\item Probabilidad de transmisi\'on correcta.\\
+
+Como queremos transmitir $1000$ bits con este c\'odigo los agruparemos en
+bloques de siete m\'as el de control. Estas ser\'an las palabras, luego la
+probabilidad de transmisi\'on correcta ser\'a la probabilidad de que no haya
+ning\'un error en la transmisi\'on, ya que el c\'odigo no corrige errores:
+$$(0.992028)^{\frac{10000}{7}}\simeq 0.000011$$
+\item Probabilidad de que no ocurra un error indetectable.\\
+
+La probabilidad de que no ocurra un error indetectable es la misma de que ocurra
+un error detectable, es decir, de que no ocurra ning\'un error o de que ocurra
+un error:
+\begin{displaymath}
+((0.992028)+(0.007944))^{\frac{10000}{7}}\simeq 0.960789
+\end{displaymath}
+\end{itemize}
+%
+\newpage
+%
+\subsubsection{C\'odigo de triple repetici\'on}
+
+Podemos ver en el ejercicio $\ref{ejer:TripleRepeticion}$ que en este c\'odigo
+se presentan dos situaciones:
+\begin{enumerate}
+\item Supondremos que es m\'as probable que se cometan dos errores que uno
+en cada palabra transmitida. En este caso no se podr\'a corregir el error pero
+se detectar\'an errores simples y dobles.
+\begin{itemize}
+\item Probabilidad de que no haya errores en una palabra.\\
+
+Como una palabra tiene $3$ bits la probabilidad de que no haya error en una
+palabra:
+$$(0.999)^3\simeq 0.997003$$
+\item Probabilidad de transmisi\'on correcta.\\
+
+Como hemos de transmitir $10000$ bits y con este c\'odigo por cada bit de
+informaci\'on hemos de transmitir $3$ bits, tendremos que vamos a transmitir un
+total de $30000$ bits. Luego la probabilidad de transmisi\'on correcta ser\'a:
+$$(0.999)^{30000}\simeq 9.218214^{-14}$$
+\item Probabilidad de que no ocurra un error indetectable.\\
+
+En el caso que estamos considerando el c\'odigo detecta que ha ocurrido un error
+y supondr\'a que es un error doble, luego el \'unico caso en el que no
+detectar\'a un error ser\'a cuando ocurra un error triple, es decir, que se
+inviertan todos los bits de una palabra transmitida. Como la probabilidad de
+error del canal es $\frac{1}{1000}$ entonces tenemos que la probabilidad de
+que se haya un error triple ser\'a:
+$$\Big(\frac{1}{1000}\Big)^3= 10^{-9}$$
+Como vamos a transmitir $10000$ bloques de tres bits entonces la probabilidad
+de que no ocurra un error triple, indetectable, ser\'a:
+$$(1-10^{-9})^{10000}\simeq 0.99999$$
+\end{itemize}
+%
+\newpage
+%
+Podemos ver que este c\'odigo tiene un probabilidad practicamente nula de que
+ocurran errores indetectables, pero la probabilidad de que ocurran errores, 
+detectables, en cada palabra es alt\'{\i}sima. Y teniendo en cuenta que el
+c\'odigo no corrige errores necesitaremos una gran cantidad de retransmisiones,
+que, junto con el hecho de que la raz\'on del c\'odigo es baja, $\frac{1}{3}$,
+hace que transmitir de esta manera sea lento y poco recomendable.
+%
+%
+\item Supondremos que es m\'as probable que se cometa un error que dos en 
+cada palabra transmitida. En este caso podremos corregir el error.\\
+\begin{itemize}
+\item Probabilidad de que no haya errores en una palabra.\\
+
+Como una palabra tiene $3$ bits la probabilidad de que no haya error en una
+palabra:
+$$(0.999)^3\simeq 0.997003$$
+\item Probabilidad de que haya un error en una palabra.\\
+
+La probabilidad de que ocurra un error en una palabra es la probabilidad de
+que en una palabra haya dos bits correctos y uno incorrecto:
+$$(0.999)^2\cdot \frac{3}{1000}\simeq 0.002994$$
+\item Probabilidad de transmisi\'on correcta.\\
+
+La probabilidad de transmisi\'on correcta es la probabilidad de que no ocurra
+ning\'un error o de que ocurra uno\footnote{El c\'odigo corrige un error.} en
+todas y cada una de las palabras transmitidas, que son $10000$, entonces:
+$$((0.997003)+(0.002994))^{10000}\simeq 0.970445$$
+\item Probabilidad de que no ocurra un error indetectable.\\
+
+La probabilidad de que no ocurra un error indetectable es la misma de que ocurra
+un error detectable, es decir, de que no ocurra ning\'un error o de que ocurra
+un error:
+\begin{displaymath}
+((0.997003)+(0.002994))^{10000}\simeq 0.970445
+\end{displaymath}
+\end{itemize}
+\end{enumerate}
+
+\subsubsection{C\'odigo del triple control}
+
+Supondremos que es m\'as probable que se cometa un error que dos en
+cada palabra transmitida. En este caso podemos corregir el error.
+\begin{itemize}
+\item Probabilidad de que no haya errores en una palabra.\\
+
+Como una palabra tiene $6$ bits la probabilidad de que no haya errores en una
+palabra:
+$$(0.999)^6\simeq 0.994015$$
+\item Probabilidad de que haya un error en una palabra.\\
+
+La probabilidad de que ocurra un error en una palabra es la probabilidad de que
+haya cinco bits correctos y uno incorrecto:
+$$(0.999)^5\cdot \frac{6}{1000}\simeq 0.005970$$
+\item Probabilidad de transmisi\'on correcta.\\
+
+La probabilidad de transmisi\'on correcta es la probabilidad de que no ocurra
+ning\'un error o de que ocurra uno\footnote{El c\'odigo corrige un error.} en
+todas y cada una de las palabras transmitidas, que son $\frac{10000}{3}$:
+$$((0.994015)+(0.005970))^{\frac{10000}{3}}\simeq 0.951229$$
+\item Probabilidad de que no ocurra un error indetectable.\\
+
+La probabilidad de que no ocurra un error indetectable es la misma de que ocurra
+un error detectable, es decir, de que no ocurra ning\'un error o de que ocurra
+un error:
+\begin{displaymath}
+((0.994015)+(0.005970))^{\frac{10000}{3}}\simeq 0.951229
+\end{displaymath}
+\end{itemize}

@@ -1,0 +1,74 @@
+%
+% CANTIDAD DE CODIGOS r-PERFETOS
+%
+
+\subsection{?`Cuantos c\'odigos $r$-perfectos existen?}
+
+\begin{lema}\label{lem:Disjuntos}
+\ \\
+Un c\'odigo $r$-perfecto, $\mathcal{C}[n,m]$ es uni\'on disjunta de discos
+cerrados centrados en palabras del c\'odigo y radio $r$. Para c\'odigos
+bin\'arios.
+\end{lema}
+\underline{\textbf{Demostraci\'on}}:\\
+Como $\mathcal{C}[n,m]$ es un c\'odigo $r$-perfecto se tiene que:
+\begin{equation}\label{eq:Recubrimiento}
+\mathbb{F}^{n}_2 = \bigcup_{u\in \mathcal{C}[n,m]} \overline{D}(u,r)
+\end{equation}
+donde las $\overline{D}(u,r)$ para $u\in \mathcal{C}[n,m]$ son disjuntas entre
+s\'{\i}, es decir:
+\begin{displaymath}
+\overline{D}(u_i,r)\bigcap \overline{D}(u_j,r) = \emptyset\quad para\ i\neq j
+\end{displaymath}
+La ecuaci\'on $(\ref{eq:Recubrimiento})$ se deduce de la definici\'on de 
+c\'odigo $r$-perfecto:
+\begin{itemize}
+\item Que $\mathbb{F}^{^n}_2$ es la uni\'on de discos cerrados se deduce del
+hecho de que al ser $\mathcal{C}[n,m]$ un c\'odigo $r$-perfecto dada
+$v\in\mathbb{F}^{^n}_2$, una palabra cualquiera, siempre existe una palabra
+$u\in\mathcal{C}[n,m]$ tal que $d(u,v)\leq r$.
+\item Y el hecho de que los discos sean disjuntos se deduce del hecho de que
+las palabras $u\in \mathcal{C}[n,m]$ anteriores son unicas\footnote{Por
+definici\'on de c\'odigo $r$-perfecto.}.
+\end{itemize}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+En $\mathbb{F}^{^n}_2$ tenemos $2^n$ palabras y en $\mathcal{C}[n,m]$ tenemos
+$2^m$ palabras. De esto y de los lemas $\ref{lem:Cantidad}$ y
+$\ref{lem:Disjuntos}$ se deduce que un c\'odigo $r$-perfecto verifica:
+\begin{displaymath}
+2^n=2^m\cdot\left({n\choose 0}+{n\choose 1}+\cdots+{n\choose r} \right)
+\end{displaymath}
+Luego tendremos tantos c\'odigos $r$-perfectos como $n$ y $m$ verifiquen la
+condici\'on anterior.
+%
+\newpage
+%
+\begin{proposicion}
+\ \\
+Si existe un c\'odigo $\mathcal{C}[n,m]$ $r$-perfecto entonces no existe
+ning\'un c\'odigo $\mathcal{C}[n,m']$ con $m'>m$ y que tenga distancia 
+m\'{\i}nima mayor que $2\cdot r$.
+\end{proposicion}
+\underline{\textbf{Demostraci\'on}}:\\
+Sea $\mathcal{C}[n,m]$ un c\'odigo $r$-perfecto. Entonces por los lemas
+$\ref{lem:Cantidad}$ y $\ref{lem:Disjuntos}$ tendremos que:
+\begin{equation}\label{eq:Primer}
+2^n=2^m\cdot |\overline{D}_r\ |
+\end{equation}
+Sea $\mathcal{C}'[n,m']$ con $m'>m$ tal que $d_{min}>2\cdot r$ es decir,
+$d_{min}\geq2\cdot r+1$ entonces el c\'odigo corrige errores de peso menor o
+igual que $r$, luego $\mathcal{C}'[n,m]$ es $r$-perfecto. Entonces:
+\begin{displaymath}
+2^n=2^{m'}\cdot |\overline{D}_r\ |
+\end{displaymath}
+Teniendo en cuenta esta \'ultima ecuaci\'on y $(\ref{eq:Primer})$ llegamos a
+la conclusi\'on de que $m'=m$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+Luego para una distancia m\'{\i}nima fijada, $2\cdot r+1$, los c\'odigos
+$r$-perfectos tienen los bits de informaci\'on, $m$, m\'aximos. Para c\'odigos
+con igual longitud de palabra.

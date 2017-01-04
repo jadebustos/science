@@ -1,0 +1,66 @@
+%
+% CODIGOS R-PERFECTOS
+%
+
+\chapter{C\'odigos $r$-perfectos}
+
+\begin{definicion}[C\'odigos $r$-perfectos]
+\ \\
+Sea $\mathcal{C}[n,m]$ un c\'odigo. Se dice que es ``\textbf{$r$-perfecto}'' si
+para cada palabra $v\in\mathbb{F}^{^n}_q$ existe una \'unica palabra 
+$u\in \mathcal{C}[n,m]$ tal que $d(u,v)\leq r$.
+\end{definicion}
+\begin{observacion}
+\ \\
+\begin{itemize}
+\item Como detecta y corrige errores de peso menor o igual que $r$ entonces su
+distancia m\'{\i}nima verifica que $d_{min} \geq 2\cdot r + 1$.
+\end{itemize}
+\end{observacion}
+
+\begin{definicion}[Bola o disco, abiertos, de centro $u$ y radio $r$]
+\ \\
+Llamaremos bola o disco, abiertos, de centro $u$ y radio $r$ y los denotaremos
+por $D(u,r)$ al siguiente conjunto:
+\begin{displaymath}
+D(u,r) =\{\ v\in \mathbb{F}^{^n}_q\quad verificando \ d(u,v)< r\ \}
+\end{displaymath}
+\end{definicion}
+\begin{definicion}[Bola o disco, cerrados, de centro $u$ y radio $r$]
+\ \\
+Llamaremos bola o disco, cerrados, de centro $u$ y radio $r$ y los denotaremos
+por $\overline{D}(u,r)$ al siguiente conjunto:
+\begin{displaymath}
+\overline{D}(u,r)=\{\ v\in \mathbb{F}^{^n}_q\quad verificando\ d(u,v)\leq r\ \}
+\end{displaymath}
+\end{definicion}
+En las dos definiciones anteriores $u\in \mathbb{F}^{^n}_q$.
+%
+\newpage
+%
+
+\section{C\'odigos binarios $r$-perfectos}
+
+Los siguientes resultados pueden ser generalizados para c\'odigos no binarios.
+
+%
+% NUMERO DE PALABRAS EN UN DISCO CERRADO
+%
+
+\input{rperfect/paldisco}
+
+%
+\newpage
+%
+
+%
+% CANTIDAD DE CODIGOS r-PERFECTOS
+%
+
+\input{rperfect/cantidad}
+
+%
+% CASOS POSIBLES
+%
+
+\input{rperfect/posibles}

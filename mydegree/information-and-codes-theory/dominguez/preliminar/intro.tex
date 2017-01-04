@@ -1,0 +1,514 @@
+%
+% LENGUJES Y SIMBOLOS
+%
+
+\section{Lenguajes y simbolos}
+
+Para emitir un mensaje hay que hacerlo utilizando un determinado lenguaje,
+com\'un al transmisor y al receptor. Todo lenguaje estar\'a formado por un
+conjunto de simbolos, los cuales formar\'an las palabras del lenguaje.\\
+
+Los simbolos tambi\'en recibiran el nombre de ``bits''.
+
+\begin{ejemplo}
+\ \\ \\
+Cuando queremos comunicarnos con una persona, transmitir un mensaje, hablamos
+con esa persona en un idioma conocido por ambas partes, lenguaje, y los
+simbolos que utilizamos son las letras del abecedario, n\'umeros, \dots y el
+medio o canal utilizado puede ser el habla o la escritura, por ejemplo.
+\end{ejemplo} 
+
+\begin{ejemplo}[I.S.B.N.]
+\ \\ \\
+Sistema internacional de libros. \\
+
+Este sistema se utiliza para catalogar y numerar los libros. Est\'a formado por
+palabras de $10$ cifras y los simbolos que utiliza este lenguaje son:
+
+\begin{displaymath}
+Smb_{I.S.B.N.} = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9 \}
+\end{displaymath}
+
+Una palabra de este lenguaje ser\'a:
+
+\begin{displaymath}
+a=(a_1,a_2,a_3,a_4,a_5,a_6,a_7,a_8,a_9,a_{10})\quad a_i \in Smb_{I.S.B.N.}
+\quad \forall \quad i=1,\ldots,10
+\end{displaymath}
+\end{ejemplo}
+%
+\newpage
+%
+\section{Objetivos de la teor\'{\i}a de c\'odigos}
+
+Los objetivos de la teor\'{\i}a de c\'odigos son los siguientes:
+\begin{itemize}
+\item Construir c\'odigos para la transmisi\'on de informaci\'on.
+\item Dichos c\'odigos han de detectar cuando ha ocurrido un error en la
+transmisi\'on de la informaci\'on.
+\item Dichos c\'odigos deben corregir el mayor n\'umero posible de errores.
+\end{itemize}
+
+Con el fin de detectar y corregir los posibles errores ocurridos durante la
+transmisi\'on del mensaje original introduciremos informaci\'on redundante
+acerca del mensaje original, con el fin de cotejar esta informaci\'on con el 
+mensaje original y poder comprobar de esta forma si se produjo alg\'un error en
+la transmisi\'on del mensaje.\\
+
+No podemos abusar de la informaci\'on redundante que introducimos. Al
+introducir informaci\'on redundante en el mensaje a transmitir obtenemos un
+mensaje m\'as largo de transmitir, por lo tanto ser\'a m\'as costoso y lento
+el poder transmitirlo. Por lo tanto si introducimos demasiada informaci\'on
+redundante tenemos la ventaja de poder detectar y corregir bastantes errores,
+pero tambi\'en tenemos el inconveniente de un mayor costo al transmitir la
+informaci\'on.\\
+
+Otro objetivo que buscaremos ser\'a que cuando se origine un error en la
+transmisi\'on de una palabra se produzca una palabra NO perteneciente al
+c\'odigo. Por ejemplo si transmitimos una palabra ``A'', ocurre un error y,
+fruto de ese error la palabra que llega al receptor es ``B'', la situaci\'on
+ideal ser\'{\i}a que ``B'' NO perteneciera a nuestro c\'odigo. La explicaci\'on
+de esto es que si nos llega una palabra que NO es del c\'odigo que estamos
+utilizando entonces se ha producido un error, mientras que s\'{\i} la palabra
+es del c\'odigo la daremos como buena y no nos percataremos de que se ha 
+cometido un error en la transmisi\'on.
+%
+\newpage
+%
+\subsection{Ejemplos de la utilizaci\'on de c\'odigos}
+
+Los c\'odigos se usan de una manera continua en muchos campos, como por ejemplo:
+
+\begin{itemize}
+\item En las comunicaciones:
+\begin{itemize}
+\item Radio.
+\item Televisi\'on.
+\item Sat\'elites.
+\item Ordenadores.
+\end{itemize}
+\item Sistemas de grabaci\'on de datos:
+\begin{itemize}
+\item Voz.
+\item Video.
+\item CD-Rom.
+\end{itemize}
+\item Comunicaci\'on escrita.
+\item Comunicaci\'on oral(sonora).
+\end{itemize}
+
+\section{Notaciones}
+
+Trabajaremos siempre, salvo que no se diga lo contrario, sobre el conjunto
+$\mathbb{F}_q$. Este conjunto es un conjunto finito de $q$ elementos y
+supondremos siempre que $q=p^n$, donde $p$ es un n\'umero primo y $n\in
+\mathbb{N}$.\\
+
+Nuestros c\'odigos estar\'an formados por palabras de $n$ ``bits'' o simbolos,
+donde cada palabra pertenece a $\mathbb{F}_q$.\\
+
+El conjunto de todas las palabras de $n$ simbolos donde cada simbolo es un
+elemento de $\mathbb{F}_q$ lo denotaremos como $\mathbb{F}^{^n}_q$.\\
+
+Luego tendremos que:
+\begin{displaymath}
+\mathbb{F}^{^n}_q = \{(a_1,a_2,\dots,a_n)\ |\ a_i\in \mathbb{F}_q\quad \forall \
+i=1,\dots,n\}
+\end{displaymath}
+
+Como $\mathbb{F}_q$ tiene un n\'umero finito de elementos, $q$, dado un n\'umero
+entero $n<\infty$ podemos calcular la cantidad de elementos que tiene
+$\mathbb{F}^{^n}_q$ al cual denotaremos como $|\mathbb{F}^{^n}_q|$.\\
+
+El n\'umero de elementos de $\mathbb{F}^{^n}_q$, al que llamaremos orden de
+$\mathbb{F}^{^n}_q$, ser\'a el n\'umero de combinaciones, distintas, que podemos
+hacer de $n$ elementos de $\mathbb{F}^{^n}_q$, es decir:
+\begin{displaymath}
+|\mathbb{F}^{^n}_q| = q^n\ donde\ n\in \mathbb{N}
+\end{displaymath}
+%
+Los elementos de $\mathbb{F}^{^n}_q$ los denotaremos de dos formas:
+\begin{itemize}
+\item $(a_1,\dots,a_n)$ fundamentalmente cuando consideremos dicho elemento como
+elemento de una estructura algebraica.
+\item $a_1\dots a_n$ fundamentalmente cuando consideremos dicho elemento como
+elemento de un c\'odigo.
+\end{itemize}
+pero ambas notaciones sirven para hacer referencia al mismo elemento.
+
+\section{Los ejemplos fundamentales}
+
+Todo lo expuesto en estos apuntes ser\'a aplicado a los siguientes ejemplos:
+\begin{itemize}
+\item Bit de control de paridad.
+\item Triple repetici\'on.
+\item Triple control.
+\end{itemize}
+De igual modo los c\'odigos que utilizaremos estar\'an formados por palabras
+compuestas de $0$ y $1$, es decir los simbolos ser\'an $\{0,1\}$.\\
+
+En la pr\'actica la informaci\'on redundante que introduciremos en los c\'odigos
+se introduce al principio de la palabra, pero nosotros la introduciremos
+al final\footnote{Por comodidad}.
+
+\subsection{C\'odigo binario del ``bit de control de paridad''}
+
+Este c\'odigo estar\'a formado por palabras de $8$ simbolos. 
+\begin{displaymath}
+\mathcal{C}=\{(a_1,a_2,a_3,a_4,a_5,a_6,a_7,a_8)\ |\ a_i\in \mathbb{F}_2\quad
+\forall \ i=1,\dots,8\}
+\end{displaymath}
+Obviamente se tiene que $\mathcal{C} \subset \mathbb{F}^{^8}_2$, ya que s\'{\i}
+se diera la igualdad unicamente estar\'{\i}amos codificando la informaci\'on sin
+introducir informaci\'on redundante\footnote{Lo cual no ser\'{\i}a efectivo pues
+no podr\'{\i}amos conocer cuando se ha cometido un error en la transmisi\'on.}.\\
+
+Ahora bien, como hemos comentado antes introduciremos en el c\'odigo
+informaci\'on redundante. Esto quiere decir que en los ocho digitos que componen
+cada palabra del c\'odigo que vamos a utilizar tendremos unos digitos que no
+aportan nada al mensaje que queremos transmitir, su \'unica utilidad ser\'a la
+de darnos informaci\'on sobre la palabra que hemos transmitido y poder comprobar
+si hubo alg\'un error en la transmisi\'on de dicha palabra.\\
+
+En este c\'odigo se utiliza un \'unico ``bit'' para transmitir esa informaci\'on
+redundate. Con lo cual \'unicamente utilizaremos siete ``bits'' para codificar
+informaci\'on y otro ``bit'' adicional para dar informaci\'on sobre la palabra
+transmitida. Seg\'un esto el n\'umero de palabras de nuestro c\'odigo ser\'a de
+\mbox{$2^7=128$}, ya que son siete los ``bits'' que se emplean para codificar
+informaci\'on:
+\begin{displaymath}
+\mathcal{C}=\{(a_1,a_2,a_3,a_4,a_5,a_6,a_7,c_1)\ |\ a_i,c_1\in\mathbb{F}_2\quad \forall \
+i=1,\dots,7\}
+\end{displaymath}
+El ``bit'' $c_1$ de las palabras de este c\'odigo recibe el nombre de ``bit de
+control'' y aporta informaci\'on sobre los siete ``bits'' anteriores.\\
+
+Una vez conocidos $a_1a_2a_3a_4a_5a_6a_7$ la forma de determinar $c_1$ es la 
+siguiente:
+\begin{quote}
+$c_1$ ser\'a tal que en la palabra haya un n\'umero par de $1$, es decir, si
+en los ``bits'' anteriores hay un n\'umero impar de $1$ $c_1=1$, en caso
+contrario $c_1=0$.
+\end{quote}
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Palabra & Bits de informaci\'on & Bit de control & ?`Palabra correcta?\\
+\hline
+$01101111$ & $0110111$ & $1$ & S\'{\i} \\
+\hline
+$11101000$ & $1110100$ & $0$ & S\'{\i} \\
+\hline
+$00011000$ & $0001100$ & $0$ & S\'{\i} \\
+\hline
+$11100011$ & $1110001$ & $1$ & No \\
+\hline 
+$00010000$ & $0001000$ & $0$ & No \\
+\hline
+$01010100$ & $0101010$ & $0$ & No \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Ejemplos del c\'odigo del bit de control de paridad.}
+\end{table}
+
+Podemos ver que la informaci\'on redundante, ``bit'' de control, lo hemos
+situado al final de la palabra, es decir, es el ``bit'' menos significativo. En
+la pr\'actica esto no ocurre ya que los ``bits'' de control se situan al 
+principio de la palabra, son los ``bits'' m\'as significativos.
+
+\subsubsection{Ventajas del c\'odigo}
+
+Este c\'odigo tiene las siguientes ventajas:
+\begin{itemize}
+\item A\~nade poca informaci\'on redundate, unicamente $\frac{1}{8}$ de la
+informaci\'on transmitida es redundante.
+\item Detecta un error. Si en la transmisi\'on se transmite un ``bit'' de
+forma erronea\footnote{Un $1$ pasa a ser un $0$ y viceversa.} entonces el
+``bit'' de control no concuerda con los anteriores, se produjo un error.
+\end{itemize}
+En realidad si se produce un n\'umero impar de errores el c\'odigo lo detecta,
+pero no hay forma de saber cuantos errores se han cometido, por lo cual se 
+supone que se ha cometido un error.
+
+\subsubsection{Inconvenientes del c\'odigo}
+
+Este c\'odigo tiene los siguientes inconvenientes:
+\begin{itemize}
+\item Aunque se detecte un error no hay forma de saber en cual de los
+siete ``bits'' de informaci\'on se ha producido, luego no corrige errores.
+\item Si se produce un n\'umero par de errores la palabra resultante es
+otra palabra del c\'odigo, con lo cual no se detecta el error ya que se da
+por buena. 
+\end{itemize}
+
+\subsection{C\'odigo binario de ``triple repetici\'on''}
+
+Este c\'odigo consiste en repetir cada ``bit'' de informaci\'on tres veces.
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Bit de informaci\'on & Palabra del c\'odigo \\
+\hline
+$0$ & $000$ \\
+\hline
+$1$ & $111$ \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Palabras del c\'odigo de triple repetici\'on.}
+\end{table}
+\begin{displaymath}
+\mathcal{C} = \{000,111\} \subset \mathbb{F}^{^3}_2
+\end{displaymath}
+
+\subsubsection{Ventajas del c\'odigo}
+
+Este c\'odigo tiene las siguientes ventajas:
+\begin{itemize}
+\item Detecta hasta dos errores.
+\item Corrige un error.
+\end{itemize}
+Estamos suponiendo que en cada ``bit'' unicamente se produce un error,
+observar que si en un ``bit'' se produce un n\'umero par de errores el
+``bit'' queda inalterado.\\
+
+Para poder corregir, con este c\'odigo, necesitamos una hip\'otesis adicional
+sobre la probabilidad de errores en el canal. Es decir necesitamos conocer que
+error es m\'as probable que se cometa en la transmisi\'on en el canal,
+dedicandonos a corregir el error que, con m\'as probabilidad, se cometa.\\
+
+Supongamos que se realiza una transmisi\'on utilizando este c\'odigo y se
+recibe $010$. Sabiendo que en el canal es m\'as probable que se cometan dos
+errores que uno entonces tendremos que la palabra que, con m\'as probabilidad,
+se transmiti\'o es $111$. Esto no significa que la palabra transmitida fuera
+$111$, ya que existe una probabilidad $1-P$, donde $P$ es la probabilidad de
+que se cometieran dos errores en la transmisi\'on, de que se produzca un error
+en la transmisi\'on. La palabra transmitida pudiera haber sido $000$ y haberse
+cometido ``un solo'' error. Por eso en este c\'odigo lo que se hace es corregir
+el error que tiene mayor probabilidad de cometerse, existiendo siempre un margen
+de error en la correcci\'on. Dicho margen viene dado por la probabilidad de 
+cometerse el error que no corregimos.\\
+
+Si se produjeran tres errores, uno en cada ``bit'', obtendr\'{\i}amos la
+otra palabra del c\'odigo, es decir no detectariamos el error.
+
+\subsubsection{Inconvenientes del c\'odigo}
+
+Este c\'odigo tiene los siguientes inconvenientes:
+\begin{itemize}
+\item Mucha informaci\'on redundante. Este c\'odigo es lento transmitiendo,
+raz\'on por la cual no es efectivo ni pr\'actico.
+\end{itemize}
+%
+\newpage
+%
+\subsection{C\'odigo binario de ``triple control''}
+
+De este c\'odigo se podr\'{\i}a decir que es una mezcla de los dos c\'odigos
+anteriores. Consiste en dividir la informaci\'on a transmitir en bloques de
+tres ``bits'' y a\~nadirle otros tres ``bits'' de control. Seg\'un lo dicho
+nuestro c\'odigo ser\'a $\mathcal{C}\subset \mathbb{F}^{^6}_2$. Como la
+informaci\'on se transmite en bloques de tres ``bits''\footnote{Los otros tres
+``bits'' son informaci\'on redundante.} el c\'odigo tendr\'a $2^3=8$ palabras.\\
+
+El c\'odigo ser\'a:
+\begin{displaymath}
+\mathcal{C} = \{(a_1,a_2,a_3,c_1,c_2,c_3)\ donde\ a_i,c_i\in \mathbb{F}_2 \}
+\end{displaymath}
+Los ``bits'' de control $c_1$ ,$c_2$ y $c_3$ est\'an determinados de la
+siguiente manera:
+\begin{itemize}
+\item $c_1$ es tal que el n\'umero de $1$ en $a_1a_2c_1$ sea par.
+\item $c_2$ es tal que el n\'umero de $1$ en $a_1a_3c_2$ sea par.
+\item $c_3$ es tal que el n\'umero de $1$ en $a_2a_3c_3$ sea par.
+\end{itemize}
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Palabra & Bits de control \\
+\hline
+$000000$ & $000$ \\
+\hline
+$001011$ & $011$ \\
+\hline 
+$010101$ & $101$ \\
+\hline
+$100110$ & $110$ \\
+\hline
+$011110$ & $110$ \\
+\hline
+$101101$ & $101$ \\
+\hline
+$110011$ & $011$ \\
+\hline 
+$111000$ & $000$ \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Palabras del c\'odigo de triple control.}
+\end{table}
+
+\subsubsection{Ventajas del c\'odigo}
+
+Este c\'odigo tiene las siguientes ventajas:
+\begin{itemize}
+\item Detecta un error y lo corrige.
+\end{itemize}
+
+\subsubsection{Inconvenientes del c\'odigo}
+
+Este c\'odigo tiene los siguientes inconvenientes:
+\begin{itemize}
+\item La mitad de la informaci\'on que se transmite es redundante.
+\end{itemize}
+
+\section{?`Como modelizar la situaci\'on?}
+
+Para poder elaborar una teor\'{\i}a que nos permita construir ``buenos
+c\'odigos''\footnote{Que detecten y corrijan errores, es decir que sean
+efectivos} con los que podamos transmitir informaci\'on necesitaremos
+introducir una serie de hip\'otesis sobre el modelo.
+
+\subsection{Primera hip\'otesis: ``Canal discreto''}\label{sec:CanalDiscreto}
+
+Supondremos que en el canal por el que se transmite la informaci\'on se
+transmite ``a golpes'' discretos. Es decir con ``paquetes'' a los que 
+llamaremos \emph{BLOQUES} o \emph{PALABRAS}.\\
+
+Resumiendo la informaci\'on se divide en \emph{PALABRAS} que se transmiten de
+forma separada, es decir no se transmiten todas juntas. Las \emph{PALABRAS} de
+nuestro mensaje estar\'an formadas por \emph{SIMBOLOS}, \emph{BITS} o
+\emph{LETRAS}.
+
+\subsection{Segunda hip\'otesis: ``Errores aleatorios''}\label{sec:ErrorAleato}
+
+El tipo de canal por el que se efectua la transmisi\'on introduce
+``\emph{errores aleatorios}''.\\
+
+En la realidad los errores no son asi, son ``\emph{a rafagas}'', es decir se
+deja de enterder desde que empieza el ``\emph{ruido}'' hasta que termina.\\
+
+Nuestro modelo supondr\'a que, dadas dos palabras $A$ y $B$ \textbf{existe una
+probabilidad (fija)} de que se transmita $A$ y se reciba $B$. Esta probabilidad
+la denotaremos como $P_{A,B}$.
+\begin{definicion}[Canal Sim\'etrico]
+\ \\
+Diremos que un canal es \textbf{``sim\'etrico''} cuando $P_{A,B}=P_{B,A}$, es
+decir, la probabilidad de que $A$ pase a ser $B$ es la misma probabilidad de
+que $B$ pase a ser $A$.
+\end{definicion}
+%
+\newpage
+%
+Siempre supondremos que nuestro canal ser\'a:
+\begin{itemize}
+\item De errores aleatorios.
+\item Sim\'etrico.
+\item $P_{A,B}$ no depende ni de $A$ ni de $B$, por lo tanto utilizaremos la
+siguiente notaci\'on $P_{A,B}=P$.
+\end{itemize}
+
+\subsubsection{Caso en el que $P<\frac{1}{2}$}
+
+Siempre supondremos esta hip\'otesis: $P<\frac{1}{2}$.
+
+\subsubsection{Caso en el que $P>\frac{1}{2}$}
+
+En este caso cogemos la palabra que nos ha llegado, la damos la vuelta y ya
+tenemos que $P<\frac{1}{2}$.
+
+\subsubsection{Caso en el que $P=\frac{1}{2}$}
+
+En este caso tenemos que si transmitimos un $0$ puede llegar, indistintamente,
+un $0$ o un $1$, con lo cual el canal considerado no es nada fiable y no es
+util desde un punto de vista pr\'actico. Luego no consideraremos nunca
+este caso.
+
+\section{Resumen}
+
+Para transmitir informaci\'on lo que haremos ser\'a:
+\begin{itemize}
+\item Dividir la informaci\'on en bloques o palabras.
+\item Codificar cada palabra del mensaje utilizando un c\'odigo. Este paso
+supone a\~nadir a cada palabra informaci\'on redundante para poder controlar
+cuando se ha producido un error en la transmisi\'on y, en algunos casos,
+corregir dicho error.
+\item Enviar el mensaje.
+\end{itemize}
+%
+\newpage
+%
+Una vez recibido el mensaje para poder conocer el mensaje original:
+\begin{itemize}
+\item Comprobar cada palabra del mensaje recibido, utilizando la informaci\'on
+redundante\footnote{``Bits'' de control.}, para comprobar que no hubo ning\'un
+error en la transmisi\'on del mensaje. En caso de haberlo se tienen dos
+opciones:
+\begin{itemize}
+\item Intentar corregir el error, en el caso que el c\'odigo lo permita.
+Corregir el error debe enterderse como calcular la palabra del c\'odigo que,
+con mayor probabilidad, fue transmitida originalmente.
+\item Solicitar, de nuevo, la informaci\'on erronea.
+\end{itemize}
+\item Eliminar la informaci\'on redundante introducida\footnote{Decodificar el
+mensaje.}.
+\end{itemize}
+
+\subsection{Alfabeto}
+
+\begin{definicion}[Alfabeto]
+\ \\
+Un \textbf{``alfabeto''} ser\'a el conjunto de si\'{\i}mbolos utilizaremos
+para codificar el mensaje.
+\end{definicion}
+En todo alfabeto existe un s\'{\i}mbolo distinguido, que es el ``\emph{espacio
+en blanco}''. Este s\'{\i}mbolo nos permite distiguir cuando termina una palabra
+y comienza la siguiente.\\
+
+Por ejemplo si utilizamos como alfabeto $\mathbb{F}_2$ los s\'{\i}mbolos 
+serian $\{0,1\}$.
+
+\subsection{Palabras}
+
+\begin{definicion}[Palabra]
+\ \\
+Entenderemos por \textbf{``palabra''} a una sucesi\'on ordenada de simbolos de
+un alfabeto.
+\end{definicion}
+En los casos que vamos a considerar las palabras ser\'an elementos de
+$\mathbb{F}^{^n}_q$, puesto que vamos a utilizar palabras de longitud fija.\\ \\
+%
+El n\'umero de elementos que posee $\mathbb{F}^{^n}_q$ es $|\mathbb{F}_q|^{^n}$.
+
+
+\subsection{C\'odigos}
+
+\begin{definicion}[C\'odigos]
+\ \\
+Llamaremos \textbf{``c\'odigo''} al conjunto de palabras que utilizaremos para
+codificar informaci\'on.
+\end{definicion}
+En los casos que vamos a considerar los c\'odigos ser\'an subconjuntos de
+$\mathbb{F}^{^n}_q$, es decir $\mathcal{C}\subset \mathbb{F}^{^n}_q$.
+
+\subsection{Canales}
+
+El canal es el medio por el cual se transmite la informaci\'on y sobre este
+canal supondremos siempre que:
+\begin{itemize}
+\item Cumple la hip\'otesis de ``\emph{canal discreto}''\footnote{Apartado
+$\ref{sec:CanalDiscreto}$ en la p\'agina $\pageref{sec:CanalDiscreto}$.}. 
+\item Cumple la hip\'otesis de ''\emph{errores aleatorios}''\footnote{Apartado
+$\ref{sec:ErrorAleato}$ en la p\'agina $\pageref{sec:ErrorAleato}$.}.
+\item El canal es ``\emph{sim\'etrico}''.
+\end{itemize}
+
+%
+% EJERCICIOS
+%
+
+\input{preliminar/ejercicios}
