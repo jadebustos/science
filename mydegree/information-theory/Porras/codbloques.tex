@@ -1,0 +1,570 @@
+%
+% CODIGOS DE BLOQUES
+%
+
+\chapter{C\'odigos de bloques}
+
+Hemos visto en el cap\'{\i}tulo anterior que para enviar enviar informaci\'on
+lo haremos dividiendola en bloques o palabras y mandando los bloques por
+separado. Pero no hemos dicho nada sobre la longitud de las palabras que vamos
+a utilizar para mandar los mensajes.\\
+
+Cuando utilizemos un c\'odigo para mandar informaci\'on lo haremos siempre, a
+no ser que se diga lo contrario, con una longitud fija de palabra.
+
+\section{C\'odigo de bloques $(n,m)$}
+
+\begin{definicion}[C\'odigo de bloques de tipo $(n,m)$]
+\ \\
+Diremos que un c\'odigo de bloques es de \textbf{``tipo $(n,m)$}'' cuando la
+longitud de palabras del c\'odigo sea de $n$ bits y de esos $n$ bits utilizemos
+$m$ para transmitir informaci\'on. Es decir tendremos $n-m$ bits para a\~nadir
+informaci\'on redundante. A un c\'odigo de este tipo lo denotaremos como
+$\mathcal{C}[n,m]$.
+\end{definicion}
+%
+Obviamente se tiene que $n,m\in \mathbb{N}$.
+
+\subsection{Longitud de un c\'odigo}
+
+\begin{definicion}[Longitud de un c\'odigo]
+\ \\
+Dado un c\'odigo de tipo $(n,m)$ llamaremos \textbf{``longitud del c\'odigo''}
+al n\'umero $n$, es decir, a la longitud de las palabras empleadas por el
+c\'odigo.
+\end{definicion}
+%
+\newpage
+%
+\subsection{Rango de un c\'odigo}
+
+\begin{definicion}[Rango de un c\'odigo]
+\ \\
+Dado un c\'odigo de tipo $(n,m)$ llamaremos \textbf{``rango del c\'odigo''}
+al n\'umero $m$, es decir, al n\'umero de bits utilizados para transmitir
+informaci\'on.
+\end{definicion}
+
+\subsection{Raz\'on de un c\'odigo}
+
+\begin{definicion}[Raz\'on de un c\'odigo]
+\ \\
+Dado un c\'odigo de tipo $(n,m)$ llamaremos \textbf{``raz\'on del c\'odigo''}
+al n\'umero $\frac{m}{n}\leq 1$.
+\end{definicion}
+Nos interesan c\'odigos cuya raz\'on este cerca de $1$. En estos c\'odigos
+introduciremos pocos bits de control, por lo tanto son c\'odigos en los que
+se emplea poco tiempo en su transmisi\'on\footnote{En comparaci\'on con el
+mismo c\'odigo pero con m\'as bits de control.}.
+
+\subsection{Tasa de informaci\'on de un c\'odigo}
+
+\begin{definicion}
+\ \\
+Dado un c\'odigo de tipo $(n,m)$ llamaremos \textbf{``tasa de informaci\'on del
+c\'odigo''} $\mathcal{C}$ a:
+\begin{displaymath}
+R= n^{-1}\cdot \log_q |\mathcal{C}|
+\end{displaymath}
+el c\'odigo est\'a definido sobre un cuerpo $\mathbb{F}_q$.
+\end{definicion}
+S\'{\i} $\mathcal{C}$ es un c\'odigo lineal del tipo $(n,m)$ entonces:
+\begin{displaymath}
+R=n^{-1}\cdot \log_q |\mathcal{C}| = \frac{m}{n}
+\end{displaymath}
+
+\subsection{Radio de recubrimiento de un c\'odigo}
+
+\begin{definicion}[Radio de recubrimiento]
+\ \\
+Dado un c\'odigo de tipo $(n,m)$ llamaremos \textbf{``radio de recubrimiento del
+c\'odigo''} a:
+\begin{displaymath}
+\rho (\mathcal{C}) = \max_{x\in \mathbb{F}^{^n}_q}\{\ \min_{c\in \mathcal{C}}
+\{\ d(x,c)\ \}\ \} 
+\end{displaymath}
+\end{definicion}
+La interpretaci\'on de este n\'umero es la siguiente:
+\begin{quote}
+$\rho(\mathcal{C})$ es el menor n\'umero positivo, $\rho$, tal que las bolas
+$B_{\rho}(c)$ de radio $\rho$ y con centro en los puntos $c\in \mathcal{C}$
+recubren $\mathbb{F}^{^n}_q$.
+\end{quote}
+\section{Codificadores}\label{sec:Codificadores}
+
+Matem\'aticamente hablando un ``\emph{codificador}'' es una aplicaci\'on que
+traduce una palabra a su equivalente respecto de un c\'odigo.
+\begin{definicion}[Codificador]
+\ \\
+Sea $\mathcal{C}$ un c\'odigo del tipo $(n,m)$. Llamaremos
+\textbf{``codificador''} a una aplicaci\'on biyectiva $C$, tal que:
+\begin{eqnarray*}
+C: \mathbb{F}^{^m}_2 &\stackrel{\sim}\longrightarrow& \mathcal{C}\subset \mathbb{F}^{^n}_q \\
+ x &\longrightarrow & u
+\end{eqnarray*}
+\end{definicion}
+La labor del ``\emph{codificador}'' consiste en asignar una, y solo una, palabra
+del c\'odigo a cada palabra del lenguaje. Es decir, se limita a a\~nadir los
+bits de control a cada palabra del lenguaje.\\
+
+Supondremos que los ``\emph{codificadores}'' son \textbf{est\'andar}, es decir:
+\begin{displaymath}
+C(x)=u=(x_1,\cdots,x_m,c_1,\cdots,c_{n-m})\quad donde\ x_i,c_j\in \mathbb{F}_q
+\end{displaymath}
+donde los $c_j$ para $j=1,\cdots,n-m$ son los bits de control.
+
+\section{Decodificadores} \label{sec:Decodificadores}
+\begin{definicion}[Decodificador]
+\ \\
+Sea $\mathcal{C}$ un c\'odigo del tipo $(n,m)$, Llamaremos
+\textbf{``decodificador''} a una aplicaci\'on biyectiva $D$, tal que:
+\begin{eqnarray*}
+D:\mathbb{F}^{^n}_2 \supset \mathcal{C}&\stackrel{\sim}\longrightarrow & \mathbb{F}^{^m}_2 \\
+ u&\longrightarrow & x
+\end{eqnarray*}
+\end{definicion}
+La labor del ``\emph{decodificador}'' consiste en asignar una, y solo una,
+palabra del lenguaje a cada palabra del c\'odigo. Es decir, se limita a quitar
+los bits de control a cada palabra del c\'odigo.
+%
+\newpage
+%
+\section{Procesadores de error}\label{sec:ProcErr}
+
+Cuando hemos recibido una transmisi\'on, ?`Como comprobar si ha habido alg\'un
+error en la transmisi\'on?. Esta labor la realizan los ``\emph{procesadores de
+error}''.
+\begin{definicion}[Procesadores de error]
+\ \\
+Un \textbf{``procesador de error''}, desde el punto de vista matem\'atico, 
+para un c\'odigo de tipo $(n,m)$ es una aplicaci\'on:
+\begin{displaymath}
+\begin{array}{cccc}
+P:&\mathbb{F}^{^m}_2&\longrightarrow & \mathbb{F}_2\times \mathcal{C}[n,m] \\
+ & v&\longrightarrow & (0/1,u')
+\end{array}
+\end{displaymath}
+tal que:
+\begin{itemize}
+\item Si $v \in \mathcal{C}[n,m]$ entonces $P(v)=(0,v)$.
+\item Si $v \notin \mathcal{C}[n,m]$ entoces $P(v)=(1,u')$. Donde $u'\in
+\mathcal{C}[n,m]$ es la palabra que, con m\'as probabilidad, se transmiti\'o
+originalmente. Es decir $u'$ ser\'a la palabra del c\'odigo ``m\'as parecida''
+a $v$.
+\end{itemize}
+\end{definicion}
+Cuando se recibe una palabra y esta pertenece al c\'odigo que se esta utilizando, no quiere decir que no haya habido alg\'un error en la transmisi\'on. Puede
+haber ocurrido alg\'un error y la palabra resultante del error ser una palabra
+del c\'odigo. Para evitar que ocurra esto se puede intentar ``\emph{separar}''
+las palabras del c\'odigo lo m\'as posible, pero para ello es necesario saber
+``\emph{como medir distancias}'' dentro del c\'odigo.
+%
+\begin{definicion}[Transmisi\'on correcta]
+\ \\
+Entenderemos por ``\textbf{transmisi\'on correcta}'' aquella que verifique que $P(v)=(0/1,u)$, donde $P$ es el procesador de error, $v$ es la palabra recibida y $u$ es la palabra transmitida originalmente.
+\end{definicion}
+%
+Intentaremos utilizar c\'odigos en los que las palabras esten lo m\'as
+``\emph{separadas}'' posible, ya que cuanto m\'as ``\emph{separadas}'' esten
+entre s\'{\i}, m\'as dificil ser\'a que un error en una palabra del c\'odigo nos
+de otra palabra del c\'odigo. Con lo cual el error ser\'{\i}a indetectable%
+\footnote{A menos que se conozca, a priori, la palabra transmitida.}.\\
+
+Una vez detectado un error en la transmisi\'on supondremos que la palabra que,
+con m\'as probabildad, fue transmitida originalmente ser\'a aquella palabra del
+c\'odigo que est\'e m\'as ``\emph{cercana}'' a la palabra recibida.
+
+%
+% NOCION DE DISTANCIA
+%
+
+\section{Noci\'on de distancia}
+
+Dar una distancia en un c\'odigo equivale a decir cuando dos palabras en el
+c\'odigo son diferentes y en ``\emph{cuanto}'' difieren.\\
+
+Dadas dos palabras $a=(a_1,\cdots,a_n)$ y $b=(b_1,\cdots,b_n)$, donde $a,b
+\in \mathcal{C}[n,m]\subset \mathbb{F}^{^n}_q$, se tienen las siguientes
+definiciones:
+\begin{definicion}[Igualdad de palabras]
+\ \\
+Se dice que dos palabras $a$ y $b$, del mismo c\'odigo, son \textbf{``iguales''}
+cuando se verifica que $\forall \ i$ se tiene que $a_i=b_i$. En caso contrario
+ambas palabras son \textbf{``distintas''}.
+\end{definicion}
+
+\begin{definicion}[Error en el lugar $i$-\'esimo]
+\ \\
+Dadas dos palabras $a$ y $b$, del mismo c\'odigo, diremos que hay un
+\textbf{``error en el lugar $i$-\'esimo''} cuando $a_i\neq b_i$.
+\end{definicion}
+Medir la diferencia de dos palabras dadas, de un mismo c\'odigo, equivale a
+dar una noci\'on de distancia, o lo que es lo mismo una ``\emph{m\'etrica}'',
+en el c\'odigo. Esta diferencia la mediremos utilizando la ``\textbf{distancia
+de Hamming}''.
+\begin{definicion}[Distancia de Hamming]
+\ \\
+Dadas dos palabras $a$ y $b$, del mismo c\'odigo, definiremos su distancia como
+el numero de $i$ tales que $a_i\neq b_i$, o lo que es lo mismo, como el n\'umero
+de $i$ tales que $a_i-b_i \neq 0$. La distancia entre dos palabras la
+denotaremos como $d(a,b)$.
+\end{definicion}
+Matem\'aticamente hablando tendremos, que la ``distancia de Hamming'' vendr\'a
+dada por una aplicaci\'on:
+\begin{displaymath}
+\begin{array}{cccc}
+d:&\mathbb{F}^{^n}_q\times \mathbb{F}^{^n}_q&\longrightarrow & \mathbb{Z}^{^+}\\
+&(a,b)&\longrightarrow & d(a,b)
+\end{array}
+\end{displaymath}
+Como observaci\'on diremos que esta ``\emph{distancia}'' tambi\'en se verifica
+para $\mathbb{F}^{^n}_q$, con lo cual la distancia no s\'olo est\'a definida
+en el c\'odigo, sino que tambi\'en est\'a definida en el total.
+
+\begin{definicion}[Error de peso $k$]
+\ \\
+Dadas dos palabras $a$ y $b$, de un mismo c\'odigo, diremos que existe un
+\textbf{``error de peso $k$''} si $d(a,b) = k$.
+\end{definicion}
+\begin{definicion}[Peso de una palabra]
+\ \\
+Llamaremos \textbf{``peso de una palabra''} a su distancia con el $0$. El peso
+de una palabra de $n$ bits ser\'a:
+\begin{displaymath}
+d((a_1,\dots ,a_n),(0,\stackrel{n)} \ldots ,0))
+\end{displaymath}
+y lo denotaremos como $w(u)$, con $u=(a_1,\dots,a_n)$.
+\end{definicion}
+
+\subsection{Algunos ejemplos}
+
+Consideremos un c\'odigo $\mathcal{C}[4,1]\subset{\mathbb{F}^{^4}_2}$. Cada
+palabra de $\mathbb{F}^{^4}_2$ ser\'a de la forma $a=(a_1,a_2,a_3,a_4)$.
+\begin{itemize}
+\item $a=(0,0,1,0)$ y $b=(1,1,1,1)$ entonces $d(a,b) = 3$ ya que $a_1\neq b_1$,
+$a_2\neq b_2$ y $a_4\neq b_4$. Es decir hay $3$ bits que no coinciden. Tenemos
+un error de peso $3$.
+\item $a=(0,1,0,1)$ y $b=(0,1,0,1)$ entonces $d(a,b) = 0$ ya que $a_i=b_i$
+$\forall \ i$. Tenemos un error de peso $0$, ambas palabras son iguales.
+\item $a=(1,0,0,1)$ y $b=(0,1,1,0)$ entonces $d(a,b) = 4$  ya que $a_i\neq b_i$
+$\forall \ i$. Es decir ambas palabras no coinciden en ning\'un bit. Tenemos
+un error de peso $4$.
+\end{itemize}
+
+\subsection{Propiedades de las distancias}
+
+Hemos definido antes una aplicaci\'on a la que hemos llamado ``\emph{distancia
+de Hamming}''. Una ``\emph{distancia}'' es una aplicaci\'on que cumple una
+serie de condiciones.\\
+
+Dado un conjunto cualquiera $A$, diremos que una aplicaci\'on, $d$, es una
+distancia si es de la forma:
+\begin{eqnarray*}
+d: A\times A&\longrightarrow& \mathbb{R}^{^+}\\
+(a,b)&\longrightarrow& d(a,b)
+\end{eqnarray*}
+y verifica las siguientes condiciones:
+\begin{itemize}
+\item $d(a,b)\geq 0$ $\forall \ a,b \in A$ y $d(a,b)=0$ $\Longleftrightarrow$
+$a=b$.
+\item $d(a,b)=d(b,a)$ $\forall \ a,b\in A$.
+\item ``\emph{Desigualdad triangular}''
+\begin{displaymath}
+d(a,c)\leq d(a,b) + d(b,c)\quad \forall \ a,b,c\in A
+\end{displaymath}
+\end{itemize}
+En nuestros casos $A=\mathbb{F}^{^n}_q$ y en lugar de considerar
+$\mathbb{R}^{^+}$ consideraremos $\mathbb{Z}^{^+}$.
+
+\subsection{Detecci\'on de errores mediante las distancias}\label{sec:DistanErr}
+
+Para detectar errores en una transmisi\'on utilizaremos una propiedad de las
+distancias:
+\begin{quote}
+La distancia entre dos palabras es nula $\Longleftrightarrow$ s\'{\i} ambas
+palabras son la misma. $d(a,b)=0$ $\Longleftrightarrow$ $a=b$.
+\end{quote}
+Cuando hayamos recibido una palabra en una transmisi\'on lo que haremos para
+detectar si ocurrio alg\'un error en la transmisi\'on ser\'a:
+\begin{itemize}
+\item Calcular la distancia de la palabra recibida, $u$, a todas las del
+c\'odigo.
+\item Si alguna de las distancias es nula entonces se tiene que la palabra
+recibida $u$ pertenece al c\'odigo. En caso contrario la palabra recibida $u$
+no pertenece al c\'odigo, con lo cual habr\'a ocurrido alg\'un error en la
+transmisi\'on.
+\end{itemize}
+%
+% ELECCION DE BUENOS CODIGOS 
+%
+
+\section{Elecci\'on de buenos c\'odigos}
+
+Ya hemos comentado anteriormente que al transmitir una palabra se produzca un
+error, y este error genere otra palabra del c\'odigo, con lo cual el error
+cometido ser\'{\i}a indetectable. Por ejemplo en el ``\emph{c\'odigo de triple
+repetici\'on}'', el cual est\'a formado unicamente por dos palabras
+$\mathcal{C}[3,1]=\{000,111\}$ supongamos que transmitimos la palabra $000$ y se
+cometen errores:
+\begin{itemize}
+\item \textbf{de peso $1$}, eso significar\'{\i}a que la palabra recibida
+ser\'{\i}a una de las siguientes:
+\begin{itemize}
+\item $100$.
+\item $010$.
+\item $001$.
+\end{itemize}
+donde el error es detectable, ya que ninguna de ellas pertenece al c\'odigo.
+%
+\newpage
+%
+\item \textbf{de peso $2$}, eso significar\'{\i}a que la palabra recibida
+ser\'{\i}a una de las siguientes:
+\begin{itemize}
+\item $110$.
+\item $101$.
+\item $011$.
+\end{itemize}
+donde el error sigue siendo detectable, ya que ninguna de ellas pertenece al
+c\'odigo. 
+\item \textbf{de peso $3$}, eso significar\'{\i}a que la palabra recibida
+ser\'a la siguiente:
+\begin{itemize}
+\item $111$.
+\end{itemize}
+donde el error es indetectable, ya que la palabra recibida pertenece al
+c\'odigo.
+\end{itemize}
+Luego con este c\'odigo podemos detectar errores de peso $2$ ya que sus palabras
+tienen una distancia entre s\'{\i} de $3$.\\
+
+De esto se deduce que para poder detectar errores de peso $s+1$ hemos de 
+utilizar c\'odigos cuyas palabras disten entre s\'{\i} $s$.
+
+\subsection{Distancia m\'{\i}nima}
+
+Supongamos que tenemos un c\'odigo $\mathcal{C}[n,m]\subset \mathbb{F}^{^n}_q$,
+la distancia m\'{\i}nima de dicho c\'odigo es un dato importante. Esto es 
+debido a que nos indica que tipos de errores se detectan en el c\'odigo.
+\begin{definicion}[Distancia M\'{\i}nima]
+\ \\
+Llamaremos \textbf{``distancia m\'{\i}nima''} de un c\'odigo a la m\'{\i}nima
+distancia entre todos los posibles pares de palabras que podamos formar con
+las palabras del c\'odigo. Es decir:
+\begin{displaymath}
+d_{min} (\mathcal{C}[n,m]) = \mathop{\min_{a,b\in \mathcal{C}[n,m]}}_{a\neq b}
+\{ \ d(a,b)\ \}
+\end{displaymath}
+\end{definicion}
+Observar que todos los c\'odigos que utilizaremos van a ser subconjuntos de
+cuerpos finitos y entonces tiene sentido hablar de ``\emph{distancia
+m\'{\i}nima}''.\\ \\
+%
+A esta distancia para abreviar nos referiremos como $d_{min}$.\\ \\
+%
+Muchas veces un c\'odigo $\mathcal{C}[n,m]$ se suele denotar como
+$\mathcal{C}[n,m,d_{min}]$.\\
+
+Dado un c\'odigo $\mathcal{C}[n,m,d_{min}]$ tendremos que la distancia
+m\'{\i}nima, entre dos palabras diferentes, de dicho c\'odigo es de $d_{min}$.
+Luego difieren en, al menos, $d_{min}$ bits. En un c\'odigo de este tipo son
+detectables errores de peso menor, estrictamente, que $d_{min}$, mientras que
+los errores de peso mayor o igual que $d_{min}$ son indetectables%
+\footnote{Generalmente, ya
+que puede darse el caso en el que un error de peso mayor que la distancia
+m\'{\i}nima sea detectable.}.
+%
+%
+%
+\begin{teorema}[Teorema de detecci\'on de errores]\label{the:Deteccion}
+\ \\
+Un c\'odigo detecta errores de peso menor o igual que $s$ $\Longleftrightarrow$
+$d_{min}$ es mayor, estrictamente, que $s$.
+\end{teorema}
+\underline{\textbf{Demostraci\'on}}:\\
+
+$\Rightarrow |$ Supongamos que tenemos un c\'odigo $\mathcal{C}$ que detecta
+errores de peso menor o igual que $s$.\\
+
+Seg\'un lo visto en el apartado $(\ref{sec:DistanErr})$, en la p\'agina
+$\pageref{sec:DistanErr}$, detectar un error de peso menor o igual que $s$
+significa que, si dada una palabra del c\'odigo cualquiera alteramos, a
+lo sumo, $s$ de sus bits, entonces la palabra resultante NO pertenece al
+c\'odigo. Mientras que si alteramos m\'as de $s$ de sus bits la palabra
+resultante podr\'{\i}a pertenecer al c\'odigo. Esto nos dice que dos palabras
+del c\'odigo difieren en $s+1$ bits, por lo menos. O lo que es lo mismo que
+la distancia m\'{\i}nima, $d_{min}$, del c\'odigo es mayor, estrictamente, que
+$s$.\\
+
+$\Leftarrow |$ Supongamos que tenemos un c\'odigo $\mathcal{C}$ con distancia
+m\'{\i}nima $d_{min}$ verificando que $d_{min} > s$.\\
+
+Entonces si, dada una palabra cualquiera del c\'odigo alteramos, a lo sumo, $s$
+de sus bits entonces la palabra obtenida no pertenecer\'a al c\'odigo. Pero
+seg\'un lo visto en el apartado $(\ref{sec:DistanErr})$, en la p\'agina
+$\pageref{sec:DistanErr}$, esto es equivalente a detectar errores de, a lo
+sumo, peso $k$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+De todo esto se deduce que, cuanto mayor sea la distancia m\'{\i}nima mayor
+n\'umero de errores detectar\'a el c\'odigo. Los c\'odigos cuya distancia
+m\'{\i}nima sea ``\emph{grande}'' ser\'an buenos c\'odigos, ya que podremos
+detectar un mayor n\'umero de errores. As\'{\i} mismo cuanto mayor distancia
+m\'{\i}nima tenga un c\'odigo m\'as d\'{\i}ficil ser\'a que un error en una
+palabra transmitida de como resultado otra palabra del c\'odigo, con lo cual el
+error ser\'{\i}a indetectable.
+
+\subsection{Calculo de todas las distancias m\'{\i}nimas}
+
+Ya hemos visto que para calcular la distancia m\'{\i}mina de un c\'odigo tenemos
+que calcular la distancia de cada elemento a todos y cada uno de los otros.\\
+
+Como los c\'odigos son finitos, tienen un n\'umero finito de elementos, podemos
+calcular el n\'umero de distancias que tenemos que calcular.\\
+
+Dado un c\'odigo $\mathcal{C}$ el cual tiene $|\mathcal{C}|$ palabras. Para
+calcular la distancia m\'inima del c\'odigo tendremos:
+\begin{itemize}
+\item Dada una palabra del c\'odigo tendremos que calcular la distancia de
+dicha palabra con el resto de palabras del c\'odigo. Como el c\'odigo tiene
+$|\mathcal{C}|$ palabras entonces tendremos que calcular $|\mathcal{C}|-1$
+distancias.
+\item Como tenemos que repetir esta operaci\'on con todas las palabras del
+c\'odigo entonces tendremos que calcular $|\mathcal{C}|\cdot (|\mathcal{C} |-1)$
+distancias.
+\end{itemize}
+Luego el n\'umero total de distancias a calcular es de $|\mathcal{C}|\cdot 
+(|\mathcal{C}|-1)$ distancias.
+%
+% CORRECCION DE ERRORES
+%
+
+\section{Correcci\'on de errores}
+
+Ya hemos visto como detectar cuando ha ocurrido un error en una transmisi\'on,
+pero eso no es suficiente. Tambi\'en hay que saber cuando y como se puede
+corregir un error. Los procesadores de error\footnote{Apartado
+$(\ref{sec:ProcErr})$ en la p\'agina $\pageref{sec:ProcErr}$.} ser\'an los
+encargados de detectar y corregir los errores.\\
+
+Hemos visto que calculando la distancia m\'{\i}nima de un c\'odigo podemos
+saber hasta que peso se pueden detectar errores.\\
+
+Pero una vez detectado que se ha cometido un error, ?`como elegir la palabra
+adecuada que se transmiti\'o originalmente?. Esto tambi\'en lo haremos mediante
+la distancia m\'{\i}nima.
+%
+\newpage
+%
+Supongamos que recibimos una palabra $w$ y deseamos ser capaces de corregir
+todos los errores de peso $1$. Una vez recibida la palabra $w$ y sabiendo que
+se ha cometido un error de peso $1$ deber\'{\i}a haber una \'unica palabra
+del c\'odigo $u$ tal que $d(u,w)=1$. Pero se puede dar el caso en el que existan
+$u,v\in \mathcal{C}$ tales que $d(u,w)=d(v,w)=1$, entoces en esta situaci\'on,
+?`que palabra elegiriamos como correcta?.\\
+
+El mismo razonamiento se puede seguir para errores de peso $k$.
+\begin{definicion}[Correcci\'on de errores de peso $k$]
+\ \\
+Dada una palabra $w$ en la que sabemos que existe un error de peso $k$, a lo
+sumo, diremos que un c\'odigo $\mathcal{C}$ corrige errores de peso menor o
+igual que $k$ $\Longleftrightarrow$ existe una y s\'olo una palabra $u\in
+\mathcal{C}$ tal que $d(u,w)\leq k$ para cualquier $w$ en el que se cometa un
+error de peso $k$, a lo sumo.
+\end{definicion}
+
+Para solucionar este problema elegimos c\'odigos en los que las palabras esten
+bastante separadas.
+
+\begin{teorema}[Teorema de correcci\'on de errores]\label{the:Correccion}
+\ \\
+Dado un c\'odigo $\mathcal{C}$ se pueden corregir, sin problemas, todos los
+errores de peso menor o igual que $t$ $\Longleftrightarrow$ su distancia
+m\'{\i}nima, $d_{min}$, es mayor o igual que $2\cdot t +1$ .
+\end{teorema}
+\underline{\textbf{Demostraci\'on}}:
+
+$\Rightarrow |$ Supongamos que tenemos un c\'odigo que es capaz de corregir
+errores de peso menor o igual que $t$. Entonces si recibimos una palabra $w$
+en la que sabemos que existe un error de peso $t$, a lo sumo, entonces 
+existir\'a una y s\'olo una palabra $u\in \mathcal{C}$ tal que $d(w,u)\leq t$.\\
+
+Lo demostraremos por reducci\'on al absurdo. Supondremos que existen dos
+palabras en el c\'odigo, $u_1,u_2 \in \mathcal{C}$, tales que
+$d(u_1,u_2)\leq 2\cdot t$.\\ \\
+%
+Sea $w$ una palabra tal que:
+\begin{itemize}
+\item Coincide con $u_1$ en los bits en los que coinciden $u_1$ y $u_2$.
+\item Coincide con $u_1$ en los $t$ primeros bits en los que $u_1$ y $u_2$ no
+coinciden.
+\item Coincide con $u_2$ en los bits siguientes, a los $t$ primeros, en los
+que $u_1$ y $u_2$ no coinciden.
+\end{itemize}
+De esta construcci\'on es claro que $d(w,u_2) = t$.\\ \\
+%
+Supongamos que $u_1$ y $u_2$ son palabras de $n$ bits que coinciden en $m$
+bits. Entonces tendremos que $d(w,u_1) = n-m-([n-m]-t) = t$.\\
+
+Suponemos que recibimos la palabra $w$ y sabemos que se cometi\'o un error
+de peso $t$, a lo sumo, en la transmisi\'on. Entonces la palabra que se
+transmiti\'o originalmente es la \'unica palabra del c\'odigo, $u$, tal que
+$d(w,u)\leq t$ ya que por hip\'otesis el c\'odigo corrige errores de peso
+menor o igual que $t$.\\
+
+Ahora bien, tenemos en el c\'odigo dos palabras, $u_1,u_2$, tales que verifican
+que $d(w,u_i)\leq t$ para $i=1,2$. Pero esto no puede ocurrir por hip\'otesis
+ya que unicamente puede haber una palabra en el c\'odigo que cumpla la
+condici\'on. Hemos llegado a una contradicci\'on al suponer que
+$d(u_1,u_2)\leq 2\cdot t$ para $u_1,u_2\in \mathcal{C}$. Entonces se tendr\'a
+que $d(u_1,u_2) > 2\cdot t$ para $u_1,u_2\in \mathcal{C}$, es decir,
+$d(u_1,u_2)\geq 2\cdot t+1$ para $u_1,u_2\in \mathcal{C}$ $\Longrightarrow$
+$d_{min} \geq 2\cdot t +1$ .\\
+
+$\Leftarrow |$ Supongamos que tenemos un c\'odigo cuya distancia m\'{\i}nima,
+$d_{min}$, es mayor o igual que $2\cdot t +1$.\\
+
+Supongamos que se ha realizado una transmisi\'on y se ha recibido la palabra
+$w$, conociendo que se ha cometido un error de, a lo sumo, peso $t$. Obviamente
+$w\notin \mathcal{C}$, ya que en caso contrario el error no ser\'{\i}a
+detectable.\\
+
+Supongamos que existen dos palabras en el c\'odigo $u,v\in \mathcal{C}$ tal que
+$d(u,w)\leq t$ y $d(v,w)\leq t$. Entonces utilizando la desigualdad triangular
+se tiene que:
+\begin{displaymath}
+d(u,v)\leq d(u,w)+d(w,v) = d(u,w)+d(v,w) = t+t= 2\cdot t
+\end{displaymath}
+Es decir $d(u,v)\leq 2\cdot t$, lo cual es falso ya que como
+$u,v\in \mathcal{C}$ se tiene, por hip\'otesis, que $d(u,v)\geq 2\cdot t + 1$.\\
+
+De todo esto se deduce que s\'olo hay una y s\'ola una palabra en el c\'odigo,
+$u$, tal que $d(u,w)\leq t$, con lo cual $u$ es la palabra que se transmiti\'o
+originalmente. Es decir podemos corregir errores de peso menor o igual que $t$.\\
+
+En todo esto hemos supuesto que siempre existe una palabra en el c\'odigo, $u$,
+tal que $d(u,w)\leq t$. Si esta palabra no existiera no tendr\'{\i}a sentido
+este teorema, ya que es en dicha palabra en la que se produce el error, luego
+siempre existe una palabra, por lo menos, en el c\'odigo verificando la
+condici\'on $d(u,w)\leq t$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+Podemos interpretar el resultado de este teorema como:
+\begin{quote}
+Corregir adecuadamente cuesta el doble que detectar.
+\end{quote}
+\begin{definicion}[C\'odigo $t$-detector de errores]
+\ \\
+Diremos que un c\'odigo es un \textbf{``c\'odigo $t$-detector de errores''} si
+verifica que $d_{min}=2\cdot t +1$.
+\end{definicion}
+Podemos mezclar los teoremas $\ref{the:Deteccion}$ y $\ref{the:Correccion}$ en
+un s\'olo teorema:
+\begin{teorema}[Teorema de detecci\'on y correcci\'on de errores]\label{the:DeteccionCorreccion}
+\ \\
+Un c\'odigo corrige errores de peso menor o igual que $t$ y detecta errores de
+peso menor o igual que $s'=s+t$ $\Longleftrightarrow$
+$d_{min}\geq 2\cdot t+s+1=t+s'+1$.
+\end{teorema}

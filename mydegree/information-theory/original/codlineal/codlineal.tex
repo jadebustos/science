@@ -1,0 +1,68 @@
+%
+% CODIGOS LINEALES
+%
+
+\chapter{C\'odigos lineales}
+
+Hemos visto que los c\'odigos de bloques, con sus codificadores,
+decodificadores, procesadores de error se definen sobre un alfabeto
+$\mathbb{F}_q$, el cual es un conjunto cualquiera. Pero si sobre este
+conjunto podemos establecer alguna estructura algebraica, la cual nos permita
+realizar operaciones sobre los elementos del conjunto, podremos entonces
+simplificar el c\'odigo. Esta simplificaci\'on nos permitir\'a trabajar de
+una forma m\'as comoda.
+
+\section{Requisitos para c\'odigos lineales}
+
+Cuando trabajemos con c\'odigos lineales tendremos que $(\mathbb{F}_q,+,\cdot)$
+es cuerpo, por ejemplo $\mathbb{F}_2=\mathbb{Z}/2=\mathbb{Z}_2=\{0,1\}$.\\
+
+Dado un cuerpo cualquiera $A$ se tiene que $A^{^n}=A\times \stackrel{n)}\cdots
+\times A$ es un \mbox{$A$-espacio vectorial} con las siguientes operaciones:
+\begin{itemize}
+\item $(x_1,\cdots,x_n)+(x_1',\cdots,x_n')=(x_1+x_1',\cdots,x_n+x_n')$, donde
+tenemos que $(x_1,\cdots,x_n)$ y $(x_1',\cdots,x_n')$ son dos palabras
+cualesquiera de $A^{^n}$.
+\item $x\odot (x_1,\cdots,x_n)=(x\cdot x_1,\cdots, x\cdot x_n)$, donde
+tenemos que $x\in A$, $(x_1,\cdots,x_n)\in A^{^n}$ y $\odot$ es el producto
+por escalares definido en $A^{^n}$.
+\end{itemize}
+Nosotros trabajaremos con cuerpos de la forma $\mathbb{F}_q$ y con
+$\mathbb{F}^{^n}_q$ que, por lo visto antes, ser\'an
+\mbox{$\mathbb{F}_q$-espacios vectoriales}.
+
+%
+% CUANDO UN CODIGO ES LINEAL
+%
+
+\input{codlineal/cuando}
+
+%
+% DISTANCIA MINIMA
+%
+
+\input{codlineal/dismin}
+
+%
+% CODIFICADORES
+%
+
+\input{codlineal/codificadores}
+
+%
+% ECUACIONES DE LOS CODIGOS LINEALES
+%
+
+\input{codlineal/ecuaciones}
+
+%
+% DETECCION DE ERRORES
+%
+
+\input{codlineal/detecerror}
+
+%
+% CODIGOS DUALES
+%
+
+\input{codlineal/coddual}

@@ -1,0 +1,79 @@
+%
+% ERRORES QUE SE CORRIGEN ADECUADAMENTE
+%
+
+%
+\newpage
+%
+\section{Errores que se corrigen adecuadamente}
+
+S\'{\i} tenemos un c\'odigo lineal $\mathcal{C}[n,m]\subset \mathbb{F}^{^n}_q$
+con una tabla est\'andar $Tb(\mathcal{C}[n,m])$, en la cual hay $q^{n-m}$ filas
+y $q^m$ columnas, ya hemos visto como corregir errores. Los errores los
+corregiremos sumando el primer elemento, de la fila en la que est\'a la palabra
+recibida, a dicha palabra. Luego los patrones de error que se corrigen vienen
+dados por los primeros elementos de cada fila.\\ 
+
+Debido al hecho de que siempre corregiremos por la palabra del c\'odigo m\'as
+cercana a la palabra recibida se deduce que ``s\'olo debe haber una palabra
+del c\'odigo'' que tenga distancia m\'{\i}nima a la palabra recibida. En caso
+contrario no sabriamos cual de las palabras elegir como correcta, se dice 
+entonces que no distinguiriamos el error.\\
+
+La proposici\'on $\ref{pro:Cercania}$ nos indica que utilizando tablas
+est\'andar tenemos solucionado este problema, pero no podemos corregir
+adecuadamente todos los errores mediante una tabla est\'andar.\\ \\
+%
+El siguiente teorema nos indica cuando se distinguen dos errores.
+%
+%
+\begin{teorema}\label{the:DistintaFila}
+\ \\
+Sea $\mathcal{C}[n,m]$ un c\'odigo lineal y 
+sea $P$ un procesador de error para dicho c\'odigo. Sea $S=\{e_1,\dots,e_s\}$
+un conjunto de patrones de error. El procesador de error $P$ puede distinguir
+estos patrones de error s\'{\i} y s\'olo s\'{\i} cada patr\'on est\'a en una
+fila distinta de la de los otros patrones (en una tabla del c\'odigo).
+\end{teorema}
+\underline{\textbf{Demostraci\'on}}:\\
+$\Rightarrow |$ Sea $e$ un patr\'on de error y $v\neq e$ y que est\'e en la
+misma fila que $e$. Entonces tendremos que $u=v-e$, con $u\in \mathcal{C}[n,m]$
+y tal que $u\neq 0$. S\'{\i} el procesador de error corrige el error $e$
+entonces corregir\'a $v$ a $u$.\\ \\
+%
+Supongamos que el procesador $P$ corrige el error $v$, entonces corregir\'a $v$ 
+a $0$, lo cual no es posible. Luego no existir\'a un procesador de error que
+distinga dos errores situados en la misma fila.\\ \\
+%
+$\Leftarrow |$ Sean $e_i$ y $e_j$ con $i\neq j$, entonces podemos construir una
+tabla est\'andar con $e_i$ y $e_j$ como primeros elementos de dos filas.\\ \\
+%
+Con dicha tabla se tiene que para toda palabra $u$ del c\'odigo el procesador
+corregir\'a las palabras $u+e_i$ y $u+e_j$ a $u$.\\ \\
+%
+Luego el procesador de error $P$ puede distinguir, corregir, dos patrones de
+error cuando esten en distinta fila, $i\neq j$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+Seg\'un todo lo que hemos visto podremos corregir tantos errores como clases
+de equivalencia tenga el $\mathbb{F}_q$-espacio vectorial
+$\mathbb{F}_q^{^n}/\mathcal{C}[n,m]$, ya que un procesador de error, $P$, 
+distingue dos errores s\'{\i} y s\'olo s\'{\i} estan en distinta fila, es decir,
+s\'{\i} y s\'olo s\'{\i} pertenecen a distinta clase de equivalencia.
+
+\subsection{M\'etodo pr\'actico}
+
+Con lo que hemos visto un m\'etodo ``pr\'actico'' para detectar y corregir
+errores ser\'a el siguiente:\\ \\
+%
+Dado un c\'odigo lineal $\mathcal{C}[n,m]$:
+\begin{itemize}
+\item Construir una tabla est\'andar, utilizando como primer elemento de cada
+fila el tipo de error que queremos detectar y corregir.
+\item Una vez recibida una palabra comparar con las $q^n$ palabras de la tabla.
+\item Seleccionar como palabra correcta la palabra que se encuentre en la fila
+cero y en la columna de la palabra recibida.
+\end{itemize}
+Este m\'etodo aunque pr\'actico es poco util, ya que hay que realizar $q^n$
+comparaciones y, a medida que aumenta $n$ $q^n$ crece aun m\'as rapidamente.

@@ -1,0 +1,18 @@
+El funcionamiento del programa es el siguiente:
+
+El programa pide la entrada, por teclado, de una palabra del codigo de
+triple control. El programa recoge la entrada y selecciona los seis primeros
+digitos numericos, del 0 al 9, y los convierte a Z/2. La longitud de la cadena
+que se le introduzca no ha de ser superior a 80 caracteres para el buen
+funcionamiento del programa.
+
+Seguidamente calcula el sindrome de la palabra recibida, asi como de los
+posibles errores que se producen en el canal.
+
+Coteja los sindromes y devuelve la palabra transmitida originalmente.
+
+Si el error producido es de peso dos, el programa unicamente indica que se
+produjo un error de este tipo, pero no corrige el error ya que hay varios 
+errores de peso dos y el codigo unicamente puede corregir uno de ellos. Si se
+supone que solo se puede corregir un error de peso dos en el canal este codigo
+nos permitiria corregir un error de peso dos.

@@ -1,0 +1,64 @@
+%
+% INTRODUCCION A LOS CODIGOS BCH
+%
+
+\chapter{Introducci\'on a los c\'odigos BCH}
+
+Estos c\'odigos fueron descubiertos por \emph{Hocquenghem} en $1.959$ y
+tambi\'en por \emph{Bose} y \emph{Ray-Chaudhuri} en $1.960$. De las
+iniciales de sus nombres es de donde viene el nombre que se les da a estos
+c\'odigos.\\
+
+Hemos visto anteriormente que los c\'odigos de Hamming corrigen los errores de
+peso menor o igual que uno. Podemos modificar los c\'odigos de Hamming para
+corregir dos errores, pero para eso tenemos que aumentar la distancia
+m\'{\i}nima de tres a cinco. Esto lo podemos hacer de dos formas:
+\begin{enumerate}
+\item Aumentando la longitud de las palabras.\\
+
+En este caso corregir un error en una palabra de longitud cinco o corregir dos
+errores en una palabra de longitud diez es m\'as o menos equivalente y no
+introduce mejoras sustanciales en el c\'odigo.
+\item Separando m\'as las palabras del c\'odigo.\\
+
+Este m\'etodo ser\'a el que utilizaremos, y para conseguirlo eliminaremos 
+palabras del c\'odigo, con lo que obtendremos un subc\'odigo de un c\'odigo
+de Hamming con una distancia m\'{\i}nima mayor, lo que nos permitir\'a
+corregir hasta errores de peso dos.
+\end{enumerate}
+
+%
+% MATRICES DE VANDERMONDE
+%
+
+\input{bch/vandermonde}
+
+%
+% PRELIMINARES
+%
+
+\input{bch/preliminares}
+
+%
+% CONSTRUCCION DE UN CODIGO BCH
+%
+
+\input{bch/primerbch}
+
+%
+% CREACION DE CODIGOS BCH
+%
+
+\input{bch/creacionbch}
+
+%
+% MATRIZ DE CONTROL REDUCIDA
+%
+
+\input{bch/reducida}
+
+%
+% MATRIZ DE CONTROL Y LOS PATRONES DE ERROR
+%
+
+\input{bch/matrizcontrol}

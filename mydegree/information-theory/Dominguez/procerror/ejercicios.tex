@@ -1,0 +1,82 @@
+%
+% EJERCICIOS
+%
+
+\section{Ejercicios}
+%
+% SINDROMES
+%
+\begin{ejercicio}
+\ \\
+Programar la correcci\'on de errores de un c\'odigo lineal utilizando
+sindromes.
+\end{ejercicio}
+\underline{\textbf{Soluci\'on}}:\\
+Se ha programado el funcionamiento de un procesador de error para el 
+c\'odigo de triple control utilizando la tabla de sindromes.\\
+
+El programa est\'a escrito en lenguaje $C$ y tanto el c\'odigo como los
+binarios para \emph{MS-DOS} estan el el disco adjunto.\\ \\
+%
+El funcionamiento del programa es el siguiente:
+\begin{itemize}
+\item El programa pide, por teclado, una palabra de seis digitos bin\'arios. 
+Para prevenir el funcionamiento an\'omalo del programa se ha recurrido a 
+admitir una cadena, de hasta $80$ caracteres, como entrada. El programa
+seleccionar\'a los seis primeros caracteres num\'ericos y los convertir\'a a
+$\mathbb{F}_2$, considerando a estos como la palabra recibida.
+\item El programa conoce, a priori, las palabras del c\'odigo, su matriz de
+control y los patrones de error.
+\item Seguidamente calcular\'a el sindrome de la palabra recibida, as\'{\i}
+como los sindromes de todas palabras de peso uno, errores, y el de una palabra
+de peso dos, para detectar cuando ocurre un error de peso dos.
+\item S\'{\i} el error es peso menor o igual que uno el programa da la palabra
+transmitida originalmente.
+\item S\'{\i} el error es de peso dos el programa indica que ocurrio un error
+de peso dos, y no nos da la palabra que se transmiti\'o originalmente. Para
+poder calcular esta palabra ser\'{\i}a necesario tener alguna hip\'otesis
+adicional sobre que error de peso dos es el que m\'as se da en el canal de
+transmisi\'on.
+\end{itemize}
+
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+%
+% TABLA ESTANDAR
+%
+\begin{ejercicio}
+\ \\
+Programar la la correcci\'on de errores de un c\'odigo lineal utilizando una
+tabla est\'andar.
+\end{ejercicio}
+\underline{\textbf{Soluci\'on}}:\\
+Se ha programado el funcionamiento de un procesador de error para el 
+c\'odigo de triple control utilizando una tabla est\'andar.\\
+
+El programa est\'a escrito en lenguaje $C$ y tanto el c\'odigo como los
+binarios para \emph{MS-DOS} estan el el disco adjunto.\\ \\
+%
+El funcionamiento del programa es el siguiente:
+\begin{itemize}
+\item El programa pide, por teclado, una palabra de seis digitos bin\'arios. 
+Para prevenir el funcionamiento an\'omalo del programa se ha recurrido a 
+admitir una cadena, de hasta $80$ caracteres, como entrada. El programa
+seleccionar\'a los seis primeros caracteres num\'ericos y los convertir\'a a
+$\mathbb{F}_2$, considerando a estos como la palabra recibida.
+\item El programa conoce, a priori, las palabras del c\'odigo y los patrones
+de error.
+\item Seguidamente calcular\'a la tabla est\'andar a partir de las palabras
+del c\'odigo y los patrones de error.
+\item S\'{\i} el error es peso menor o igual que uno el programa da la palabra
+transmitida originalmente.
+\item S\'{\i} el error es de peso dos el programa indica que ocurrio un error
+de peso dos, y no nos da la palabra que se transmiti\'o originalmente. Para
+poder calcular esta palabra ser\'{\i}a necesario tener alguna hip\'otesis
+adicional sobre que error de peso dos es el que m\'as se da en el canal de
+transmisi\'on.
+\end{itemize}
+
+\begin{flushright}
+$\blacksquare$
+\end{flushright}

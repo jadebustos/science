@@ -1,0 +1,669 @@
+%
+% EJEMPLOS
+%
+
+\section{Ejemplos}
+%
+% BIT DE CONTROL DE PARIDAD
+%
+\subsection{C\'odigo del bit de control de paridad}
+
+Es gracias a la estructura algebraica que tiene $(\mathbb{F}_2,+,\cdot )$, 
+cuerpo, podemos expresar este c\'odigo como:
+\begin{displaymath}
+\mathcal{C}=\{\ (x_1,\cdots,x_7,\sum_{i=1}^7x_i)\quad \{x_i\}_{i=1}^7\in
+\mathbb{F}_2\ \}
+\end{displaymath}
+
+\subsubsection{El c\'odigo del bit de control de paridad es lineal}
+
+Para ser un c\'odigo lineal $\mathcal{C}$ ha de ser un subespacio vectorial
+de $\mathbb{F}^{^8}_2$.\\ \\
+%
+Para ver que es un subespacio vectorial veamos que:
+\begin{itemize}
+\item La suma de dos palabras del c\'odigo est\'a en el c\'odigo.\\
+
+Consideremos dos palabras cualesquiera del c\'odigo:
+$$(x_1,\cdots,x_7,\sum_{i=1}^7 x_i )$$ con $\{x_i\}_{i=1}^7\in \mathbb{F}_2$, 
+y $$(x_1',\cdots,x_7',\sum_{i=1}^7 x_i' )$$ con $\{x_i'\}_{i=1}^7\in
+\mathbb{F}_2$:
+\begin{eqnarray*}
+(x_1,\cdots,x_7,\sum_{i=1}^7 x_i)+(x_1',\cdots,x_7',\sum_{i=1}^7 x_i')=\\
+= (x_1+x_1',\cdots,x_7+x_7',\sum_{i=1}^7 (x_i+x_i')\ )\in \mathcal{C}
+\end{eqnarray*}
+%
+\newpage
+%
+\item El producto de un escalar por una palabra del c\'odigo es otra palabra 
+del c\'odigo.\\ 
+
+Consideremos una palabra cualquiera del c\'odigo:
+$$(x_1,\cdots,x_7,\sum_{i=1}^7 x_i)$$
+con $\{x_i\}_{i=1}^7\in \mathbb{F}_2$, y un elemento cualquiera del cuerpo,
+$x\in \mathbb{F}_2$:
+\begin{displaymath}
+x\odot (x_1,\cdots,x_7,\sum_{i=1}^7 x_i) = (x\cdot x_1,\cdots, x\cdot x_7,
+\sum_{i=1}^7 (x\cdot x_i)\ )\in \mathcal{C}
+\end{displaymath}
+\end{itemize}
+Luego $\mathcal{C}$ es un subespacio vectorial de $\mathbb{F}^{^8}_2$. Es
+un c\'odigo lineal.\\ \\
+%
+Una base de este subespacio vectorial es:
+\begin{eqnarray*}
+e_1&=&(1,0,0,0,0,0,0,1)\\
+e_2&=&(0,1,0,0,0,0,0,1)\\
+e_3&=&(0,0,1,0,0,0,0,1)\\
+e_4&=&(0,0,0,1,0,0,0,1)\\
+e_5&=&(0,0,0,0,1,0,0,1)\\
+e_6&=&(0,0,0,0,0,1,0,1)\\
+e_7&=&(0,0,0,0,0,0,1,1)
+\end{eqnarray*}
+Luego $\mathcal{C}$ es un subespacio vectorial tal que
+$\dim_{\mathbb{F}_2} \mathcal{C}=7$.
+
+\subsubsection{Codificador}
+
+El codificador de este c\'odigo ser\'a una aplicaci\'on lineal:
+\begin{eqnarray*}
+C:\mathbb{F}^{^7}_2&\stackrel{\sim}\longrightarrow&\mathcal{C}\subset
+\mathbb{F}^{^8}_2\\
+x&\longrightarrow&(x_1,\dots,x_7,\sum_{i=1}^7x_i)
+\end{eqnarray*}
+Las columnas de la matriz que define esta aplicaci\'on lineal, codificador,
+ser\'an $C(e_i)$, donde $i=1,\dots,7$ y los $e_i$ son vectores de una 
+base del subespacio $\mathcal{C}$.\\
+
+\begin{figure}[!h]
+\begin{displaymath}
+C\equiv \left( \begin{array}{ccccccc}
+1&0&0&0&0&0&0\\
+0&1&0&0&0&0&0\\
+0&0&1&0&0&0&0\\
+0&0&0&1&0&0&0\\
+0&0&0&0&1&0&0\\
+0&0&0&0&0&1&0\\
+0&0&0&0&0&0&1\\
+1&1&1&1&1&1&1
+\end{array} \right)
+\end{displaymath}
+\caption{Matriz generadora, en forma est\'andar, del c\'odigo del bit de
+control de paridad.}
+\end{figure}
+%
+Para codificar una palabra:
+\begin{displaymath}
+\left( \begin{array}{ccccccc}
+1&0&0&0&0&0&0\\
+0&1&0&0&0&0&0\\
+0&0&1&0&0&0&0\\
+0&0&0&1&0&0&0\\
+0&0&0&0&1&0&0\\
+0&0&0&0&0&1&0\\
+1&1&1&1&1&1&1
+\end{array} \right) \cdot
+\left( \begin{array}{c}
+x_1\\
+x_2\\
+x_3\\
+x_4\\
+x_5\\
+x_6\\
+x_7
+\end{array} \right) =
+\left( \begin{array}{c}
+x_1\\
+x_2\\
+x_3\\
+x_4\\
+x_5\\
+x_6\\
+x_7\\
+x_1+\dots+x_7
+\end{array} \right)
+\end{displaymath}
+
+La matriz generadora de este c\'odigo se puede expresar en otras bases como:
+\begin{displaymath}
+\left( \begin{array}{ccccccc}
+1&0&0&0&0&0&0\\
+1&1&0&0&0&0&0\\
+0&1&1&0&0&0&0\\
+0&0&1&1&0&0&0\\
+0&0&0&1&1&0&0\\
+0&0&0&0&1&1&0\\
+0&0&0&0&0&1&1\\
+0&0&0&0&0&0&1
+\end{array} \right)
+\end{displaymath}
+la cual no est\'a en forma est\'andar.
+
+\subsubsection{Ecuaciones param\'etricas}
+
+Para calcular las ecuaciones param\'etricas utilizaremos la matriz generadora
+en forma est\'andar.
+\begin{displaymath}
+\left( \begin{array}{ccccccc}
+1&0&0&0&0&0&0\\
+0&1&0&0&0&0&0\\
+0&0&1&0&0&0&0\\
+0&0&0&1&0&0&0\\
+0&0&0&0&1&0&0\\
+0&0&0&0&0&1&0\\
+1&1&1&1&1&1&1
+\end{array} \right) \cdot
+\left( \begin{array}{c}
+\lambda_1\\
+\lambda_2\\
+\lambda_3\\
+\lambda_4\\
+\lambda_5\\
+\lambda_6\\
+\lambda_7
+\end{array} \right) =
+\left( \begin{array}{c}
+\lambda_1\\
+\lambda_2\\
+\lambda_3\\
+\lambda_4\\
+\lambda_5\\
+\lambda_6\\
+\lambda_7\\
+\lambda_1+\dots+\lambda_7
+\end{array} \right)
+\end{displaymath}
+Las ecuaciones param\'etricas son:
+\begin{figure}[!h]
+\begin{displaymath}
+\left\{ \begin{array}{ccl}
+x_1&=&\lambda_1\\
+x_2&=&\lambda_2\\
+x_3&=&\lambda_3\\
+x_4&=&\lambda_4\\
+x_5&=&\lambda_5\\
+x_6&=&\lambda_6\\
+x_7&=&\lambda_7\\
+x_8&=&\lambda_1+\lambda_2+\lambda_3+\lambda_4+\lambda_5+\lambda_6+\lambda_7
+\end{array} \right.
+\end{displaymath}
+\caption{Ecuaciones param\'etricas del c\'odigo del bit de control de 
+paridad.}
+\end{figure}
+
+\subsubsection{Ecuaciones impl\'{\i}citas}
+
+Como $\dim_{\mathbb{F}_2} \mathbb{F}^{^8}_2 = 8$ y
+$\dim_{\mathbb{F}_2} \mathcal{C} = 7$ tendremos $8-7=1$ ecuaci\'on
+impl\'{\i}cita.\\ \\
+%
+Planteemos el sistema de ecuaciones:
+\begin{displaymath}
+\left( \begin{array}{cccccccc}
+1&0&0&0&0&0&0&1 \\
+0&1&0&0&0&0&0&1 \\
+0&0&1&0&0&0&0&1 \\
+0&0&0&1&0&0&0&1 \\
+0&0&0&0&1&0&0&1 \\
+0&0&0&0&0&1&0&1 \\
+0&0&0&0&0&0&1&1 \\
+\end{array} \right) \cdot
+\left( \begin{array}{c}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4 \\
+x_5 \\
+x_6 \\
+x_7 \\
+x_8
+\end{array} \right) =
+\left( \begin{array}{c}
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 \\
+0 
+\end{array} \right)
+\end{displaymath}
+De donde nos sale que
+$\mathcal{C}^{^\circ} = <(1,1,1,1,1,1,1,1)>$.
+Luego la ecuaci\'on impl\'{\i}cita del c\'odigo ser\'a:
+\begin{figure}[!h]
+$$x_1+x_2+x_3+x_4+x_5+x_6+x_7+x_8 = 0$$
+\caption{Ecuaci\'on impl\'{\i}cita del c\'odigo del bit de control de 
+paridad.}
+\end{figure}
+
+\subsubsection{Matriz de control}
+
+La matriz de control utilizando las ecuaciones impl\'{\i}citas de este c\'odigo
+es:
+\begin{figure}[!h]
+\begin{displaymath}
+\left( \begin{array}{cccccccc}
+1&1&1&1&1&1&1&1
+\end{array} \right)
+\end{displaymath}
+\caption{Matriz de control, en forma est\'andar, para el c\'odigo del
+bit de control de paridad.}
+\end{figure}
+
+%
+% CODIGO DE TRIPLE REPETICION   
+%
+\subsection{C\'odigo de triple repetici\'on}
+
+Es gracias a la estructura algebraica que tiene $(\mathbb{F}_2,+,\cdot )$,
+cuerpo, podemos expresar este c\'odigo como:
+\begin{displaymath}
+\mathcal{C}=\{\ (x,x,x)\quad x\in \mathbb{F}_2\ \}
+\end{displaymath}
+
+\subsubsection{El c\'odigo de triple repetici\'on es lineal}
+
+Para ser un c\'odigo lineal $\mathcal{C}$ ha de ser un subespacio vectorial de
+$\mathbb{F}^{^3}_2$.\\ \\
+%
+Para ver que es un subespacio vectorial veamos que:
+\begin{itemize}
+\item La suma de dos palabras del c\'odigo est\'a en el c\'odigo.\\
+
+Como el c\'odigo s\'olo tiene dos palabras veamos que su suma es otra palabra
+del c\'odigo.
+\begin{displaymath}
+(0,0,0)+(1,1,1)=(1,1,1)\in \mathcal{C}
+\end{displaymath}
+%
+\newpage
+%
+\item El producto de un escalar por una palabra del c\'odigo es otra palabra
+del c\'odigo.\\
+
+Como el c\'odigo unicamente tiene dos palabras veamoslo para cada una de
+ellas:\\ \\
+%
+Para $(0,0,0)$:
+\begin{displaymath}
+x\odot (0,0,0) =
+\left\{ \begin{array}{ll}
+(0,0,0)\in \mathcal{C} & para\ x = 0 \\
+ & \\
+(0,0,0)\in \mathcal{C} & para\ x = 1 
+\end{array} \right.
+\end{displaymath}
+Para $(1,1,1)$:
+\begin{displaymath}
+x\odot (1,1,1) =
+\left\{ \begin{array}{ll}
+(0,0,0)\in \mathcal{C} & para\ x = 0\\
+ & \\
+(1,1,1)\in \mathcal{C} & para\ x = 1
+\end{array} \right.
+\end{displaymath}
+\end{itemize}
+Luego $\mathcal{C}$ es un subespacio vectorial de $\mathbb{F}^{^3}_2$. Es un
+c\'odigo lineal.\\ \\
+%
+Una base de este subespacio vectorial es:
+\begin{eqnarray*}
+e_1&=&(1,1,1)
+\end{eqnarray*}
+Luego $\mathcal{C}$ es un subespacio vectorial tal que
+$\dim_{\mathbb{F}_2}\mathcal{C} = 1$.
+
+\subsubsection{Codificador}
+
+El codificador de este c\'odigo ser\'a una aplicaci\'on lineal:
+\begin{eqnarray*}
+C:\mathbb{F}_2&\stackrel{\sim}\longrightarrow&\mathcal{C}\subset \mathbb{
+F}^{^3}_2\\
+x&\longrightarrow&(x,x,x)
+\end{eqnarray*}
+La columna de la matriz que define esta aplicaci\'on lineal, codificador,
+ser\'a
+$C(e_1)$, donde $e_1$ es un vector de la base del subespacio $\mathcal{C}$.\\
+
+\begin{figure}[!h]
+\begin{displaymath}
+C\equiv \left( \begin{array}{c}
+1\\
+1\\
+1
+\end{array} \right)
+\end{displaymath}
+\caption{Matriz generadora, en forma est\'andar, del c\'odigo de triple
+repetici\'on.}
+\end{figure}
+%
+Para codificar cualquiera de las dos palabras:
+\begin{displaymath}
+\left( \begin{array}{c}
+1\\
+1\\
+1
+\end{array} \right) \cdot
+\left( \begin{array}{c}
+0
+\end{array} \right) =
+\left( \begin{array}{c}
+0\\
+0\\
+0\\
+\end{array} \right) \ o \
+\left( \begin{array}{c}
+1\\
+1\\
+1
+\end{array} \right) \cdot
+\left( \begin{array}{c}
+1
+\end{array} \right) =
+\left( \begin{array}{c}
+1\\
+1\\
+1
+\end{array} \right)
+\end{displaymath}
+
+\subsubsection{Ecuaciones param\'etricas}
+
+Para calcular las ecuaciones param\'etricas utilizaremos la matriz generadora
+en forma est\'andar.
+\begin{displaymath}
+\left( \begin{array}{c}
+1\\
+1\\
+1
+\end{array} \right) \cdot
+\left( \begin{array}{c}
+\lambda_1
+\end{array} \right) =
+\left( \begin{array}{c}
+\lambda_1\\
+\lambda_1\\
+\lambda_1
+\end{array} \right)
+\end{displaymath}
+Las ecuaciones param\'etricas son:
+\begin{figure}[!h]
+\begin{displaymath}
+\left\{ \begin{array}{ccl}
+x_1&=&\lambda_1\\
+x_2&=&\lambda_1\\
+x_3&=&\lambda_1
+\end{array} \right.
+\end{displaymath}
+\caption{Ecuaciones param\'etricas del c\'odigo de triple repetici\'on.}
+\end{figure}
+\subsubsection{Ecuaciones impl\'{\i}citas}
+
+Como $\dim_{\mathbb{F}_2} \mathbb{F}^{^3}_2 = 3$ y
+$\dim_{\mathbb{F}_2} \mathcal{C} = 1$ tendremos $3-1=2$ ecuaciones
+impl\'{\i}citas.\\ \\
+%
+Planteemos el sistema de ecuaciones:
+\begin{displaymath}
+\left( \begin{array}{ccc}
+1&1&1
+\end{array} \right) \cdot
+\left( \begin{array}{c}
+x_1 \\
+x_2 \\
+x_3
+\end{array} \right) =
+\left( \begin{array}{c}
+0
+\end{array} \right)
+\end{displaymath}
+De donde nos sale que $\mathcal{C}^{^\circ} = <(1,1,0),(1,0,1)>$. Luego las
+ecuaciones impl\'{\i}citas del c\'odigo ser\'an:
+\begin{figure}[!h]
+\begin{eqnarray*}
+x+y&=&0\\
+x+z&=&0
+\end{eqnarray*}
+\caption{Ecuaciones impl\'{\i}citas del c\'odigo de triple repetici\'on.}
+\end{figure}
+%
+\newpage
+%
+\subsubsection{Matriz de control}
+
+La matriz de control utilizando las ecuaciones impl\'{\i}citas de este c\'odigo
+es:
+\begin{figure}[!h]
+\begin{displaymath}
+\left( \begin{array}{ccc}
+1&1&0\\
+1&0&1
+\end{array} \right)
+\end{displaymath}
+\caption{Matriz de control, en forma est\'andar, del c\'odigo de triple
+repetici\'on.}
+\end{figure}
+
+%
+% CODIGO DE TRIPLE CONTROL 
+%
+\subsection{C\'odigo de triple control}
+
+Es gracias a la estructura algebraica que tiene $(\mathbb{F}_2,+,\cdot )$,
+cuerpo, podemos expresar este c\'odigo como:
+\begin{displaymath}
+\mathcal{C}=\{\ (x,y,z,x+y,x+z,y+z)\quad x,y,z\in \mathbb{F}_2\ \}
+\end{displaymath}
+
+\subsubsection{El c\'odigo de triple control es lineal}
+
+Para ser un c\'odigo lineal $\mathcal{C}$ ha de ser un subespacio vectorial de
+$\mathbb{F}^{^6}_2$.\\ \\
+%
+Para ver que es un subespacio vectorial veamos que:
+\begin{itemize}
+\item La suma de dos palabras del c\'odigo est\'a en el c\'odigo.\\
+
+Consideremos dos palabras cualesquiera del c\'odigo:
+\begin{displaymath}
+(x,y,z,x+y,x+z,y+z)
+\end{displaymath}
+con $x,y,z\in \mathbb{F}_2$, y
+\begin{displaymath}
+(x',y',z',x'+y',x'+z',y'+z')
+\end{displaymath}
+con $x',y',z'\in \mathbb{F}_2$:
+\begin{eqnarray*}
+(x,y,z,x+y,x+z,y+z)+(x',y',z',x'+y',x'+z',y'+z') =& &\\
+=(x+x',y+y',z+z',x+x'+y+y',x+x'+z+z',y+y'+z+z')\in \mathcal{C}
+\end{eqnarray*}
+\item El producto de un escalar por una palabra del c\'odigo es otra palabra
+del c\'odigo.\\
+
+Consideremos una palabra cualquiera del c\'odigo:
+\begin{displaymath}
+(x,y,z,x+y,x+z,y+z)
+\end{displaymath}
+con $x,y,z\in \mathbb{F}_2$, y un elemento cualquiera del cuerpo,
+$w\in \mathbb{F}_2$:
+\begin{displaymath}
+w\odot (x,y,z,x+y,x+z,y+z) = (w\cdot x,w\cdot y,w\cdot z, w\cdot x+w\cdot y,
+w\cdot x+w\cdot z,w\cdot y+w\cdot z) \in \mathcal{C}
+\end{displaymath}
+\end{itemize}
+Luego $\mathcal{C}$ es un subespacio vectorial de $\mathbb{F}^{^6}_2$. Es un
+c\'odigo lineal.\\ \\
+%
+Una base de este espacio vectorial es:
+\begin{eqnarray*}
+e_1&=&(1,0,0,1,1,0)\\
+e_2&=&(0,1,0,1,0,1)\\
+e_3&=&(0,0,1,0,1,1)\\
+\end{eqnarray*}
+Luego $\mathcal{C}$ es un subespacio vectorial tal que
+$\dim_{\mathbb{F}_2}\mathcal{C}=3$.
+
+\subsubsection{Codificador}
+
+El codificador de este c\'odigo ser\'a una aplicaci\'on lineal:
+\begin{eqnarray*}
+C:\mathbb{F}^{^3}_2&\stackrel{\sim}\longrightarrow& \mathcal{C}\subset
+\mathbb{F}^{^6}_2 \\
+(x,y,z)&\longrightarrow&(x,y,z,x+y,x+z,y+z)
+\end{eqnarray*}
+Las columnas de la matriz que define esta aplicaci\'on lineal, codificador,
+ser\'an $C(e_i)$, donde $i=1,2,3$ y los $e_i$ son vectores de una
+base del subespacio $\mathcal{C}$.\\
+
+\begin{figure}[!h]
+\begin{displaymath}
+C\equiv \left( \begin{array}{ccc}
+1&0&0\\
+0&1&0\\
+0&0&1\\ 
+1&1&0\\
+1&0&1\\
+0&1&1
+\end{array} \right)
+\end{displaymath}
+\caption{Matriz generadora, en forma est\'andar, del c\'odigo de triple 
+control.}
+\end{figure}
+%
+Para codificar una palabra:
+\begin{displaymath}
+\left( \begin{array}{ccc}
+1&0&0\\
+0&1&0\\
+0&0&1\\
+1&1&0\\
+1&0&1\\
+0&1&1
+\end{array} \right)  \cdot
+\left( \begin{array}{c}
+x_1\\
+x_2\\
+x_3
+\end{array} \right) =
+\left( \begin{array}{c}
+x_1\\
+x_2\\
+x_3\\
+x_1+x_2\\
+x_1+x_3\\
+x_2+x_3
+\end{array} \right)
+\end{displaymath}
+
+La matriz generadora de este c\'odigo se puede expresar en otras bases como:
+\begin{displaymath}
+\left( \begin{array}{ccc}
+1&1&0\\
+1&1&1\\
+0&1&1\\
+0&0&1\\
+1&0&1\\
+1&0&0
+\end{array} \right)
+\end{displaymath}
+la cual no est\'a en forma est\'andar.
+
+\subsubsection{Ecuaciones param\'etricas}
+
+Para calcular las ecuaciones param\'etricas utilizaremos la matriz generadora
+en forma est\'andar.
+\begin{displaymath}
+\left( \begin{array}{ccc}
+1&0&0\\
+0&1&0\\
+0&0&1\\
+1&1&0\\
+1&0&1\\
+0&1&1
+\end{array} \right)  \cdot
+\left( \begin{array}{c}
+\lambda_1\\
+\lambda_2\\
+\lambda_3
+\end{array} \right) =
+\left( \begin{array}{c}
+\lambda_1\\
+\lambda_2\\
+\lambda_3\\
+\lambda_1+\lambda_2\\
+\lambda_1+\lambda_3\\
+\lambda_2+\lambda_3
+\end{array} \right)
+\end{displaymath}
+\begin{figure}[!h]
+\begin{displaymath}
+\left\{ \begin{array}{ccl}
+x_1&=&\lambda_1\\
+x_2&=&\lambda_2\\
+x_3&=&\lambda_3\\
+x_4&=&\lambda_1+\lambda_2\\
+x_5&=&\lambda_1+\lambda_3\\
+x_6&=&\lambda_2+\lambda_3
+\end{array} \right.
+\end{displaymath}
+\caption{Ecuaciones param\'etricas del c\'odigo de triple control.}
+\end{figure}
+%
+\newpage
+%
+\subsubsection{Ecuaciones impl\'{\i}citas}
+
+Como $\dim_{\mathbb{F}_2} \mathbb{F}^{^6}_2 = 6$ y
+$\dim_{\mathbb{F}_2} \mathcal{C} = 3$ tendremos $6-3=3$ ecuaciones
+impl\'{\i}citas.\\ \\
+%
+Planteemos el sistema de ecuaciones:
+\begin{displaymath}
+\left( \begin{array}{cccccc}
+1&0&0&1&1&0 \\
+0&1&0&1&0&1 \\
+0&0&1&0&1&1
+\end{array} \right) \cdot
+\left( \begin{array}{c}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4 \\
+x_5 \\
+x_6
+\end{array} \right) =
+\left( \begin{array}{c}
+0 \\
+0 \\
+0
+\end{array} \right)
+\end{displaymath}
+De donde nos sale que $\mathcal{C}^{^\circ}=<(1,1,0,1,0,0),(1,0,1,0,1,0),
+(0,1,1,0,0,1)>$.
+\begin{figure}[!h]
+\begin{eqnarray*}
+x_1+x_2+x_4&=&0\\
+x_1+x_3+x_5&=&0\\
+x_2+x_3+x_6&=&0
+\end{eqnarray*}
+\caption{Ecuaciones impl\'{\i}citas del c\'odigo de triple control.}
+\end{figure}
+%
+\newpage
+%
+\subsubsection{Matriz de control}
+
+La matriz de control utilizando las ecuaciones impl\'{\i}citas del c\'odigo
+es:
+\begin{figure}[!h]
+\begin{displaymath}
+\left( \begin{array}{cccccc}
+1&1&0&1&0&0\\
+1&0&1&0&1&0\\
+0&1&1&0&0&1
+\end{array} \right)
+\end{displaymath}
+\caption{Matriz de control, en forma est\'andar, del c\'odigo de triple
+control.}
+\end{figure}

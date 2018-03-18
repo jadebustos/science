@@ -1,0 +1,2 @@
+latex Porras.tex
+dvips -f1 Porras.dvi > Porras.ps

@@ -1,0 +1,200 @@
+%
+% CODIGOS BINARIOS DE HAMMING
+%
+
+\section{C\'odigos binarios de Hamming}
+
+Estos c\'odigos son binarios, sobre $\mathbb{F}_2$.
+\begin{definicion}[C\'odigo binario de Hamming]
+\ \\
+El \textbf{``c\'odigo binario de Hamming''} de orden $k$ es aquel cuya matriz
+de control $H_k$ es aquella matriz que tiene por columnas todas las palabras
+binarias no nulas de longitud $k$. A este c\'odigo lo denotaremos como $Ham(k)$.
+\end{definicion}
+\begin{figure}[!h]
+\begin{displaymath}
+H_3=\left( \begin{array}{ccccccc}
+1&0&1&1&1&0&0\\
+1&1&1&0&0&1&0\\
+0&1&1&1&0&0&1
+\end{array} \right)
+\end{displaymath}
+\caption{Matriz de control, en forma est\'andar, de $Ham(3)$.}\label{fig:Hamm3}
+\end{figure}
+%
+\begin{figure}[!h]
+\begin{displaymath}
+H_4=\left( \begin{array}{ccccccccccccccc}
+1&0&0&1&1&0&1&0&1&1&1&1&0&0&0\\
+1&1&0&1&0&1&1&1&1&0&0&0&1&0&0\\
+0&1&1&0&1&0&1&1&1&1&0&0&0&1&0\\
+0&0&1&1&0&1&0&1&1&1&1&0&0&0&1
+\end{array} \right)
+\end{displaymath}
+\caption{Matriz de control, en forma est\'andar, de $Ham(4)$.}\label{fig:Hamm4}
+\end{figure}
+Por contrucci\'on estos c\'odigos son binarios y con todas las columnas de su
+matriz de control distintas y no nulas, entonces por lo visto en el
+cap\'{\i}tulo anterior tendremos que estos c\'odigos corrijen todos los errores
+de peso uno.\\
+
+Observando las matrices de control de los c\'odigos de Hamming $Ham(3)$ y
+$Ham(4)$, en las figuras $\ref{fig:Hamm3}$ y $\ref{fig:Hamm4}$ respectivamente,
+podemos observar lo siguiente:\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+C\'odigo & Bits totales & Bits de informaci\'on & Tipo de c\'odigo \\
+\hline
+$Ham(3)$ & $7$  & $4$  & $\mathcal{C}[7,4]$ \\
+\hline
+$Ham(4)$ & $15$ & $11$ & $\mathcal{C}[15,11]$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Los c\'odigos de Hamming son lineales}
+
+Por definici\'on un c\'odigo de Hamming es aquel que tiene como matriz de
+control a $H_k$. Luego suponiendo que $H_k$ es la matriz incidente de un
+subespacio vectorial nos basta con calcular que vectores se anulan al
+multiplicarlos por $H_k$ y estos formar\'an un subespacio vectorial.
+
+\subsection{Par\'ametros de los c\'odigos de Hamming}
+
+\begin{proposicion}[Par\'ametros de los c\'odigos de Hamming]
+\ \\
+El c\'odigo de Hamming $Ham(k)$ tiene los siguientes par\'ametros:
+\begin{enumerate}
+\item La longitud de las palabras de $Ham(k)$ es $2^k-1$.
+\item El rango del c\'odigo $Ham(k)$ es $2^k-k-1$.
+\item La distancia m\'{\i}nima, $d_{min}$, de $Ham(k)$ es $3$.
+\end{enumerate}
+\end{proposicion}
+\underline{\textbf{Demostraci\'on}}:\\
+\begin{enumerate}
+\item La longitud de las palabras de $Ham(k)$ es $2^k-1$.\\
+
+Como estos c\'odigos son binarios las palabras del c\'odigo estar\'an formadas
+por dos elementos, en particular las columnas de su matriz de control.\\
+
+La columnas de su matriz de control son todas las palabras de longitud $k$ no
+nulas. Los elementos de cada columna pueden ser dos, los elementos de
+$\mathbb{F}_2$, y cada columna tiene $k$ elementos entonces el n\'umero de
+posibles columnas de $k$ elementos de $\mathbb{F}_2$ es $2^k$, como no estamos
+considerando el elemento nulo entonces tendremos que el n\'umero de columnas no
+nulas de longitud $k$ es de $2^k-1$.\\
+
+Ahora bien, como el c\'odigo es lineal tendremos que:
+\begin{displaymath}
+H_k\cdot u^t = 0
+\end{displaymath}
+donde $H_k$ es la matriz de control de $Ham(k)$ y $u^t\in Ham(k)$. Entonces para
+poder multiplicar $H_k$ por el vector columna $u^t$ se tiene que $u^t$ ha de
+tener el mismo n\'umero de columnas que la matriz $H_k$ y como esta tiene
+$2^k-1$ columnas entonces el vector $u^t$ tiene $2^k-1$ filas, luego tiene una
+longitud de $2^k-1$.
+
+\item El rango del c\'odigo $Ham(k)$ es $2^k-k-1$.\\
+
+El rango de un c\'odigo lineal coincide con el rango de su matriz de control.
+Para el c\'odigo $Ham(k)$ se tiene que es del tipo
+$\mathcal{C}[n=2^k-1,m]$ y la matriz de control un c\'odigo lineal del tipo
+$\mathcal{C}[n,m]$ es de orden $(n-m)\times n$. En el caso de los c\'odigos
+lineales $Ham(k)$ se tiene que $n-m=k$ y $n=2^k-1$ entonces tendremos que
+$m=2^k-k-1$. De donde se deduce que $Ham(k)$ es un c\'odigo
+$\mathcal{C}[2^k-1,2^k-k-1]$, luego su rango es $2^k-k-1$.
+
+\item La distancia m\'{\i}nima, $d_{min}$, de $Ham(k)$ es $3$.\\
+
+Por el teorema $\ref{the:DistMin}$, en la p\'agina $\pageref{the:DistMin}$, se
+tiene que $Ham(k)$ corrige errores de peso $1$ luego $d_{min} = 3$.
+\end{enumerate}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+%
+\newpage
+%
+\subsection{Palabras del c\'odigo Ham(k)}
+
+Ya hemos visto como se construyen los c\'odigos de Hamming, vienen determinados
+por su matriz de control. Como estos c\'odigos son lineales podemos utilizar su
+matriz de control para calcular las palabras que forman el c\'odigo.\\
+
+El c\'odigo de Hamming $Ham(3)$ utiliza siete bits para transmitir
+informaci\'on, de los cuales tres son de control. Utilizando la matriz de
+control en forma est\'andar tendremos que el c\'odigo ser\'a:
+\begin{displaymath}
+Ham(3)\subset \mathbb{F}^{^7}_2 =
+\{\ (x_1,x_2,x_3,x_4,c_1,c_2,c_3)\ |\ x_i,c_j \in \mathbb{F}_2 \ \}
+\end{displaymath}
+Para determinar las palabras del c\'odigo utilizaremos las ecuaciones
+impl\'{\i}citas del mismo:
+\begin{displaymath}
+\left( \begin{array}{ccccccc}
+1&0&1&1&1&0&0\\
+1&1&1&0&0&1&0\\
+0&1&1&1&0&0&1
+\end{array} \right) \cdot
+\left( \begin{array}{c}
+x_1\\
+x_2\\
+x_3\\
+x_4\\
+c_1\\
+c_2\\
+c_3
+\end{array} \right) =
+\left( \begin{array}{c}
+0\\
+0\\
+0
+\end{array} \right)
+\end{displaymath}
+%
+%
+\begin{figure}[!h]
+\begin{eqnarray*}
+c_1&=&x_1+x_3+x_4\\
+c_2&=&x_1+x_2+x_3\\
+c_3&=&x_2+x_3+x_4
+\end{eqnarray*}
+\caption{Ecuaciones impl\'{\i}citas del c\'odigo $Ham(3)$.}\label{fig:ImpHamm3}
+\end{figure}
+Como sabemos que el c\'odigo es binario y utiliza cuatro bits para transmitir
+informaci\'on tendremos que el c\'odigo $Ham(3)$ tiene $2^4=16$ palabras.\\
+
+Todas las palabras del c\'odigo se pueden calcular a partir de las ecuaciones
+impl\'{\i}citas del c\'odigo, figura $\ref{fig:ImpHamm3}$.\\
+
+Para calcular las palabras de cualquier c\'odigo $Ham(k)$ basta con proceder de
+la misma manera que hemos hecho con el c\'odigo $Ham(3)$.
+
+\subsection{La matriz generadora de Ham(k)}
+
+El c\'odigo lineal $Ham(k)$ es un c\'odigo del tipo
+$\mathcal{C}[2^k-1,2^k-k-1]$, como ya habiamos visto. Luego su matriz generadora
+ser\'a una matriz de orden $(2^k-1)\times(2^k-k-1)$.\\
+
+La matriz generadora la podemos dividir en dos partes. La primera parte ser\'a
+la matriz identidad de orden $(2^k-k-1)\times(2^k-k-1)$. Mientras que la
+segunda parte ser\'a una matriz de orden $k\times(2^k-k-1)$.\\
+
+Cada columna de la matriz generadora, siempre en forma est\'andar, es una base
+de $Ham(k)$ de tal forma que la primera matriz en la que hemos subdividido la
+matriz generadora sea una matriz identidad. Una vez calculadas la ecuaciones
+impl\'{\i}citas de $Ham(k)$ podemos calcular una base para tener la matriz
+generadora en forma est\'andar, con lo cual obtenemos que la matriz generadora,
+en forma est\'andar, para $Ham(3)$ ser\'a:
+\begin{displaymath}
+\left( \begin{array}{cccc}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1\\
+1&0&1&1\\
+1&1&1&0\\
+0&1&1&1\\
+\end{array} \right)
+\end{displaymath}

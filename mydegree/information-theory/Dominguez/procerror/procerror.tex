@@ -1,0 +1,149 @@
+%
+% PROCESAMIENTO DE ERROR
+%
+
+\section{Procesamiento de errores}
+
+Un error es la diferencia entre la palabra recibida y la transmitida. En los
+c\'odigos lineales, gracias a su estructrura algebraica, ese error lo podemos
+expresar como la diferencia entre dos palabras. Si se transmiti\'o la palabra
+$u$ y se recibio la palabra $v$ el error cometido en la transmisi\'on del
+mensaje lo podemos expresar como $e=v-u$.
+\begin{definicion}[Error cometido para c\'odigos lineales]
+\ \\
+Sea $\mathcal{C}[n,m]$ un c\'odigo lineal. S\'{\i} se transmiti\'o la palabra
+$u$ y se recibi\'o la palabra $v$ diremos que el error que ocurri\'o en la
+transmisi\'on es $e=v-u$.
+\end{definicion}
+Seg\'un esta definici\'on tendremos:
+\begin{itemize}
+\item La palabra recibida ser\'a: $v=u+e$.
+\item La palabra transmitida ser\'a: $u=v-e$.
+\end{itemize}
+%
+%
+\begin{proposicion} \label{pro:ProcesarError}
+\ \\
+Sea $\mathcal{C}[n,m]$ un c\'odigo lineal y sea $P$ un procesador de error para
+dicho c\'odigo. S\'{\i} se recibe una palabra $w$ entonces $P$ corregir\'a $w$
+como $u=w-e$, donde $e$ es el primer elemento de la fila en la que se encuentra
+$w$.
+\end{proposicion}
+\underline{\textbf{Desmostraci\'on}}:\\
+$w=Tb(\mathcal{C}[n,m])_{i,k}$ entonces $e=Tb(\mathcal{C}[n,m])_{i,0}$.\\ \\
+%
+Por la proposici\'on $\ref{pro:Propiedades}$, en la p\'agina
+$\pageref{pro:Propiedades}$, tendremos que:
+\begin{displaymath}
+Tb(\mathcal{C}[n,m])_{i,k}-Tb(\mathcal{C}[n,m])_{0,k}=
+Tb(\mathcal{C}[n,m])_{i,0}-Tb(\mathcal{C}[n,m])_{0,0}
+\end{displaymath}
+donde $Tb(\mathcal{C}[n,m])_{0,k} = u$ y por contrucci\'on de la tabla tenemos
+que: $$Tb(\mathcal{C}[n,m])_{0,0} = (0,\stackrel{n)}\dots,0)$$
+De donde se deduce que $w-u=e-0$ entoces $u=w-e$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+Seg\'un esta proposici\'on un procesador de error corrige errores en funci\'on
+del primer elemento de cada fila, luego los errores que corrige un procesador
+de errores son aquellos que est\'an en primer lugar en cada fila.
+%
+\newpage
+%
+\begin{ejemplo}
+\ \\
+Sea $\mathcal{C}[m,m]$ un c\'odigo lineal binario con tabla
+$Tb(\mathcal{C}[n,m])$:
+\begin{itemize}
+\item $Tb(\mathcal{C}[n,m])_{1,0}=100000$ nos indica que con esta tabla se
+pueden corregir errores de peso uno en los que el error est\'e en el primer bit.
+\item $Tb(\mathcal{C}[n,m])_{2,0}=010000$ nos indica que con esta tabla se
+pueden corregir errores de peso uno en los que el error est\'e en el segundo
+bit.
+\item $Tb(\mathcal{C}[n,m])_{3,0}=001000$ nos indica que con esta tabla se
+pueden corregir errores de peso uno en los que el error est\'e en el tercer bit.
+\item $Tb(\mathcal{C}[n,m])_{4,0}=000100$ nos indica que con esta tabla se
+pueden corregir errores de peso uno en los que el error est\'e en el cuarto bit.
+\item $Tb(\mathcal{C}[n,m])_{5,0}=000010$ nos indica que con esta tabla se
+pueden corregir errores de peso uno en los que el error est\'e en el quinto
+bit.
+\item $Tb(\mathcal{C}[n,m])_{6,0}=000001$ nos indica que con esta tabla se
+pueden corregir errores de peso uno en los que el error est\'e en el \'ultimo
+bit.
+\item $Tb(\mathcal{C}[n,m])_{7,0}=100001$ nos indica que con esta tabla se
+pueden corregir errores de peso dos en los que el error est\'e en el primer y
+\'ultimo bit.
+\end{itemize}
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\end{ejemplo}
+%
+%
+\begin{proposicion}\label{pro:Cercania}
+\ \\
+Sea $\mathcal{C}[n,m]\subset \mathbb{F}^{^n}_q$ un c\'odigo lineal
+con una tabla est\'andar
+$Tb(\mathcal{C}[n,m])$ en la que el primer elemento de cada fila es el de
+menor peso de dicha fila. Sea $Tb(\mathcal{C}[n,m])_{i,k}$ una palabra
+cualquiera de la tabla entonces se tiene que:
+\begin{displaymath}
+d(Tb(\mathcal{C}[n,m])_{i,k},Tb(\mathcal{C}[n,m])_{0,k})\leq
+d(Tb(\mathcal{C}[n,m])_{i,k},Tb(\mathcal{C}[n,m])_{0,j}) 
+\end{displaymath}
+donde $j=0,\dots,q^{m}-1$.
+\end{proposicion}
+\underline{\textbf{Demostraci\'on}}:\\
+Tenemos por definici\'on de distancia que:
+\begin{displaymath}
+d(Tb(\mathcal{C}[n,m])_{i,k},Tb(\mathcal{C}[n,m])_{0,j}) =
+w(Tb(\mathcal{C}[n,m])_{i,k}-Tb(\mathcal{C}[n,m]_{0,j}))
+\end{displaymath}
+Seg\'un varia $j$ tenemos que $T(\mathcal{C}[n,m])_{0,j}$ varia en
+$\mathcal{C}[n,m]$, luego por las propiedades de la tabla tendremos que
+$Tb(\mathcal{C}[n,m])_{i,k}-Tb(\mathcal{C}[n,m])_{0,j}$ varia en el
+conjunto formado por los elementos de la fila $i$. Luego el problema de
+encontrar el m\'{\i}nimo de:
+\begin{displaymath}
+w(Tb(\mathcal{C}[n,m])_{i,k}-Tb(\mathcal{C}[n,m])_{0,j})
+\end{displaymath}
+equivale a encontrar la palabra de m\'{\i}nimo peso de la fila $i$, pero por
+cons\-trucci\'on dicha palabra es $Tb(\mathcal{C}[n,m])_{i,0}$.
+\begin{displaymath}
+\min_{j=0,\dots,q^{m}-1}\{\ w(Tb(\mathcal{C}[n,m])_{i,k}-
+Tb(\mathcal{C}[n,m])_{0,j})\ \} = Tb(\mathcal{C}[n,m]_{i,0})
+\end{displaymath}
+Luego:
+\begin{displaymath}
+d(Tb(\mathcal{C}[n,m])_{i,k},Tb(\mathcal{C}[n,m])_{0,j})\geq
+w(Tb(\mathcal{C}[n,m])_{i,0})\quad j=0,\dots,q^{m}-1
+\end{displaymath}
+Pero como $Tb(\mathcal{C}[n,m])_{i,k}=Tb(\mathcal{C}[n,m])_{i,0}+
+Tb(\mathcal{C}[n,m])_{0,k}$, o lo que es lo mismo $Tb(\mathcal{C}[n,m])_{i,0}=
+Tb(\mathcal{C}[n,m])_{i,k}-Tb(\mathcal{C}[n,m])_{0,k}$ tenemos entonces:
+\begin{displaymath}
+d(Tb(\mathcal{C}[n,m])_{i,k},Tb(\mathcal{C}[n,m])_{0,j})\geq
+d(Tb(\mathcal{C}[n,m])_{i,k},Tb(\mathcal{C}[n,m]_{0,k}))
+\end{displaymath}
+para $j=0,\dots,q^{m}-1$.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+
+\subsection{Correcci\'on de errores}
+
+Seg\'un la proposici\'on $\ref{pro:ProcesarError}$ para corregir un error
+tendremos que realizar los siguientes pasos:
+\begin{itemize}
+\item Localizar la palabra recibida en una tabla est\'andar.
+\item Suponiendo que la palabra recibida es $Tb(\mathcal{C}[6,3])_{i,k}$ 
+entonces tomaremos como palabra transmitida la palabra que est\'e en la misma
+columna pero en la fila cero, $Tb(\mathcal{C}[6,3])_{0,k}$. Siendo el error
+cometido el primer elemento de la fila en la que se encuentre la palabra
+recibida, $Tb(\mathcal{C}[6,3])_{i,0}$.
+\item El n\'umero de errores que corrige viene dado por el n\'umero de filas
+que posee la tabla del c\'odigo, y los patrones de error que corrige son los
+primeros elementos de cada fila.
+\item La proposici\'on $\ref{pro:Cercania}$ nos indica que corregiremos siempre
+por la palabra m\'as cercana del c\'odigo, seg\'un la distancia de Hamming.
+\end{itemize}

@@ -1,0 +1,80 @@
+%
+% CONDICION PARA LA CORRECCION DE ERRORES SIMPLES
+%
+
+\section{Condici\'on para la correcci\'on de errores de peso uno}
+
+Los errores de peso uno son una base del $\mathbb{F}_q$-espacio vectorial
+$\mathbb{F}^{^n}_q$. Por ejemplo para $n=3$ y $q=2$:
+\begin{eqnarray*}
+e_1&=&(1,0,0)\\
+e_2&=&(0,1,0)\\
+e_3&=&(0,0,1)
+\end{eqnarray*}
+Sea $H$ la matriz de control de un c\'odigo lineal:
+\begin{displaymath}
+\mathcal{C}[n,m]\subset \mathbb{F}^{^n}_2 =<e_1,\dots,e_n>
+\end{displaymath}
+donde los $\{e_i\}_{i=1}^n$ son los errores de peso uno. Seg\'un el teorema
+$\ref{the:DistintaFila}$ un procesador de error $P$ distingue dos errores $e_i$
+y $e_j$ $\Longleftrightarrow$ est\'an en diferente fila $\Longleftrightarrow$
+$H \cdot e_i^t \neq H\cdot e_j^t$. Ahora bien $H\cdot e_i^t=i$-\'esima columna
+de la matriz de control $H$, luego de esto se deduce:
+\begin{corolario}
+\ \\
+Un c\'odigo lineal binario puede distinguir todos los errores de peso uno
+s\'{\i} y s\'olo s\'{\i} la matriz de control tiene todas las columnas distintas
+y no nulas.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\end{corolario}
+%
+Este corolario lo podemos generalizar a canales no binarios:
+\begin{teorema}[Condici\'on necesaria y suficiente]
+\ \\
+Sea $\mathcal{C}[n,m]$ un c\'odigo lineal con matriz de control $H$. El c\'odigo
+puede corregir todos los errores de peso uno s\'{\i} y s\'olo s\'{\i} todas las
+columnas de la matriz de control son no nulas y ninguna columna es un multiplo
+de las restantes columnas\footnote{Son linealmente independientes dos a dos.}.
+\end{teorema}
+\underline{\textbf{Demostraci\'on}}:\\
+Por el teorema $\ref{the:DistintaFila}$ los errores de peso uno se distinguen y
+corrigen $\Longleftrightarrow$ estan en diferente fila en una tabla est\'andar
+del c\'odigo $\Longleftrightarrow$ tienen distintos sindromes.
+%
+\newpage
+%
+Sea $e$ un error de peso uno, es decir una palabra con todas sus componentes
+nulas excepto una. Entonces podemos distiguir dos casos:
+\begin{itemize}
+\item Canal binario, sobre $\mathbb{F}_2$.\\ \\
+%
+Tendremos que $e=e_i$ para alg\'un $i$, luego $H\cdot e_i^t=i$-\'esima columna
+de la matriz de control $H$.
+\item Canal no binario, sobre $\mathbb{F}_q$, con $q\neq 2$.\\ \\
+%
+Sea $a_i\in \mathbb{F}_q$ la componente no nula de $e$, entonces tendremos que
+$H\cdot e^t=a_i\cdot c_i$, donde $c_i$ es la $i$-\'esima columna de la matriz
+de control del c\'odigo $H$.
+\end{itemize}
+Luego los sindromes de los errores de peso uno son multiplos de las columnas
+de la matriz de control, $H$.\\ \\
+%
+Como el c\'odigo distingue y corrige todos los errores de peso uno
+$\Longleftrightarrow$ tienen distinto sindrome, y los sindromes%
+\footnote{De los errores de peso uno.} son multiplos de las columnas de la
+matriz de control se tiene que:
+\begin{quote}
+El c\'odigo distingue y corrige todos los errores de peso uno
+$\Longleftrightarrow$ no hay ninguna columna que sea multiplo de las
+dem\'as.
+\end{quote}
+Recordar que la palabra cero es multiplo de todas, basta con multiplicar
+cualquier palabra por el escalar cero.
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+Seg\'un este teorema podemos ver si un c\'odigo distingue y corrige todos
+los errores de peso uno s\'olo con mirar las columnas de la matriz de control
+y comprobar s\'{\i} son linealmente independientes dos a dos.

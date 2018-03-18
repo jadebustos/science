@@ -1,0 +1,99 @@
+%
+% ECUACIONES DE LOS CODIGOS LINEALES
+%
+
+\section{Ecuaciones de los c\'odigos lineales}
+
+Como hemos visto un c\'odigo lineal $\mathcal{C}$ es un subespacio vectorial.
+Utilizando la teor\'{\i}a de espacios vectoriales podemos calcular las
+ecuaciones de un subespacio vectorial cualquiera. La utilidad de estas
+ecuaciones radica en que nos indican las condiciones que ha de cumplir un
+vector para pertenecer al c\'odigo.\\
+
+Sea $\mathcal{C}\subset \mathbb{F}^{^n}_q$ un c\'odigo lineal, donde
+$\mathbb{F}^{^n}_q$ es un $\mathbb{F}_q$-espacio vectorial tal que
+$\dim_{\mathbb{F}_q} \mathbb{F}^{^n}_q=n$. Supongamos que
+$\dim_{\mathbb{F}_q} \mathcal{C} = m$, con $m<n$ y que el espacio de palabras
+a codificar es $\mathbb{F}^{^m}_q$.
+%
+\newpage
+%
+\subsection{Ecuaciones param\'etricas}\label{sec:EcuParametricas}
+
+Una vez conocida la matriz generadora del c\'odigo se pueden calcular las
+ecuaciones param\'etricas del c\'odigo. Dichas ecuaciones nos permitir\'an
+calcular todas las palabras del c\'odigo.\\
+
+Sea $C$ la matriz generadora del c\'odigo, para calcular las ecuaciones
+pa\-ra\-m\'etricas del c\'odigo bastar\'a con aplicar la matriz generadora a un
+vector gen\'erico del espacio de palabras a codificar.
+\begin{displaymath}
+C\cdot \left( \begin{array}{c}
+\lambda_1\\
+\lambda_2\\
+\vdots\\
+\lambda_m
+\end{array} \right) =
+\left( \begin{array}{c}
+\theta_1\\
+\theta_2\\
+\vdots\\
+\theta_n
+\end{array} \right)
+\end{displaymath}
+luego las ecuaciones param\'etricas ser\'an:
+\begin{displaymath}
+\left\{ \begin{array}{ccc}
+x_1 &=&\theta_1\\
+x_2 &=&\theta_2\\
+\cdots&\cdots&\cdots\\
+x_n &=&\theta_n
+\end{array} \right.
+\end{displaymath}
+Tendremos que $\theta_i = f_i (\lambda_1,\dots,\lambda_m)$ para $i=1,\dots,n$ y
+dando valores a $\{\lambda_j \}_{j=1}^m$ en el cuerpo $\mathbb{F}_q$ tendremos
+todos los elementos del c\'odigo.
+
+\subsection{Ecuaciones impl\'{\i}citas}\label{sec:EcuImplicitas}
+
+Para calcular las ecuaciones impl\'{\i}citas de $\mathcal{C}$ calcularemos el
+subespacio incidente a $\mathcal{C}$, $\mathcal{C}^{^{\circ}}\subset
+(\mathbb{F}^{^n}_q)^{^*}$. El subespacio incidente est\'a formado por las
+formas lineales que se anulan sobre $\mathcal{C}$.\\
+
+El n\'umero de ecuaciones impl\'{\i}citas que tendr\'a nuestro c\'odigo
+$\mathcal{C}$ ser\'a:
+$$dim_{\mathbb{F}_q} \mathbb{F}^{^n}_q - dim_{\mathbb{F}_q} \mathcal{C}=n-m$$
+Como $\dim_{\mathbb{F}_q} \mathcal{C} = m$ tendremos que
+$\mathcal{C}=<c_1,\ldots,c_m>$. Para calcular las ecuaciones tendremos que
+resolver un sistema de ecuaciones que tendr\'a m\'as de una soluci\'on.
+%
+\newpage
+%
+Sean $\{x_i^j\}_{j=1}^m$ con $i=1,\dots,n$ la $i$-\'esima coordenada del
+vector $j$-\'esimo de la base de $\mathcal{C}$. El sistema que nos da las
+ecuaciones ser\'a:
+\begin{displaymath}
+\left( \begin{array}{cccc}
+x_1^1 & \ldots & \ldots & x_n^1 \\
+x_1^2 & \ddots & & x_n^2 \\
+\vdots & &\ddots & \vdots \\
+x_1^m &\ldots &\ldots & x_n^m
+\end{array} \right) \cdot
+\left( \begin{array}{c}
+x_1 \\
+\vdots \\
+\vdots \\
+x_n
+\end{array} \right) =
+\left( \begin{array}{c}
+0 \\
+\vdots \\
+\vdots \\
+0
+\end{array} \right)
+\end{displaymath}
+
+Cualquier $x=(x_1,\ldots,x_n)$ que verifique este sistema de ecuaciones
+ser\'a un elemento de $\mathcal{C}$, o lo que es lo mismo cualquier punto que no
+verifique el sistema de ecuaciones anterior NO pertenecer\'a a $\mathcal{C}$.

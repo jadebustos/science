@@ -1,0 +1,88 @@
+%
+% CONSTRUCCION DE LOS CODIGOS BCH
+%
+
+\section{Preliminares}
+
+Como hemos dicho antes estos c\'odigos ser\'an subc\'odigos de los c\'odigos
+de Hamming. Para ello eliminaremos palabras de los c\'odigos de Hamming con el
+objetivo de obtener un nuevo c\'odigo con una distancia m\'{\i}nima mayor.\\
+
+La forma de eliminar palabras ser\'a a\~nadiendo nuevas condiciones al
+c\'odigo, o lo que es lo mimo a\~nadir nuevas filas a la matriz de control.
+Estas nuevas filas que a\~nadiremos no ser\'an combinaciones lineales de las
+filas de la matriz de control, ya que no estariamos haciendo nada.
+Matem\'aticamente 
+estaremos a\~nadiendo nuevas ecuaciones impl\'{\i}citas al c\'odigo, con lo
+cual reduciremos su dimensi\'on, y como consecuencia el n\'umero de palabras
+del c\'odigo.\\
+
+Las nuevas filas que a\~nadiremos ser\'an una funci\'on \textbf{no lineal} de
+la filas de la matriz de control. Al utilizar funciones \textbf{no lineales}
+tenemos un
+cierto control sobre la distancia m\'{\i}nima, ya que esta variar\'a seg\'un
+la funci\'on que estemos utilizando.
+%
+\newpage
+%
+\subsection{Funciones no lineales}
+
+Ejemplos de funciones \emph{no lineales} son aquellas en las que aparecen
+potencias de las variables:
+\begin{eqnarray*}
+f(x)&=&x^2\\
+f(x)&=&x^3\\
+&\dots& \\
+f(x)&=&x^n\quad n=2,3,\dots
+\end{eqnarray*}
+
+Sobre $\mathbb{F}_2$ es dificil encontrar funciones \emph{no lineales}, las
+del tipo anterior son lineales en este cuerpo:
+\begin{eqnarray*}
+\mathbb{F}_2&\longrightarrow&\mathbb{F}_2\\
+x&\longrightarrow&x^n = x
+\end{eqnarray*}
+La funci\'on $x^n$ es \emph{no lineal} para valores de $n$ distintos de $0$ y
+$1$, pero en $\mathbb{F}_2$ la funci\'on \emph{no lineal} $x^n$, $n\neq 0$, es
+equivalente a la funci\'on $x$, la cual es lineal.\\
+
+Es por este motivo que vamos a considerar funciones \emph{no lineales} sobre
+potencias de $\mathbb{F}_2$, es decir sobre $\mathbb{F}^{^n}_2$ con
+$n=2,3,\dots.$.
+
+\subsection{Funciones no lineales sobre $\mathbb{F}^{^n}_2$}
+
+Dado $\mathbb{F}^{^n}_2$ podemos dotarle de estructura de grupo definiendo la
+operaci\'on suma componente a componente.\\
+
+El n\'umero de elementos que tiene $\mathbb{F}^{^n}_2$ es $2^n$. Luego como
+tiene estructura de grupo podemos establecer un isomorfismo con un grupo que
+tenga orden $2^n$, este grupo ser\'a $\mathbb{Z}/2^n$. El isomorfismo ser\'a
+el siguiente:
+\begin{eqnarray*}
+\mathbb{F}^{^n}_2&\stackrel{\sim}\longrightarrow&\mathbb{Z}/2^n\simeq
+\mathbb{F}_{2^n}\\
+(a_{0},\dots,a_{n-1})&\longrightarrow& a_0\cdot 2^0+a_1\cdot 2^i+\dots+a_{n-1}
+\cdot 2^{n-1}
+\end{eqnarray*}
+Es decir consideramos los elementos de $\mathbb{F}^{^n}_2$ como la
+representaci\'on binaria de los $2^n$ primeros n\'umeros enteros, incluido el
+cero. Luego podremos representar los n\'umeros enteros comprendidos entre $0$
+y $2^n-1$, ambos inclusive.
+%
+\newpage
+%
+Ahora podemos definir la siguiente familia de funciones \emph{no lineales}:
+\begin{eqnarray*}
+f_i:\mathbb{F}_{2^n}&\longrightarrow&\mathbb{F}_{2^n}\\
+x&\longrightarrow & x^i
+\end{eqnarray*}
+para $i=2,3,\dots$.\\
+
+Por ejemplo para $i=2$ y $n=4$ tendremos:
+\begin{eqnarray*}
+f_2(0)&=&0^2=0\\
+f_2(1)&=&1^2=1\\
+f_2(2)&=&2^2=4\\
+f_2(3)&=&3^2=5
+\end{eqnarray*}

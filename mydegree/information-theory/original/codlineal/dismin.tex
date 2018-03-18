@@ -1,0 +1,38 @@
+%
+% DISTANCIA MINIMA 
+%
+
+\section{Calculo de la distancia m\'{\i}nima}
+
+Debido a la estructura de espacios vectoriales que poseen estos c\'odigos se
+puede simplificar el calculo de la distancia m\'{\i}nima, $d_{min}$. Seg\'un
+la definici\'on de distancia m\'{\i}nima el n\'umero de distancias que tendremos
+que calcular para encontrala ser\'a de $\frac{|\mathcal{C}|^2}{2}$, es decir,
+tendr\'{\i}amos que calcular tantas distancias como parejas de dos elementos
+distintos del c\'odigo podamos tener dividido por dos, ya que la distancia es
+sim\'etrica. \\
+
+\begin{proposicion}[Distancia m\'{\i}nima para c\'odigos lineales]
+\ \\
+Sea $\mathcal{C}\subset \mathbb{F}^{^n}_q$ un c\'odigo lineal, entonces:
+$$d_{min} = \min_{u \in \mathcal{C}\atop u\neq 0} \{\ d(u,0)\ \}$$
+\end{proposicion}
+\underline{\textbf{Demostraci\'on}}:\ \\
+Supongamos que la distancia m\'{\i}nima es:
+$$d_{min} = d(u,v)\quad u,v\in \mathcal{C}$$
+entonces por la definici\'on de la distancia de Hamming se tiene que:
+$$d(u,v)=d(u-v,0)$$ y como el c\'odigo $\mathcal{C}$ es un c\'odigo lineal se
+tiene entonces que $u-v\in \mathcal{C}$. Es decir:
+$$d_{min}= \min_{u\in \mathcal{C} \atop u\neq 0} \{\ d(u,0)\ \}$$
+\begin{flushright}
+$\blacksquare$
+\end{flushright}
+\begin{observacion}
+\ \\
+De esta proposici\'on se deduce que para calcular la distancia m\'{\i}nima de 
+un c\'odigo lineal basta con calcular la distancia de todas las palabras, salvo
+la palabra cero, al cero y tomar el m\'{\i}nimo de esas distancias. Con lo cual
+unicamente tendremos que calcular $|\mathcal{C}|-1$ distancias en lugar de las
+$\frac{|\mathcal{C}|^2}{2}$ distancias que deberiamos calcular para un c\'odigo
+no lineal.
+\end{observacion}
