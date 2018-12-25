@@ -1,0 +1,6 @@
+2014-11-20  Jose Angel de Bustos Perez  <jadebustos@gmail.com>
+
+	* random.c (main):  Created project
+	* help.c, help.h (help):  Added help function.
+	* log.c, log.h (log): Added log function.
+	* randomgen.c, randomgen.h (randomgen): Added function to create and store random numbers. 
