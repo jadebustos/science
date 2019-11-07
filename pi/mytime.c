@@ -26,3 +26,4 @@ char * strTime( time_t *mytime) { /* begin function - strTime */
   return asctime(calendar);
 
 } /* end functin - strTime */
+

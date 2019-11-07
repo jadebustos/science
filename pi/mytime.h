@@ -22,3 +22,4 @@
 
   char * strTime( time_t *mytime);
 #endif
+
