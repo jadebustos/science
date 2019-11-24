@@ -1,0 +1,88 @@
+%
+% POLYNOMIAL OVER FINITE FIELDS
+
+\chapter{Polynomials over Finite Fields}
+
+Let $f(x)$ a polynomial in $\mathbb{F}_p[x]$:
+
+\begin{displaymath}
+ f(x) = \sum_{i=0}^n a_i \cdot x^i \qquad a_i \in \mathbb{F}_p \quad \forall i
+\end{displaymath}
+
+\section{How many polynomials of degree $n$ exist in $\mathbb{F}_p[x]$?}
+
+A polynomial of degree $n$ in $\mathbb{F}_p[x]$ can be expressed as:
+
+\begin{displaymath}
+(1, a_{n-1}, a_{n-2}, \dots, a_1,a_0) \qquad a_i \in \mathbb{F}_p \quad \forall i
+\end{displaymath}
+
+So with $n$ digits $m$ numbers can be written\footnote{See section (\ref{sec:many-digits-base-n})} in base $p$:
+
+\begin{displaymath}
+[\log_{p} (m) = n]
+\end{displaymath}
+
+\begin{example}
+How many polynomials of degree $4$ exist in $\mathbb{F}_2[x]?$
+\ \\ \\
+%
+A polynomial of degree $4$ has $5$ coefficients so:
+
+\begin{displaymath}
+p(x) = x^4 + \sum_{i=0}^{3} a_i \cdot x^i \qquad a_i \in \mathbb{F}_2 \quad \forall i
+\end{displaymath}
+
+As the coefficient for the $4$th power is always $1$ there are $4$ coefficients available:
+
+\begin{displaymath}
+[\log_2 (16)] = 4
+\end{displaymath}
+
+There are $16$ polynomials of degree $4$ in $\mathbb{F}_2[x]$.
+\end{example}
+
+\section{Irreducible polynomials in $\mathbb{F}_p[x]$}
+
+\begin{table}[!ht]
+  \begin{center}
+    \begin{tabular}{r|c|c|c} 
+      \textbf{Polynomial} & \textbf{Factorization} & \textbf{Irreducible} & \textbf{Primitive}\\
+      \hline
+      $x^4$ & $x \cdot x \cdot x \cdot x$ & No & No \\
+      \hline
+      $x^4 + 1$ & $(x + 1)^4 $ & No & No \\
+      \hline
+      $x^4 + x$ & $x\cdot (x^3 + 1)$ & No & No \\
+      \hline
+      $x^4 + x + 1$ & $(x^4 + x + 1)$ & Yes & Yes \\
+      \hline
+      $x^4 + x^2$ & $x^2 \cdot (x + 1)^2$ & No & No \\
+      \hline
+      $x^4 + x^2 + 1$ & & & No \\
+      \hline
+      $x^4 + x^2 + x$ & & & No \\
+      \hline
+      $x^4 + x^2 + x + 1$ & & & No \\
+      \hline
+      $x^4 + x^3$ & $x^3 \cdot (x + 1)$ & No & No \\
+      \hline
+      $x^4 + x^3 + 1$ & & & No \\
+      \hline
+      $x^4 + x^3 + x$ & & & No \\
+      \hline
+      $x^4 + x^3 + x + 1$ & & & No \\
+      \hline
+      $x^4 + x^3 + x^2$ & & & No \\
+      \hline
+      $x^4 + x^3 + x^2 + 1$ & & & No \\
+      \hline
+      $x^4 + x^3 + x^2 + x$ & & & No \\
+      \hline
+      $x^4 + x^3 + x^2 + x + 1$ & & & No \\
+      \hline
+    \end{tabular}
+    \caption{Polynomials of degree $4$ in $\mathbb{F}_{2}[x]$.}
+    \label{tab:table1}
+  \end{center}
+\end{table}

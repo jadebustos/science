@@ -1,0 +1,57 @@
+\documentclass[a4paper,12pt]{report}
+
+%\addtolength{\voffset}{-2cm}
+\usepackage[english]{babel}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\hyphenation{coe-ffi-cients}
+
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{note}{Note}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+
+\begin{document}
+\ \\ \\
+\Huge
+%\begin{center}
+\textbf{How to build GF($p^n$)}
+\begin{center}
+\end{center}
+\ \\ \\
+
+\begin{flushright}
+\Large
+\ \\
+\textbf{Jos\'e Angel de Bustos P\'erez}\\
+\end{flushright}
+
+\normalsize
+
+\thispagestyle{empty}
+
+\tableofcontents
+%\listoffigures
+
+%
+% INTRODUCTION 
+%
+
+\include{intro/intro}
+
+%
+% POLYNOMIAL OVER FINITE FIELDS
+%
+
+\include{polynomial-finite-fields/polynomial-finite-fields}
+
+%
+% BIBLIOGRAFIA
+%
+
+%\include{biblio/biblio}
+
+\end{document}

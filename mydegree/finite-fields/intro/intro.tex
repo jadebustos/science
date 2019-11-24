@@ -1,0 +1,141 @@
+%
+% INTRODUCTION
+%
+
+\chapter{Introduction}
+
+\section{How many digits do we need in base $n$ to write $m$ numbers?} \label{sec:many-digits-base-n}
+
+To write $m$ numbers in base $n$ the digits we need:
+
+\begin{displaymath}
+[\log_n (m)]
+\end{displaymath}
+
+\begin{example} 
+How many digits do we need in base $2$ to write $16$ numbers?
+
+\begin{displaymath}
+[\log_2 (16)] = 4
+\end{displaymath}
+
+So we need $4$ digits to write $16$ numbers in base $2$:
+
+\begin{displaymath}
+a_3a_2a_1a_0 = \sum_{i=0}^3 a_i \cdot 2^i \qquad a_i \in \mathbb{F}_2
+\end{displaymath}
+
+\end{example}
+
+\section{Irreducible or prime polynomial}
+
+Let $f(x)$ a polynomial over a field $\mathbb{K}$:
+
+\begin{displaymath}
+f(x) \in \mathbb{K}[x]
+\end{displaymath}
+
+\begin{definition}[Irreducible or prime polynomial] \label{def:prime-pol}
+\ \\
+$f(x)$ is said to be an irreducible or prime polynomial in $\mathbb{K}[x]$ when the polynomial cannot be written as a product of two polynomials of 
+smaller degree with coefficients over the field $\mathbb{K}$.
+\end{definition}
+
+\section{Primitive-part and content of a polynomial}
+
+\begin{definition}[Integral domain]
+\ \\
+Is a non-zero commutative ring in which the product of non-zero elements is non-zero.
+\end{definition}
+
+\begin{definition}[Unique Factorization Domain (UFD)]
+\ \\
+A UFD is a integral domain in which every non-zero non-unit element can be written as a product of prime elements (or irreducible elements) uniquely up to order 
+and units.
+\end{definition}
+
+\begin{definition}[Content of a polynomial with integer coefficients]
+\ \\
+The content of a polynomial with integer coefficients (or, more generally, with coefficients in a unique factorization domain) is the greatest common divisor 
+of its coefficients.
+\end{definition}
+
+\begin{example}
+The content of the polynomial $p(x) = -60 + 36\cdot x - 24 \cdot x^2 + 4 \cdot x^3$ is $4$:
+
+\begin{displaymath}
+\rm{mcd}(-60,36,-24,4) = 4
+\end{displaymath}
+
+so $p(x) = 4\cdot (-15 + 8\cdot x - 6 \cdot x^2 + x^3)$.
+\end{example}
+
+\begin{definition}[Primitive part of a polynomial with integer coefficients]
+The primitive part of a polynomial with integer coefficients is the quotient of the polynomial by its content. Thus a polynomial is the product of its primitive
+part and its content, and this factorization is unique up to the multiplication of the content by a unit of the ring of the coefficients (and the multiplication
+of the primitive part by the inverse of the unit). 
+\end{definition}
+
+\begin{example}
+As the content of the polynomial $p(x) = -60 + 36\cdot x - 24 \cdot x^2 + 4 \cdot x^3$ is $4$ then the primitive-part for the polynomial is:
+
+\begin{displaymath}
+-15 + 8\cdot x - 6 \cdot x^2 + x^3
+\end{displaymath}
+\end{example}
+
+\section{Primitive polynomials}
+
+\begin{definition}[Primitive polynomial]
+\ \\
+A polynomial is primitive if its content equals $1$ so the primitive-part and the polynomial are the same.
+\end{definition}
+
+\begin{lemma}[Gauss's lemma (primitivity)]
+\ \\
+If $p(x)$ and $q(x)$ are primitive polynomials in $\mathbb{Z}[x]$ then $p(x) \cdot q(x)$ is also a primitive polynomial.
+\end{lemma}
+
+\begin{lemma}[Gauss's lemma (irreducibility)]
+\ \\
+A non-constant polynomial in $\mathbb{Z}[x]$ is irreducible in $\mathbb{Z}[x]$ if and only if it is both irreducible in $\mathbb{Q}[x]$ and primitive 
+in $\mathbb{Z}[x]$.
+\end{lemma}
+
+\section{Eisenstein's irreductible criterion} \label{sec:eisenstein-criterion}
+
+Let $p(x) \in \mathbb{Z}[x]$ a polynomial with integer coefficients:
+
+\begin{displaymath}
+p(x) = \sum_{i=0}^{n} a_i \cdot x^i \qquad a_i \in \mathbb{Z} \quad \forall i
+\end{displaymath}
+
+If there is a prime number $p\in \mathbb{Z}$ such the following three conditions are all true:
+
+\begin{itemize}
+\item $p$ divides each $a_i$ when $0 \le i < n$.
+\item $p$ does not divide $a_n$.
+\item $p^2$ does not divide $a_0$.
+\end{itemize}
+
+then $p(x)$ is irreducible over the rational numbers\footnote{It will also be irreducible over the integers, unless all its coefficients have a nontrivial factor 
+in common (in which case $p(x)$ as integer polynomial will have some prime number, necessarily distinct from $p$, as an irreducible factor). The latter 
+possibility can be avoided by first making $p(x)$ primitive, by dividing it by the greatest common divisor of its coefficients (the content of $p(x)$). This 
+division does not change whether $p(x)$ is reducible or not over the rational numbers (see 
+\href{https://en.wikipedia.org/wiki/Factorization_of_polynomials\#Primitive_part-content_factorization}{Primitive part–content factorization} for details), 
+and will not invalidate the hypotheses of the criterion for $p$ (on the contrary it could make the criterion hold for some prime, even if it did not before the 
+division).}.
+
+\section{Cyclotomic polynomials}
+
+Cyclotomic polynomials are a class of polynomials whose irreducibility can be established using Eisenstein's criterion (section (\ref{sec:eisenstein-criterion})) 
+is that of the cyclotomic polynomials for prime numbers $p$.
+
+\begin{definition}[Cyclotomic polynomial]
+\ \\
+Such a polynomial is obtained by dividing the polynomial $x^p - 1$ by the linear factor $x - 1$, corresponding to its obvious root $1$ (which is its only 
+rational root if $p > 2$):
+\begin{displaymath}
+\frac{x^p - 1}{x - 1} = \sum_{i=0}^{p-1} x^i 
+\end{displaymath}
+\end{definition} 
